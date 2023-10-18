@@ -1,14 +1,14 @@
 <template>
-  <div class="item">
-    <i>
-      <slot name="icon"></slot>
-    </i>
-    <div class="details">
-      <h3>
-        <slot name="heading"></slot>
-      </h3>
-      <slot></slot>
+  <div class="card">
+    <div class="card-content">
+      <p class="subtitle"><slot name="heading"></slot></p>
+      <slot name="amount"></slot>
+      <slot name="min_amount"></slot>
     </div>
+    <footer class="card-footer">
+      <button class="button">remove</button>
+      <button class="button">add to cart</button>
+    </footer>
   </div>
 </template>
 
