@@ -1,21 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import BottomControls from './components/BottomControls.vue';
 </script>
 
 <template>
   <div class="container">
-    <div class="has-text-centered">
-      <figure class="image is-inline-block">
-        <img src="@/assets/logo.png" width="112" height="28">
-      </figure>
-    </div>
-    <nav class="navbar">
-      <RouterLink to="/">Главная</RouterLink>
-      <RouterLink to="/about">В пути</RouterLink>
-      <RouterLink to="/about">Добавить</RouterLink>
-      <RouterLink to="/about">Корзина</RouterLink>
-      <RouterLink to="/about">Профиль</RouterLink>
+    <nav class="navbar is-fixed-top">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="@/assets/logo.png" width="112" height="28">
+        </a>
+      </div>
     </nav>
+    <BottomControls/>
     <RouterView />
   </div>
 </template>
