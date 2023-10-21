@@ -2,6 +2,9 @@
 import ListItem from './ListItem.vue'
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
+
+import {store} from '../store.js'
+const props = defineProps(['foo'])
 </script>
 
 <template>
@@ -24,74 +27,16 @@ import SearchIcon from './icons/SearchIcon.vue'
     </div>
   </div>
 
-  <div>
+  <div v-for="item in store.list">
     <ListItem>
-      <template #heading>Игла спинальная 26G (90 мм) Portex Пенсил с иглой-интродьюсером 20G</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Игла спинальная (88мм) SURU для анестезии Квинке</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Медиагель - гель для УЗИ высокой вязкости бесцветный</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Игла спинальная 26G (90 мм) Portex Пенсил с иглой-интродьюсером 20G</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Игла спинальная (88мм) SURU для анестезии Квинке</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Медиагель - гель для УЗИ высокой вязкости бесцветный</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
-    </ListItem>
-
-    <ListItem>
-      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
-      <template #amount>12</template>
-      <template #min_amount>10</template>
+      <template #heading>{{item.heading}}</template>
+      <template #amount>{{item.amount}}</template>
+      <template #min_amount>{{item.min_amount}}</template>
     </ListItem>
   </div>
-  <!-- </article> -->
 </template>
 
 <style scoped>
-/* .filter-button {
-  margin-left: 1rem;
-} */
 .control-container {
   margin: 0.5rem;
 }
