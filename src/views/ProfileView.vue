@@ -5,7 +5,7 @@ import ListItem from '../components/ListItem.vue';
 
 <template>
   <main>
-    <h1>BasketView</h1>
+    <h1>ProfileView</h1>
     <!-- <List/> -->
   </main>
 </template>
