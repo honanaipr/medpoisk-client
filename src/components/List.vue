@@ -1,63 +1,105 @@
 <script setup>
 import ListItem from './ListItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+import FilterIcon from './icons/FilterIcon.vue'
+import SearchIcon from './icons/SearchIcon.vue'
 </script>
 
 <template>
-  <article class="panel is-primary">
-    <!-- <p class="panel-tabs">
-        <a class="is-active">All</a>
-        <a>Public</a>
-        <a>Private</a>
-        <a>Sources</a>
-        <a>Forks</a>
-      </p> -->
-    <div class="panel-block">
-      <p class="control has-icons-left">
-        <input class="input is-primary" type="text" placeholder="Search">
-        <span class="icon is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
+  <div class="content">
+    <h3>Наименования</h3>
+  </div>
+  <div class="container control-container">
+    <div class="field is-grouped">
+      <p class="control is-expanded has-icons-left">
+        <input class="input " type="text" placeholder="Найти...">
+          <span class="icon is-small is-left">
+            <SearchIcon />
+          </span>
+      </p>
+      <p class="control">
+        <button class="button filter-button">
+            <FilterIcon />
+          </button>
       </p>
     </div>
+  </div>
+
+  <div>
+    <ListItem>
+      <template #heading>Игла спинальная 26G (90 мм) Portex Пенсил с иглой-интродьюсером 20G</template>
+      <template #amount>12</template>
+      <template #min_amount>10</template>
+    </ListItem>
+
+    <ListItem>
+      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
+      <template #amount>12</template>
+      <template #min_amount>10</template>
+    </ListItem>
+
+    <ListItem>
+      <template #heading>Игла спинальная (88мм) SURU для анестезии Квинке</template>
+      <template #amount>12</template>
+      <template #min_amount>10</template>
+    </ListItem>
+
+    <ListItem>
+      <template #heading>Медиагель - гель для УЗИ высокой вязкости бесцветный</template>
+      <template #amount>12</template>
+      <template #min_amount>10</template>
+    </ListItem>
+
+    <ListItem>
+      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
+      <template #amount>12</template>
+      <template #min_amount>10</template>
+    </ListItem>
 
     <ListItem>
       <template #heading>Игла спинальная 26G (90 мм) Portex Пенсил с иглой-интродьюсером 20G</template>
       <template #amount>12</template>
       <template #min_amount>10</template>
-
     </ListItem>
 
     <ListItem>
-      <template #heading>Набор для спинально-эпидуральной
-        анестезии Portex</template>
+      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
       <template #amount>12</template>
       <template #min_amount>10</template>
     </ListItem>
 
     <ListItem>
-      <template #heading>Игла спинальная (88мм) SURU для
-        анестезии Квинке</template>
+      <template #heading>Игла спинальная (88мм) SURU для анестезии Квинке</template>
       <template #amount>12</template>
       <template #min_amount>10</template>
     </ListItem>
 
     <ListItem>
-      <template #heading>Медиагель - гель для УЗИ высокой
-        вязкости бесцветный</template>
+      <template #heading>Медиагель - гель для УЗИ высокой вязкости бесцветный</template>
       <template #amount>12</template>
       <template #min_amount>10</template>
     </ListItem>
 
     <ListItem>
-      <template #heading>Набор для спинально-эпидуральной
-        анестезии Portex</template>
+      <template #heading>Набор для спинально-эпидуральной анестезии Portex</template>
       <template #amount>12</template>
       <template #min_amount>10</template>
     </ListItem>
-  </article>
+  </div>
+  <!-- </article> -->
 </template>
+
+<style scoped>
+/* .filter-button {
+  margin-left: 1rem;
+} */
+.control-container {
+  margin: 0.5rem;
+}
+div.content {
+  margin-bottom: 0;
+}
+div.content h3 {
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+} 
+</style>
