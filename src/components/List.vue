@@ -28,11 +28,7 @@ const props = defineProps(['foo'])
   </div>
 
   <div v-for="item in store.list">
-    <ListItem>
-      <template #heading>{{item.heading}}</template>
-      <template #amount>{{item.amount}}</template>
-      <template #min_amount>{{item.min_amount}}</template>
-    </ListItem>
+    <ListItem :item="item"/>
   </div>
 </template>
 
@@ -46,5 +42,5 @@ div.content {
 div.content h3 {
   margin-bottom: 0;
   margin-left: 0.5rem;
-} 
+}
 </style>

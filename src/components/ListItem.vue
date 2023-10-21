@@ -1,15 +1,17 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue';
 import TrashIcon from '../components/icons/TrashIcon.vue'
+
+const props = defineProps(['item'])
 </script>
 
 <template>
   <div class="box item">
-      <slot name="heading"></slot>
+      {{ item.heading }}
     <nav class="level is-mobile">
       <div class="level-left">
         <p class="level-item" aria-label="reply">
-          <slot name="amount"></slot>/<slot name="min_amount"></slot>
+          {{item.amount}}/{{item.min_amount}}
         </p>
       </div>
       <div class="level-item">
