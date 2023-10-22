@@ -2,9 +2,18 @@
 import ListItem from './ListItem.vue'
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
+import { ref } from 'vue'
 
 const props = defineProps(['source'])
 
+let serachQuery = ref("")
+
+function isItemToDisplay(item){
+  if(serachQuery.value){
+    return item.heading.toLowerCase().includes(serachQuery.value.toLowerCase())
+  }
+  return true
+}
 </script>
 
 <template>
@@ -14,7 +23,7 @@ const props = defineProps(['source'])
   <div class="container control-container">
     <div class="field is-grouped">
       <p class="control is-expanded has-icons-left">
-        <input class="input " type="text" placeholder="Найти...">
+        <input class="input " type="text" placeholder="Найти..." v-model="serachQuery">
           <span class="icon is-small is-left">
             <SearchIcon />
           </span>
@@ -28,7 +37,7 @@ const props = defineProps(['source'])
   </div>
 
   <div v-for="item in source">
-    <ListItem :item="item"/>
+    <ListItem :item="item" v-if="isItemToDisplay(item)"/>
   </div>
 </template>
 
