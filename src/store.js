@@ -28,7 +28,7 @@ export function toBasket(id) {
 }
 
 export function addItem(heading, amount, min_amount) {
-  store.list.push({
+  store.value.list.push({
     id: uuid4(),
     heading: heading,
     amount: amount,
