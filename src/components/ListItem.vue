@@ -8,7 +8,7 @@ const props = defineProps(['item'])
 </script>
 
 <template>
-  <div class="box store.item">
+  <div class="box item">
     {{ item.heading }}
     <nav class="level is-mobile">
       <div class="level-left">
