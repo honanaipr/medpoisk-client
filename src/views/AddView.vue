@@ -1,9 +1,20 @@
 <script setup>
 import PlusIcon from '../components/icons/PlusIcon.vue';
 import { ref } from 'vue'
+import router from '../router'
 import { store } from '../store.js'
+import {addItem} from '../store.js'
+let heading = ref("")
+let amount = ref(0)
+let min_amount = ref(1)
+let barcode = ref(0)
 let selected_places = ref([1, 2, 3])
 
+function apply(){
+  addItem(heading, amount, min_amount)
+  // router.push({name:"home"})
+  router.go(-1)
+}
 
 </script>
 
@@ -13,7 +24,7 @@ let selected_places = ref([1, 2, 3])
     <div class="field">
       <label class="label">Наименование:</label>
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" type="text" v-model="heading">
       </div>
     </div>
 
@@ -22,19 +33,19 @@ let selected_places = ref([1, 2, 3])
     <div class="field is-grouped">
       <div class="control">
         <label class="label">Колличество:</label>
-        <input class="input" type="number">
+        <input class="input" type="number" v-model="amount">
       </div>
 
       <div class="control">
         <label class="label">Неснижаемый остаток:</label>
-        <input class="input" type="number">
+        <input class="input" type="number" v-model="min_amount">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Штрихкод:</label>
       <div class="control">
-        <input class="input" type="number">
+        <input class="input" type="number" v-model="barcode">
       </div>
     </div>
 
@@ -50,11 +61,11 @@ let selected_places = ref([1, 2, 3])
     <div class="field is-grouped">
 
       <div class="control">
-        <button class="button is-link">Применить</button>
+        <button class="button" @click="apply">Применить</button>
       </div>
 
       <div class="control">
-        <button class="button is-link is-light">Отменить</button>
+        <button class="button" @click="router.go(-1)">Отменить</button>
       </div>
 
     </div>
