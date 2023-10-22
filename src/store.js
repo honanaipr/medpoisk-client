@@ -13,6 +13,13 @@ export const store = ref({
   list: Array.from({ length: 5 }, createItem),
 
   basket: [],
+  places: [
+    "Шкайф №1",
+    "Шкайф №2",
+    "Шкайф №3",
+    "Холодильник",
+    "Морозильник",
+  ],
 })
 
 export function toBasket(id) {
