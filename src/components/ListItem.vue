@@ -1,30 +1,32 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue';
 import TrashIcon from '../components/icons/TrashIcon.vue'
+import { toBasket, addItem} from '../store.js'
 
 const props = defineProps(['item'])
+
 </script>
 
 <template>
-  <div class="box item">
-      {{ item.heading }}
+  <div class="box store.item">
+    {{ item.heading }}
     <nav class="level is-mobile">
       <div class="level-left">
         <p class="level-item" aria-label="reply">
-          {{item.amount}}/{{item.min_amount}}
+          {{ item.amount }}/{{ item.min_amount }}
         </p>
       </div>
       <div class="level-item">
-        <button class="button is-small item-control">
-        <CrossIcon />
-      </button>
-      <button class="button is-small item-control">
-        <TrashIcon />
-      </button>
+        <button class="button is-small item-control"  >
+          <CrossIcon />
+        </button>
+        <button class="button is-small item-control" @click="toBasket(item.id)">
+          <TrashIcon />
+        </button>
       </div>
       <div class="level-right">
         <p class="level-item" aria-label="reply">
-            Plase
+          Plase
         </p>
       </div>
     </nav>

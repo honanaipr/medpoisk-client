@@ -3,8 +3,8 @@ import ListItem from './ListItem.vue'
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 
-import {store} from '../store.js'
-const props = defineProps(['foo'])
+const props = defineProps(['source'])
+
 </script>
 
 <template>
@@ -27,7 +27,7 @@ const props = defineProps(['foo'])
     </div>
   </div>
 
-  <div v-for="item in store.list">
+  <div v-for="item in source">
     <ListItem :item="item"/>
   </div>
 </template>
