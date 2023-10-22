@@ -1,7 +1,7 @@
 <script setup>
 import HomeIcon from "../components/icons/HomeIcon.vue"
 import TruckIcon from "../components/icons/TruckIcon.vue"
-import CrossIcon from "../components/icons/CrossIcon.vue"
+import PlusIcon from "../components/icons/PlusIcon.vue"
 import TrashIcon from "../components/icons/TrashIcon.vue"
 import ProfileIcon from "../components/icons/ProfileIcon.vue" 
 </script>
@@ -27,7 +27,7 @@ import ProfileIcon from "../components/icons/ProfileIcon.vue"
         <div class="level-item has-text-centered">
             <RouterLink to="/add"><span class="icon-text">
                     <span class="icon">
-                        <CrossIcon />
+                        <PlusIcon />
                     </span>
                     <span>Добавить</span>
                 </span></RouterLink>
