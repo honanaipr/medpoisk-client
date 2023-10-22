@@ -4,8 +4,9 @@ import ListItem from '../components/ListItem.vue';
 </script>
 
 <template>
-  <main>
-    <h1>ProfileView</h1>
-    <!-- <List/> -->
-  </main>
+  <div class="container is-fluid">
+    <div class="content">
+      <h3>ProfileView</h3>
+    </div>
+  </div>
 </template>

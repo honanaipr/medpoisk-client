@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <main>
-    <h1>TransitView</h1>
-  </main>
+  <div class="container is-fluid">
+    <div class="content">
+      <h3>TransitView</h3>
+    </div>
+  </div>
 </template>
