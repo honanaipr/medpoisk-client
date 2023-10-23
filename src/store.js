@@ -2,24 +2,28 @@ import { ref } from 'vue'
 import { v4 as uuid4 } from 'uuid'
 import { faker } from '@faker-js/faker'
 
+const default_places = [
+  {id:uuid4(), title:"Шкайф №1"},
+  {id:uuid4(), title:"Шкайф №2"},
+  {id:uuid4(), title:"Шкайф №3"},
+  {id:uuid4(), title:"Холодильник"},
+  {id:uuid4(), title:"Морозильник"},
+]
+
+
 function createItem(){
   let id = uuid4()
   let heading = faker.commerce.productDescription()
   let amount = faker.number.int({max:40, min:1})
   let min_amount = faker.number.int({max:amount, min:1})
-  return {id: id, heading: heading, amount:amount, min_amount:min_amount}
+  let places = faker.helpers.arrayElements(default_places, { min: 1, max: 3 })
+  return {id: id, heading: heading, amount:amount, min_amount:min_amount, places:places}
 }
 export const store = ref({
-  list: Array.from({ length: 5 }, createItem),
+  list: Array.from({ length: 10 }, createItem),
 
   basket: [],
-  places: [
-    "Шкайф №1",
-    "Шкайф №2",
-    "Шкайф №3",
-    "Холодильник",
-    "Морозильник",
-  ],
+  places: default_places,
 })
 
 export function toBasket(id) {
