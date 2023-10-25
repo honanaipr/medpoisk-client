@@ -23,6 +23,18 @@ const router = createRouter({
       meta: { transition: 'slide-left' },
     },
     {
+      path: '/addInvoice',
+      name: 'addInvoice',
+      component: () => import('../views/InvoiceView.vue'),
+      meta: { transition: 'slide-left' },
+    },
+    {
+      path: '/addByCode',
+      name: 'addByCode',
+      component: () => import('../views/CodeScanerView.vue'),
+      meta: { transition: 'slide-left' },
+    },
+    {
       path: '/basket',
       name: 'basket',
       component: () => import('../views/BasketView.vue'),
