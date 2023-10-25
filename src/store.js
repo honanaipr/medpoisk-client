@@ -1,29 +1,17 @@
 import { ref } from 'vue'
 import { v4 as uuid4 } from 'uuid'
-import { faker } from '@faker-js/faker'
-
-const default_places = [
-  {id:uuid4(), title:"Шкайф №1"},
-  {id:uuid4(), title:"Шкайф №2"},
-  {id:uuid4(), title:"Шкайф №3"},
-  {id:uuid4(), title:"Холодильник"},
-  {id:uuid4(), title:"Морозильник"},
-]
+import axios from 'axios'
 
 
-function createItem(){
-  let id = uuid4()
-  let heading = faker.commerce.productDescription()
-  let amount = faker.number.int({max:40, min:1})
-  let min_amount = faker.number.int({max:amount, min:1})
-  let places = faker.helpers.arrayElements(default_places, { min: 1, max: 3 })
-  return {id: id, heading: heading, amount:amount, min_amount:min_amount, places:places}
-}
+const API_PATH = "http://127.0.0.1:8000/api/v0"
+
+axios.defaults.timeout = 2500
+
 export const store = ref({
-  list: Array.from({ length: 10 }, createItem),
+  list: (await axios.get(API_PATH+"/items/")).data,//Array.from({ length: 10 }, createItem),
 
   basket: [],
-  places: default_places,
+  places: (await axios.get(API_PATH+"/places/")).data,
 })
 
 export function toBasket(id) {
