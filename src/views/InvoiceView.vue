@@ -12,8 +12,9 @@ let incoiceList = ref([])
 <template>
     <InvoiceDataForm />
     <List :source="incoiceList" />
-
-    <button class="button is-large is-fullwidth">
-        <PlusIcon />
-    </button>
+    <div class="container is-fluid">
+        <button class="button is-large is-fullwidth">
+            <PlusIcon />
+        </button>
+    </div>
 </template>
