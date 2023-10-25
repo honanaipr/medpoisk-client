@@ -3,14 +3,14 @@ import PlusIcon from '../components/icons/PlusIcon.vue';
 import { ref } from 'vue'
 import router from '../router'
 import { store } from '../store.js'
-import {addItem} from '../store.js'
+import { addItem } from '../store.js'
 let heading = ref("")
 let amount = ref(null)
 let min_amount = ref(null)
 let barcode = ref(null)
 let selected_places = ref([1, 2, 3])
 
-function apply(){
+function apply() {
   addItem(heading, amount, min_amount)
   // router.push({name:"home"})
   router.go(-1)
@@ -20,6 +20,18 @@ function apply(){
 
 <template>
   <div class="container is-fluid">
+
+    <div class="field">
+      <div class="uploadBox has-text-centered">
+        <label for="uploadFile" id="uploadIcon" class="is-inline-block">
+          <figure class="image is-128x128 ">
+            <img src="@/assets/add_image.png" style="border-radius: 0.5rem;">
+          </figure>
+        </label>
+
+      </div>
+      <input type="file" value="upload" id="uploadFile" class="uploadFile" />
+    </div>
 
     <div class="field">
       <label class="label">Наименование:</label>
@@ -71,3 +83,13 @@ function apply(){
     </div>
   </div>
 </template>
+
+<style scoped>
+.uploadFile {
+  display: none;
+}
+
+#uploadIcon {
+  cursor: pointer;
+}
+</style>
