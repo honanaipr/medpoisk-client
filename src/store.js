@@ -16,7 +16,7 @@ export const store = ref({
 
 export function toBasket(id) {
   store.value.basket.push(store.value.list.find((item) => (item.id == id)))
-  store.value.list.splice(store.value.list.findIndex((item) => !(item.id == id))-1, 1)
+  store.value.list.splice(store.value.list.findIndex((item) => (item.id == id)), 1)
 }
 
 export function addItem(heading, amount, min_amount) {
