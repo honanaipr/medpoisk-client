@@ -1,7 +1,7 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue';
 import TrashIcon from '../components/icons/TrashIcon.vue'
-import { toBasket, addItem} from '../store.js'
+import { toBasket, addItem } from '../store.js'
 
 const props = defineProps(['item'])
 
@@ -17,7 +17,7 @@ const props = defineProps(['item'])
         </p>
       </div>
       <div class="level-item">
-        <button class="button is-small item-control"  >
+        <button class="button is-small item-control">
           <CrossIcon />
         </button>
         <button class="button is-small item-control" @click="toBasket(item.id)">
@@ -25,9 +25,12 @@ const props = defineProps(['item'])
         </button>
       </div>
       <div class="level-right">
-        <p class="level-item" aria-label="reply">
-          Plase
-        </p>
+        <div class="content">
+          <p class="place-tag" v-for="place in item.places" :key="place.id">
+            {{ place.title }}
+          </p>
+        </div>
+
       </div>
     </nav>
   </div>
@@ -38,12 +41,14 @@ const props = defineProps(['item'])
   margin-bottom: 0.5rem;
   border: 1px solid black;
   padding: 0.5rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
   border-radius: 5px;
 }
 
 .item-control {
   width: 5rem;
+}
+
+p.place-tag {
+  margin-bottom: 0;
 }
 </style>
