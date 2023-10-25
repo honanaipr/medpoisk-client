@@ -5,9 +5,9 @@ import router from '../router'
 import { store } from '../store.js'
 import {addItem} from '../store.js'
 let heading = ref("")
-let amount = ref(0)
-let min_amount = ref(1)
-let barcode = ref(0)
+let amount = ref(null)
+let min_amount = ref(null)
+let barcode = ref(null)
 let selected_places = ref([1, 2, 3])
 
 function apply(){
@@ -32,12 +32,12 @@ function apply(){
 
     <div class="field is-grouped">
       <div class="control">
-        <label class="label">Колличество:</label>
+        <label class="label has-text-weight-light">Колличество:</label>
         <input class="input" type="number" v-model="amount">
       </div>
 
       <div class="control">
-        <label class="label">Неснижаемый остаток:</label>
+        <label class="label has-text-weight-light">Неснижаемый остаток:</label>
         <input class="input" type="number" v-model="min_amount">
       </div>
     </div>
@@ -52,7 +52,7 @@ function apply(){
     <label class="label">Места хронения:</label>
 
     <div class="buttons">
-      <button v-for="place in store.places" class="button">{{ place }}</button>
+      <button v-for="place in store.places" class="button" :key="place.id">{{ place.title }}</button>
       <button class="button">
         <PlusIcon />
       </button>
