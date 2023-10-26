@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ListView from '../views/ListView.vue'
+import { store } from '../store.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,14 @@ const router = createRouter({
       name: 'add',
       component: () => import('../views/AddView.vue'),
       meta: { transition: 'slide-left' },
+      props: {target: store.value.list}
+    },
+    {
+      path: '/addToInvoice',
+      name: 'addToInvoice',
+      component: () => import('../views/AddView.vue'),
+      meta: { transition: 'slide-left' },
+      props: {target: store.value.invoice}
     },
     {
       path: '/addInvoice',

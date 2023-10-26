@@ -2,7 +2,10 @@
 import { ref, computed } from 'vue'
 import router from '../router'
 import { store } from '../store.js'
-import { addItem } from '../store.js'
+import { addItem2Target } from '../store.js'
+
+const props = defineProps(['target'])
+
 let heading = ref("")
 let amount = ref(null)
 let min_amount = ref(null)
@@ -10,12 +13,12 @@ let barcode = ref(null)
 let selected_place_id = ref("")
 
 function apply() {
-  addItem(heading, amount, min_amount)
+    addItem2Target(props.target, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
   // router.push({name:"home"})
   router.go(-1)
 }
 
-const apply_enabled = computed(function(){
+const apply_enabled = computed(function () {
   return !!heading.value && !!amount.value && !!min_amount.value && !!barcode.value && !!selected_place_id.value
 })
 

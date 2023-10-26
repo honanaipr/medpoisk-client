@@ -1,7 +1,7 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue';
 import TrashIcon from '../components/icons/TrashIcon.vue'
-import { toBasket, addItem } from '../store.js'
+import { toBasket } from '../store.js'
 
 const props = defineProps(['item'])
 
