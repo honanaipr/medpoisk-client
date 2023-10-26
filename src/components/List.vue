@@ -57,7 +57,7 @@ function toggleCategory(place){
       </p>
     </div>
 
-    <div class="content has-content-centered" v-if="!source.length"><h1>Здесл ничего нет</h1></div>
+    <div class="content has-content-centered" v-if="!source.length"><h1>Здесь ничего нет</h1></div>
     <div v-for="item in source" :key="item.id">
       <ListItem :item="item" v-if="isItemToDisplay(item)" />
     </div>
