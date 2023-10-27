@@ -37,6 +37,9 @@ function toggleCategory(place){
 <template>
   
   <div class="container control-container is-fluid">
+    <div class="content">
+      <h5>Места хранения</h5>
+    </div>
     <div class="buttons">
       <button class="button is-small" v-for="place in store.places" :key="place.id" @click="toggleCategory(place)" :class="{'is-primary':selectedCategories.includes(place)}">{{ place.title }}</button>
     </div>
