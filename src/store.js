@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, toRaw } from 'vue'
 import { v4 as uuid4 } from 'uuid'
 import axios from 'axios'
 import { CronJob } from 'cron'
@@ -84,13 +84,13 @@ export function addItem2List(heading, amount, min_amount, places) {
 }
 
 export function addItem2Target(target, heading, amount, min_amount, barcode, place_id) {
-  store.value.invoice.push({
+  target.push({
     id: uuid4(),
     heading: heading,
     amount: amount,
     min_amount: min_amount,
     barcode: barcode,
-    places: store.value.places.filter((value) => value.id == place_id)[0]
+    places: [toRaw(store.value.places.filter((value) => value.id == place_id)[0])]
   })
 }
 
@@ -100,4 +100,9 @@ export function writeOff(doctor_id, rooms_id) {
     // axios.post()
     store.value.basket.splice(0, 1)
   }
+}
+
+export function clearBasket(){
+  store.value.list.push(...store.value.basket)
+  store.value.basket = []
 }
