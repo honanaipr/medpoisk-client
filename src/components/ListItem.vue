@@ -1,7 +1,14 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue';
 import TrashIcon from '../components/icons/TrashIcon.vue'
-import { toBasket } from '../store.js'
+import { toBasket, clearBasket } from '../store.js'
+import router from '../router';
+
+function singularWriteOff(id) {
+  clearBasket()
+  toBasket(id)
+  router.push('basket')
+}
 
 const props = defineProps(['item'])
 
@@ -17,7 +24,7 @@ const props = defineProps(['item'])
         </p>
       </div>
       <div class="level-item">
-        <button class="button is-small item-control">
+        <button class="button is-small item-control" @click="singularWriteOff(item.id)">
           <CrossIcon />
         </button>
         <button class="button is-small item-control" @click="toBasket(item.id)">
