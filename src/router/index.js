@@ -22,14 +22,12 @@ const router = createRouter({
       name: 'add',
       component: () => import('../views/AddView.vue'),
       meta: { transition: 'slide-left' },
-      props: {target: store.value.list}
     },
     {
       path: '/addToInvoice',
       name: 'addToInvoice',
       component: () => import('../views/AddView.vue'),
       meta: { transition: 'slide-left' },
-      props: {target: store.value.invoice}
     },
     {
       path: '/addInvoice',
