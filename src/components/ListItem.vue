@@ -1,7 +1,8 @@
 <script setup>
-import CrossIcon from '../components/icons/CrossIcon.vue';
+import CrossIcon from '../components/icons/CrossIcon.vue'
 import TrashIcon from '../components/icons/TrashIcon.vue'
-import { toBasket, clearBasket } from '../store.js'
+import ExtractIcon from '../components/icons/ExtractIcon.vue'
+import { toBasket, clearBasket, backToList, forgetItem } from '../store.js'
 import router from '../router';
 
 function singularWriteOff(id) {
@@ -23,12 +24,22 @@ const props = defineProps(['item'])
           {{ item.amount }}/{{ item.min_amount }}
         </p>
       </div>
-      <div class="level-item">
+      <div class="level-item" v-if="$route.name == 'home'">
         <button class="button is-small item-control" @click="singularWriteOff(item.id)">
           <CrossIcon />
         </button>
         <button class="button is-small item-control" @click="toBasket(item.id)">
           <TrashIcon />
+        </button>
+      </div>
+      <div class="level-item" v-if="$route.name == 'basket'">
+        <button class="button is-small item-control" @click="backToList(item.id)">
+          <ExtractIcon />
+        </button>
+      </div>
+      <div class="level-item" v-if="$route.name == 'addInvoice'">
+        <button class="button is-small item-control" @click="forgetItem(item.id)">
+          <CrossIcon/>
         </button>
       </div>
       <div class="level-right">
