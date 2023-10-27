@@ -4,7 +4,7 @@ import router from '../router'
 import { store } from '../store.js'
 import { addItem2Target } from '../store.js'
 
-const props = defineProps(['target'])
+const props = defineProps(['target_name'])
 
 let heading = ref("")
 let amount = ref(null)
@@ -13,9 +13,14 @@ let barcode = ref(null)
 let selected_place_id = ref("")
 
 function apply() {
-    addItem2Target(props.target, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
-  // router.push({name:"home"})
-  router.go(-1)
+  if (router.currentRoute.value.name == 'add') {
+    addItem2Target(store.value.list, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    router.replace('/')
+  }
+  if (router.currentRoute.value.name == 'addToInvoice') {
+    addItem2Target(store.value.invoice, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    router.replace('addInvoice')
+  }
 }
 
 const apply_enabled = computed(function () {
