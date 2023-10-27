@@ -9,4 +9,7 @@
 </template>
 
 <style scoped>
+.navbar.is-fixed-top {
+    padding-top: 0.5rem;
+}
 </style>
