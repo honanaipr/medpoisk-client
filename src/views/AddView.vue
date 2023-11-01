@@ -2,8 +2,8 @@
 import { ref, computed } from 'vue'
 import router from '../router'
 import { store } from '../store.js'
-import { addItem2Target } from '../store.js'
 
+// eslint-disable-next-line no-unused-vars
 const props = defineProps(['target_name'])
 
 let heading = ref("")
@@ -14,11 +14,13 @@ let selected_place_id = ref("")
 
 function apply() {
   if (router.currentRoute.value.name == 'add') {
-    addItem2Target(store.value.list, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    // addItem2Target(store.list, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    store.addItem(new store.Item(heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value), selected_place_id)
     router.replace('/')
   }
   if (router.currentRoute.value.name == 'addToInvoice') {
-    addItem2Target(store.value.invoice, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    // addItem2Target(store.invoice, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    store.addItemTo(store.invoice, new store.Item(heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value))
     router.replace('addInvoice')
   }
 }
@@ -30,20 +32,19 @@ const apply_enabled = computed(function () {
 </script>
 
 <template>
-  <div class="container is-fluid">
+  <div class="field">
+    <div class="uploadBox has-text-centered">
+      <label for="uploadFile" id="uploadIcon" class="is-inline-block">
+        <figure class="image is-128x128 ">
+          <img src="@/assets/add_image.png" style="border-radius: 0.5rem;">
+        </figure>
+      </label>
 
-    <div class="field">
-      <div class="uploadBox has-text-centered">
-        <label for="uploadFile" id="uploadIcon" class="is-inline-block">
-          <figure class="image is-128x128 ">
-            <img src="@/assets/add_image.png" style="border-radius: 0.5rem;">
-          </figure>
-        </label>
-
-      </div>
-      <input type="file" value="upload" id="uploadFile" class="uploadFile" />
     </div>
+    <input type="file" value="upload" id="uploadFile" class="uploadFile" />
+  </div>
 
+  <div class="container is-fluid is-mobile">
     <div class="field">
       <label class="label">Наименование:</label>
       <div class="control">
@@ -51,24 +52,22 @@ const apply_enabled = computed(function () {
       </div>
       <p class="help is-danger" v-if="!heading">Поле необходимо</p>
     </div>
-
     <label class="label">Колличество наименований</label>
 
-    <div class="field is-grouped">
+    <div class="field is-horizontal">
       <div class="control">
         <label class="label has-text-weight-light">Колличество:</label>
         <input class="input" type="number" v-model="amount" :class="{ 'is-danger': !amount }">
         <p class="help is-danger" v-if="!amount">Поле необходимо</p>
       </div>
-
-
       <div class="control">
         <label class="label has-text-weight-light">Неснижаемый остаток:</label>
         <input class="input" type="number" v-model="min_amount" :class="{ 'is-danger': !min_amount }">
         <p class="help is-danger" v-if="!min_amount">Поле необходимо</p>
       </div>
-
     </div>
+
+
 
     <div class="field">
       <label class="label">Штрихкод:</label>

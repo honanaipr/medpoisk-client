@@ -1,7 +1,7 @@
 <script setup>
 import List from '../components/List.vue'
 import WriteOffFor from '../components/WriteOffFor.vue';
-import { store, backToList, writeOff } from '../store.js'
+import { store } from '../store.js'
 import { ref } from 'vue';
 // import router from '../router'
 
@@ -9,15 +9,16 @@ const doctor_id = ref("")
 const room_id = ref("")
 
 function apply() {
-  writeOff(doctor_id, room_id)
+  store.writeOff(doctor_id, room_id)
   doctor_id.value = null
   room_id.value = null
 }
 
 function cancel() {
-  while (store.value.basket.length){
-    backToList(store.value.basket[0].id)
-  }
+  // while (store.basket.length){
+  //   backToList(store.value.basket[0].id)
+  // }
+  store.clearBasket()
   doctor_id.value = null
   room_id.value = null
 }
@@ -25,7 +26,7 @@ function cancel() {
 </script>
 
 <template>
-  <List :source="store.basket" />
-  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="!!store.basket.length" @apply="apply"
+  <List :source="store.list" />
+  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="!store.isBasketEmpty" @apply="apply"
     @cancel="cancel" />
 </template>

@@ -4,7 +4,9 @@ import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 import { ref } from 'vue'
 import { store } from '../store'
+import router from '../router'
 
+// eslint-disable-next-line no-unused-vars
 const props = defineProps(['source'])
 
 let serachQuery = ref("")
@@ -12,14 +14,18 @@ let selectedCategories = ref([])
 
 function isItemToDisplay(item) {
   if (serachQuery.value) {
-    return item.heading.toLowerCase().includes(serachQuery.value.toLowerCase())
+    return item.title.toLowerCase().includes(serachQuery.value.toLowerCase())
   }
   if (selectedCategories.value.length){
-    if(item.places.filter(value1 => selectedCategories.value.filter(value2 => value1.id == value2.id).length).length){
-      return true
-    } else {
+    if(!item.places.filter(value1 => selectedCategories.value.filter(value2 => value1.id == value2.id).length).length){
       return false
     }
+  }
+  if (router.currentRoute.value.name == "home" && item.basketed){
+    return false
+  }
+  if (router.currentRoute.value.name == "basket" && !item.basketed){
+    return false
   }
   return true
 }

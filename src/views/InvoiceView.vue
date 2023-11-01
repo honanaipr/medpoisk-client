@@ -8,18 +8,29 @@ import router from '../router'
 
 // let incoiceList = ref([])
 
-function btnAddOnClicked(){
-    router.push({name: 'addToInvoice'})
+function btnAddOnClicked() {
+    router.push({ name: 'addToInvoice' })
 }
 
 </script>
 
 <template>
     <InvoiceDataForm />
-    <List :source="store.invoice"/>
+    <List :source="store.invoice" />
     <div class="container is-fluid">
-        <button class="button is-large is-fullwidth" @click="btnAddOnClicked">
-            <PlusIcon />
-        </button>
+        <div class="field is-grouped">
+            <button class="button is-large is-fullwidth" @click="btnAddOnClicked">
+                <PlusIcon />
+            </button>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button" @click="apply" :disabled="!store.invoice.length">Применить</button>
+            </div>
+            <div class="control">
+                <button class="button" @click="router.go(-1)">Отменить</button>
+            </div>
+        </div>
     </div>
 </template>
