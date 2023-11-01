@@ -2,9 +2,13 @@
 import ListItem from './ListItem.vue'
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { store } from '../store'
 import router from '../router'
+
+onMounted(()=>{
+  store.sync()
+})
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps(['source'])
@@ -21,12 +25,12 @@ function isItemToDisplay(item) {
       return false
     }
   }
-  if (router.currentRoute.value.name == "home" && item.basketed){
-    return false
-  }
-  if (router.currentRoute.value.name == "basket" && !item.basketed){
-    return false
-  }
+  // if (router.currentRoute.value.name == "home" && item.basketed){
+  //   return false
+  // }
+  // if (router.currentRoute.value.name == "basket" && !item.basketed){
+  //   return false
+  // }
   return true
 }
 

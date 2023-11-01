@@ -26,7 +26,7 @@ function cancel() {
 </script>
 
 <template>
-  <List :source="store.list" />
-  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="!store.isBasketEmpty" @apply="apply"
+  <List :source="store.basket" />
+  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="store.basket.length" @apply="apply"
     @cancel="cancel" />
 </template>
