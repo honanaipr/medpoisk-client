@@ -1,21 +1,19 @@
 <script setup>
 import { store } from '../store.js'
 
-// defineProps(['room_id', 'doctor_id'])
-defineProps({
-    room_id: {
-        default: ""
-    },
-    doctor_id: {
-        default: ""
-    },
-    allow_apply: {
-
-    }
-})
-
+defineProps(['room_id', 'doctor_id', 'allow_apply'])
 defineEmits(['update:room_id', 'update:doctor_id', 'apply', 'cancel'])
+// defineProps({
+//     room_id: {
+//         default: ""
+//     },
+//     doctor_id: {
+//         default: ""
+//     },
+//     allow_apply: {
 
+//     }
+// })
 </script>
 
 <template>
