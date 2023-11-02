@@ -11,7 +11,7 @@ onMounted(()=>{
 })
 
 // eslint-disable-next-line no-unused-vars
-const props = defineProps(['source'])
+const props = defineProps(['source', 'configurableListItem'])
 
 let serachQuery = ref("")
 let selectedCategories = ref([])
@@ -72,7 +72,7 @@ function toggleCategory(place){
 
     <div class="content has-content-centered" v-if="!source.length"><h1>Здесь ничего нет</h1></div>
     <div v-for="item in source" :key="item.id">
-      <ListItem :item="item" v-if="isItemToDisplay(item)" />
+      <component :is="configurableListItem" :item="item" v-if="isItemToDisplay(item)" />
     </div>
   </div>  
 </template>
