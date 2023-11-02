@@ -1,7 +1,6 @@
 <script setup>
-import List from '../components/List.vue'
+import List from '../components/ListComponent.vue'
 import { store } from '../store.js'
-import { defineProps } from 'vue';
 import ListItem from '../components/ListItem.vue';
 </script>
 

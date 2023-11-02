@@ -74,8 +74,17 @@ export class ListItem extends Product {
     constructor (data) {
         super(data)
         this.basketed = data.basketed || false
+        this.writeOffAmount = 0
+        this.writeOffPlaceID = ""
     }
 }
+
+// export class BasketItem extends ListItem {
+//     constructor (data) {
+//         super(data)
+        
+//     }
+// }
 
 export class RoomItem extends Room {
     constructor (data) {

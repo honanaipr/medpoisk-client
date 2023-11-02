@@ -1,5 +1,5 @@
 <script setup>
-import List from '../components/List.vue'
+import List from '../components/ListComponent.vue'
 import { store } from '../store.js'
 import PlusIcon from '../components/icons/PlusIcon.vue';
 import InvoiceDataForm from '../components/InvoiceDataForm.vue';

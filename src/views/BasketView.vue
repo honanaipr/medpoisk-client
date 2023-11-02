@@ -1,6 +1,6 @@
 <script setup>
-import List from '../components/List.vue'
-import ListItem from '../components/ListItem.vue'
+import List from '../components/ListComponent.vue'
+import BasketItem from '../components/BasketItem.vue' 
 import WriteOffFor from '../components/WriteOffFor.vue';
 import { store } from '../store.js'
 import { ref } from 'vue';
@@ -27,7 +27,7 @@ function cancel() {
 </script>
 
 <template>
-  <List :source="store.basket" :configurable-list-item="ListItem"/>
+  <List :source="store.basket" :configurable-list-item="BasketItem"/>
   <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="store.basket.length" @apply="apply"
     @cancel="cancel" />
 </template>
