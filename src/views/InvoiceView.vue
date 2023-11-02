@@ -16,7 +16,7 @@ function btnAddOnClicked() {
 
 <template>
     <InvoiceDataForm />
-    <List :source="store.invoice" />
+    <List :source="store.invoice" :item-component="ListItem"/>
     <div class="container is-fluid">
         <div class="field is-grouped">
             <button class="button is-large is-fullwidth" @click="btnAddOnClicked">

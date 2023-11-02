@@ -9,12 +9,12 @@ onMounted(()=>{
 })
 
 // eslint-disable-next-line no-unused-vars
-const props = defineProps(['source', 'configurableListItem'])
+const props = defineProps(['source', 'itemComponent'])
 
 let serachQuery = ref("")
 let selectedCategories = ref([])
 
-function isItemToDisplay(item) {
+function filter(item) {
   if (serachQuery.value) {
     return item.title.toLowerCase().includes(serachQuery.value.toLowerCase())
   }
@@ -63,8 +63,8 @@ function toggleCategory(place){
     </div>
 
     <div class="content has-content-centered" v-if="!source.length"><h1>Здесь ничего нет</h1></div>
-    <div v-for="item in source" :key="item.id">
-      <component :is="configurableListItem" :item="item" v-if="isItemToDisplay(item)" />
+    <div v-for="(item, index) in source" :key="item.id">
+      <component :is="itemComponent" :index="index" :source="source" v-if="filter(item)" />
     </div>
   </div>  
 </template>

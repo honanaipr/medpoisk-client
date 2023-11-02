@@ -6,18 +6,16 @@ import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import router from '../router';
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-function singularWriteOff(id) {
-  // clearBasket()
-  // toBasket(id)
+function singularWriteOff() {
   store.clearBasket()
-  store.toBasketById(id)
-  router.push('basket')
+  store.basket.push(props.source[props.index])
+  router.replace('basket')
 }
 
-// eslint-disable-next-line no-unused-vars
-const props = defineProps(['item'])
+const props = defineProps(['source', 'index'])
+const item = computed(() => props.source[props.index])
 const writeOffAmount = ref(0)
 </script>
 
@@ -31,7 +29,7 @@ const writeOffAmount = ref(0)
         </p>
       </div>
       <div class="level-item" v-if="$route.name == 'home'">
-        <button class="button is-small item-control" @click="singularWriteOff(item.id)">
+        <button class="button is-small item-control" @click="singularWriteOff()">
           <CrossIcon />
         </button>
         <button class="button is-small item-control" @click="store.toBasketById(item.id)">
@@ -54,7 +52,6 @@ const writeOffAmount = ref(0)
             {{ place.title }}
           </p>
         </div>
-
       </div>
     </nav>
     <nav class="level is-mobile" style="margin-top: -2rem; padding-bottom: 0.5rem;"> <!--TODO fix inline style -->
@@ -74,7 +71,6 @@ const writeOffAmount = ref(0)
         </p>
       </div>
     </nav>
-
   </div>
 </template>
 

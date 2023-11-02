@@ -5,5 +5,5 @@ import ListItem from '../components/ListItem.vue';
 </script>
 
 <template>
-  <List :source="store.list" :configurable-list-item="ListItem" />
+  <List :source="store.list" :item-component="ListItem" />
 </template>

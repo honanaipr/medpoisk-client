@@ -6,25 +6,26 @@ import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import router from '../router';
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
-function singularWriteOff(id) {
+function singularWriteOff() {
   store.clearBasket()
-  store.toBasketById(id)
-  router.push('basket')
+  store.basket.push(props.source[props.index])
+  router.replace('basket')
 }
 
 // eslint-disable-next-line no-unused-vars
-const props = defineProps(['item'])
-const writeOffAmount = ref(props.item.writeOffAmount)
-const writeOffPlaceID = ref(props.item.writeOffPlaceID)
+const props = defineProps(['source', 'index'])
+const item = computed(() => props.source[props.index])
+const writeOffAmount = ref(item.value.writeOffAmount)
+const writeOffPlaceID = ref(item.value.writeOffPlaceID)
 
 watch(writeOffAmount, (newValue) => {
-  store.getMutableBasketItem(props.item.id).writeOffAmount = newValue
+  item.value.writeOffAmount = newValue
 })
 
 watch(writeOffPlaceID, (newValue) => {
-  store.getMutableBasketItem(props.item.id).writeOffPlaceID = newValue
+  item.value.writeOffPlaceID = newValue
 })
 
 </script>
@@ -46,11 +47,7 @@ watch(writeOffPlaceID, (newValue) => {
           <TrashIcon />
         </button>
       </div>
-      <div class="level-item has-text-centered" v-if="$route.name == 'basket'">
-        <button class="button is-small item-control" @click="store.unBasketById(item.id)">
-          <ExtractIcon />
-        </button>
-      </div>
+
       <div class="level-item has-text-centered" v-if="$route.name == 'addInvoice'">
         <button class="button is-small item-control" @click="store.forgetItem(item.id)">
           <CrossIcon />
@@ -69,27 +66,36 @@ watch(writeOffPlaceID, (newValue) => {
           </div>
           <p class="help is-danger" v-if="!writeOffPlaceID">Поле необходимо</p>
         </div>
-
       </div>
     </nav>
     <nav class="level is-mobile" style="padding-bottom: 0.5rem;"> <!--TODO fix inline style -->
-      <div class="field has-addons" v-if="$route.name == 'basket'">
-        <p class="control">
-          <a class="button" @click="writeOffAmount++">
-            <AngleUp />
-          </a>
-        </p>
-        <p class="control">
-          <input class="input" type="text" placeholder="0" style="width: 3rem;" v-model="writeOffAmount">
-        </p>
-        <p class="control">
-          <a class="button" @click="writeOffAmount>0? writeOffAmount-- : ()=>{}">
-            <AngleDown />
-          </a>
-        </p>
+      <div class="level-left">
+        <div class="field has-addons" v-if="$route.name == 'basket'">
+          <p class="control">
+            <a class="button" @click="writeOffAmount++">
+              <AngleUp />
+            </a>
+          </p>
+          <p class="control">
+            <input class="input" type="text" placeholder="0" style="width: 3rem;" v-model="writeOffAmount">
+          </p>
+          <p class="control">
+            <a class="button" @click="writeOffAmount > 0 ? writeOffAmount-- : () => { }">
+              <AngleDown />
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="level-left">
+        <div class="field has-addons" v-if="$route.name == 'basket'">
+          <p class="control">
+            <button class="button item-control" @click="store.unBasketById(item.id)">
+              <ExtractIcon />
+            </button>
+          </p>
+        </div>
       </div>
     </nav>
-
   </div>
 </template>
 
