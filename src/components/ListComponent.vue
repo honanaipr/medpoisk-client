@@ -1,10 +1,8 @@
 <script setup>
-import ListItem from './ListItem.vue'
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 import { ref, onMounted } from 'vue'
 import { store } from '../store'
-import router from '../router'
 
 onMounted(()=>{
   store.sync()
@@ -25,12 +23,6 @@ function isItemToDisplay(item) {
       return false
     }
   }
-  // if (router.currentRoute.value.name == "home" && item.basketed){
-  //   return false
-  // }
-  // if (router.currentRoute.value.name == "basket" && !item.basketed){
-  //   return false
-  // }
   return true
 }
 
@@ -78,16 +70,7 @@ function toggleCategory(place){
 </template>
 
 <style scoped>
-/* .control-container {
-  margin: 0.5rem;
-} */
-
 div.content {
   margin-bottom: 0;
 }
-
-/* div.content h3 {
-  margin-bottom: 0;
-  margin-left: 0.5rem;
-} */
 </style>
