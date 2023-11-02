@@ -4,12 +4,19 @@ import { store } from '../store.js'
 import PlusIcon from '../components/icons/PlusIcon.vue';
 import InvoiceDataForm from '../components/InvoiceDataForm.vue';
 import router from '../router'
-// import { ref } from 'vue';
-
-// let incoiceList = ref([])
+import ListItem from '../components/ListItem.vue';
 
 function btnAddOnClicked() {
-    router.push({ name: 'addToInvoice' })
+    router.replace({ name: 'addToInvoice' })
+}
+
+function apply() {
+    console.log("apply")
+}
+
+function cancel() {
+    router.go(-1)
+    console.log("apply")
 }
 
 </script>
@@ -26,10 +33,10 @@ function btnAddOnClicked() {
 
         <div class="field is-grouped">
             <div class="control">
-                <button class="button" @click="apply" :disabled="!store.invoice.length">Применить</button>
+                <button class="button" @click="apply()" :disabled="!store.invoice.length">Применить</button>
             </div>
             <div class="control">
-                <button class="button" @click="router.go(-1)">Отменить</button>
+                <button class="button" @click="cancel">Отменить</button>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ function onAddButtonClick() {
 }
 
 function onHomeButtonClick() {
-    router.push({ name: "home" })
+    router.replace({ name: "home" })
 }
 
 </script>
