@@ -26,7 +26,7 @@ const writeOffAmount = ref(0)
     {{ item.title }}
     <nav class="level is-mobile">
       <div class="level-left">
-        <p class="level-item" aria-label="reply">
+        <p class="level-item" aria-label="reply" style="display: block; width: 5rem;">
           {{ item.amount }}/{{ item.min_amount }}
         </p>
       </div>
@@ -50,7 +50,7 @@ const writeOffAmount = ref(0)
       </div>
       <div class="level-right">
         <div class="content">
-          <p class="place-tag" v-for="place in item.places" :key="place.id">
+          <p class="place-tag" v-for="place in item.places" :key="place.id" style="display: block; width: 7rem;">
             {{ place.title }}
           </p>
         </div>
