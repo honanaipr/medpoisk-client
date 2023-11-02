@@ -195,6 +195,14 @@ export const store = reactive({
     })
     if (!hasError) {
       store.clearBasket()
+      toastController.create({
+        message: 'Списание произведено!!!!',
+        duration: 1500,
+        position: 'bottom',
+        cssClass: 'toast-custom-class',
+      }).then(toast => {
+        toast.present();
+      })
     }
     this.sync()
     store.list.forEach((item) => {
