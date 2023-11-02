@@ -1,19 +1,21 @@
-import { reactive, computed, toRaw, watch, ref } from 'vue'
+import { reactive, computed, watch, ref } from 'vue'
 import axios from 'axios'
-import { useFetch, reactify } from '@vueuse/core'
+import { useFetch } from '@vueuse/core'
 import _ from 'lodash'
 import Joi from 'joi'
 import {
   productSchema,
   ListItem,
   roomSchema,
-  Room,
   doctorSchema,
   RoomItem,
   DoctorItem,
   placeSchema,
-  PlaceItem
+  PlaceItem,
+  // BasketItem
 } from './types'
+
+import { toastController } from '@ionic/vue';
 const API_PATH = 'http://127.0.0.1:8000/api/v0/'
 const API_PRODUCTS_PATH = `${API_PATH}products/`
 const API_PLACES_PATH = `${API_PATH}places/`
@@ -108,7 +110,11 @@ export const store = reactive({
     return store.items.filter((item) => !item.basketed)
   }),
   basket: computed(() => {
-    return store.items.filter((item) => item.basketed)
+    let basketItems =  store.items.filter((item) => item.basketed)
+    // basketItems = basketItems.map((item) => {
+  //   return new BasketItem(item)
+  // })
+  return basketItems
   }),
   invoice: [],
   move: function (source, target, predicate) {
@@ -130,11 +136,6 @@ export const store = reactive({
   },
   sync: function () {
     sync_products()
-    sync_places()
-    sync_doctors()
-    sync_rooms()
-  },
-  sync_aux: function () {
     sync_places()
     sync_doctors()
     sync_rooms()
@@ -166,21 +167,34 @@ export const store = reactive({
     }
   },
   writeOff: function (doctor_id, rooms_id) {
-    for (let item in store.basket) {
+    let hasError = false
+    store.basket.forEach( item => {
       axios
         .patch(API_PATH + 'positions/', [
           {
             product_id: item.id,
-            amount: item.amount,
-            place: item.place
+            amount: -item.writeOffAmount,
+            place_id: item.writeOffPlaceID,
           }
         ])
         .then((responce) => {
+          hasError = true
           console.log(responce.data)
         })
         .catch((error) => {
+          toastController.create({
+            message: 'Невозможно списать!!!!',
+            duration: 1500,
+            position: 'bottom',
+            cssClass: 'toast-custom-class',
+          }).then(toast => {
+            toast.present();
+          })
           console.log(error)
         })
+    })
+    if (!hasError) {
+      store.clearBasket()
     }
     this.sync()
     store.list.forEach((item) => {
@@ -222,8 +236,8 @@ export const store = reactive({
         console.log(error)
       })
     this.sync()
+  },
+  getMutableBasketItem: function (id) {
+    return _.find(store.items, item => item.id == id)
   }
 })
-
-// store.sync()
-// store.sync_aux()
