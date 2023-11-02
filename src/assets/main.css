@@ -1,10 +1,10 @@
 @import './base.css';
 .toast-custom-class {
-    --color:#ffffff;
+    --color:#000000;
     --border-color:#000000;
     --border-radius:3px;
     --border-style:solid;
     --border-width:3px;    
-    --background:#1833FF;
+    --background:#ffffff;
     --button-color:#ffffff;
 }
