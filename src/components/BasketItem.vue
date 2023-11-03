@@ -6,19 +6,19 @@ import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import router from '../router';
-import { ref, watch, computed } from 'vue'
+import { ref, watch } from 'vue'
 
 function singularWriteOff() {
   store.clearBasket()
-  store.basket.push(props.source[props.index])
+  item.basketed = true
   router.replace('basket')
 }
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps(['source', 'index'])
-const item = computed(() => props.source[props.index])
-const writeOffAmount = ref(item.value.writeOffAmount)
-const writeOffPlaceID = ref(item.value.writeOffPlaceID)
+const item = props.source[props.index]
+const writeOffAmount = ref(item.writeOffAmount)
+const writeOffPlaceID = ref(item.writeOffPlaceID)
 
 watch(writeOffAmount, (newValue) => {
   item.value.writeOffAmount = newValue

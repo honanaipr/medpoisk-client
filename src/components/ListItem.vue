@@ -6,16 +6,16 @@ import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import router from '../router';
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 function singularWriteOff() {
   store.clearBasket()
-  store.basket.push(props.source[props.index])
+  item.basketed = true
   router.replace('basket')
 }
 
 const props = defineProps(['source', 'index'])
-const item = computed(() => props.source[props.index])
+const item = props.source[props.index]
 const writeOffAmount = ref(0)
 </script>
 
