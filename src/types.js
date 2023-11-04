@@ -76,15 +76,18 @@ export class ListItem extends Product {
         this.basketed = data.basketed || false
         this.writeOffAmount = 0
         this.writeOffPlaceID = ""
+        // this.writeInAmount = 0
+        // this.writeInPlaceID = ""
     }
 }
 
-// export class BasketItem extends ListItem {
-//     constructor (data) {
-//         super(data)
-        
-//     }
-// }
+export class InvoiceItem {
+    constructor (product, place_id, amount) {
+        this.product = product
+        this.places = place_id
+        this.amount = amount  
+    }
+}
 
 export class RoomItem extends Room {
     constructor (data) {

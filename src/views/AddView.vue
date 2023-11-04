@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue'
 import router from '../router'
 import { store } from '../store.js'
+import { InvoiceItem } from '../types.js'
+import _ from 'lodash'
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps(['target_name'])
@@ -11,22 +13,28 @@ let amount = ref(null)
 let min_amount = ref(null)
 let barcode = ref(null)
 let selected_place_id = ref("")
+let product_id = ref("")
 
 function apply() {
   if (router.currentRoute.value.name == 'add') {
-    // addItem2Target(store.list, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
     store.addItem(new store.Item(heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value), selected_place_id)
     router.replace('/')
   }
   if (router.currentRoute.value.name == 'addToInvoice') {
     // addItem2Target(store.invoice, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
-    store.invoice.push(new store.Item(heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value))
+    const product = _.find(store.items, item => item.id == product_id.value)
+    const places = [_.find(store.places, item => item.id == selected_place_id.value)]
+    store.invoice.push(new InvoiceItem(product, places, amount.value))
     router.replace('addInvoice')
   }
 }
 
 const apply_enabled = computed(function () {
-  return !!heading.value && !!amount.value && !!selected_place_id.value
+  if (router.currentRoute.value.name == "add") {
+    return !!heading.value && !!amount.value && !!selected_place_id.value
+  } else {
+    return !!product_id.value && !!amount.value && !!selected_place_id.value
+  }
 })
 
 </script>
@@ -50,7 +58,7 @@ const apply_enabled = computed(function () {
       </div>
       <div class="control" v-if="$route.name == 'addToInvoice'">
         <div class="select" :class="{ 'is-danger': !heading }">
-          <select v-model="heading">
+          <select v-model="product_id">
             <option disabled value="">Выбрать место</option>
             <option v-for="product in store.items" :key="product.id" :value="product.id">{{ product.title }}</option>
           </select>

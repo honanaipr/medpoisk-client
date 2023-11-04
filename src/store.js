@@ -11,11 +11,11 @@ import {
   RoomItem,
   DoctorItem,
   placeSchema,
-  PlaceItem,
+  PlaceItem
   // BasketItem
 } from './types'
 
-import { toastController } from '@ionic/vue';
+import { toastController } from '@ionic/vue'
 const API_PATH = 'http://127.0.0.1:8000/api/v0/'
 const API_PRODUCTS_PATH = `${API_PATH}products/`
 const API_PLACES_PATH = `${API_PATH}places/`
@@ -58,8 +58,8 @@ watch(products_data, (newList, oldList) => {
     console.log(error)
     return oldList
   }
-  _.forEach(value, (item)=>{
-    const exist_obj = _.find(store.items, exist_item =>exist_item.id == item.id )
+  _.forEach(value, (item) => {
+    const exist_obj = _.find(store.items, (exist_item) => exist_item.id == item.id)
     if (exist_obj) {
       item.basketed = exist_obj.basketed
     }
@@ -106,16 +106,17 @@ export const store = reactive({
   places: [],
   rooms: [],
   doctors: [],
+  products: [],
   items: [],
   list: computed(() => {
     return store.items.filter((item) => !item.basketed)
   }),
   basket: computed(() => {
-    let basketItems =  store.items.filter((item) => item.basketed)
+    let basketItems = store.items.filter((item) => item.basketed)
     // basketItems = basketItems.map((item) => {
-  //   return new BasketItem(item)
-  // })
-  return basketItems
+    //   return new BasketItem(item)
+    // })
+    return basketItems
   }),
   invoice: [],
   move: function (source, target, predicate) {
@@ -169,13 +170,13 @@ export const store = reactive({
   },
   writeOff: function (doctor_id, rooms_id) {
     let hasError = false
-    store.basket.forEach( item => {
+    store.basket.forEach((item) => {
       axios
         .patch(API_PATH + 'positions/', [
           {
             product_id: item.id,
             amount: -item.writeOffAmount,
-            place_id: item.writeOffPlaceID,
+            place_id: item.writeOffPlaceID
           }
         ])
         .then((responce) => {
@@ -183,39 +184,44 @@ export const store = reactive({
           console.log(responce.data)
         })
         .catch((error) => {
-          toastController.create({
-            message: 'Невозможно списать!!!!',
-            duration: 1500,
-            position: 'bottom',
-            cssClass: 'toast-custom-class',
-          }).then(toast => {
-            toast.present();
-          })
           console.log(error)
         })
     })
     if (!hasError) {
       store.clearBasket()
-      toastController.create({
-        message: 'Списание произведено!!!!',
-        duration: 1500,
-        position: 'bottom',
-        cssClass: 'toast-custom-class',
-      }).then(toast => {
-        toast.present();
+      toastController
+        .create({
+          message: 'Списание произведено!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+      store.list.forEach((item) => {
+        item.basketed = false
       })
+    } else {
+      toastController
+        .create({
+          message: 'Невозможно списать!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
     }
     this.sync()
-    store.list.forEach((item) => {
-      if (item.basketed) {
-        console.log(doctor_id.value, rooms_id.value, item)
-      }
-    })
-    _.remove(store.list, (item) => item.basketed)
+    // store.list.forEach((item) => {
+    //   if (item.basketed) {
+    //     console.log(doctor_id.value, rooms_id.value, item)
+    //   }
+    // })
+    // _.remove(store.list, (item) => item.basketed)
   },
-  // isBasketEmpty: computed(() => {
-  //   return !+_.filter(store.list, (item) => item.basketed).length
-  // }),
   addItem: function (item, to_plcae_id) {
     console.log({
       product: {
@@ -246,7 +252,29 @@ export const store = reactive({
       })
     this.sync()
   },
+  patchItem: function (item) {
+    console.log({
+      product_id: item.product.id,
+      amount: item.amount,
+      place_id: item.places[0].id
+    })
+    axios
+      .patch(API_PATH + 'positions/', [
+        {
+          product_id: item.product.id,
+          amount: item.amount,
+          place_id: item.places[0].id
+        }
+      ])
+      .then((responce) => {
+        console.log(responce.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    this.sync()
+  },
   getMutableBasketItem: function (id) {
-    return _.find(store.items, item => item.id == id)
+    return _.find(store.items, (item) => item.id == id)
   }
 })

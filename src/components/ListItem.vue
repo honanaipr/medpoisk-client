@@ -7,10 +7,12 @@ import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import router from '../router';
 import { ref } from 'vue'
+import _ from 'lodash'
 
 function singularWriteOff() {
   store.clearBasket()
-  item.basketed = true
+  // item.basketed = true
+  _.find(store.list, n => n.id == item.id).basketed = true
   router.replace('basket')
 }
 
