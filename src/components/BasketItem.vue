@@ -4,9 +4,11 @@ import TrashIcon from '../components/icons/TrashIcon.vue'
 import ExtractIcon from '../components/icons/ExtractIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
-import { store } from '../store.js'
+import { store, API_POSITIONS_PATH } from '../store.js'
 import router from '../router';
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
+import { useFetch } from '@vueuse/core'
+import _ from 'lodash'
 
 function singularWriteOff() {
   store.clearBasket()
@@ -20,12 +22,26 @@ const item = props.source[props.index]
 const writeOffAmount = ref(item.writeOffAmount)
 const writeOffPlaceID = ref(item.writeOffPlaceID)
 
+const position_url = computed(()=>{
+  return API_POSITIONS_PATH+`${writeOffPlaceID.value}/${item.id}`
+})
+
+const { data: position } = useFetch(position_url, {refetch: true}).get().json()
+const effective_amount = computed(()=>{
+  return position.value?position.value[0].amount:item.amount
+})
 watch(writeOffAmount, (newValue) => {
-  item.value.writeOffAmount = newValue
+  _.find(store.basket, (n) => n.id == item.id).writeOffAmount = newValue
 })
 
 watch(writeOffPlaceID, (newValue) => {
-  item.value.writeOffPlaceID = newValue
+  _.find(store.basket, (n) => n.id == item.id).writeOffPlaceID = newValue
+})
+
+watch(position, (newValue)=>{
+  if (writeOffAmount.value > newValue[0].amount){
+    writeOffAmount.value = newValue[0].amount
+  }
 })
 
 </script>
@@ -36,7 +52,7 @@ watch(writeOffPlaceID, (newValue) => {
     <nav class="level is-mobile">
       <div class="level-left">
         <p class="level-item" aria-label="reply" style="display: block; width: 5rem;">
-          {{ item.amount }}/{{ item.min_amount }}
+          {{ effective_amount }}/{{ item.min_amount }}
         </p>
       </div>
       <div class="level-item has-text-centered" v-if="$route.name == 'home'">
@@ -72,7 +88,7 @@ watch(writeOffPlaceID, (newValue) => {
       <div class="level-left">
         <div class="field has-addons" v-if="$route.name == 'basket'">
           <p class="control">
-            <a class="button" @click="writeOffAmount++">
+            <a class="button" @click="writeOffAmount < effective_amount ? writeOffAmount++ : ()=>{}">
               <AngleUp />
             </a>
           </p>
