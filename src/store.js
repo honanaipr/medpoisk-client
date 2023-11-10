@@ -169,58 +169,48 @@ export const store = reactive({
     }
   },
   writeOff: function (doctor_id, rooms_id) {
-    let hasError = false
-    store.basket.forEach((item) => {
-      axios
-        .patch(API_PATH + 'positions/', [
-          {
+    axios
+      .patch(
+        API_PATH + 'positions/',
+        store.basket.map((item) => {
+          return {
             product_id: item.id,
             amount: -item.writeOffAmount,
             place_id: item.writeOffPlaceID
           }
-        ])
-        .then((responce) => {
-          hasError = true
-          console.log(responce.data)
         })
-        .catch((error) => {
-          console.log(error)
+      )
+      .then((responce) => {
+        store.clearBasket()
+        toastController
+          .create({
+            message: 'Списание произведено!!!!',
+            duration: 1500,
+            position: 'bottom',
+            cssClass: 'toast-custom-class'
+          })
+          .then((toast) => {
+            toast.present()
+          })
+        store.list.forEach((item) => {
+          item.basketed = false
         })
-    })
-    if (!hasError) {
-      store.clearBasket()
-      toastController
-        .create({
-          message: 'Списание произведено!!!!',
-          duration: 1500,
-          position: 'bottom',
-          cssClass: 'toast-custom-class'
-        })
-        .then((toast) => {
-          toast.present()
-        })
-      store.list.forEach((item) => {
-        item.basketed = false
+        console.log(responce.data)
       })
-    } else {
-      toastController
-        .create({
-          message: 'Невозможно списать!!!!',
-          duration: 1500,
-          position: 'bottom',
-          cssClass: 'toast-custom-class'
-        })
-        .then((toast) => {
-          toast.present()
-        })
-    }
+      .catch((error) => {
+        console.log(error)
+        toastController
+          .create({
+            message: 'Невозможно списать!!!!',
+            duration: 1500,
+            position: 'bottom',
+            cssClass: 'toast-custom-class'
+          })
+          .then((toast) => {
+            toast.present()
+          })
+      })
     this.sync()
-    // store.list.forEach((item) => {
-    //   if (item.basketed) {
-    //     console.log(doctor_id.value, rooms_id.value, item)
-    //   }
-    // })
-    // _.remove(store.list, (item) => item.basketed)
   },
   addItem: function (item, to_plcae_id) {
     console.log({
