@@ -164,7 +164,7 @@ export const store = reactive({
       this.title = title
       this.amount = amount
       this.min_amount = min_amount
-      this.barcode = barcode
+      this.barcode = barcode|0
       this.places = _.filter(store.places, (item) => item.id == place_id)
     }
   },

@@ -82,9 +82,8 @@ const apply_enabled = computed(function () {
     <div class="field" v-if="$route.name == 'add'">
       <label class="label">Штрихкод:</label>
       <div class="control">
-        <input class="input" type="number" v-model="barcode" :class="{ 'is-danger': !barcode }">
+        <input class="input" type="number" v-model="barcode">
       </div>
-      <p class="help is-danger" v-if="!barcode">Поле необходимо</p>
     </div>
     <div class="field">
       <label class="label">Место хронения:</label>
