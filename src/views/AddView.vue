@@ -67,16 +67,22 @@ const apply_enabled = computed(function () {
       <p class="help is-danger" v-if="!heading">Поле необходимо</p>
     </div>
     <label class="label">Колличество наименований</label>
-    <div class="field is-horizontal">
-      <div class="control">
-        <label class="label has-text-weight-light">Колличество:</label>
-        <input class="input" type="number" v-model="amount" :class="{ 'is-danger': !amount }">
-        <p class="help is-danger" v-if="!amount">Поле необходимо</p>
-      </div>
-      <div class="control" v-if="$route.name == 'add'">
-        <label class="label has-text-weight-light">Неснижаемый остаток:</label>
-        <input class="input" type="number" v-model="min_amount" :class="{ 'is-danger': !min_amount }">
-        <p class="help is-danger" v-if="!min_amount">Поле необходимо</p>
+    <div class="field is-horizontal is-mobile">
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <label class="label has-text-weight-light">Колличество:</label>
+            <input class="input" type="number" v-model="amount" :class="{ 'is-danger': !amount }">
+            <p class="help is-danger" v-if="!amount">Поле необходимо</p>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control" v-if="$route.name == 'add'">
+            <label class="label has-text-weight-light">Неснижаемый остаток:</label>
+            <input class="input" type="number" v-model="min_amount" :class="{ 'is-danger': !min_amount }">
+            <p class="help is-danger" v-if="!min_amount">Поле необходимо</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="field" v-if="$route.name == 'add'">
