@@ -15,62 +15,60 @@ function onAddButtonClick() {
 </script>
       
 <template>
-    <nav class="navbar is-fixed-bottom" role="navigation" aria-label="main navigation">
-        <div class="navbar-item">
-            <nav class="level is-mobile bottom-controls is-spaced">
-                <div class="level-item">
-                    <RouterLink to="/">
-                        <span class="icon-text is-flex-direction-column is-align-items-center">
-                            <span class="icon">
-                                <HomeIcon />
-                            </span>
-                            <span>Главная</span>
+    <div class="conteiner is-mobile">
+        <div class="columns is-mobile">
+            <div class="column has-text-centered">
+                <RouterLink to="/">
+                    <span class="icon-text is-flex-direction-column is-align-items-center">
+                        <span class="icon">
+                            <HomeIcon />
                         </span>
-                    </RouterLink>
-                </div>
-                <div class="level-item">
-                    <RouterLink to="/transit">
-                        <span class="icon-text is-flex-direction-column is-align-items-center">
-                            <span class="icon">
-                                <TruckIcon />
-                            </span>
-                            <span>В пути</span>
+                        <span>Главная</span>
+                    </span>
+                </RouterLink>
+            </div>
+            <div class="column has-text-centered">
+                <RouterLink to="/transit">
+                    <span class="icon-text is-flex-direction-column is-align-items-center">
+                        <span class="icon">
+                            <TruckIcon />
                         </span>
-                    </RouterLink>
-                </div>
-                <div class="level-item">
-                    <a @click="onAddButtonClick">
-                        <span class="icon-text is-flex-direction-column is-align-items-center">
-                            <span class="icon">
-                                <PlusIcon />
-                            </span>
-                            <span>Добавить</span>
+                        <span>В пути</span>
+                    </span>
+                </RouterLink>
+            </div>
+            <div class="column has-text-centered">
+                <a @click="onAddButtonClick">
+                    <span class="icon-text is-flex-direction-column is-align-items-center">
+                        <span class="icon">
+                            <PlusIcon />
                         </span>
-                    </a>
-                </div>
-                <div class="level-item">
-                    <RouterLink to="/basket">
-                        <span class="icon-text is-flex-direction-column is-align-items-center">
-                            <span class="icon">
-                                <TrashIcon />
-                            </span>
-                            <span>Корзина</span>
+                        <span>Добавить</span>
+                    </span>
+                </a>
+            </div>
+            <div class="column has-text-centered">
+                <RouterLink to="/basket">
+                    <span class="icon-text is-flex-direction-column is-align-items-center">
+                        <span class="icon">
+                            <TrashIcon />
                         </span>
-                    </RouterLink>
-                </div>
-                <div class="level-item">
-                    <RouterLink to="/profile">
-                        <span class="icon-text is-flex-direction-column is-align-items-center">
-                            <span class="icon">
-                                <ProfileIcon />
-                            </span>
-                            <span>Профиль</span>
+                        <span>Корзина</span>
+                    </span>
+                </RouterLink>
+            </div>
+            <div class="column has-text-centered">
+                <RouterLink to="/profile">
+                    <span class="icon-text is-flex-direction-column is-align-items-center">
+                        <span class="icon">
+                            <ProfileIcon />
                         </span>
-                    </RouterLink>
-                </div>
-            </nav>
+                        <span>Профиль</span>
+                    </span>
+                </RouterLink>
+            </div>
         </div>
-    </nav>
+    </div>
 </template>
 
 <style scoped>
