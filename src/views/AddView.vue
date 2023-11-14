@@ -66,12 +66,12 @@ const apply_enabled = computed(function () {
       </div>
       <p class="help is-danger" v-if="!heading">Поле необходимо</p>
     </div>
-    <label class="label">Колличество наименований</label>
+    <label class="label">Количество наименований</label>
     <div class="field is-horizontal is-mobile">
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <label class="label has-text-weight-light">Колличество:</label>
+            <label class="label has-text-weight-light">Количество:</label>
             <input class="input" type="number" v-model="amount" :class="{ 'is-danger': !amount }">
             <p class="help is-danger" v-if="!amount">Поле необходимо</p>
           </div>
