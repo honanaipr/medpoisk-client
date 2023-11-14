@@ -1,6 +1,7 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue'
-import TrashIcon from '../components/icons/TrashIcon.vue'
+import CartIcon from '../components/icons/CartIcon.vue'
+import CartPlusIcon from '../components/icons/CartPlusIcon.vue'
 import ExtractIcon from '../components/icons/ExtractIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
@@ -32,10 +33,10 @@ const writeOffAmount = ref(0)
       </div>
       <div class="level-item" v-if="$route.name == 'home'">
         <button class="button is-small item-control" @click="singularWriteOff()">
-          <CrossIcon />
+          <CartIcon />
         </button>
         <button class="button is-small item-control" @click="store.toBasketById(item.id)">
-          <TrashIcon />
+          <CartPlusIcon />
         </button>
       </div>
       <div class="level-item" v-if="$route.name == 'basket'">
