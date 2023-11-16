@@ -35,7 +35,12 @@ watch(writeOffAmount, (newValue) => {
 })
 
 watch(writeOffPlaceID, (newValue) => {
-  _.find(store.basket, (n) => n.id == item.id).writeOffPlaceID = newValue
+  store.items = store.items.map(n=>{
+    if (n.id == item.id) {
+      n.writeOffPlaceID = newValue
+    }
+    return n
+  })
 })
 
 watch(position, (newValue)=>{
