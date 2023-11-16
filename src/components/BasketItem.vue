@@ -26,7 +26,12 @@ const position_url = computed(()=>{
   return API_POSITIONS_PATH+`${writeOffPlaceID.value}/${item.id}`
 })
 
-const { data: position } = useFetch(position_url, {refetch: true}).get().json()
+const { data: position, execute } = useFetch(position_url, { immediate: false }).get().json()
+
+watch(position_url, (newValue)=>{
+  if (newValue) execute()
+})
+
 const effective_amount = computed(()=>{
   return position.value?position.value[0].amount:item.amount
 })
