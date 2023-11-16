@@ -9,7 +9,7 @@ import { ref } from 'vue';
 import _ from 'lodash'
 
 function btnAddOnClicked() {
-    router.replace({ name: 'addToInvoice' })
+    router.push({ name: 'addToInvoice' })
 }
 
 function apply() {
@@ -18,12 +18,12 @@ function apply() {
         store.patchItem(element)
     });
     store.invoice = []
-    router.replace({name: "home"})
+    router.push({name: "home"})
 }
 
 function cancel() {
-    router.replace({name:"home"})
     console.log("cancel")
+    router.push({name:"home"})
 }
 
 const invoiceNumber = ref("")

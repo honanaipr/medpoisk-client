@@ -8,17 +8,17 @@ const emit = defineEmits(['close'])
 
 function btnAddSingleOnClick(){
     emit('close')
-    router.replace({name: 'add'})
+    router.push({name: 'add'})
 }
 
 function btnAddInvoiceOnClick(){
     emit('close')
-    router.replace({name: 'addInvoice'})
+    router.push({name: 'addInvoice'})
 }
 
 function btnAddByCodeOnClick(){
     emit('close')
-    router.replace({name: 'addByCode'})
+    router.push({name: 'addByCode'})
 }
 
 </script>

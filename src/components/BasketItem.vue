@@ -13,7 +13,7 @@ import _ from 'lodash'
 function singularWriteOff() {
   store.clearBasket()
   item.basketed = true
-  router.replace('basket')
+  router.push('basket')
 }
 
 // eslint-disable-next-line no-unused-vars
