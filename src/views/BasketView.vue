@@ -3,7 +3,7 @@ import List from '../components/ListComponent.vue'
 import BasketItem from '../components/BasketItem.vue' 
 import WriteOffFor from '../components/WriteOffFor.vue';
 import { store } from '../store.js'
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 // import router from '../router'
 
 const doctor_id = ref("")
@@ -24,10 +24,16 @@ function cancel() {
   room_id.value = null
 }
 
+const all_places_selected = computed(()=>{
+  return store.basket.every(n=>{
+    return !!n.writeOffPlaceID
+  })
+})
+
 </script>
 
 <template>
   <List :source="store.basket" :item-component="BasketItem"/>
-  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="store.basket.length" @apply="apply"
+  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="store.basket.length && all_places_selected" @apply="apply"
     @cancel="cancel" />
 </template>
