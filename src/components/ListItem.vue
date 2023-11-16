@@ -23,7 +23,7 @@ const writeOffAmount = ref(0)
 </script>
 
 <template>
-  <div class="box item">
+  <div class="box item" @click="$router.push({name:'product', params:{id: item.id}})">
     {{ item.title }}
     <nav class="level is-mobile">
       <div class="level-left">
@@ -32,20 +32,20 @@ const writeOffAmount = ref(0)
         </p>
       </div>
       <div class="level-item" v-if="$route.name == 'home'">
-        <button class="button is-small item-control" @click="singularWriteOff()">
+        <button class="button is-small item-control" @click="singularWriteOff(); $event.stopPropagation();">
           <CartIcon />
         </button>
-        <button class="button is-small item-control" @click="store.toBasketById(item.id)">
+        <button class="button is-small item-control" @click="store.toBasketById(item.id); $event.stopPropagation();">
           <CartPlusIcon />
         </button>
       </div>
       <div class="level-item" v-if="$route.name == 'basket'">
-        <button class="button is-small item-control" @click="store.unBasketById(item.id)">
+        <button class="button is-small item-control" @click="store.unBasketById(item.id); $event.stopPropagation();">
           <ExtractIcon />
         </button>
       </div>
       <div class="level-item" v-if="$route.name == 'addInvoice'">
-        <button class="button is-small item-control" @click="store.forgetItem(item.id)">
+        <button class="button is-small item-control" @click="store.forgetItem(item.id); $event.stopPropagation();">
           <CrossIcon />
         </button>
       </div>
