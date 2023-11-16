@@ -20,7 +20,7 @@ const newRoomNumber = ref(null)
     </div>
     <div class="field">
       <div class="control">
-        <button class="button is-link" @click="addRoom(newRoomNumber)">Добавить кабинет</button>
+        <button class="button is-link" @click="addRoom(newRoomNumber); newRoomNumber=null">Добавить кабинет</button>
       </div>
     </div>
 
@@ -32,7 +32,7 @@ const newRoomNumber = ref(null)
     </div>
     <div class="field">
       <div class="control">
-        <button class="button is-link" @click="addDoctor(newDoctorName)">Добавить врача</button>
+        <button class="button is-link" @click="addDoctor(newDoctorName); newDoctorName=null">Добавить врача</button>
       </div>
     </div>
 
@@ -45,7 +45,7 @@ const newRoomNumber = ref(null)
     </div>
     <div class="field">
       <div class="control">
-        <button class="button is-link" @click="addPlace(newPlaceTitle)">Добавить место хранения</button>
+        <button class="button is-link" @click="addPlace(newPlaceTitle); newPlaceTitle=null">Добавить место хранения</button>
       </div>
     </div>
   </div>
