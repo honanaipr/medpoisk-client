@@ -1,20 +1,51 @@
 <script setup>
-import WrenchIcon from '../components/icons/WrenchIcon.vue';
+import { addPlace, addDoctor, addRoom } from '../store.js'
+import { ref } from 'vue'
+
+const newPlaceTitle = ref(null)
+const newDoctorName = ref(null)
+const newRoomNumber = ref(null)
+
+
+
 </script>
 
 <template>
   <div class="container is-fluid is-multiline" style="padding-top: 10rem;">
-    <div class="columns is-mobile is-centered">
-
-      <div class="column is-half">
-        <WrenchIcon style="display: block; height: 10rem; margin: auto;" />
+    <div class="field">
+      <label class="label">Номер кабинета:</label>
+      <div class="control">
+        <input class="input" v-model="newRoomNumber" type="text">
       </div>
-
     </div>
-    <div class="columns is-mobile is-centered" style="margin-top: 5rem;">
-      <div class="content">
-        <h3>&lt;501&gt;  Not Implemented</h3>
-        <h3>ProfileView</h3>
+    <div class="field">
+      <div class="control">
+        <button class="button is-link" @click="addRoom(newRoomNumber)">Добавить кабинет</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Имя врача:</label>
+      <div class="control">
+        <input class="input" v-model="newDoctorName" type="text">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <button class="button is-link" @click="addDoctor(newDoctorName)">Добавить врача</button>
+      </div>
+    </div>
+
+
+    <div class="field">
+      <label class="label">Место хранения:</label>
+      <div class="control">
+        <input class="input" v-model="newPlaceTitle" type="text">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <button class="button is-link" @click="addPlace(newPlaceTitle)">Добавить место хранения</button>
       </div>
     </div>
   </div>

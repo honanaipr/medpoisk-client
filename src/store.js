@@ -102,6 +102,108 @@ watch(places_data, (newList, oldList) => {
   })
 })
 
+export function addPlace(title) {
+  axios
+    .put(API_PATH + 'places/', {
+      title: title
+    })
+    .then((responce) => {
+      console.log(responce.data)
+      toastController
+        .create({
+          message: 'Место хранения добавлено!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+    })
+    .catch((error) => {
+      console.log(error)
+      toastController
+        .create({
+          message: 'Ошибка!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+    })
+  store.sync()
+}
+
+export function addRoom(title) {
+  axios
+    .put(API_PATH + 'rooms/', {
+      number: title
+    })
+    .then((responce) => {
+      console.log(responce.data)
+      toastController
+        .create({
+          message: 'Кабинет добавлен!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+    })
+    .catch((error) => {
+      console.log(error)
+      toastController
+        .create({
+          message: 'Ошибка!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+    })
+  store.sync()
+}
+
+export function addDoctor(title) {
+  axios
+    .put(API_PATH + 'doctors/', {
+      name: title
+    })
+    .then((responce) => {
+      console.log(responce.data)
+      toastController
+        .create({
+          message: 'Врач добавлен!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+    })
+    .catch((error) => {
+      console.log(error)
+      toastController
+        .create({
+          message: 'Ошибка!!!!',
+          duration: 1500,
+          position: 'bottom',
+          cssClass: 'toast-custom-class'
+        })
+        .then((toast) => {
+          toast.present()
+        })
+    })
+  store.sync()
+}
+
 export const store = reactive({
   places: [],
   rooms: [],
