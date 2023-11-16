@@ -22,7 +22,7 @@ defineEmits(['update:room_id', 'update:doctor_id', 'apply', 'cancel'])
             <div class="field">
                 <label class="label">Врач:</label>
                 <div class="control">
-                    <div class="select is-fullwidth" :class="{ 'is-danger': !doctor_id }">
+                    <div class="select is-fullwidth">
                         <select :value="doctor_id" @input="$emit('update:doctor_id', $event.target.value)">
                             <option disabled value="">Выбрать врача</option>
                             <option v-for="doctor in store.doctors" :key="doctor.id" :value="doctor.id">{{ doctor.name }}
@@ -30,7 +30,6 @@ defineEmits(['update:room_id', 'update:doctor_id', 'apply', 'cancel'])
                         </select>
                     </div>
                 </div>
-                <p class="help is-danger" v-if="!doctor_id">Поле необходимо</p>
             </div>
             <div class="field">
                 <label class="label">Кабинет:</label>
@@ -50,7 +49,7 @@ defineEmits(['update:room_id', 'update:doctor_id', 'apply', 'cancel'])
             <button class="button is-fullwidth is-danger is-light" style="border-color: black;"
                 @click="$emit('cancel')">Отменить</button>
             <button class="button is-fullwidth is-primary is-light" style="border-color: black;" @click="$emit('apply')"
-                :disabled="!(!!room_id && !!doctor_id && allow_apply)">Списать</button>
+                :disabled="!(!!room_id && allow_apply)">Списать</button>
         </div>
     </div>
 </template>
