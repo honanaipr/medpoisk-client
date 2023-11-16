@@ -44,6 +44,7 @@ export class Product {
         this.amount= data.amount
         this.min_amount= data.min_amount
         this.places= data.places
+        this.picture_url= data.picture_url
     }
 }
 
@@ -54,6 +55,7 @@ export const productSchema = Joi.object({
     min_amount: Joi.number(),
     places: Joi.array().items(placeSchema),
     barcode: Joi.number(),
+    picture_url: Joi.string().allow(null),
 })
 
 export class Position {

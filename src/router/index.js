@@ -51,7 +51,13 @@ const router = createRouter({
       name: 'profile',
       component: () => import('../views/ProfileView.vue'),
       meta: { transition: 'slide-left' },
-    }
+    },
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: () => import('../views/ProductView.vue'),
+      meta: { transition: 'slide-left' },
+    },
   ]
 })
 
