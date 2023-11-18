@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, defineProps, defineEmits } from 'vue';
+import { computed } from 'vue';
 import { store } from '../store.js'
 // const props = defineProps(['invoiceNumber', 'invoiceData'])
 // const emit = defineEmits(['update:invoiceNumber', 'update:invoiceData'])

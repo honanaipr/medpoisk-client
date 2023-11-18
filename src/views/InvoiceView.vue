@@ -5,8 +5,6 @@ import PlusIcon from '../components/icons/PlusIcon.vue';
 import InvoiceDataForm from '../components/InvoiceDataForm.vue';
 import router from '../router'
 import InvoiceItem from '../components/InvoiceItem.vue'
-import { ref } from 'vue';
-import _ from 'lodash'
 
 function btnAddOnClicked() {
     router.push({ name: 'addToInvoice' })
