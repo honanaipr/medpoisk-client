@@ -7,28 +7,38 @@ import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import router from '../router';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import _ from 'lodash'
 
 function singularWriteOff() {
   store.clearBasket()
   // item.basketed = true
   _.find(store.list, n => n.id == item.id).basketed = true
-  router.replace('basket')
+  router.push('basket')
 }
 
 const props = defineProps(['source', 'index'])
 const item = props.source[props.index]
 const writeOffAmount = ref(0)
+
+const amount = computed(()=>{
+  return store.items.filter((n)=>n.id==item.id)[0].amount
+})
+
+const places = computed(()=>{
+  return store.items.filter((n)=>n.id==item.id)[0].places
+})
+
 </script>
 
 <template>
-  <div class="box item" @click="$router.push({name:'product', params:{id: item.id}})">
+  <div class="box item" @click="$router.push({ name: 'product', params: { id: item.id } })">
     {{ item.title }}
     <nav class="level is-mobile">
       <div class="level-left">
-        <p class="level-item" aria-label="reply" style="display: block; width: 5rem;">
-          {{ item.amount }}/{{ item.min_amount }}
+        <p class="level-item" aria-label="reply" style="display: block; width: 5rem;"
+          :style="{ 'color': amount < item.min_amount ? 'red' : 'black' }">
+          {{ amount }}/{{ item.min_amount }}
         </p>
       </div>
       <div class="level-item" v-if="$route.name == 'home'">
@@ -51,9 +61,11 @@ const writeOffAmount = ref(0)
       </div>
       <div class="level-right">
         <div class="content">
-          <p class="place-tag" v-for="place in item.places" :key="place.id" style="display: block; width: 7rem;">
+          <p class="place-tag" v-for="place in places" :key="place.id" style="display: block; width: 4rem;">
             {{ place.title }}
           </p>
+          <button class="button is-small" v-if="!places.length" style="display: block; width: 4rem; color:red;"
+            @click="store.deleteProduct(item.id); $event.stopPropagation();">Удалить</button>
         </div>
       </div>
     </nav>

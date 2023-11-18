@@ -3,6 +3,7 @@ import List from '../components/ListComponent.vue'
 import BasketItem from '../components/BasketItem.vue' 
 import WriteOffFor from '../components/WriteOffFor.vue';
 import { store } from '../store.js'
+import router from '../router/index.js'
 import { ref, computed } from 'vue';
 // import router from '../router'
 
@@ -10,9 +11,10 @@ const doctor_id = ref("")
 const room_id = ref("")
 
 function apply() {
-  store.writeOff(doctor_id, room_id)
+  store.writeOff(doctor_id.value, room_id.value)
   doctor_id.value = null
   room_id.value = null
+  router.back()
 }
 
 function cancel() {

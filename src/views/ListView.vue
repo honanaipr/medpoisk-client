@@ -2,7 +2,13 @@
 import List from '../components/ListComponent.vue'
 import { store } from '../store.js'
 import ListItem from '../components/ListItem.vue';
+import { onActivated } from 'vue';
+
+onActivated(()=>{
+  store.sync()
+})
 </script>
+
 
 <template>
   <List :source="store.list" :item-component="ListItem" />

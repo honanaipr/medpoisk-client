@@ -221,6 +221,8 @@ export const store = reactive({
     return basketItems
   }),
   invoice: [],
+  invoiceNumber: null,
+  invoiceData: new Date().toISOString().slice(0,10),
   move: function (source, target, predicate) {
     for (let i = 0; i < source.length; i++) {
       if (predicate(source[i])) {
@@ -266,14 +268,14 @@ export const store = reactive({
       this.title = title
       this.amount = amount
       this.min_amount = min_amount
-      this.barcode = barcode|0
+      this.barcode = barcode | 0
       this.places = _.filter(store.places, (item) => item.id == place_id)
     }
   },
   writeOff: function (doctor_id, rooms_id) {
     axios
       .patch(
-        API_PATH + 'positions/',
+        API_PATH + `positions/${rooms_id}/${doctor_id}`,
         store.basket.map((item) => {
           return {
             product_id: item.id,
@@ -314,43 +316,72 @@ export const store = reactive({
       })
     this.sync()
   },
-  addItem: function (item, to_plcae_id) {
+  addItem: async function (item, imageFile) {
+    let product_id
     console.log({
-      product: {
-        title: item.title,
-        min_amount: item.barcode,
-        barcode: item.barcode
-      },
-      amount: item.amount,
-      place: to_plcae_id.value
+      title: item.title,
+      min_amount: item.barcode,
+      barcode: item.barcode
     })
-    axios
-      .put(API_PATH + 'positions/', [
-        {
-          product: {
-            title: item.title,
-            min_amount: item.min_amount,
-            barcode: item.barcode
-          },
-          amount: item.amount,
-          place_id: to_plcae_id.value
-        }
-      ])
+    await axios
+      .put(API_PATH + 'products/', {
+        title: item.title,
+        min_amount: item.min_amount,
+        barcode: item.barcode
+      })
       .then((responce) => {
         console.log(responce.data)
+        product_id = responce.data.id
       })
       .catch((error) => {
         console.log(error)
       })
+    let formData
+    if (imageFile) {
+      formData = new FormData()
+      formData.append('file', imageFile)
+      await axios
+        .post(API_PATH + `pictures/${product_id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then((responce) => {
+          toastController
+            .create({
+              message: 'Продукт добавлен!!!!',
+              duration: 1500,
+              position: 'bottom',
+              cssClass: 'toast-custom-class'
+            })
+            .then((toast) => {
+              toast.present()
+            })
+          console.log(responce.data)
+        })
+        .catch((error) => {
+          toastController
+            .create({
+              message: 'Ошибка!!!!',
+              duration: 1500,
+              position: 'bottom',
+              cssClass: 'toast-custom-class'
+            })
+            .then((toast) => {
+              toast.present()
+            })
+          console.log(error)
+        })
+    }
     this.sync()
   },
-  patchItem: function (item) {
+  patchItem: async function (item) {
     console.log({
       product_id: item.product.id,
       amount: item.amount,
       place_id: item.places[0].id
     })
-    axios
+    await axios
       .patch(API_PATH + 'positions/', [
         {
           product_id: item.product.id,
@@ -359,6 +390,7 @@ export const store = reactive({
         }
       ])
       .then((responce) => {
+        this.sync()
         console.log(responce.data)
       })
       .catch((error) => {
@@ -368,5 +400,16 @@ export const store = reactive({
   },
   getMutableBasketItem: function (id) {
     return _.find(store.items, (item) => item.id == id)
+  },
+  deleteProduct: function(id){
+    axios
+      .delete(API_PATH + `products/${id}`, )
+      .then((responce) => {
+        console.log(responce.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    this.sync()
   }
 })

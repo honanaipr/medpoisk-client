@@ -22,7 +22,7 @@ const item = props.source[props.index]
       </div>
       <div class="level-right">
         <div class="content">
-          <p>
+          <p style="display: block; width: 4rem;">
             {{ item.places[0].title }}
           </p>
         </div>

@@ -2,14 +2,22 @@
 import router from '../router'
 import { store } from '../store.js'
 import _ from 'lodash'
-import { computed, onBeforeMount } from 'vue';
+import { computed, onMounted } from 'vue';
+import defaultImage from '@/assets/image.png'
 
-const item = computed(()=>_.find(store.items, (item)=>item.id == router.currentRoute.value.params.id))
-
-onBeforeMount(()=>{
-    store.sync()
+const item = computed(()=>{
+  // store.sync()
+  return _.find(store.items, (n)=>n.id == router.currentRoute.value.params.id)
 })
 
+onMounted(()=>{
+    store.sync()
+})
+const imageUrl = computed(()=>{
+  const val = item.value.picture_url || defaultImage
+  console.log(val)
+  return val
+})
 </script>
 
 <template>
@@ -17,7 +25,7 @@ onBeforeMount(()=>{
     <div class="content has-text-centered">
         <figure class="image is-128x128 is-inline-block">
           <!-- <object class="img" data="/src/assets/image.png" type="image/png"> -->
-            <img :src="item.picture_url || '/src/assets/image.png'" onerror="if (this.src != '/src/assets/image.png') this.src = '/src/assets/image.png';" style="border-radius: 0.5rem;">
+            <img :src="imageUrl" style="border-radius: 0.5rem;">
           <!-- </object> -->
         </figure>
         <!-- <h1>{{ item.picture_url }}</h1> -->

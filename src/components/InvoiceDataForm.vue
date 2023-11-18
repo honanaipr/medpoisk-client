@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, defineProps, defineEmits } from 'vue';
-
-const props = defineProps(['invoiceNumber', 'invoiceData'])
-const emit = defineEmits(['update:invoiceNumber', 'update:invoiceData'])
+import { store } from '../store.js'
+// const props = defineProps(['invoiceNumber', 'invoiceData'])
+// const emit = defineEmits(['update:invoiceNumber', 'update:invoiceData'])
 
 
 // const invoiceNumber = ref(null)
@@ -11,7 +11,7 @@ const emit = defineEmits(['update:invoiceNumber', 'update:invoiceData'])
 // const totalItems = ref(0)
 
 const heading = computed(() => {
-    return "Накладная №" + (props.invoiceNumber || "?") + " от " + (props.invoiceData || "?")
+    return "Накладная №" + (store.invoiceNumber || "?") + " от " + (store.invoiceData || "?")
 })
 </script>
 
@@ -23,14 +23,15 @@ const heading = computed(() => {
         <div class="field">
             <label class="label">Накладная №:</label>
             <div class="control">
-                <input class="input" type="text" :value="invoiceNumber" @input="$emit('update:invoiceNumber', $event.target.value)">
+                <input class="input" type="number" v-model="store.invoiceNumber" :class="{ 'is-danger': !store.invoiceNumber }">
             </div>
+            <p class="help is-danger" v-if="!store.invoiceNumber">Поле необходимо</p>
         </div>
 
         <div class="field">
-            <label class="label">Накладная №:</label>
+            <label class="label">Дата</label>
             <div class="control">
-                <input class="input" type="date" :value="invoiceData" @input="$emit('update:invoiceData', $event.target.value)">
+                <input class="input" type="date" v-model="store.invoiceData" format>
             </div>
         </div>
 

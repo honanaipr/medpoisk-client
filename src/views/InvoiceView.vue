@@ -12,10 +12,10 @@ function btnAddOnClicked() {
     router.push({ name: 'addToInvoice' })
 }
 
-function apply() {
+async function apply() {
     console.log("apply")
-    store.invoice.forEach(element => {
-        store.patchItem(element)
+    store.invoice.forEach(async element => {
+        await store.patchItem(element)
     });
     store.invoice = []
     router.push({name: "home"})
@@ -26,17 +26,17 @@ function cancel() {
     router.push({name:"home"})
 }
 
-const invoiceNumber = ref("")
-const invoiceData = ref(new Date())
+// const invoiceNumber = ref("")
+// const invoiceData = ref(new Date().toISOString().slice(0,10))
 
 function allowApply() {
-    return !!store.invoice.length && !!invoiceNumber.value && !!invoiceData.value
+    return !!store.invoice.length && !!store.invoiceNumber && !!store.invoiceData
 }
 
 </script>
 
 <template>
-    <InvoiceDataForm v-model:invoice-data="invoiceData" v-model:invoice-number="invoiceNumber"/>
+    <InvoiceDataForm/>
     <List :source="store.invoice" :item-component="InvoiceItem"/>
     <div class="container is-fluid">
         <div class="field is-grouped">
