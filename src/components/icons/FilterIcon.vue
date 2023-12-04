@@ -1,8 +1,22 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-        <path
-            d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
+    <svg viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        fill="#000000">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+            <title>filter [#1384]</title>
+            <desc>Created with Sketch.</desc>
+            <defs> </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Dribbble-Light-Preview" transform="translate(-299.000000, -760.000000)" fill="#000000">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path
+                            d="M254.55945,610 L254.55,614 L252.45,614 L252.45,610 L246.63405,602 L260.367,602 L254.55945,610 Z M252.45,618 L254.55,618 L254.55,616 L252.45,616 L252.45,618 Z M243,600 L250.35,610.857 L250.35,620 L256.65,620 L256.65,610.857 L264,600 L243,600 Z"
+                            id="filter-[#1384]"> </path>
+                    </g>
+                </g>
+            </g>
+        </g>
     </svg>
 </template>
   
