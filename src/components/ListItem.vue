@@ -4,6 +4,7 @@ import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
 import { ref, computed } from 'vue'
+import router from '../router'
 
 
 const props = defineProps(['source', 'index'])
@@ -18,10 +19,28 @@ const places = computed(()=>{
   return store.items.filter((n)=>n.id==item.id)[0].places
 })
 
+const detectDoubleTapClosure = (()=>{
+  let lastTap = 0;
+  let timeout;
+  return function detectDoubleTap(event) {
+    const curTime = new Date().getTime();
+    const tapLen = curTime - lastTap;
+    if (tapLen < 300 && tapLen > 0) {
+      router.push({ name: 'product', params: { id: item.id } })
+      event.preventDefault();
+    } else {
+      timeout = setTimeout(() => {
+        clearTimeout(timeout);
+      }, 500);
+    }
+    lastTap = curTime;
+  };
+})()
+
 </script>
 
 <template>
-  <div class="box item" @dblclick="$router.push({ name: 'product', params: { id: item.id } })">
+  <div class="box item" @dblclick="$router.push({ name: 'product', params: { id: item.id } })" @touchend="detectDoubleTapClosure($event)">
     {{ item.title }}
     <nav class="level is-mobile">
       <div class="level-left">
