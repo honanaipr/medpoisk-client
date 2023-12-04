@@ -46,7 +46,7 @@ const places = computed(()=>{
           <p class="place-tag" v-for="place in places" :key="place.id" style="display: block; width: 4rem;">
             {{ place.title }}
           </p>
-          <button class="button is-small" v-if="!places.length" style="display: block; width: 4rem; color:red;"
+          <button class="button is-small" v-if="!places.length" style="display: block; color:red;"
             @click="store.deleteProduct(item.id); $event.stopPropagation();">Удалить</button>
         </div>
       </div>
