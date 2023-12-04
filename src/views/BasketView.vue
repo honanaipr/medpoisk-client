@@ -35,7 +35,14 @@ const all_places_selected = computed(()=>{
 </script>
 
 <template>
-  <List :source="store.basket" :item-component="BasketItem"/>
+  <List :source="store.basket" :item-component="BasketItem">
+    <template #empty_caption>
+      В корзине ничего нет
+    </template>
+    <template #swipe-hints>
+      <span></span>
+    </template>
+  </List>
   <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="store.basket.length && all_places_selected" @apply="apply"
     @cancel="cancel" />
 </template>

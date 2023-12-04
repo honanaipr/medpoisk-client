@@ -77,16 +77,16 @@ function singularWriteOff(item) {
     </div>
 
     <div class="swipe-hint">
-      <slot name="swipe-hints ">
-      <span>
-        Списание
-        <SwipeLeft />
-      </span>
-      <span>
-        В корзину
-        <SwipeRight />
-      </span>
-    </slot>
+      <slot name="swipe-hints">
+        <span>
+          Списание
+          <SwipeLeft />
+        </span>
+        <span>
+          В корзину
+          <SwipeRight />
+        </span>
+      </slot>
     </div>
 
     <div class="content has-content-centered empty-hint" v-if="!source.length">
@@ -150,4 +150,5 @@ svg {
 
 .empty-hint {
   margin-top: 1rem;
-}</style>
+}
+</style>
