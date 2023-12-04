@@ -13,6 +13,7 @@ defineProps(['title'])
 button
     appearance: none
     display: flex
+    align-items: center
     flex-shrink: 1
     flex-direction: column
     justify-content: center
@@ -22,4 +23,6 @@ button
     cursor: pointer
     :slotted(svg)
         height: 20px
+    span
+        white-space: nowrap
 </style>
