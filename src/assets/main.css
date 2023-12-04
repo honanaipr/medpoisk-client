@@ -15,5 +15,6 @@ input {
     box-shadow: 5px 5px 7px -4px rgba(0,0,0,0.75) !important;
 }
 :root {
+    --background-color: hsl(180, 8%, 97%);
     font-family: system-ui;
 }
