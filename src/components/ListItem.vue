@@ -1,21 +1,11 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue'
-import CartIcon from '../components/icons/CartIcon.vue'
-import CartPlusIcon from '../components/icons/CartPlusIcon.vue'
 import ExtractIcon from '../components/icons/ExtractIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
-import router from '../router';
 import { ref, computed } from 'vue'
-import _ from 'lodash'
 
-function singularWriteOff() {
-  store.clearBasket()
-  // item.basketed = true
-  _.find(store.list, n => n.id == item.id).basketed = true
-  router.push('basket')
-}
 
 const props = defineProps(['source', 'index'])
 const item = props.source[props.index]
@@ -32,7 +22,7 @@ const places = computed(()=>{
 </script>
 
 <template>
-  <div class="box item" @click="$router.push({ name: 'product', params: { id: item.id } })">
+  <div class="box item">
     {{ item.title }}
     <nav class="level is-mobile">
       <div class="level-left">
@@ -40,14 +30,6 @@ const places = computed(()=>{
           :style="{ 'color': amount < item.min_amount ? 'red' : 'black' }">
           {{ amount }}/{{ item.min_amount }}
         </p>
-      </div>
-      <div class="level-item" v-if="$route.name == 'home'">
-        <button class="button is-small item-control" @click="singularWriteOff(); $event.stopPropagation();">
-          <CartIcon />
-        </button>
-        <button class="button is-small item-control" @click="store.toBasketById(item.id); $event.stopPropagation();">
-          <CartPlusIcon />
-        </button>
       </div>
       <div class="level-item" v-if="$route.name == 'basket'">
         <button class="button is-small item-control" @click="store.unBasketById(item.id); $event.stopPropagation();">

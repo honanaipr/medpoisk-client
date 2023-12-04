@@ -252,7 +252,7 @@ export const store = reactive({
     })
   },
   toBasketById: function (id) {
-    _.find(this.list, (item) => item.id == id).basketed = true
+    _.find(this.items, (item) => item.id == id).basketed = true
   },
   unBasketById: function (id) {
     _.find(this.items, (item) => item.id == id).basketed = false

@@ -1,10 +1,18 @@
 <script setup>
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
+import SwipeItem from './SwipeItem.vue'
+import SwipeContainer from './SwipeContainer.vue'
 import { ref, onMounted } from 'vue'
 import { store } from '../store'
+import router from '../router'
+import _ from 'lodash'
+import CartIcon from './icons/CartIcon.vue'
+import CartPlusIcon from './icons/CartPlusIcon.vue'
+import SwipeRight from './icons/SwipeRight.vue'
+import SwipeLeft from './icons/SwipeLeft.vue'
 
-onMounted(()=>{
+onMounted(() => {
   store.sync()
 })
 
@@ -18,36 +26,42 @@ function filter(item) {
   if (serachQuery.value) {
     return item.title.toLowerCase().includes(serachQuery.value.toLowerCase())
   }
-  if (selectedCategories.value.length){
-    if(!item.places.filter(value1 => selectedCategories.value.filter(value2 => value1.id == value2.id).length).length){
+  if (selectedCategories.value.length) {
+    if (!item.places.filter(value1 => selectedCategories.value.filter(value2 => value1.id == value2.id).length).length) {
       return false
     }
   }
   return true
 }
 
-function toggleCategory(place){
-  if(selectedCategories.value.filter((item)=>(item.id == place.id)).length){
-    selectedCategories.value = selectedCategories.value.filter((item)=>(item.id != place.id))
+function toggleCategory(place) {
+  if (selectedCategories.value.filter((item) => (item.id == place.id)).length) {
+    selectedCategories.value = selectedCategories.value.filter((item) => (item.id != place.id))
   } else {
     selectedCategories.value.push(place)
   }
 }
 
+function singularWriteOff(item) {
+  store.clearBasket()
+  // item.basketed = true
+  _.find(store.list, n => n.id == item.id).basketed = true
+  router.push('basket')
+}
 </script>
 
 <template>
-  
   <div class="container control-container is-fluid">
     <div class="content">
       <h5>Места хранения</h5>
     </div>
     <div class="buttons">
-      <button class="button is-small" v-for="place in store.places" :key="place.id" @click="toggleCategory(place)" :class="{'is-primary':selectedCategories.includes(place)}">{{ place.title }}</button>
+      <button class="button is-small" v-for="place in store.places" :key="place.id" @click="toggleCategory(place)"
+        :class="{ 'is-primary': selectedCategories.includes(place) }">{{ place.title }}</button>
     </div>
     <div class="content">
-    <h3>Наименования</h3>
-  </div>
+      <h3>Наименования</h3>
+    </div>
     <div class="field is-grouped">
       <p class="control is-expanded has-icons-left">
         <input class="input " type="text" placeholder="Найти..." v-model="serachQuery">
@@ -62,15 +76,78 @@ function toggleCategory(place){
       </p>
     </div>
 
-    <div class="content has-content-centered" v-if="!source.length"><h1>Здесь ничего нет</h1></div>
-    <div v-for="(item, index) in source" :key="item.id">
-      <component :is="itemComponent" :index="index" :source="source" v-if="filter(item)" />
+    <div class="swipe-hint">
+      <slot name="swipe-hints ">
+      <span>
+        Списание
+        <SwipeLeft />
+      </span>
+      <span>
+        В корзину
+        <SwipeRight />
+      </span>
+    </slot>
     </div>
-  </div>  
+
+    <div class="content has-content-centered empty-hint" v-if="!source.length">
+      <h1>
+        <slot name="empty_caption">Здесь ничего нет</slot>
+      </h1>
+    </div>
+    <SwipeContainer v-else>
+      <SwipeItem v-for="(item, index) in source" :key="item.id" @right="singularWriteOff(item);"
+        @left="store.toBasketById(item.id);">
+        <template #right>
+          <CartIcon />
+        </template>
+        <template #left>
+          <CartPlusIcon />
+        </template>
+        <component :is="itemComponent" :index="index" :source="source" v-if="filter(item)" />
+      </SwipeItem>
+    </SwipeContainer>
+  </div>
 </template>
 
 <style scoped>
+.filter-button {
+  padding: 0;
+}
+
 div.content {
   margin-bottom: 0;
 }
-</style>
+
+h1 {
+  text-align: center;
+}
+
+svg {
+  box-sizing: border-box;
+  margin: 0.5rem;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+}
+
+.swipe-hint {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: -0.75rem 0;
+}
+
+.swipe-hint span {
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.swipe-hint svg {
+  width: 30px;
+  margin: 0;
+}
+
+.empty-hint {
+  margin-top: 1rem;
+}</style>
