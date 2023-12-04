@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import router from '../router';
 
 defineProps(["isActive"])
@@ -37,5 +36,9 @@ function btnAddByCodeOnClick(){
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.modal-content {
+    overflow: visible;
+}
+</style>
 
