@@ -12,3 +12,6 @@
     --background-color: hsl(180, 8%, 97%);
     font-family: system-ui;
 }
+* {
+    scrollbar-width: none;
+}
