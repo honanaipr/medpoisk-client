@@ -16,7 +16,7 @@ import {
 } from './types'
 
 import { toastController } from '@ionic/vue'
-const API_PATH = '/api/v0/'
+export const API_PATH = '/api/v0/'
 const API_PRODUCTS_PATH = `${API_PATH}products/`
 const API_PLACES_PATH = `${API_PATH}places/`
 const API_DOCTORS_PATH = `${API_PATH}doctors/`

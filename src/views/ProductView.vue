@@ -1,6 +1,7 @@
 <script setup>
 import router from '../router'
 import { store } from '../store.js'
+import { API_PATH } from '../store.js'
 import _ from 'lodash'
 import { computed, onMounted } from 'vue';
 import defaultImage from '@/assets/image.png'
@@ -14,7 +15,7 @@ onMounted(()=>{
     store.sync()
 })
 const imageUrl = computed(()=>{
-  const val = item.value.picture_url || defaultImage
+  const val =  new URL(item?.value?.picture_url || defaultImage, API_PATH).href
   console.log(val)
   return val
 })
