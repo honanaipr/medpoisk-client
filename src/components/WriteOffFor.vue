@@ -36,7 +36,7 @@ defineEmits(['update:room_id', 'update:doctor_id', 'apply', 'cancel'])
                 <div class="control">
                     <div class="select is-fullwidth" :class="{ 'is-danger': !room_id }">
                         <select :value="room_id" @input="$emit('update:room_id', $event.target.value)">
-                            <option disabled value="">Выбрать врача</option>
+                            <option disabled value="">Выбрать кабинет</option>
                             <option v-for="room in store.rooms" :key="room.id" :value="room.id">{{ room.number }}
                             </option>
                         </select>
