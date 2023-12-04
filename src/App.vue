@@ -9,7 +9,7 @@ let isModalActive = ref(false)
 </script>
 
 <template>
-  <div style="display: flex; height: 100vh; width: 100vw; flex-direction: column; overflow: hidden;">
+  <div style="display: flex; height: 100vh; width: 100vw; flex-direction: column; overflow: hidden;" class="app">
     <BannerComponent />
     <div class="" style="overflow-y: scroll; flex-grow: 1;">
       <RouterView />
@@ -20,7 +20,7 @@ let isModalActive = ref(false)
 </template>
 
 <style scoped>
-body {
-  font-family: 'Roboto';
+.app {
+  background-color: var(--background-color);
 }
 </style>
