@@ -1,18 +1,33 @@
 <template>
-    <div class="conteiner is-mobile">
-        <div class="columns has-text-centered">
-            <div class="column">
-                <img src="@/assets/logo.png" width="112" height="28">
-            </div>
+    <div class="top-controls">
+        <div class="logo">
+            <img src="@/assets/logo.png">
+            <span>medpoisk</span>
         </div>
     </div>
 </template>
 
 <style scoped>
-div.conteiner {
-    /* position: fixed; */
-    top: 0;
-    margin-bottom: 0;
-    width: 100%;
+.top-controls {
+    flex-shrink: 0;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-</style>
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.logo span {
+    font-size: 1.5rem;
+}</style>

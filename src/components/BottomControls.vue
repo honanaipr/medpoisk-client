@@ -2,9 +2,10 @@
 import HomeIcon from "../components/icons/HomeIcon.vue"
 import TruckIcon from "../components/icons/TruckIcon.vue"
 import PlusIcon from "../components/icons/PlusIcon.vue"
-import TrashIcon from "../components/icons/TrashIcon.vue"
+import CartIcon from "../components/icons/CartIcon.vue"
 import ProfileIcon from "../components/icons/ProfileIcon.vue"
-
+import BottomControlsButton from "./BottomControlsButton.vue"
+import router from "../router"
 
 const emit = defineEmits(['openAddModal'])
 
@@ -15,61 +16,44 @@ function onAddButtonClick() {
 </script>
       
 <template>
-    <div class="conteiner is-mobile">
-        <div class="columns is-mobile">
-            <div class="column has-text-centered">
-                <RouterLink to="/">
-                    <span class="icon-text is-flex-direction-column is-align-items-center">
-                        <span class="icon">
-                            <HomeIcon />
-                        </span>
-                        <span>Главная</span>
-                    </span>
-                </RouterLink>
-            </div>
-            <div class="column has-text-centered">
-                <RouterLink to="/transit">
-                    <span class="icon-text is-flex-direction-column is-align-items-center">
-                        <span class="icon">
-                            <TruckIcon />
-                        </span>
-                        <span>В пути</span>
-                    </span>
-                </RouterLink>
-            </div>
-            <div class="column has-text-centered">
-                <a @click="onAddButtonClick">
-                    <span class="icon-text is-flex-direction-column is-align-items-center">
-                        <span class="icon">
-                            <PlusIcon />
-                        </span>
-                        <span>Добавить</span>
-                    </span>
-                </a>
-            </div>
-            <div class="column has-text-centered">
-                <RouterLink to="/basket">
-                    <span class="icon-text is-flex-direction-column is-align-items-center">
-                        <span class="icon">
-                            <TrashIcon />
-                        </span>
-                        <span>Корзина</span>
-                    </span>
-                </RouterLink>
-            </div>
-            <div class="column has-text-centered">
-                <RouterLink to="/profile">
-                    <span class="icon-text is-flex-direction-column is-align-items-center">
-                        <span class="icon">
-                            <ProfileIcon />
-                        </span>
-                        <span>Профиль</span>
-                    </span>
-                </RouterLink>
-            </div>
-        </div>
+    <div class="bottom-controls">
+        <BottomControlsButton title="Главная" @click="router.push('/')">
+            <template #icon>
+                <HomeIcon />
+            </template>
+        </BottomControlsButton>
+        <BottomControlsButton title="В пути" @click="router.push('/transit')">
+            <template #icon>
+                <TruckIcon />
+            </template>
+        </BottomControlsButton>
+        <BottomControlsButton title="Добавить" @click="onAddButtonClick">
+            <template #icon>
+                <PlusIcon />
+            </template>
+        </BottomControlsButton>
+        <BottomControlsButton title="Корзина" @click="$router.push('/basket')">
+            <template #icon>
+                <CartIcon />
+            </template>
+        </BottomControlsButton>
+        <BottomControlsButton title="Профиль" @click="$router.push('/profile')">
+            <template #icon>
+                <ProfileIcon />
+            </template>
+        </BottomControlsButton>
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="sass">
+.bottom-controls
+    display: flex
+    flex-shrink: 0
+    flex-direction: row
+    justify-content: space-around
+    align-items: stretch
+    height: 100px
+    // background-color: var(--background-color)
+BottomControlsButton
+    flex-grow: 1
 </style>
