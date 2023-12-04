@@ -11,7 +11,7 @@ const newRoomNumber = ref(null)
 </script>
 
 <template>
-  <div class="container is-fluid is-multiline" style="padding-top: 10rem;">
+  <div class="container is-fluid is-multiline" style="padding-top: 5rem;">
     <div class="field">
       <label class="label">Номер кабинета:</label>
       <div class="control">
