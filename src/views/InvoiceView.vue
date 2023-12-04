@@ -39,7 +39,7 @@ function allowApply() {
     <div class="container is-fluid">
         <div class="field is-grouped">
             <button class="button is-large is-fullwidth" @click="btnAddOnClicked">
-                <PlusIcon />
+                <PlusIcon width="30px"/>
             </button>
         </div>
 
