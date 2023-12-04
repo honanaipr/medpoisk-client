@@ -1,7 +1,6 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue'
 import TrashIcon from '../components/icons/TrashIcon.vue'
-import ExtractIcon from '../components/icons/ExtractIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store, API_POSITIONS_PATH } from '../store.js'
@@ -109,15 +108,6 @@ watch(position, (newValue)=>{
             <a class="button" @click="writeOffAmount > 0 ? writeOffAmount-- : () => { }">
               <AngleDown />
             </a>
-          </p>
-        </div>
-      </div>
-      <div class="level-left">
-        <div class="field has-addons" v-if="$route.name == 'basket'">
-          <p class="control">
-            <button class="button item-control" @click="store.unBasketById(item.id)">
-              <ExtractIcon />
-            </button>
           </p>
         </div>
       </div>

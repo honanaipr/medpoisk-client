@@ -5,8 +5,6 @@ import SwipeItem from './SwipeItem.vue'
 import SwipeContainer from './SwipeContainer.vue'
 import { ref, onMounted } from 'vue'
 import { store } from '../store'
-import router from '../router'
-import _ from 'lodash'
 import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'
@@ -18,6 +16,7 @@ onMounted(() => {
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps(['source', 'itemComponent'])
+defineEmits(['left', 'right'])
 
 let serachQuery = ref("")
 let selectedCategories = ref([])
@@ -40,13 +39,6 @@ function toggleCategory(place) {
   } else {
     selectedCategories.value.push(place)
   }
-}
-
-function singularWriteOff(item) {
-  store.clearBasket()
-  // item.basketed = true
-  _.find(store.list, n => n.id == item.id).basketed = true
-  router.push('basket')
 }
 </script>
 
@@ -95,13 +87,16 @@ function singularWriteOff(item) {
       </h1>
     </div>
     <SwipeContainer v-else>
-      <SwipeItem v-for="(item, index) in source" :key="item.id" @right="singularWriteOff(item);"
-        @left="store.toBasketById(item.id);">
+      <SwipeItem v-for="(item, index) in source" :key="item.id" @right="$emit('right', item)" @left="$emit('left', item)">
         <template #right>
-          <CartIcon />
+          <slot name="left-icon">
+            <CartIcon />
+          </slot>
         </template>
         <template #left>
-          <CartPlusIcon />
+          <slot name="right-icon">
+            <CartPlusIcon />
+          </slot>
         </template>
         <component :is="itemComponent" :index="index" :source="source" v-if="filter(item)" />
       </SwipeItem>

@@ -1,7 +1,9 @@
 <script setup>
 import List from '../components/ListComponent.vue'
-import BasketItem from '../components/BasketItem.vue' 
+import BasketItem from '../components/BasketItem.vue'
 import WriteOffFor from '../components/WriteOffFor.vue';
+import ExtractIcon from '../components/icons/ExtractIcon.vue';
+import SwipeLeft from '../components/icons/SwipeLeft.vue';
 import { store } from '../store.js'
 import router from '../router/index.js'
 import { ref, computed } from 'vue';
@@ -26,8 +28,8 @@ function cancel() {
   room_id.value = null
 }
 
-const all_places_selected = computed(()=>{
-  return store.basket.every(n=>{
+const all_places_selected = computed(() => {
+  return store.basket.every(n => {
     return !!n.writeOffPlaceID
   })
 })
@@ -35,14 +37,42 @@ const all_places_selected = computed(()=>{
 </script>
 
 <template>
-  <List :source="store.basket" :item-component="BasketItem">
+  <List :source="store.basket" :item-component="BasketItem" @right="(item) => { store.unBasketById(item.id) }">
     <template #empty_caption>
       В корзине ничего нет
     </template>
     <template #swipe-hints>
+      <span class="swipe-hint">
+        Извлечь из корзины
+        <SwipeLeft/>
+      </span>
+    </template>
+    <template #left-icon>
+      <ExtractIcon />
+    </template>
+    <template #right-icon>
       <span></span>
     </template>
   </List>
-  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id" :allow_apply="store.basket.length && all_places_selected" @apply="apply"
-    @cancel="cancel" />
+  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id"
+    :allow_apply="store.basket.length && all_places_selected" @apply="apply" @cancel="cancel" />
 </template>
+
+<style scoped>
+svg {
+  box-sizing: border-box;
+  margin: 0.5rem;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+}
+.swipe-hint {
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.swipe-hint svg {
+  width: 30px;
+  margin: 0;
+}
+</style>

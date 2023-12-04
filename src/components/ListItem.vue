@@ -1,6 +1,5 @@
 <script setup>
 import CrossIcon from '../components/icons/CrossIcon.vue'
-import ExtractIcon from '../components/icons/ExtractIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
@@ -22,7 +21,7 @@ const places = computed(()=>{
 </script>
 
 <template>
-  <div class="box item">
+  <div class="box item" @dblclick="$router.push({ name: 'product', params: { id: item.id } })">
     {{ item.title }}
     <nav class="level is-mobile">
       <div class="level-left">
@@ -30,11 +29,6 @@ const places = computed(()=>{
           :style="{ 'color': amount < item.min_amount ? 'red' : 'black' }">
           {{ amount }}/{{ item.min_amount }}
         </p>
-      </div>
-      <div class="level-item" v-if="$route.name == 'basket'">
-        <button class="button is-small item-control" @click="store.unBasketById(item.id); $event.stopPropagation();">
-          <ExtractIcon />
-        </button>
       </div>
       <div class="level-item" v-if="$route.name == 'addInvoice'">
         <button class="button is-small item-control" @click="store.forgetItem(item.id); $event.stopPropagation();">
