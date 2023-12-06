@@ -15,7 +15,13 @@ onMounted(()=>{
     store.sync()
 })
 const imageUrl = computed(()=>{
-  const val =  new URL(item?.value?.picture_url || defaultImage, API_PATH).href
+  let val
+  try{
+    val =  new URL(item?.value?.picture_url || defaultImage, new URL(API_PATH, document.baseURI)).href
+  }
+  catch (err) {
+    val = ""
+  }
   console.log(val)
   return val
 })
