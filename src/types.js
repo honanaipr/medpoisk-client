@@ -1,110 +1,76 @@
-import Joi from "joi"
-
 export class Doctor {
-    constructor(data){
-        this.id = data.id
-        this.name = data.name
-    }
+  constructor(data) {
+    this.id = data.id
+    this.name = data.name
+  }
 }
-
-export const doctorSchema = Joi.object({
-    id: Joi.string(),
-    name: Joi.string(),
-})
 
 export class Room {
-    constructor(data){
-        this.id = data.id
-        this.number = data.number
-    }
+  constructor(data) {
+    this.id = data.id
+    this.number = data.number
+  }
 }
-
-export const roomSchema = Joi.object({
-    id: Joi.string(),
-    number: Joi.number(),
-})
 
 export class Place {
-    constructor(data){
-        this.id = data.id
-        this.title = data.title
-    }
+  constructor(data) {
+    this.id = data.id
+    this.title = data.title
+  }
 }
-
-export const placeSchema = Joi.object({
-    id: Joi.string(),
-    title: Joi.string(),
-})
-
 
 export class Product {
-    constructor(data){
-        this.id = data.id
-        this.title = data.title
-        this.amount= data.amount
-        this.min_amount= data.min_amount
-        this.places= data.places
-        this.picture_url= data.picture_url
-    }
+  constructor(data) {
+    this.id = data.id
+    this.title = data.title
+    this.amount = data.amount
+    this.min_amount = data.min_amount
+    this.places = data.places
+    this.picture_url = data.picture_url
+  }
 }
-
-export const productSchema = Joi.object({
-    id: Joi.string(),
-    title: Joi.string(),
-    amount: Joi.number(),
-    min_amount: Joi.number(),
-    places: Joi.array().items(placeSchema),
-    barcode: Joi.number(),
-    picture_url: Joi.string().allow(null),
-})
 
 export class Position {
-    constructor(data){
-        this.product_id = data.product_id
-        this.place_id = data.place_id
-        this.amount = data.amount
-    }
+  constructor(data) {
+    this.product_id = data.product_id
+    this.place_id = data.place_id
+    this.amount = data.amount
+  }
 }
 
-export const positionSchema = Joi.object({
-    product_id: Joi.string(),
-    place_id: Joi.string(),
-    amount: Joi.number(),
-})
-
 export class ListItem extends Product {
-    constructor (data) {
-        super(data)
-        this.basketed = data.basketed || false
-        this.writeOffAmount = 0
-        this.writeOffPlaceID = ""
-        // this.writeInAmount = 0
-        // this.writeInPlaceID = ""
-    }
+  constructor(data) {
+    super(data)
+    this.basketed = data.basketed || false
+    this.writeOffAmount = 0
+    this.writeOffPlaceID = ''
+    // this.writeInAmount = 0
+    // this.writeInPlaceID = ""
+  }
 }
 
 export class InvoiceItem {
-    constructor (product, place_id, amount) {
-        this.product = product
-        this.places = place_id
-        this.amount = amount  
-    }
+  constructor(product, place_id, amount) {
+    this.product = product
+    this.places = place_id
+    this.amount = amount
+  }
 }
 
 export class RoomItem extends Room {
-    constructor (data) {
-        super(data)
-    }
+  constructor(data) {
+    super(data)
+  }
 }
 
 export class DoctorItem extends Doctor {
-    constructor (data) {
-        super(data)
-    }
+  constructor(data) {
+    super(data)
+  }
 }
 
 export class PlaceItem extends Place {
-    constructor (data) {
-        super(data)
-    }
+  constructor(data) {
+    super(data)
+  }
 }

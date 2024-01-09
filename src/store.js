@@ -3,17 +3,9 @@ import axios from 'axios'
 import { useFetch } from '@vueuse/core'
 import _ from 'lodash'
 import Joi from 'joi'
-import {
-  productSchema,
-  ListItem,
-  roomSchema,
-  doctorSchema,
-  RoomItem,
-  DoctorItem,
-  placeSchema,
-  PlaceItem
-  // BasketItem
-} from './types'
+import { ListItem, RoomItem, DoctorItem, PlaceItem } from './types'
+
+import { productSchema, roomSchema, doctorSchema, placeSchema } from './schemas'
 
 import { toastController } from '@ionic/vue'
 export const API_PATH = '/api/v0/'
