@@ -1,22 +1,22 @@
 import Joi from 'joi'
 
 export const doctorSchema = Joi.object({
-  id: Joi.string(),
+  id: Joi.number(),
   name: Joi.string()
 })
 
 export const roomSchema = Joi.object({
-  id: Joi.string(),
+  id: Joi.number(),
   number: Joi.number()
 })
 
 export const placeSchema = Joi.object({
-  id: Joi.string(),
+  id: Joi.number(),
   title: Joi.string()
 })
 
 export const productSchema = Joi.object({
-  id: Joi.string(),
+  id: Joi.number(),
   title: Joi.string(),
   amount: Joi.number(),
   min_amount: Joi.number(),
@@ -26,7 +26,7 @@ export const productSchema = Joi.object({
 })
 
 export const positionSchema = Joi.object({
-  product_id: Joi.string(),
-  place_id: Joi.string(),
+  product_id: Joi.number(),
+  place_id: Joi.number(),
   amount: Joi.number()
 })
