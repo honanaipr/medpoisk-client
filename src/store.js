@@ -8,12 +8,6 @@ import { ListItem, RoomItem, DoctorItem, PlaceItem } from './types'
 import { productSchema, roomSchema, doctorSchema, placeSchema } from './schemas'
 
 import {showToast} from './toast'
-export const API_PATH = '/api/v0/'
-const API_PRODUCTS_PATH = `${API_PATH}products/`
-const API_PLACES_PATH = `${API_PATH}places/`
-const API_DOCTORS_PATH = `${API_PATH}doctors/`
-const API_ROOMS_PATH = `${API_PATH}rooms/`
-export const API_POSITIONS_PATH = `${API_PATH}positions/`
 
 const {
   error: products_error,

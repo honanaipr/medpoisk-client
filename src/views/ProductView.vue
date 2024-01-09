@@ -1,7 +1,7 @@
 <script setup>
 import router from '../router'
 import { store } from '../store.js'
-import { API_PATH } from '../store.js'
+import { API_PATH } from '../pathes'
 import _ from 'lodash'
 import { computed, onMounted } from 'vue';
 import defaultImage from '@/assets/image.png'
