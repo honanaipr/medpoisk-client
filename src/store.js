@@ -7,7 +7,7 @@ import { ListItem, RoomItem, DoctorItem, PlaceItem } from './types'
 
 import { productSchema, roomSchema, doctorSchema, placeSchema } from './schemas'
 
-import { toastController } from '@ionic/vue'
+import {showToast} from './toast'
 export const API_PATH = '/api/v0/'
 const API_PRODUCTS_PATH = `${API_PATH}products/`
 const API_PLACES_PATH = `${API_PATH}places/`
@@ -101,29 +101,11 @@ export function addPlace(title) {
     })
     .then((responce) => {
       console.log(responce.data)
-      toastController
-        .create({
-          message: 'Место хранения добавлено!!!!',
-          duration: 1500,
-          position: 'bottom',
-          cssClass: 'toast-custom-class'
-        })
-        .then((toast) => {
-          toast.present()
-        })
+      showToast("Место хранения добавлено!!!!")
     })
     .catch((error) => {
       console.log(error)
-      toastController
-        .create({
-          message: 'Ошибка!!!!',
-          duration: 1500,
-          position: 'bottom',
-          cssClass: 'toast-custom-class'
-        })
-        .then((toast) => {
-          toast.present()
-        })
+      showToast("Ошибка!!!!")
     })
   store.sync()
 }
@@ -135,29 +117,11 @@ export function addRoom(title) {
     })
     .then((responce) => {
       console.log(responce.data)
-      toastController
-        .create({
-          message: 'Кабинет добавлен!!!!',
-          duration: 1500,
-          position: 'bottom',
-          cssClass: 'toast-custom-class'
-        })
-        .then((toast) => {
-          toast.present()
-        })
+      showToast("Кабинет добавлен!!!!")
     })
     .catch((error) => {
       console.log(error)
-      toastController
-        .create({
-          message: 'Ошибка!!!!',
-          duration: 1500,
-          position: 'bottom',
-          cssClass: 'toast-custom-class'
-        })
-        .then((toast) => {
-          toast.present()
-        })
+      showToast("Ошибка!!!!")
     })
   store.sync()
 }
@@ -275,16 +239,7 @@ export const store = reactive({
       })
       .catch((error) => {
         console.log(error)
-        toastController
-          .create({
-            message: 'Невозможно списать!!!!',
-            duration: 1500,
-            position: 'bottom',
-            cssClass: 'toast-custom-class'
-          })
-          .then((toast) => {
-            toast.present()
-          })
+        showToast("Невозможно списать!!!!")
       })
     this.sync()
   },
@@ -319,29 +274,11 @@ export const store = reactive({
           }
         })
         .then((responce) => {
-          toastController
-            .create({
-              message: 'Продукт добавлен!!!!',
-              duration: 1500,
-              position: 'bottom',
-              cssClass: 'toast-custom-class'
-            })
-            .then((toast) => {
-              toast.present()
-            })
+          showToast("Продукт добавлен!!!!")
           console.log(responce.data)
         })
         .catch((error) => {
-          toastController
-            .create({
-              message: 'Ошибка!!!!',
-              duration: 1500,
-              position: 'bottom',
-              cssClass: 'toast-custom-class'
-            })
-            .then((toast) => {
-              toast.present()
-            })
+          showToast("Ошибка!!!!")
           console.log(error)
         })
     }
