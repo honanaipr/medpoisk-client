@@ -8,7 +8,7 @@ export class Doctor {
 export class Room {
   constructor(data) {
     this.id = data.id
-    this.number = data.number
+    this.title = data.title
   }
 }
 
@@ -23,10 +23,9 @@ export class Product {
   constructor(data) {
     this.id = data.id
     this.title = data.title
-    this.amount = data.amount
-    this.min_amount = data.min_amount
-    this.places = data.places
-    this.picture_url = data.picture_url
+    this.description = data.description
+    this.barcode = data.barcode
+    this.pictures = data.pictures
   }
 }
 
@@ -44,8 +43,6 @@ export class ListItem extends Product {
     this.basketed = data.basketed || false
     this.writeOffAmount = 0
     this.writeOffPlaceID = ''
-    // this.writeInAmount = 0
-    // this.writeInPlaceID = ""
   }
 }
 

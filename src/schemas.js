@@ -7,22 +7,25 @@ export const doctorSchema = Joi.object({
 
 export const roomSchema = Joi.object({
   id: Joi.number(),
-  number: Joi.number()
+  title: Joi.string(),
+  division: Joi.object({
+    id: Joi.number(),
+    title: Joi.string(),
+  })
 })
 
 export const placeSchema = Joi.object({
   id: Joi.number(),
-  title: Joi.string()
+  title: Joi.string(),
+  division_id: Joi.number()
 })
 
 export const productSchema = Joi.object({
   id: Joi.number(),
   title: Joi.string(),
-  amount: Joi.number(),
-  min_amount: Joi.number(),
-  places: Joi.array().items(placeSchema),
-  barcode: Joi.number(),
-  picture_url: Joi.string().allow(null)
+  barcode: Joi.number().allow(null),
+  description: Joi.string().allow(null),
+  pictures: Joi.array().items(Joi.object({ url: Joi.string() }))
 })
 
 export const positionSchema = Joi.object({
