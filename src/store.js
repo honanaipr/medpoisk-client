@@ -215,23 +215,6 @@ export const store = reactive({
   invoice: [],
   invoiceNumber: null,
   invoiceData: new Date().toISOString().slice(0,10),
-  move: function (source, target, predicate) {
-    for (let i = 0; i < source.length; i++) {
-      if (predicate(source[i])) {
-        target.push(source[i])
-        source.splice(i, 1)
-        break
-      }
-    }
-  },
-  drop: function (source, predicate) {
-    for (let i = 0; i < source.length; i++) {
-      if (predicate(source[i])) {
-        source.splice(i, 1)
-        break
-      }
-    }
-  },
   sync: function () {
     sync_products()
     sync_places()
@@ -251,9 +234,6 @@ export const store = reactive({
   },
   forgetItem: function (id) {
     _.remove(this.invoice, (item) => item.id == id)
-  },
-  addItemTo: function (target, item) {
-    target.push(item)
   },
   Item: class {
     constructor(title, amount, min_amount, barcode, place_id) {
@@ -389,9 +369,6 @@ export const store = reactive({
         console.log(error)
       })
     this.sync()
-  },
-  getMutableBasketItem: function (id) {
-    return _.find(store.items, (item) => item.id == id)
   },
   deleteProduct: function(id){
     axios
