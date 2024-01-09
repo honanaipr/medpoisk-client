@@ -9,10 +9,13 @@ import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'
 import SwipeLeft from './icons/SwipeLeft.vue'
+import { usePlaceStore } from '../stores/place_store'
 
 onMounted(() => {
   store.sync()
 })
+
+const place_store = usePlaceStore()
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps(['source', 'itemComponent'])

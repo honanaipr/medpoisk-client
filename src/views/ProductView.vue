@@ -1,18 +1,18 @@
 <script setup>
 import router from '../router'
-import { store } from '../store.js'
+import { useProductStore } from '../stores/product_store'
 import { API_PATH } from '../pathes'
-import _ from 'lodash'
 import { computed, onMounted } from 'vue';
 import defaultImage from '@/assets/image.png'
 
+const product_store = useProductStore()
+
 const item = computed(()=>{
-  // store.sync()
-  return _.find(store.items, (n)=>n.id == router.currentRoute.value.params.id)
+  return product_store.byId(router.currentRoute.value.params.id)
 })
 
-onMounted(()=>{
-    store.sync()
+onMounted(async()=>{
+  await product_store.update()
 })
 const imageUrl = computed(()=>{
   let val
