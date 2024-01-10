@@ -18,4 +18,6 @@ export default {
     PRODUCT_ADD_OK_MESSAGE : "Продукт добавлен!",
     PRODUCT_UPDATE_ERROR_MESSAGE : "Ошибка обновления списка продуктов!",
     PRODUCT_UPDATE_OK_MESSAGE : "Список продуктов обновлен!",
+    PRODUCT_DELETE_ERROR_MESSAGE : "Ошибка удаления продукта!",
+    PRODUCT_DELETE_OK_MESSAGE : "Продукт удален!",
 }
