@@ -4,7 +4,7 @@ import TrashIcon from '../components/icons/TrashIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
 import { store } from '../store.js'
-import { API_POSITIONS_PATH } from '../pathes'
+import { API_POSITION_PATH } from '../pathes'
 import router from '../router';
 import { ref, watch, computed } from 'vue'
 import { useFetch } from '@vueuse/core'
@@ -23,7 +23,7 @@ const writeOffAmount = ref(item.writeOffAmount)
 const writeOffPlaceID = ref(item.writeOffPlaceID)
 
 const position_url = computed(()=>{
-  return API_POSITIONS_PATH+`${writeOffPlaceID.value}/${item.id}`
+  return API_POSITION_PATH+`${writeOffPlaceID.value}/${item.id}`
 })
 
 const { data: position, execute } = useFetch(position_url, { immediate: false }).get().json()
