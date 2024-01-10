@@ -20,4 +20,11 @@ export default {
     PRODUCT_UPDATE_OK_MESSAGE : "Список продуктов обновлен!",
     PRODUCT_DELETE_ERROR_MESSAGE : "Ошибка удаления продукта!",
     PRODUCT_DELETE_OK_MESSAGE : "Продукт удален!",
+    
+    INVENTORY_ADD_ERROR_MESSAGE : "Ошибка добавления инвентаря!",
+    INVENTORY_ADD_OK_MESSAGE : "Элемент инвентаря добавлен!",
+    INVENTORY_UPDATE_ERROR_MESSAGE : "Ошибка обновления инвентаря!",
+    INVENTORY_UPDATE_OK_MESSAGE : "Инвентарь обновлен!",
+    INVENTORY_DELETE_ERROR_MESSAGE : "Ошибка списания продукта!",
+    INVENTORY_DELETE_OK_MESSAGE : "Продукт списан!",
 }
