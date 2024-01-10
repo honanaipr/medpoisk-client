@@ -62,7 +62,7 @@ watch(position, (newValue)=>{
     <nav class="level is-mobile">
       <div class="level-left">
         <p class="level-item" aria-label="reply" style="display: block; width: 5rem;">
-          {{ effective_amount }}/{{ item.min_amount }}
+          {{ effective_amount }}/{{ item.limit }}
         </p>
       </div>
       <div class="level-item has-text-centered" v-if="$route.name == 'home'">

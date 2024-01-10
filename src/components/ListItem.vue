@@ -45,8 +45,8 @@ const detectDoubleTapClosure = (()=>{
     <nav class="level is-mobile">
       <div class="level-left">
         <p class="level-item" aria-label="reply" style="display: block; width: 5rem;"
-          :style="{ 'color': amount < item.min_amount ? 'red' : 'black' }">
-          {{ amount }}/{{ item.min_amount }}
+          :style="{ 'color': amount < item.limit ? 'red' : 'black' }">
+          {{ amount }}/{{ product_store.byId(item.product.id).limit }}
         </p>
       </div>
       <div class="level-item" v-if="$route.name == 'addInvoice'">

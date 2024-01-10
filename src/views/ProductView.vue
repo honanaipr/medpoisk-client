@@ -41,7 +41,7 @@ const imageUrl = computed(()=>{
         <!-- <h1>{{ item.picture_url }}</h1> -->
         <h3>{{ item.title }}</h3>
         <p>Количество: {{ item.amount }}</p>
-        <p>Неснижаемый остаток: {{ item.min_amount }}</p>
+        <p>Неснижаемый остаток: {{ item.limit }}</p>
         <p>Штрихкод: {{ item.barcode || "Не указан" }}</p>
         <p>Места хранения:</p>
         <ul>

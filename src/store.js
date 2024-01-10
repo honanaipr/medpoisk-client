@@ -241,13 +241,13 @@ export const store = reactive({
     let product_id
     console.log({
       title: item.title,
-      min_amount: item.barcode,
+      limit: item.barcode,
       barcode: item.barcode
     })
     await axios
       .put(API_PATH + 'products/', {
         title: item.title,
-        min_amount: item.min_amount,
+        limit: item.limit,
         barcode: item.barcode
       })
       .then((responce) => {

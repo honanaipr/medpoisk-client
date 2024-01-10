@@ -12,18 +12,18 @@ const props = defineProps(['target_name'])
 
 let heading = ref("")
 let amount = ref(null)
-let min_amount = ref(null)
+let limit = ref(null)
 let barcode = ref(null)
 let selected_place_id = ref("")
 let product_id = ref("")
 
 async function apply() {
   if (router.currentRoute.value.name == 'add') {
-    await store.addItem(new store.Item(heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value), imageFile.value)
+    await store.addItem(new store.Item(heading.value, amount.value, limit.value, barcode.value, selected_place_id.value), imageFile.value)
     router.back()
   }
   if (router.currentRoute.value.name == 'addToInvoice') {
-    // addItem2Target(store.invoice, heading.value, amount.value, min_amount.value, barcode.value, selected_place_id.value)
+    // addItem2Target(store.invoice, heading.value, amount.value, limit.value, barcode.value, selected_place_id.value)
     const product = _.find(store.items, item => item.id == product_id.value)
     const places = [_.find(store.places, item => item.id == selected_place_id.value)]
     store.invoice.push(new InvoiceItem(product, places, amount.value))
@@ -33,7 +33,7 @@ async function apply() {
 
 const apply_enabled = computed(function () {
   if (router.currentRoute.value.name == "add") {
-    return !!heading.value && !!min_amount.value
+    return !!heading.value && !!limit.value
   } else {
     return !!product_id.value && !!selected_place_id.value
   }
@@ -100,8 +100,8 @@ function onAddProduct(){
         <div class="field">
           <div class="control" v-if="$route.name == 'add'">
             <label class="label has-text-weight-light">Неснижаемый остаток:</label>
-            <input class="input" type="number" v-model="min_amount" :class="{ 'is-danger': !min_amount }">
-            <p class="help is-danger" v-if="!min_amount">Поле необходимо</p>
+            <input class="input" type="number" v-model="limit" :class="{ 'is-danger': !limit }">
+            <p class="help is-danger" v-if="!limit">Поле необходимо</p>
           </div>
         </div>
       </div>
