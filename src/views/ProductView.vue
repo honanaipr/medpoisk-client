@@ -16,13 +16,16 @@ onMounted(async()=>{
 })
 const imageUrl = computed(()=>{
   let val
-  try{
-    val =  new URL(item?.value?.picture_url || defaultImage, new URL(API_PATH, document.baseURI)).href
+  if (item?.value?.pictures.length){
+    try{
+    val =  new URL(item.value.pictures[0].url, new URL(API_PATH, document.baseURI)).href
+    }
+    catch (err) {
+      val = ""
+    }
+  } else {
+    val = defaultImage
   }
-  catch (err) {
-    val = ""
-  }
-  console.log(val)
   return val
 })
 </script>
