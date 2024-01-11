@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import HomeIcon from "../components/icons/HomeIcon.vue"
 import ReportIcon from "../components/icons/ReportIcon.vue"
 import PlusIcon from "../components/icons/PlusIcon.vue"

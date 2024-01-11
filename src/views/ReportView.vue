@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import WrenchIcon from '../components/icons/WrenchIcon.vue';
 </script>
 

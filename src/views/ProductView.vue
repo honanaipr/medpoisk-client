@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import router from '../router'
 import { useProductStore } from '../stores/product_store'
 import { API_PATH } from '../pathes'

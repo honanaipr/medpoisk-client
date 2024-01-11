@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import List from '../components/ListComponent.vue'
 import { store } from '../store.js'
 import PlusIcon from '../components/icons/PlusIcon.vue';

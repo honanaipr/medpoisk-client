@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { RouterView } from 'vue-router'
 import BottomControls from './components/BottomControls.vue';
 import BannerComponent from './components/BannerComponent.vue';

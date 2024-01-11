@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, provide, computed } from 'vue'
 
 const currentX = ref(null)

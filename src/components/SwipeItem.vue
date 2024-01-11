@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { inject, watch, ref } from 'vue';
 const shiftX = inject('shiftX')
 const itemref = ref(null)

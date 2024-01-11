@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 const props = defineProps(['source', 'index'])
 const item = props.source[props.index]
