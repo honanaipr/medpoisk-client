@@ -10,6 +10,7 @@ import { useDoctorStore } from './stores/doctor_store';
 import { useProductStore } from './stores/product_store';
 import { useAuthStore } from './stores/auth_store';
 import { useInventoryStore } from './stores/inventory_store';
+import { useLimitStore } from './stores/limit_store'
 
 
 const place_store = usePlaceStore()
@@ -18,6 +19,7 @@ const doctor_store = useDoctorStore()
 const product_store = useProductStore()
 const auth_store = useAuthStore()
 const inventory_store = useInventoryStore()
+const limit_store = useLimitStore()
 
 onMounted(async () => {
   try {
@@ -32,6 +34,7 @@ onMounted(async () => {
     doctor_store.update(),
     product_store.update(),
     inventory_store.update(),
+    limit_store.update(),
   ])
     .then(() => console.log("sucsess"))
     .catch((error) => console.log(error))
