@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import * as jose from 'jose'
 import axios from 'axios'
 import { API_AUTH_LOGIN_PATH } from '../pathes'
+import { tokenDataSchema } from '@/schemas'
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(null)
@@ -21,9 +22,15 @@ export const useAuthStore = defineStore('auth', () => {
     })
       .then((response) => {
         token.value = response.data.access_token
-        const claims = jose.decodeJwt(response.data.access_token)
-        exp.value = claims.exp
-        console.log(claims)
+        const token_data = jose.decodeJwt(response.data.access_token)
+        const joiResult = tokenDataSchema.validate(token_data)
+        if (!joiResult.error) {
+          exp.value = joiResult.value.exp
+        }
+        else {
+          throw Error("Token data incorrect "+joiResult.error.message)
+        }
+        
       })
       .catch((error) => {
         console.log(error)

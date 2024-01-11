@@ -64,3 +64,22 @@ export const limitSchema = Joi.object({
   product_id: Joi.number(),
   min_amount: Joi.number(),
 })
+
+export const tokenSchema = Joi.object({
+  access_token: Joi.string(),
+  token_type: Joi.string().valid("bearer"),
+})
+
+export const roleInDivisionSchema = Joi.object({
+  division: divisionSchema,
+  role_name: Joi.string().valid("director","manager","doctor"),
+  inherited: Joi.boolean(),
+})
+
+export const tokenDataSchema = Joi.object({
+  username: Joi.string(),
+  roles: Joi.array().items(roleInDivisionSchema),
+  exp: Joi.number(),
+  iat: Joi.number(),
+  iss: Joi.string().valid("medpoisk-server")
+})
