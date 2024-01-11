@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import List from '../components/ListComponent.vue'
+import ListComponent from '../components/ListComponent.vue'
 import { store } from '../store.js'
 import PlusIcon from '../components/icons/PlusIcon.vue';
 import InvoiceDataForm from '../components/InvoiceDataForm.vue';
@@ -34,7 +34,7 @@ function allowApply() {
 
 <template>
     <InvoiceDataForm />
-    <List :source="store.invoice" :item-component="InvoiceItem" @right="(item) => { store.forgetItem(item.id) }">
+    <ListComponent :items="store.invoice" :item-component="InvoiceItem" @right="(item) => { store.forgetItem(item.id) }">
         <template #empty_caption>
             В накладной ничего нет
         </template>
@@ -50,7 +50,7 @@ function allowApply() {
         <template #right-icon>
             <span></span>
         </template>
-    </List>
+    </ListComponent>
     <div class="container is-fluid">
         <div class="field is-grouped">
             <button class="button is-large is-fullwidth" @click="btnAddOnClicked">
