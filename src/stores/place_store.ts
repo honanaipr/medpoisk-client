@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +13,7 @@ import { API_PLACE_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const usePlaceStore = defineStore('place', () => {
-  const places = ref([])
+  const places: Ref<Array<Place>> = ref([])
 
   async function update() {
     const auth_store = useAuthStore()
@@ -23,11 +23,11 @@ export const usePlaceStore = defineStore('place', () => {
       headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
     })
       .then((responce) => {
-        let { value, error } = Joi.array().items(placeSchema).validate(responce.data)
-        if (error) {
-          throw new Error(error)
+        const joiResult = Joi.array().items(placeSchema).validate(responce.data)
+        if (joiResult.error) {
+          throw new Error(joiResult.error.message)
         }
-        value = value.map((item) => new Place(item))
+        const value = joiResult.value.map((item) => new Place(item))
         console.log(value)
         places.value = value
       })
@@ -37,7 +37,7 @@ export const usePlaceStore = defineStore('place', () => {
       })
   }
 
-  function addPlace(place) {
+  function addPlace(place: Place) {
     axios
       .put(API_PLACE_PATH, {
         title: place.title,
@@ -45,11 +45,11 @@ export const usePlaceStore = defineStore('place', () => {
       })
       .then((responce) => {
         console.log(responce.data)
-        let { value, error } = placeSchema.validate(responce.data)
-        if (error) {
-          throw new Error(error)
+        const joiResult = placeSchema.validate(responce.data)
+        if (joiResult.error) {
+          throw new Error(joiResult.error.message)
         }
-        places.value.push(value)
+        places.value.push(joiResult.value)
         showToast(messaegs.PLACE_ADD_OK_MESSAGE)
       })
       .catch((error) => {
@@ -58,11 +58,11 @@ export const usePlaceStore = defineStore('place', () => {
       })
   }
 
-  function byId(id) {
+  function byId(id: number) {
     return places.value.find((item) => item.id == id)
   }
 
-  function byTitle(title) {
+  function byTitle(title: string) {
     return places.value.find((item) => item.title == title)
   }
 

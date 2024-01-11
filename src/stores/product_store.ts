@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,18 +13,18 @@ import { API_PRODUCT_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useProductStore = defineStore('product', () => {
-  const products = ref([])
+  const products: Ref<Array<Product>> = ref([])
   const auth_store = useAuthStore()
 
   async function update() {
     return axios
       .get(API_PRODUCT_PATH)
       .then((responce) => {
-        let { value, error } = Joi.array().items(productSchema).validate(responce.data)
-        if (error) {
-          throw new Error(error)
+        const joiResult = Joi.array().items(productSchema).validate(responce.data)
+        if (joiResult.error) {
+          throw new Error(joiResult.error.message)
         }
-        value = value.map((item) => new Product(item))
+        const value = joiResult.value.map((item) => new Product(item))
         console.log(value)
         products.value = value
       })
@@ -34,20 +34,20 @@ export const useProductStore = defineStore('product', () => {
       })
   }
 
-  async function addProduct(product) {
+  async function addProduct(product: Product) {
     const form_data = new FormData()
     form_data.append('title', product.title)
-    if (product.barcode) form_data.append('barcode', product.barcode)
+    if (product.barcode) form_data.append('barcode', String(product.barcode))
     axios
       .put(API_PRODUCT_PATH, form_data, {
         headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
       })
       .then((responce) => {
-        let { value, error } = productSchema.validate(responce.data)
-        if (error) {
-          throw new Error(error)
+        const joiResult = productSchema.validate(responce.data)
+        if (joiResult.error) {
+          throw new Error(joiResult.error.message)
         }
-        value = new Product(value)
+        const value = new Product(joiResult.value)
         console.log(value)
         products.value.push(value)
         showToast(messaegs.PRODUCT_ADD_OK_MESSAGE)
@@ -58,7 +58,7 @@ export const useProductStore = defineStore('product', () => {
       })
   }
 
-  async function del(product_id) {
+  async function del(product_id: number) {
     axios
       .delete(API_PRODUCT_PATH, {
         params: { id: product_id },
@@ -77,11 +77,11 @@ export const useProductStore = defineStore('product', () => {
       })
   }
 
-  function byId(id) {
+  function byId(id: number) {
     return products.value.find((item) => item.id == id)
   }
 
-  function byTitle(title) {
+  function byTitle(title: string) {
     return products.value.find((item) => item.title == title)
   }
 
