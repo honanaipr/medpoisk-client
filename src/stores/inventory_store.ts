@@ -41,9 +41,5 @@ export const useInventoryStore = defineStore('inventory', () => {
     return inventory.value.find((item) => item.id == id)
   }
 
-  function byName(name) {
-    return inventory.value.find((item) => item.name == name)
-  }
-
-  return { inventory, update, byId, byName }
+  return { inventory, update, byId }
 })
