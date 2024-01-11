@@ -66,18 +66,7 @@ watch(position, (newValue)=>{
         </p>
       </div>
       <div class="level-right">
-        <div class="field">
-          <label class="label">Место хронения:</label>
-          <div class="control">
-            <div class="select" :class="{ 'is-danger': !writeOffPlaceID }">
-              <select v-model="writeOffPlaceID">
-                <option disabled value="">Выбрать место</option>
-                <option v-for="place in item.places" :key="place.id" :value="place.id">{{ place.title }}</option>
-              </select>
-            </div>
-          </div>
-          <p class="help is-danger" v-if="!writeOffPlaceID">Поле необходимо</p>
-        </div>
+        <CustomPlaceSelector :places="listItem.places" v-model="writeOffPlaceID" />
       </div>
     </nav>
     <CustomNumberInput v-model="writeOffAmount" :max_value="listItem.limit" />
