@@ -23,7 +23,7 @@ export const useInventoryStore = defineStore('inventory', () => {
       })
       .then((responce) => {
         const joiResult = Joi.array().items(inventoryItemSchema).validate(responce.data)
-        if (joiResult) {
+        if (joiResult.error) {
           throw new Error(joiResult.error?.message)
         }
         const value = joiResult.value.map((item) => new InventoryItem(item))
