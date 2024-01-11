@@ -80,25 +80,7 @@ watch(position, (newValue)=>{
         </div>
       </div>
     </nav>
-    <nav class="level is-mobile" style="padding-bottom: 0.5rem;"> <!--TODO fix inline style -->
-      <div class="level-left">
-        <div class="field has-addons" v-if="$route.name == 'basket'">
-          <p class="control">
-            <a class="button" @click="writeOffAmount < effective_amount ? writeOffAmount++ : ()=>{}">
-              <AngleUp />
-            </a>
-          </p>
-          <p class="control">
-            <input class="input" type="text" placeholder="0" style="width: 3rem;" v-model="writeOffAmount">
-          </p>
-          <p class="control">
-            <a class="button" @click="writeOffAmount > 0 ? writeOffAmount-- : () => { }">
-              <AngleDown />
-            </a>
-          </p>
-        </div>
-      </div>
-    </nav>
+    <CustomNumberInput v-model="writeOffAmount" :max_value="listItem.limit" />
   </div>
 </template>
 
