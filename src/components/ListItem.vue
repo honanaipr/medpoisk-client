@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import CrossIcon from '../components/icons/CrossIcon.vue'
-import AngleUp from '../components/icons/AngleUp.vue'
-import AngleDown from '../components/icons/AngleDown.vue'
 import { ref, computed } from 'vue'
 import router from '../router'
 import { useInventoryStore } from '../stores/inventory_store'
