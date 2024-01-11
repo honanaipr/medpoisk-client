@@ -2,14 +2,21 @@
 import CrossIcon from '../components/icons/CrossIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
-import { store } from '../store.js'
 import { ref, computed } from 'vue'
 import router from '../router'
+import { useInventoryStore } from '../stores/inventory_store'
+import { useProductStore } from '../stores/product_store'
+import { useListStore } from '../stores/list_store'
+import { ListItem } from '@/types'
 
 
 const props = defineProps(['source', 'index'])
 const item = props.source[props.index]
 const writeOffAmount = ref(0)
+
+const inventory_store = useInventoryStore() 
+const product_store = useProductStore() 
+const list_store = useListStore() 
 
 const amount = computed(()=>{
   return store.items.filter((n)=>n.id==item.id)[0].amount
@@ -55,7 +62,7 @@ const detectDoubleTapClosure = (()=>{
             {{ place.title }}
           </p>
           <button class="button is-small" v-if="!places.length" style="display: block; color:red;"
-            @click="store.deleteProduct(item.id); $event.stopPropagation();">Удалить</button>
+            @click="alert('not implemented')">Удалить</button>
         </div>
       </div>
     </nav>

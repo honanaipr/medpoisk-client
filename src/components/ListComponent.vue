@@ -1,10 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 import SwipeItem from './SwipeItem.vue'
 import SwipeContainer from './SwipeContainer.vue'
-import { ref } from 'vue'
-import { store } from '../store'
+import { ref, Ref } from 'vue'
 import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'

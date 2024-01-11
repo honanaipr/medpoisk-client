@@ -1,35 +1,34 @@
-<script setup>
-import List from '../components/ListComponent.vue'
+<script setup lang="ts">
+import ListComponent from '../components/ListComponent.vue'
 import BasketItem from '../components/BasketItem.vue'
 import WriteOffFor from '../components/WriteOffFor.vue';
 import ExtractIcon from '../components/icons/ExtractIcon.vue';
 import SwipeLeft from '../components/icons/SwipeLeft.vue';
-import { store } from '../store.js'
+import { useListStore } from '@/stores/list_store';
 import router from '../router/index.js'
 import { ref, computed } from 'vue';
 // import router from '../router'
+
+const list_store = useListStore()
 
 const doctor_id = ref("")
 const room_id = ref("")
 
 function apply() {
-  store.writeOff(doctor_id.value, room_id.value)
+  list_store.writeOff(doctor_id.value, room_id.value)
   doctor_id.value = null
   room_id.value = null
   router.back()
 }
 
 function cancel() {
-  // while (store.basket.length){
-  //   backToList(store.value.basket[0].id)
-  // }
-  store.clearBasket()
+  list_store.clearBasket()
   doctor_id.value = null
   room_id.value = null
 }
 
 const all_places_selected = computed(() => {
-  return store.basket.every(n => {
+  return list_store.basketed.value.every(n => {
     return !!n.writeOffPlaceID
   })
 })
@@ -37,7 +36,7 @@ const all_places_selected = computed(() => {
 </script>
 
 <template>
-  <List :source="store.basket" :item-component="BasketItem" @right="(item) => { store.unBasketById(item.id) }">
+  <ListComponent :items="list_store.basketed" :item-component="BasketItem" @right="(item) => { list_store.unBasketById(item.id) }">
     <template #empty_caption>
       В корзине ничего нет
     </template>
@@ -53,9 +52,9 @@ const all_places_selected = computed(() => {
     <template #right-icon>
       <span></span>
     </template>
-  </List>
+  </ListComponent>
   <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id"
-    :allow_apply="store.basket.length && all_places_selected" @apply="apply" @cancel="cancel" />
+    :allow_apply="list_store.basketed.length && all_places_selected" @apply="apply" @cancel="cancel" />
 </template>
 
 <style scoped>
