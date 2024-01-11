@@ -27,4 +27,11 @@ export default {
     INVENTORY_UPDATE_OK_MESSAGE : "Инвентарь обновлен!",
     INVENTORY_DELETE_ERROR_MESSAGE : "Ошибка списания продукта!",
     INVENTORY_DELETE_OK_MESSAGE : "Продукт списан!",
+    
+    LIMIT_ADD_ERROR_MESSAGE : "Ошибка добавления лимита!",
+    LIMIT_ADD_OK_MESSAGE : "Лимит добавлен!",
+    LIMIT_UPDATE_ERROR_MESSAGE : "Ошибка обновления списка лимитов!",
+    LIMIT_UPDATE_OK_MESSAGE : "Список лимитов обновлен!",
+    LIMIT_DELETE_ERROR_MESSAGE : "Ошибка удаления лимита!",
+    LIMIT_DELETE_OK_MESSAGE : "Лимит удален!",
 }
