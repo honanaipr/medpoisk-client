@@ -60,5 +60,9 @@ export const useLimitStore = defineStore('limit', () => {
       })
   }
 
-  return { limits, update, addLimit }
+  function byId(id: number) {
+    return limits.value.find(n=>n.product_id = id)
+  }
+
+  return { limits, update, addLimit, byId }
 })

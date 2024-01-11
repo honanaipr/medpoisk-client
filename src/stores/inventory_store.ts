@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
-import { InventoryItem } from '../types'
+import { InventoryItem, ListItem, ListItemState } from '../types'
 import { inventoryItemSchema } from '../schemas'
 
 import { API_INVENTORY_PATH } from '../pathes'
@@ -13,18 +13,34 @@ import { API_INVENTORY_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useInventoryStore = defineStore('inventory', () => {
-  const inventory = ref([])
+  const inventory: Ref<Array<InventoryItem>> = ref([])
 
-  const list = computed(() => {
-    // for (const iterator of inventory.value) {
+  // const list = computed(() => {
+  //   let inventoryMap = new Map()
+  //   for (const inventoryItem of inventory.value) {
+  //     if (inventoryMap.has(inventoryItem.product)){
+  //       inventoryMap.get(inventoryItem.product).places.set(inventoryItem.place, inventoryItem.amount)
+  //     } else {
+  //       inventoryMap.set(inventoryItem.product, {places: new Map()})
+  //       inventoryMap.get(inventoryItem.product).places.set(inventoryItem.place, inventoryItem.amount)
+  //     }
+  //   }
+  //   let list = []
+  //   for (const inventoryItem of inventoryMap) {
+  //     let data = {product: inventoryItem[0], amount: 0, places: []}
+  //     for (const place of inventoryItem[1].places) {
+  //       data.places.push(place[0])
+  //       data.amount += place[1]
+  //     }
+  //     list.push(new ListItem(data))
+  //   }
+  //   return list
+  // })
 
-    // }
-    return inventory.value.filter((item) => !item.basketed)
-  })
-
-  const basket = computed(() => {
-    return inventory.value.filter((item) => !!item.basketed)
-  })
+  // const basket = computed(() => {
+  //   // return inventory.value.filter((item) => !!item.stat)
+  //   return list.value.filter((item) => item.state == 3)
+  // })
 
   const auth_store = useAuthStore()
   async function update() {
@@ -71,5 +87,5 @@ export const useInventoryStore = defineStore('inventory', () => {
     return inventory.value.find((item) => item.name == name)
   }
 
-  return { inventory, update, byId, byName, list, basket }
+  return { inventory, update, byId, byName }
 })
