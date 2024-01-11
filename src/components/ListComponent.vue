@@ -9,19 +9,23 @@ import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'
 import SwipeLeft from './icons/SwipeLeft.vue'
 import { usePlaceStore } from '../stores/place_store'
+import { ListItem, Place } from '@/types'
 
 const place_store = usePlaceStore()
 
-// eslint-disable-next-line no-unused-vars
-const props = defineProps(['source', 'itemComponent'])
+const props = defineProps({
+  items: {type: Array<ListItem>, required: true},
+  itemComponent: null,
+})
+
 defineEmits(['left', 'right'])
 
 let serachQuery = ref("")
-let selectedCategories = ref([])
+let selectedCategories: Ref<Array<Place>> = ref([])
 
-function filter(item) {
+function filter(item: ListItem) {
   if (serachQuery.value) {
-    return item.title.toLowerCase().includes(serachQuery.value.toLowerCase())
+    return item.product.title.toLowerCase().includes(serachQuery.value.toLowerCase())
   }
   if (selectedCategories.value.length) {
     if (!item.places.filter(value1 => selectedCategories.value.filter(value2 => value1.id == value2.id).length).length) {
@@ -31,7 +35,7 @@ function filter(item) {
   return true
 }
 
-function toggleCategory(place) {
+function toggleCategory(place: Place) {
   if (selectedCategories.value.filter((item) => (item.id == place.id)).length) {
     selectedCategories.value = selectedCategories.value.filter((item) => (item.id != place.id))
   } else {
@@ -79,13 +83,13 @@ function toggleCategory(place) {
       </slot>
     </div>
 
-    <div class="content has-content-centered empty-hint" v-if="!source.length">
+    <!-- <div class="content has-content-centered empty-hint" v-if="!items.length">
       <h1>
         <slot name="empty_caption">Здесь ничего нет</slot>
       </h1>
-    </div>
-    <SwipeContainer v-else>
-      <SwipeItem v-for="(item, index) in source" :key="item.id" @right="$emit('right', item)" @left="$emit('left', item)">
+    </div> -->
+    <SwipeContainer >
+      <SwipeItem v-for="item in items" :key="item.product.id" @right="$emit('right', item.product.id)" @left="$emit('left', item.product.id)">
         <template #right>
           <slot name="left-icon">
             <CartIcon />
@@ -96,7 +100,7 @@ function toggleCategory(place) {
             <CartPlusIcon />
           </slot>
         </template>
-        <component :is="itemComponent" :index="index" :source="source" v-if="filter(item)" />
+        <component :is="itemComponent" :listItem="item" v-if="filter(item)" />
       </SwipeItem>
     </SwipeContainer>
   </div>

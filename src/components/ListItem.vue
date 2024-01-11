@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import CrossIcon from '../components/icons/CrossIcon.vue'
 import AngleUp from '../components/icons/AngleUp.vue'
 import AngleDown from '../components/icons/AngleDown.vue'
@@ -10,8 +10,9 @@ import { useListStore } from '../stores/list_store'
 import { ListItem } from '@/types'
 
 
-const props = defineProps(['source', 'index'])
-const item = props.source[props.index]
+const props = defineProps({
+  listItem: {type: ListItem, required: true}
+})
 const writeOffAmount = ref(0)
 
 const inventory_store = useInventoryStore() 
@@ -19,11 +20,11 @@ const product_store = useProductStore()
 const list_store = useListStore() 
 
 const amount = computed(()=>{
-  return store.items.filter((n)=>n.id==item.id)[0].amount
+  return props.listItem.amount
 })
 
 const places = computed(()=>{
-  return store.items.filter((n)=>n.id==item.id)[0].places
+  return props.listItem.places
 })
 
 const detectDoubleTapClosure = (()=>{
@@ -33,7 +34,7 @@ const detectDoubleTapClosure = (()=>{
     const curTime = new Date().getTime();
     const tapLen = curTime - lastTap;
     if (tapLen < 300 && tapLen > 0) {
-      router.push({ name: 'product', params: { id: item.id } })
+      router.push({ name: 'product', params: { id: props.listItem.product.id } })
       event.preventDefault();
     } else {
       timeout = setTimeout(() => {
@@ -47,13 +48,13 @@ const detectDoubleTapClosure = (()=>{
 </script>
 
 <template>
-  <div class="box item" @dblclick="$router.push({ name: 'product', params: { id: item.id } })" @touchend="detectDoubleTapClosure($event)">
-    {{ item.title }}
+  <div class="box item" @dblclick="$router.push({ name: 'product', params: { id: listItem.product.id } })" @touchend="detectDoubleTapClosure($event)">
+    {{ listItem.product.title }}
     <nav class="level is-mobile">
       <div class="level-left">
         <p class="level-item" aria-label="reply" style="display: block; width: 5rem;"
-          :style="{ 'color': amount < item.limit ? 'red' : 'black' }">
-          {{ amount }}/{{ product_store.byId(item.product.id).limit }}
+          :style="{ 'color': amount < listItem.limit ? 'red' : 'black' }">
+          {{ amount }}/{{ listItem.limit }}
         </p>
       </div>
       <div class="level-right">
