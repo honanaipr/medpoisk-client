@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
   async function getFreshToken() {
     const now = new Date(Date.now()).getSeconds()
-    if (exp.value < now) {
+    if (!token.value  | exp.value < now) {
       await update()
     }
     return token.value
