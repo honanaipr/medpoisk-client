@@ -11,9 +11,9 @@ const router = createRouter({
       meta: { transition: 'slide-left' },
     },
     {
-      path: '/transit',
-      name: 'transit',
-      component: () => import('../views/TransitView.vue'),
+      path: '/report',
+      name: 'report',
+      component: () => import('../views/ReportView.vue'),
       meta: { transition: 'slide-left' },
     },
     {

@@ -14,7 +14,7 @@ import WrenchIcon from '../components/icons/WrenchIcon.vue';
     <div class="columns is-mobile is-centered" style="margin-top: 5rem;">
       <div class="content">
         <h3>&lt;501&gt;  Not Implemented</h3>
-        <h3>TransitView</h3>
+        <h3>ReportView</h3>
       </div>
     </div>
   </div>

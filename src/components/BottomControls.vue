@@ -1,6 +1,6 @@
 <script setup>
 import HomeIcon from "../components/icons/HomeIcon.vue"
-import TruckIcon from "../components/icons/TruckIcon.vue"
+import ReportIcon from "../components/icons/ReportIcon.vue"
 import PlusIcon from "../components/icons/PlusIcon.vue"
 import CartIcon from "../components/icons/CartIcon.vue"
 import ProfileIcon from "../components/icons/ProfileIcon.vue"
@@ -22,9 +22,9 @@ function onAddButtonClick() {
                 <HomeIcon />
             </template>
         </BottomControlsButton>
-        <BottomControlsButton title="В пути" @click="router.push('/transit')">
+        <BottomControlsButton title="Отчет" @click="router.push('/report')">
             <template #icon>
-                <TruckIcon />
+                <ReportIcon />
             </template>
         </BottomControlsButton>
         <BottomControlsButton title="Добавить" @click="onAddButtonClick">
