@@ -65,20 +65,6 @@ watch(position, (newValue)=>{
           {{ effective_amount }}/{{ item.limit }}
         </p>
       </div>
-      <div class="level-item has-text-centered" v-if="$route.name == 'home'">
-        <button class="button is-small item-control" @click="singularWriteOff(item.id)">
-          <CrossIcon />
-        </button>
-        <button class="button is-small item-control" @click="store.toBasketById(item.id)">
-          <TrashIcon />
-        </button>
-      </div>
-
-      <div class="level-item has-text-centered" v-if="$route.name == 'addInvoice'">
-        <button class="button is-small item-control" @click="store.forgetItem(item.id)">
-          <CrossIcon />
-        </button>
-      </div>
       <div class="level-right">
         <div class="field">
           <label class="label">Место хронения:</label>
