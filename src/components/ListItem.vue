@@ -49,11 +49,6 @@ const detectDoubleTapClosure = (()=>{
           {{ amount }}/{{ product_store.byId(item.product.id).limit }}
         </p>
       </div>
-      <div class="level-item" v-if="$route.name == 'addInvoice'">
-        <button class="button is-small item-control" @click="store.forgetItem(item.id); $event.stopPropagation();">
-          <CrossIcon />
-        </button>
-      </div>
       <div class="level-right">
         <div class="content">
           <p class="place-tag" v-for="place in places" :key="place.id" style="display: block; width: 4rem;">
@@ -62,23 +57,6 @@ const detectDoubleTapClosure = (()=>{
           <button class="button is-small" v-if="!places.length" style="display: block; color:red;"
             @click="store.deleteProduct(item.id); $event.stopPropagation();">Удалить</button>
         </div>
-      </div>
-    </nav>
-    <nav class="level is-mobile" style="margin-top: -2rem; padding-bottom: 0.5rem;"> <!--TODO fix inline style -->
-      <div class="field has-addons" v-if="$route.name == 'basket'">
-        <p class="control">
-          <a class="button is-small" @click="writeOffAmount++">
-            <AngleUp />
-          </a>
-        </p>
-        <p class="control">
-          <input class="input is-small" type="text" placeholder="0" style="width: 3rem;" v-model="writeOffAmount">
-        </p>
-        <p class="control">
-          <a class="button is-small" @click="writeOffAmount--">
-            <AngleDown />
-          </a>
-        </p>
       </div>
     </nav>
   </div>
