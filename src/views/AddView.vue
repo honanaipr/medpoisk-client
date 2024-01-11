@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import router from '../router'
 import { store } from '../store.js'
-import { InvoiceItem } from '../types.js'
+import { InvoiceItem } from '@/types.js'
 import PlusIcon from '../components/icons/PlusIcon.vue'
 import defaultImage from '@/assets/add_image.png'
 import _ from 'lodash'
