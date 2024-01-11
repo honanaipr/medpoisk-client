@@ -3,17 +3,13 @@ import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 import SwipeItem from './SwipeItem.vue'
 import SwipeContainer from './SwipeContainer.vue'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { store } from '../store'
 import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'
 import SwipeLeft from './icons/SwipeLeft.vue'
 import { usePlaceStore } from '../stores/place_store'
-
-onMounted(() => {
-  store.sync()
-})
 
 const place_store = usePlaceStore()
 
