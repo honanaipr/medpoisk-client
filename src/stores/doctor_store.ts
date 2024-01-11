@@ -37,6 +37,10 @@ export const useDoctorStore = defineStore('doctor', () => {
       })
   }
 
+  function addDoctor(doctor: Doctor) {
+    throw Error("Not implemented"+doctor)
+  }
+
   function byId(id: number) {
     return doctors.value.find((item) => item.id == id)
   }
@@ -45,5 +49,5 @@ export const useDoctorStore = defineStore('doctor', () => {
     return doctors.value.find((item) => item.username == name)
   }
 
-  return { doctors, update, byId, byName }
+  return { doctors, update, byId, byName, addDoctor }
 })
