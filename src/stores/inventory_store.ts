@@ -5,7 +5,7 @@ import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
-import { InventoryItem, ListItem, ListItemState } from '../types'
+import { InventoryItem } from '../types'
 import { inventoryItemSchema } from '../schemas'
 
 import { API_INVENTORY_PATH } from '../pathes'
@@ -22,11 +22,11 @@ export const useInventoryStore = defineStore('inventory', () => {
         headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
       })
       .then((responce) => {
-        let { value, error } = Joi.array().items(inventoryItemSchema).validate(responce.data)
-        if (error) {
-          throw new Error(error)
+        const joiResult = Joi.array().items(inventoryItemSchema).validate(responce.data)
+        if (joiResult) {
+          throw new Error(joiResult.error?.message)
         }
-        value = value.map((item) => new InventoryItem(item))
+        const value = joiResult.value.map((item) => new InventoryItem(item))
         console.log(value)
         inventory.value = value
         showToast(messaegs.INVENTORY_UPDATE_OK_MESSAGE)

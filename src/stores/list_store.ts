@@ -26,9 +26,9 @@ export const useListStore = defineStore('list', () => {
           .places.set(inventoryItem.place, inventoryItem.amount)
       }
     }
-    let list = []
+    const list = []
     for (const inventoryItem of inventoryMap) {
-      let data = { product: inventoryItem[0], amount: 0, places: [] }
+      const data = { product: inventoryItem[0], amount: 0, places: [] }
       for (const place of inventoryItem[1].places) {
         data.places.push(place[0])
         data.amount += place[1]

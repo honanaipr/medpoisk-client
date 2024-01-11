@@ -57,7 +57,7 @@ export const useRoomStore = defineStore('room', () => {
   }
 
   function deleteRoom(room: Room) {
-  
+    throw Error("Not implemented"+ room.title)
   }
 
   function byId(id: number) {
