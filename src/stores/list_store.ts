@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import showToast from '../toast'
-// import messaegs from '../messaegs'
 
 import { InventoryItem, ListItem, ListItemState, Place } from '../types'
 
@@ -55,11 +54,6 @@ export const useListStore = defineStore('list', () => {
   })
 
   function toBasketById(id: number) {
-    // const inventory_store = useInventoryStore()
-    // const item = inventory_store.inventory.find((n) => n.product.id == id)
-    // item.state = ListItemState.PENDING_DELETION
-    // item.targetAmount = null
-    // item.targetPlaceId = null
     if (states.value.has(id)) {
       states.value.set(id, ListItemState.PENDING_DELETION)
     } else {

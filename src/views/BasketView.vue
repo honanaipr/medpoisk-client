@@ -7,7 +7,6 @@ import SwipeLeft from '../components/icons/SwipeLeft.vue';
 import { useListStore } from '@/stores/list_store';
 import router from '../router/index.js'
 import { ref, computed } from 'vue';
-// import router from '../router'
 
 const list_store = useListStore()
 

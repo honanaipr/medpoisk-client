@@ -37,21 +37,6 @@ export const useDoctorStore = defineStore('doctor', () => {
       })
   }
 
-  // function addDoctor(name: string) {
-  //   axios
-  //   Promise.resolve(name)
-  //     .then((responce) => {
-  //       console.log(responce.data)
-  //       showToast(messaegs.DOCTOR_ADD_OK_MESSAGE)
-  //       doctors.value.push(name)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //       showToast(messaegs.DOCTOR_ADD_ERROR_MESSAGE)
-  //       throw error
-  //     })
-  // }
-
   function byId(id: number) {
     return doctors.value.find((item) => item.id == id)
   }

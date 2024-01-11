@@ -53,7 +53,6 @@ function onAddButtonClick() {
     justify-content: space-around
     align-items: stretch
     height: 100px
-    // background-color: var(--background-color)
 BottomControlsButton
     flex-grow: 1
 </style>

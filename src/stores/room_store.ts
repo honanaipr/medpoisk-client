@@ -57,18 +57,7 @@ export const useRoomStore = defineStore('room', () => {
   }
 
   function deleteRoom(room: Room) {
-  //   axios
-  //   Promise.resolve(room.title)
-  //     .then((responce) => {
-  //       console.log(responce.data)
-  //       showToast(messaegs.ROOM_ADD_OK_MESSAGE)
-  //       rooms.value.push(new Room({ id: 1234, title: room.title }))
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //       showToast(messaegs.ROOM_ADD_ERROR_MESSAGE)
-  //       throw error
-  //     })
+  
   }
 
   function byId(id: number) {

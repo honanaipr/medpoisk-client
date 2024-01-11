@@ -126,24 +126,6 @@ export class InvoiceItem {
   }
 }
 
-// export class RoomItem extends Room {
-//   constructor(data) {
-//     super(data)
-//   }
-// }
-
-// export class DoctorItem extends Doctor {
-//   constructor(data) {
-//     super(data)
-//   }
-// }
-
-// export class PlaceItem extends Place {
-//   constructor(data) {
-//     super(data)
-//   }
-// }
-
 export class InventoryItem {
   product: Product
   place: Place

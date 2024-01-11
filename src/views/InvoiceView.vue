@@ -26,9 +26,6 @@ function cancel() {
     router.push({ name: "home" })
 }
 
-// const invoiceNumber = ref("")
-// const invoiceData = ref(new Date().toISOString().slice(0,10))
-
 function allowApply() {
     return !!store.invoice.length && !!store.invoiceNumber && !!store.invoiceData
 }

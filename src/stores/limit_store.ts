@@ -17,7 +17,6 @@ export const useLimitStore = defineStore('limit', () => {
 
   async function update() {
     const auth_store = useAuthStore()
-    // setTimeout(update, 10000)
     return axios({
       method: 'GET',
       url: API_LIMIT_PATH,

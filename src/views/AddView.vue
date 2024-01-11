@@ -7,7 +7,6 @@ import PlusIcon from '../components/icons/PlusIcon.vue'
 import defaultImage from '@/assets/add_image.png'
 import _ from 'lodash'
 
-// eslint-disable-next-line no-unused-vars
 const props = defineProps(['target_name'])
 
 let heading = ref("")
@@ -23,7 +22,6 @@ async function apply() {
     router.back()
   }
   if (router.currentRoute.value.name == 'addToInvoice') {
-    // addItem2Target(store.invoice, heading.value, amount.value, limit.value, barcode.value, selected_place_id.value)
     const product = _.find(store.items, item => item.id == product_id.value)
     const places = [_.find(store.places, item => item.id == selected_place_id.value)]
     store.invoice.push(new InvoiceItem(product, places, amount.value))

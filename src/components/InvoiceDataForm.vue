@@ -1,14 +1,6 @@
 <script setup>
 import { computed } from 'vue';
 import { store } from '../store.js'
-// const props = defineProps(['invoiceNumber', 'invoiceData'])
-// const emit = defineEmits(['update:invoiceNumber', 'update:invoiceData'])
-
-
-// const invoiceNumber = ref(null)
-// const invoiceData = ref(null)
-// const processedItems = ref(0)
-// const totalItems = ref(0)
 
 const heading = computed(() => {
     return "Накладная №" + (store.invoiceNumber || "?") + " от " + (store.invoiceData || "?")

@@ -1,6 +1,5 @@
 <script setup>
 import { inject, watch, ref } from 'vue';
-// const props = defineProps(['value'])
 const shiftX = inject('shiftX')
 const itemref = ref(null)
 const grabbed = ref(false)
