@@ -14,7 +14,4 @@ app.use(IonicVue)
 app.use(router)
 app.use(pinia)
 
-import { mock_ajax } from "./ajax_mocking"
-mock_ajax()
-
 app.mount('#app')
