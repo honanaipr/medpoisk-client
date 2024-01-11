@@ -6,7 +6,7 @@ export class Doctor {
   middle_name: string
   last_name: string
 
-  constructor(data) {
+  constructor(data: Doctor) {
     this.id = data.id
     this.username = data.username
     this.email = data.email
@@ -21,7 +21,7 @@ export class Room {
   title: string
   division_id: number
 
-  constructor(data) {
+  constructor(data: Room) {
     this.id = data.id
     this.title = data.title
     this.division_id = data.division_id
@@ -33,7 +33,7 @@ export class Place {
   title: string
   division_id: number
 
-  constructor(data) {
+  constructor(data: Place) {
     this.id = data.id
     this.title = data.title
     this.division_id = data.division_id
@@ -43,7 +43,7 @@ export class Place {
 export class Picture {
   url: string
 
-  constructor(data) {
+  constructor(data: Picture) {
     this.url = data.url
   }
 }
@@ -55,7 +55,7 @@ export class Product {
   barcode: number
   pictures: Array<Picture>
 
-  constructor(data) {
+  constructor(data: Product) {
     this.id = data.id
     this.title = data.title
     this.description = data.description
@@ -69,7 +69,7 @@ export class Position {
   place_id: number
   amount: number
 
-  constructor(data) {
+  constructor(data: Position) {
     this.product_id = data.product_id
     this.place_id = data.place_id
     this.amount = data.amount
@@ -81,7 +81,7 @@ export class Limit {
   product_id: number
   min_amount: number
 
-  constructor(data) {
+  constructor(data: Limit) {
     this.division_id = data.division_id
     this.product_id = data.product_id
     this.min_amount = data.min_amount
@@ -103,7 +103,7 @@ export class ListItem {
   targetAmount: number | null
   targetPlaceId: number | null
 
-  constructor(data) {
+  constructor(data: ListItem) {
     this.product = data.product
     this.places = data.places
     this.amount = data.amount
@@ -131,7 +131,7 @@ export class InventoryItem {
   place: Place
   amount: number
 
-  constructor(data) {
+  constructor(data: InventoryItem) {
     this.product = data.product
     this.place = data.place
     this.amount = data.amount
