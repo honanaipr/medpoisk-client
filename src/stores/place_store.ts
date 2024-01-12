@@ -20,7 +20,7 @@ export const usePlaceStore = defineStore('place', () => {
     return axios({
       method: 'GET',
       url: API_PLACE_PATH,
-      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
     })
       .then((responce) => {
         const joiResult = Joi.array().items(placeSchema).validate(responce.data)
@@ -41,7 +41,7 @@ export const usePlaceStore = defineStore('place', () => {
     axios
       .put(API_PLACE_PATH, {
         title: place.title,
-        division_id: place.division_id
+        division_id: place.division_id,
       })
       .then((responce) => {
         console.log(responce.data)

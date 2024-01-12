@@ -40,7 +40,7 @@ export const useProductStore = defineStore('product', () => {
     if (product.barcode) form_data.append('barcode', String(product.barcode))
     axios
       .put(API_PRODUCT_PATH, form_data, {
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = productSchema.validate(responce.data)
@@ -62,7 +62,7 @@ export const useProductStore = defineStore('product', () => {
     axios
       .delete(API_PRODUCT_PATH, {
         params: { id: product_id },
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then(() => {
         products.value.splice(

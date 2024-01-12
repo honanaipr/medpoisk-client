@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineProps(['title'])
 </script>
-      
+
 <template>
-    <button>
-        <slot name="icon"></slot>
-        <span>{{ title }}</span>
-    </button>
+  <button>
+    <slot name="icon"></slot>
+    <span>{{ title }}</span>
+  </button>
 </template>
 
 <style scoped lang="sass">

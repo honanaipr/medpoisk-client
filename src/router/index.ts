@@ -58,7 +58,7 @@ const router = createRouter({
       component: () => import('../views/ProductView.vue'),
       meta: { transition: 'slide-left' },
     },
-  ]
+  ],
 })
 
 export default router

@@ -14,15 +14,38 @@ const shiftX = computed({
   },
   set() {
     initialX.value = null
-  }
+  },
 })
 provide('shiftX', shiftX)
 </script>
 
 <template>
-  <div class="container" @mouseup="shiftX = null" @mouseleave="shiftX = 0" @touchend="shiftX = null"
-    @mousemove="(e) => { currentX = e.pageX }" @touchmove="(e) => { currentX = e.touches[0].pageX }"
-    @touchstart="(e) => { currentX = initialX = e.touches[0].pageX }" @mousedown="(e) => { currentX = initialX = e.pageX }">
+  <div
+    class="container"
+    @mouseup="shiftX = null"
+    @mouseleave="shiftX = 0"
+    @touchend="shiftX = null"
+    @mousemove="
+      (e) => {
+        currentX = e.pageX
+      }
+    "
+    @touchmove="
+      (e) => {
+        currentX = e.touches[0].pageX
+      }
+    "
+    @touchstart="
+      (e) => {
+        currentX = initialX = e.touches[0].pageX
+      }
+    "
+    @mousedown="
+      (e) => {
+        currentX = initialX = e.pageX
+      }
+    "
+  >
     <slot></slot>
   </div>
 </template>

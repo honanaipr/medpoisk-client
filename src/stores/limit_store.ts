@@ -20,7 +20,7 @@ export const useLimitStore = defineStore('limit', () => {
     return axios({
       method: 'GET',
       url: API_LIMIT_PATH,
-      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
     })
       .then((responce) => {
         const joiResult = Joi.array().items(limitSchema).validate(responce.data)
@@ -60,7 +60,7 @@ export const useLimitStore = defineStore('limit', () => {
   }
 
   function byId(id: number) {
-    return limits.value.find(n=>n.product_id = id)
+    return limits.value.find((n) => (n.product_id = id))
   }
 
   return { limits, update, addLimit, byId }

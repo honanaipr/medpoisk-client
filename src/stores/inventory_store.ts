@@ -19,7 +19,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   async function update() {
     return axios
       .get(API_INVENTORY_PATH, {
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = Joi.array().items(inventoryItemSchema).validate(responce.data)

@@ -14,13 +14,13 @@ import { ListItem, Place } from '@/types'
 const place_store = usePlaceStore()
 
 const props = defineProps({
-  items: {type: Array<ListItem>, required: true},
+  items: { type: Array<ListItem>, required: true },
   itemComponent: null,
 })
 
 defineEmits(['left', 'right'])
 
-let serachQuery = ref("")
+let serachQuery = ref('')
 let selectedCategories = ref([])
 
 function filter(item: ListItem) {
@@ -28,7 +28,11 @@ function filter(item: ListItem) {
     return item.product.title.toLowerCase().includes(serachQuery.value.toLowerCase())
   }
   if (selectedCategories.value.length) {
-    if (!item.places.filter(value1 => selectedCategories.value.filter(value2 => value1.id == value2.id).length).length) {
+    if (
+      !item.places.filter(
+        (value1) => selectedCategories.value.filter((value2) => value1.id == value2.id).length
+      ).length
+    ) {
       return false
     }
   }
@@ -36,8 +40,8 @@ function filter(item: ListItem) {
 }
 
 function toggleCategory(place: Place) {
-  if (selectedCategories.value.filter((item) => (item.id == place.id)).length) {
-    selectedCategories.value = selectedCategories.value.filter((item) => (item.id != place.id))
+  if (selectedCategories.value.filter((item) => item.id == place.id).length) {
+    selectedCategories.value = selectedCategories.value.filter((item) => item.id != place.id)
   } else {
     selectedCategories.value.push(place)
   }
@@ -50,15 +54,22 @@ function toggleCategory(place: Place) {
       <h5>Места хранения</h5>
     </div>
     <div class="buttons">
-      <button class="button is-small" v-for="place in place_store.places" :key="place.id" @click="toggleCategory(place)"
-        :class="{ 'is-primary': selectedCategories.includes(place) }">{{ place.title }}</button>
+      <button
+        class="button is-small"
+        v-for="place in place_store.places"
+        :key="place.id"
+        @click="toggleCategory(place)"
+        :class="{ 'is-primary': selectedCategories.includes(place) }"
+      >
+        {{ place.title }}
+      </button>
     </div>
     <div class="content">
       <h3>Наименования</h3>
     </div>
     <div class="field is-grouped">
       <p class="control is-expanded has-icons-left">
-        <input class="input " type="text" placeholder="Найти..." v-model="serachQuery">
+        <input class="input" type="text" placeholder="Найти..." v-model="serachQuery" />
         <span class="icon is-small is-left">
           <SearchIcon />
         </span>
@@ -88,8 +99,13 @@ function toggleCategory(place: Place) {
         <slot name="empty_caption">Здесь ничего нет</slot>
       </h1>
     </div>
-    <SwipeContainer >
-      <SwipeItem v-for="item in items" :key="item.product.id" @right="$emit('right', item.product.id)" @left="$emit('left', item.product.id)">
+    <SwipeContainer>
+      <SwipeItem
+        v-for="item in items"
+        :key="item.product.id"
+        @right="$emit('right', item.product.id)"
+        @left="$emit('left', item.product.id)"
+      >
         <template #right>
           <slot name="left-icon">
             <CartIcon />

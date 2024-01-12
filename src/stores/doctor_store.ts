@@ -19,7 +19,7 @@ export const useDoctorStore = defineStore('doctor', () => {
     return axios
       .get(API_DOCTOR_PATH, {
         params: { role_name: 'doctor' },
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = Joi.array().items(doctorSchema).validate(responce.data)
@@ -38,7 +38,7 @@ export const useDoctorStore = defineStore('doctor', () => {
   }
 
   function addDoctor(doctor: Doctor) {
-    throw Error("Not implemented"+doctor)
+    throw Error('Not implemented' + doctor)
   }
 
   function byId(id: number) {

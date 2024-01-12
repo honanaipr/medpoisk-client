@@ -20,7 +20,7 @@ export const useRoomStore = defineStore('room', () => {
     return axios({
       method: 'GET',
       url: API_ROOM_PATH,
-      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
     })
       .then((responce) => {
         const joiResult = Joi.array().items(roomSchema).validate(responce.data)
@@ -42,7 +42,7 @@ export const useRoomStore = defineStore('room', () => {
     axios
       .put(API_ROOM_PATH, {
         title: room.title,
-        division_id: room.division_id
+        division_id: room.division_id,
       })
       .then((responce) => {
         console.log(responce.data)
@@ -57,7 +57,7 @@ export const useRoomStore = defineStore('room', () => {
   }
 
   function deleteRoom(room: Room) {
-    throw Error("Not implemented"+ room.title)
+    throw Error('Not implemented' + room.title)
   }
 
   function byId(id: number) {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const props = defineProps(['source', 'index'])
 const item = props.source[props.index]
 </script>
@@ -9,13 +8,13 @@ const item = props.source[props.index]
     {{ item.product.title }}
     <nav class="level is-mobile">
       <div class="level-left">
-        <p class="level-item" aria-label="reply" style="display: block; width: 5rem;">
+        <p class="level-item" aria-label="reply" style="display: block; width: 5rem">
           {{ item.amount }}
         </p>
       </div>
       <div class="level-right">
         <div class="content">
-          <p style="display: block; width: 4rem;">
+          <p style="display: block; width: 4rem">
             {{ item.places[0].title }}
           </p>
         </div>

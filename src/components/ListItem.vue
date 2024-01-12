@@ -6,52 +6,53 @@ import { useProductStore } from '../stores/product_store'
 import { useListStore } from '../stores/list_store'
 import { ListItem } from '@/types'
 
-
 const props = defineProps({
-  listItem: {type: ListItem, required: true}
+  listItem: { type: ListItem, required: true },
 })
 const writeOffAmount = ref(0)
 
-const inventory_store = useInventoryStore() 
-const product_store = useProductStore() 
-const list_store = useListStore() 
+const inventory_store = useInventoryStore()
+const product_store = useProductStore()
+const list_store = useListStore()
 
-const amount = computed(()=>{
+const amount = computed(() => {
   return props.listItem.amount
 })
 
-const places = computed(()=>{
+const places = computed(() => {
   return props.listItem.places
 })
 
-const detectDoubleTapClosure = (()=>{
-  let lastTap = 0;
-  let timeout;
+const detectDoubleTapClosure = (() => {
+  let lastTap = 0
+  let timeout
   return function detectDoubleTap(event) {
-    const curTime = new Date().getTime();
-    const tapLen = curTime - lastTap;
+    const curTime = new Date().getTime()
+    const tapLen = curTime - lastTap
     if (tapLen < 300 && tapLen > 0) {
       router.push({ name: 'product', params: { id: props.listItem.product.id } })
-      event.preventDefault();
+      event.preventDefault()
     } else {
       timeout = setTimeout(() => {
-        clearTimeout(timeout);
-      }, 500);
+        clearTimeout(timeout)
+      }, 500)
     }
-    lastTap = curTime;
-  };
+    lastTap = curTime
+  }
 })()
-
 </script>
 
 <template>
-  <div class="box item" @dblclick="$router.push({ name: 'product', params: { id: listItem.product.id } })"
-    @touchend="detectDoubleTapClosure($event)">
+  <div
+    class="box item"
+    @dblclick="$router.push({ name: 'product', params: { id: listItem.product.id } })"
+    @touchend="detectDoubleTapClosure($event)"
+  >
     <p>{{ listItem.product.title }}</p>
     <div class="controls">
       <div class="amount-info">
         <p>Доступно: {{ amount }}</p>
-        <p :style="{ 'color': amount < listItem.limit ? 'red' : null }">
+        <p :style="{ color: amount < listItem.limit ? 'red' : null }">
           Минимум: {{ listItem.limit }}
         </p>
       </div>
@@ -81,7 +82,8 @@ p.place-tag {
   justify-content: space-between;
 }
 
-.amount-info p, .places-info p {
+.amount-info p,
+.places-info p {
   margin-bottom: 0px;
   white-space: nowrap;
 }
