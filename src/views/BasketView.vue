@@ -27,7 +27,7 @@ function cancel() {
 }
 
 const all_places_selected = computed(() => {
-  return list_store.basketed.value.every(n => {
+  return list_store.basketed.every(n => {
     return !!n.writeOffPlaceID
   })
 })
