@@ -10,6 +10,11 @@ import { useLimitStore } from './limit_store'
 export const useListStore = defineStore('list', () => {
   const states = ref(new Map())
 
+  function update(){
+    const inventory_store = useInventoryStore()
+    inventory_store.update()
+  }
+
   const list = computed(() => {
     const inventory_store = useInventoryStore()
     const limit_store = useLimitStore()
@@ -72,5 +77,9 @@ export const useListStore = defineStore('list', () => {
 
   function clearBasket() {}
 
-  return { list, basketed, persistent, toBasketById, unBasketById, clearBasket }
+  function byId(product_id: number){
+    return list.value.find(n=>n.product.id == product_id)
+  }
+
+  return { list, basketed, persistent, toBasketById, unBasketById, clearBasket, byId, update }
 })

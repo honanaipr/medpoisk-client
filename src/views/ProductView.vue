@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import router from '../router'
-import { useProductStore } from '../stores/product_store'
+import { useListStore } from '../stores/list_store'
 import { API_PATH } from '../pathes'
 import { computed, onMounted } from 'vue';
 import defaultImage from '@/assets/image.png'
 
-const product_store = useProductStore()
+const list_store = useListStore()
 
 const item = computed(()=>{
-  return product_store.byId(router.currentRoute.value.params.id)
+  const product = list_store.byId(Number(router.currentRoute.value.params.id))
+  if (!product){
+    throw Error("Product not found")
+  }
+  return product
 })
 
 onMounted(async()=>{
-  await product_store.update()
+  await list_store.update()
 })
 const imageUrl = computed(()=>{
   let val
-  if (item?.value?.pictures.length){
+  if (item.value.product.pictures.length){
     try{
-    val =  new URL(item.value.pictures[0].url, new URL(API_PATH, document.baseURI)).href
+    val =  new URL(item.value.product.pictures[0].url, new URL(API_PATH, document.baseURI)).href
     }
     catch (err) {
       val = ""
@@ -39,10 +43,10 @@ const imageUrl = computed(()=>{
           <!-- </object> -->
         </figure>
         <!-- <h1>{{ item.picture_url }}</h1> -->
-        <h3>{{ item.title }}</h3>
+        <h3>{{ item.product.title }}</h3>
         <p>Количество: {{ item.amount }}</p>
         <p>Неснижаемый остаток: {{ item.limit }}</p>
-        <p>Штрихкод: {{ item.barcode || "Не указан" }}</p>
+        <p>Штрихкод: {{ item.product.barcode || "Не указан" }}</p>
         <p>Места хранения:</p>
         <ul>
             <li v-for="place in item.places" :key="place.id">{{ place.title }}</li>
