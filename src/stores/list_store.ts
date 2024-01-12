@@ -19,15 +19,14 @@ export const useListStore = defineStore('list', () => {
   const inventory_store = useInventoryStore()
   const limit_store = useLimitStore()
   const product_store = useProductStore()
-  const productsMap = new Map<number, Array<InventoryItem>>()
+  const productsMap = new Map<number, Set<InventoryItem>>()
 
   const list = computed(() => {
     for (const inventoryItem of inventory_store.inventory) {
-      if (productsMap.has(inventoryItem.product)) {
-        // const product = inventoryMap.get(inventoryItem.product)
-        productsMap.get(inventoryItem.product.id)?.push(inventoryItem)
+      if (productsMap.has(inventoryItem.product.id)) {
+        productsMap.get(inventoryItem.product.id)?.add(inventoryItem)
       } else {
-        productsMap.set(inventoryItem.product.id, [inventoryItem])
+        productsMap.set(inventoryItem.product.id, new Set([inventoryItem]))
       }
     }
 
