@@ -6,46 +6,49 @@ import { InventoryItem, ListItem, ListItemState, Place } from '../types'
 
 import { useInventoryStore } from './inventory_store'
 import { useLimitStore } from './limit_store'
+import { useProductStore } from './product_store'
 
 export const useListStore = defineStore('list', () => {
-  const states = ref(new Map())
+  const states = ref(new Map<number, ListItemState>())
 
   function update(){
     const inventory_store = useInventoryStore()
     inventory_store.update()
   }
 
+  const inventory_store = useInventoryStore()
+  const limit_store = useLimitStore()
+  const product_store = useProductStore()
+  const productsMap = new Map<number, Array<InventoryItem>>()
+
   const list = computed(() => {
-    const inventory_store = useInventoryStore()
-    const limit_store = useLimitStore()
-    const inventoryMap: Record<Place, InventoryItem> = new Map()
     for (const inventoryItem of inventory_store.inventory) {
-      if (inventoryMap.has(inventoryItem.product)) {
-        inventoryMap
-          .get(inventoryItem.product)
-          .places.set(inventoryItem.place, inventoryItem.amount)
+      if (productsMap.has(inventoryItem.product)) {
+        // const product = inventoryMap.get(inventoryItem.product)
+        productsMap.get(inventoryItem.product.id)?.push(inventoryItem)
       } else {
-        inventoryMap.set(inventoryItem.product, { places: new Map() })
-        inventoryMap
-          .get(inventoryItem.product)
-          .places.set(inventoryItem.place, inventoryItem.amount)
+        productsMap.set(inventoryItem.product.id, [inventoryItem])
       }
     }
-    const list = []
-    for (const inventoryItem of inventoryMap) {
-      const data = { product: inventoryItem[0], amount: 0, places: [] }
-      for (const place of inventoryItem[1].places) {
-        data.places.push(place[0])
-        data.amount += place[1]
+
+    const list: Array<ListItem> = []
+    for (const n of productsMap) {
+      const places = Array<Place>()
+      let amount = 0
+      let state
+      for (const inventoryItem of n[1]) {
+        places.push(inventoryItem.place)
+        amount += inventoryItem.amount
       }
-      if (states.value.has(data.product.id)) {
-        data.state = states.value.get(data.product.id)
+      if (states.value.has(n[0])) {
+        state = states.value.get(n[0])
       } else {
-        states.value.set(data.product.id, ListItemState.PERSISTENT)
-        data.state = states.value.get(data.product.id)
+        states.value.set(n[0], ListItemState.PERSISTENT)
+        state = states.value.get(n[0])
       }
-      data.limit = limit_store.byId(data.product.id).min_amount
-      list.push(new ListItem(data))
+      const limit = limit_store.byId(n[0])?.min_amount
+
+      list.push(new ListItem({ product: product_store.byId(n[0]), places: places, amount: amount, state: state, limit: limit, targetAmount: null, targetPlaceId: null }))
     }
     return list
   })
