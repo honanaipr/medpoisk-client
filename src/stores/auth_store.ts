@@ -11,8 +11,8 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function update() {
     const params = new URLSearchParams()
-    params.append('username', 'ivanov92')
-    params.append('password', 'ivanov92')
+    params.append('username', 'petrovna_rus')
+    params.append('password', 'petrovna_rus')
 
     return axios({
       method: 'POST',

@@ -1,19 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import router from '../router'
-import { useInventoryStore } from '../stores/inventory_store'
-import { useProductStore } from '../stores/product_store'
-import { useListStore } from '../stores/list_store'
 import { ListItem } from '@/types'
 
 const props = defineProps({
   listItem: { type: ListItem, required: true },
 })
-const writeOffAmount = ref(0)
-
-const inventory_store = useInventoryStore()
-const product_store = useProductStore()
-const list_store = useListStore()
 
 const amount = computed(() => {
   return props.listItem.amount

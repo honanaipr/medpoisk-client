@@ -7,7 +7,7 @@ import PlusIcon from '../components/icons/PlusIcon.vue'
 import defaultImage from '@/assets/add_image.png'
 import _ from 'lodash'
 
-const props = defineProps(['target_name'])
+defineProps(['target_name'])
 
 let heading = ref('')
 let amount = ref(null)

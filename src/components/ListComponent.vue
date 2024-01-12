@@ -13,7 +13,7 @@ import { ListItem, Place } from '@/types'
 
 const place_store = usePlaceStore()
 
-const props = defineProps({
+defineProps({
   items: { type: Array<ListItem>, required: true },
   itemComponent: null,
 })

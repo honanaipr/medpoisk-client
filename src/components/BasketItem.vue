@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { ref } from 'vue'
 import { ListItem } from '@/types'
-import { useListStore } from '@/stores/list_store'
 import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
 import CustomPlaceSelector from './inputs/CustomPlaceSelector.vue'
-const list_store = useListStore()
 
-const props = defineProps({
+defineProps({
   listItem: { type: ListItem, required: true },
 })
 
