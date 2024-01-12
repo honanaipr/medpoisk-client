@@ -38,11 +38,8 @@ const imageUrl = computed(()=>{
   <div class="container is-fluid is-mobile has-text-centered">
     <div class="content has-text-centered">
         <figure class="image is-128x128 is-inline-block">
-          <!-- <object class="img" data="/src/assets/image.png" type="image/png"> -->
             <img :src="imageUrl" style="border-radius: 0.5rem;">
-          <!-- </object> -->
         </figure>
-        <!-- <h1>{{ item.picture_url }}</h1> -->
         <h3>{{ item.product.title }}</h3>
         <p>Количество: {{ item.amount }}</p>
         <p>Неснижаемый остаток: {{ item.limit }}</p>

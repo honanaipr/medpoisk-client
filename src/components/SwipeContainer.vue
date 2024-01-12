@@ -25,9 +25,6 @@ provide('shiftX', shiftX)
     @touchstart="(e) => { currentX = initialX = e.touches[0].pageX }" @mousedown="(e) => { currentX = initialX = e.pageX }">
     <slot></slot>
   </div>
-  <!-- currentX = {{currentX}}<br/>
-  initialX = {{initialX}}<br/>
-  shiftX = {{shiftX}} -->
 </template>
 
 <style scoped>

@@ -83,11 +83,11 @@ function toggleCategory(place: Place) {
       </slot>
     </div>
 
-    <!-- <div class="content has-content-centered empty-hint" v-if="!items.length">
+    <div class="content has-content-centered empty-hint" v-if="!items.length">
       <h1>
         <slot name="empty_caption">Здесь ничего нет</slot>
       </h1>
-    </div> -->
+    </div>
     <SwipeContainer >
       <SwipeItem v-for="item in items" :key="item.product.id" @right="$emit('right', item.product.id)" @left="$emit('left', item.product.id)">
         <template #right>

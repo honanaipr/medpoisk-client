@@ -26,8 +26,6 @@ const heading = computed(() => {
                 <input class="input" type="date" v-model="store.invoiceData" format>
             </div>
         </div>
-
-        <!-- <button class="button is-fullwidth" disabled> Обработанно позиций: {{ processedItems }}/{{ totalItems }}</button> -->
     </div>
 </template>
 
