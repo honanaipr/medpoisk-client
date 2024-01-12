@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +13,7 @@ import { API_INVENTORY_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useInventoryStore = defineStore('inventory', () => {
-  const inventory: Ref<Array<InventoryItem>> = ref([])
+  const inventory = ref([])
 
   const auth_store = useAuthStore()
   async function update() {

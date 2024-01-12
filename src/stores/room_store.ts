@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +13,7 @@ import { API_ROOM_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useRoomStore = defineStore('room', () => {
-  const rooms: Ref<Array<Room>> = ref([])
+  const rooms = ref([])
 
   async function update() {
     const auth_store = useAuthStore()

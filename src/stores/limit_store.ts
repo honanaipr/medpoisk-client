@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +13,7 @@ import { API_LIMIT_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useLimitStore = defineStore('limit', () => {
-  const limits: Ref<Array<Limit>> = ref([])
+  const limits = ref([])
 
   async function update() {
     const auth_store = useAuthStore()

@@ -3,7 +3,7 @@ import FilterIcon from './icons/FilterIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 import SwipeItem from './SwipeItem.vue'
 import SwipeContainer from './SwipeContainer.vue'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'
@@ -21,7 +21,7 @@ const props = defineProps({
 defineEmits(['left', 'right'])
 
 let serachQuery = ref("")
-let selectedCategories: Ref<Array<Place>> = ref([])
+let selectedCategories = ref([])
 
 function filter(item: ListItem) {
   if (serachQuery.value) {
