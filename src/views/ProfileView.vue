@@ -5,9 +5,9 @@ import { useRoomStore } from '@/stores/room_store'
 import { Doctor, Room, Place } from '@/types'
 import { ref } from 'vue'
 
-const newPlaceTitle = ref(null)
-const newDoctorName = ref(null)
-const newRoomNumber = ref(null)
+const newPlaceTitle = ref<string>(null)
+const newDoctorName = ref<string>(null)
+const newRoomNumber = ref<string>(null)
 
 const place_store = usePlaceStore()
 const doctor_store = useDoctorStore()
@@ -24,13 +24,10 @@ const room_store = useRoomStore()
     </div>
     <div class="field">
       <div class="control">
-        <button
-          class="button is-link"
-          @click="
-            room_store.addRoom(new Room({ title: newRoomNumber }))
-            newRoomNumber = null
-          "
-        >
+        <button class="button is-link" @click="
+          room_store.addRoom(new Room({ title: newRoomNumber, division_id: 1 }))
+        newRoomNumber = null
+          ">
           Добавить кабинет
         </button>
       </div>
@@ -44,13 +41,10 @@ const room_store = useRoomStore()
     </div>
     <div class="field">
       <div class="control">
-        <button
-          class="button is-link"
-          @click="
-            doctor_store.addDoctor(new Doctor({ name: newDoctorName }))
-            newDoctorName = null
-          "
-        >
+        <button class="button is-link" @click="
+          doctor_store.addDoctor(new Doctor({ username: newDoctorName, last_name: '' }))
+        newDoctorName = null
+          ">
           Добавить врача
         </button>
       </div>
@@ -64,13 +58,10 @@ const room_store = useRoomStore()
     </div>
     <div class="field">
       <div class="control">
-        <button
-          class="button is-link"
-          @click="
-            place_store.addPlace(new Place({ title: newRoomNumber }))
-            newPlaceTitle = null
-          "
-        >
+        <button class="button is-link" @click="
+          place_store.addPlace(new Place({ title: newRoomNumber, division_id: 1 }))
+        newPlaceTitle = null
+          ">
           Добавить место хранения
         </button>
       </div>

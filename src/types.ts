@@ -1,9 +1,9 @@
 export class Doctor {
-  id: number
+  id?: number
   username: string
-  email: string
-  first_name: string
-  middle_name: string
+  email?: string
+  first_name?: string
+  middle_name?: string
   last_name: string
 
   constructor(data: Doctor) {
@@ -17,7 +17,7 @@ export class Doctor {
 }
 
 export class Room {
-  id: number
+  id?: number
   title: string
   division_id: number
 
@@ -29,7 +29,7 @@ export class Room {
 }
 
 export class Place {
-  id: number
+  id?: number
   title: string
   division_id: number
 
