@@ -35,7 +35,7 @@ const all_places_selected = computed(() => {
 </script>
 
 <template>
-  <ListComponent :items="list_store.basketed" :item-component="BasketItem" @right="(item) => { list_store.unBasketById(item.id) }">
+  <ListComponent :items="list_store.basketed" :item-component="BasketItem" @right="(item_id) => { list_store.unBasketById(item_id) }">
     <template #empty_caption>
       В корзине ничего нет
     </template>

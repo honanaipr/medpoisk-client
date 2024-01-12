@@ -70,12 +70,12 @@ export const useListStore = defineStore('list', () => {
     showToast('Basketed' + id)
   }
   function unBasketById(id: number) {
-    const inventory_store = useInventoryStore()
-    const item = inventory_store.inventory.value.find((n) => n.product.id == id)
-    item.state = ListItemState.PERSISTENT
-    item.targetAmount = null
-    item.targetPlaceId = null
-    showToast('Basketed' + item)
+    if (states.value.has(id)) {
+      states.value.set(id, ListItemState.PERSISTENT)
+    } else {
+      throw Error(`id ${id} not found`)
+    }
+    showToast('Unbasketed' + id)
   }
 
   function clearBasket() {}
