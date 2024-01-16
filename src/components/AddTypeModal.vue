@@ -7,7 +7,7 @@ const emit = defineEmits(['close'])
 
 function btnAddSingleOnClick() {
   emit('close')
-  router.push({ name: 'add' })
+  router.push({ name: 'addProduct' })
 }
 
 function btnAddInvoiceOnClick() {

@@ -49,7 +49,7 @@ export class Picture {
 }
 
 export class Product {
-  id: number
+  id?: number
   title: string
   description: string
   barcode: number

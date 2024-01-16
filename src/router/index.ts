@@ -17,9 +17,9 @@ const router = createRouter({
       meta: { transition: 'slide-left' },
     },
     {
-      path: '/add',
-      name: 'add',
-      component: () => import('../views/AddView.vue'),
+      path: '/addProduct',
+      name: 'addProduct',
+      component: () => import('../views/ProductAddView.vue'),
       meta: { transition: 'slide-left' },
     },
     {

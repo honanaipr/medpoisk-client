@@ -13,7 +13,7 @@ import { API_PRODUCT_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useProductStore = defineStore('product', () => {
-  const products = ref([])
+  const products = ref<Product[]>([])
   const auth_store = useAuthStore()
 
   async function update() {
