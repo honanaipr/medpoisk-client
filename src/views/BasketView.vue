@@ -15,15 +15,15 @@ const room_id = ref('')
 
 function apply() {
   list_store.writeOff(doctor_id.value, room_id.value)
-  doctor_id.value = null
-  room_id.value = null
+  doctor_id.value = ''
+  room_id.value = ''
   router.back()
 }
 
 function cancel() {
   list_store.clearBasket()
-  doctor_id.value = null
-  room_id.value = null
+  doctor_id.value = ''
+  room_id.value = ''
 }
 
 const all_places_selected = computed(() => {
