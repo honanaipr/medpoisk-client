@@ -1,19 +1,48 @@
 <script setup lang="ts">
-import WrenchIcon from '../components/icons/WrenchIcon.vue'
+import ReportItem from "@/components/ReportItem.vue"
+import { ref, computed } from 'vue';
+import { useProductStore } from '@/stores/product_store';
+import type { Product } from "@/types";
+
+const product_store = useProductStore()
+const product_collapsed = ref(true)
+
+const products = computed({
+  get(){
+    return product_store.products
+  },
+  set(){
+
+  }
+})
 </script>
 
 <template>
-  <div class="container is-fluid is-multiline" style="padding-top: 10rem">
-    <div class="columns is-mobile is-centered">
-      <div class="column is-half">
-        <WrenchIcon style="display: block; height: 10rem; margin: auto" />
-      </div>
-    </div>
-    <div class="columns is-mobile is-centered" style="margin-top: 5rem">
-      <div class="content">
-        <h3>&lt;501&gt; Not Implemented</h3>
-        <h3>ReportView</h3>
-      </div>
-    </div>
+  <div class="section">
+    <h1> Продукты:</h1> <button class="collapse-button" @click="product_collapsed = !product_collapsed" :class="{active:product_collapsed}"></button>
+    <template v-for="product of products" :key="product.id">
+      <ReportItem :item="product" :class="{hidden: product_collapsed}"/>
+    </template>
   </div>
 </template>
+
+<style scoped lang="sass">
+.section
+  border: 1px solid red
+  border-radius: 5px
+  padding: 10px
+  overflow: hidden
+.collapse-button:after
+  content: "\2796"
+  font-size: 13px
+  color: white
+  float: right
+  margin-left: 5px
+
+.hidden
+  display: none
+  max-width: 0
+
+.active:after
+  content: '\02795'
+</style>
