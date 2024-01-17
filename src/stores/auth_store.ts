@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
   const username = ref('')
   const roles: Ref<{division_id: number, role_name: string}[]> = ref([])
 
-  async function update() {
+  async function refresh() {
     return axios({
       method: 'POST',
       url: API_AUTH_REFRESH_PATH,
@@ -100,10 +100,11 @@ export const useAuthStore = defineStore('auth', () => {
   async function getFreshToken() {
     const now = new Date(Date.now()).getSeconds()
     if (!token.value || exp.value < now) {
-      await update()
+      await refresh()
     }
     return token.value
   }
 
-  return { token, getFreshToken, update, login, logout, username, roles }
+  refresh()
+  return { token, getFreshToken, refresh, login, logout, username, roles }
 })

@@ -6,13 +6,8 @@ import AddTypeModal from './components/AddTypeModal.vue'
 import AuthViewVue from './views/AuthView.vue'
 import { ref } from 'vue'
 import { useAuthStore } from './stores/auth_store'
-// import { onMounted } from 'vue'
 
 const auth_store = useAuthStore()
-
-// onMounted(()=>{
-//   auth_store.update()
-// })
 
 let isModalActive = ref(false)
 </script>
