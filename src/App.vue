@@ -6,6 +6,7 @@ import AddTypeModal from './components/AddTypeModal.vue'
 import AuthViewVue from './views/AuthView.vue'
 import { ref } from 'vue'
 import { useAuthStore, AuthState } from './stores/auth_store'
+import SpinnerComponent from './components/SpinnerComponent.vue'
 
 const auth_store = useAuthStore()
 
@@ -14,7 +15,7 @@ let isModalActive = ref(false)
 
 <template>
   <div v-if="auth_store.authState == AuthState.Pending">
-    spinner
+    <SpinnerComponent/>
   </div>
   <div
     v-else-if="auth_store.authState == AuthState.Loggedin"
