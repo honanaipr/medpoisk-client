@@ -30,14 +30,21 @@ async function updateAll() {
   .then(() => console.log('sucsess'))
   .catch((error) => console.log(error))
 }
+export enum AuthState {
+  Pending,
+  Loggedin,
+  Failed
+}
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(null)
   const exp = ref(Date.now())
   const username = ref('')
   const roles: Ref<{division_id: number, role_name: string}[]> = ref([])
+  const authState: Ref<AuthState> = ref(AuthState.Pending)
 
   async function refresh() {
+    authState.value = AuthState.Pending
     return axios({
       method: 'POST',
       url: API_AUTH_REFRESH_PATH,
@@ -54,15 +61,18 @@ export const useAuthStore = defineStore('auth', () => {
         } else {
           throw Error('Token data incorrect ' + joiResult.error.message)
         }
+        authState.value = AuthState.Loggedin
         updateAll()
       })
       .catch((error) => {
         console.log(error)
+        authState.value = AuthState.Failed
         throw error
       })
   }
 
   async function login(login: string, password: string) {
+    authState.value = AuthState.Pending
     const params = new URLSearchParams()
     params.append('username', login)
     params.append('password', password)
@@ -85,10 +95,12 @@ export const useAuthStore = defineStore('auth', () => {
         } else {
           throw Error('Token data incorrect ' + joiResult.error.message)
         }
+        authState.value = AuthState.Loggedin
         updateAll()
       })
       .catch((error) => {
         console.log(error)
+        authState.value = AuthState.Failed
         throw error
       })
   }
@@ -106,5 +118,5 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   refresh()
-  return { token, getFreshToken, refresh, login, logout, username, roles }
+  return { token, getFreshToken, refresh, login, logout, username, roles, authState }
 })
