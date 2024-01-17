@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +14,7 @@ import { API_PLACE_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const usePlaceStore = defineStore('place', () => {
-  const places = ref([])
+  const places: Ref<Place[]> = ref([])
 
   async function update() {
     const auth_store = useAuthStore()

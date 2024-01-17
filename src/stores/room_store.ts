@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +14,7 @@ import { API_ROOM_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useRoomStore = defineStore('room', () => {
-  const rooms = ref([])
+  const rooms: Ref<Room[]> = ref([])
 
   async function update() {
     const auth_store = useAuthStore()
@@ -47,7 +48,7 @@ export const useRoomStore = defineStore('room', () => {
       .then((responce) => {
         console.log(responce.data)
         showToast(messaegs.ROOM_ADD_OK_MESSAGE)
-        rooms.value.push(new Room({ id: 1234, title: room.title }))
+        rooms.value.push(new Room({ id: 1234, title: room.title, division_id: 0 }))
       })
       .catch((error) => {
         console.log(error)
