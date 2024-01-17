@@ -16,7 +16,7 @@ const password = ref('')
             </div>
         </div>
         <div class="field">
-            <label class="label">Username:</label>
+            <label class="label">Password:</label>
             <div class="control">
                 <input class="input" type="text" v-model="password" placeholder="password" />
             </div>
