@@ -17,9 +17,6 @@ const auth_store = useAuthStore()
         <div class="color__gray" style="font-size: 13px;letter-spacing: .5px;">London</div>
       </div>
     </div>
-    <div>
-      <TreeItem class="role-item" :model="auth_store.roles"></TreeItem>
-    </div>
   </div>
 </template>
 
