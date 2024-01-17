@@ -1,20 +1,25 @@
 <script setup lang="ts">
-import { Product } from '@/types';
+import { Place, Product } from '@/types';
 import { defineProps } from 'vue';
 
-defineProps({
-  item: { type: Product, required: true },
-}) 
+defineProps<{
+  item: Product | Place,
+}>() 
 
 </script>
 
 <template>
-    <div class="card">
+    <div class="card" v-if="(item instanceof Product)">
       {{ item.title }}<br/>
       {{ item.description ?? "Нет описания" }}<br/>
       {{ item.barcode ?? "Нет штрихкода"}}<br/>
       {{ item.pictures }}
     </div>
+    <div class="card" v-else-if="(item instanceof Place)">
+      {{ item.title }}<br/>
+      {{ item.division_id }}<br/>
+    </div>
+
 </template>
 
 <style scoped lang="sass">
