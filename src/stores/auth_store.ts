@@ -12,6 +12,25 @@ import { useProductStore } from '@/stores/product_store'
 import { useInventoryStore } from '@/stores/inventory_store'
 import { useLimitStore } from '@/stores/limit_store'
 
+async function updateAll() {
+  const place_store = usePlaceStore()
+  const room_store = useRoomStore()
+  const doctor_store = useDoctorStore()
+  const product_store = useProductStore()
+  const inventory_store = useInventoryStore()
+  const limit_store = useLimitStore()
+  Promise.all([
+    place_store.update(),
+    room_store.update(),
+    doctor_store.update(),
+    product_store.update(),
+    inventory_store.update(),
+    limit_store.update(),
+  ])
+  .then(() => console.log('sucsess'))
+  .catch((error) => console.log(error))
+}
+
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(null)
   const exp = ref(Date.now())
@@ -35,6 +54,7 @@ export const useAuthStore = defineStore('auth', () => {
         } else {
           throw Error('Token data incorrect ' + joiResult.error.message)
         }
+        updateAll()
       })
       .catch((error) => {
         console.log(error)
@@ -65,22 +85,7 @@ export const useAuthStore = defineStore('auth', () => {
         } else {
           throw Error('Token data incorrect ' + joiResult.error.message)
         }
-        const place_store = usePlaceStore()
-        const room_store = useRoomStore()
-        const doctor_store = useDoctorStore()
-        const product_store = useProductStore()
-        const inventory_store = useInventoryStore()
-        const limit_store = useLimitStore()
-        Promise.all([
-          place_store.update(),
-          room_store.update(),
-          doctor_store.update(),
-          product_store.update(),
-          inventory_store.update(),
-          limit_store.update(),
-        ])
-          .then(() => console.log('sucsess'))
-          .catch((error) => console.log(error))
+        updateAll()
       })
       .catch((error) => {
         console.log(error)
