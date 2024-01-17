@@ -52,6 +52,7 @@ export const useAuthStore = defineStore('auth', () => {
       url: API_AUTH_LOGIN_PATH,
       data: params,
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      withCredentials: true,
     })
       .then((response) => {
         token.value = response.data.access_token
