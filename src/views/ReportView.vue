@@ -18,6 +18,7 @@ const room_store = useRoomStore()
 
 const product_store = useProductStore()
 const product_collapsed = ref(true)
+const place_collapsed = ref(true)
 
 </script>
 
@@ -80,6 +81,12 @@ const product_collapsed = ref(true)
       <ReportItem :item="product" :class="{hidden: product_collapsed}"/>
     </template>
   </div>
+  <div class="section">
+    <h1> Места хранения:</h1> <button class="collapse-button" @click="place_collapsed = !place_collapsed" :class="{active:place_collapsed}"></button>
+    <template v-for="place of place_store.places" :key="place.id">
+      <ReportItem :item="place" :class="{hidden: place_collapsed}"/>
+    </template>
+  </div>
 </template>
 
 <style scoped lang="sass">
@@ -88,6 +95,7 @@ const product_collapsed = ref(true)
   border-radius: 5px
   padding: 10px
   overflow: hidden
+  margin: 1rem
 .collapse-button:after
   content: "\2796"
   font-size: 13px
