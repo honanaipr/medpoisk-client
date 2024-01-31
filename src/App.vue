@@ -11,6 +11,7 @@ import { useProductStore } from './stores/product_store';
 import { useAuthStore } from './stores/auth_store';
 import { useInventoryStore } from './stores/inventory_store';
 import { useLimitStore } from './stores/limit_store'
+import MobileFirstContainer from './components/MobileFirstContainer.vue'
 
 
 const place_store = usePlaceStore()
@@ -44,13 +45,15 @@ let isModalActive = ref(false)
 </script>
 
 <template>
-  <div style="display: flex; height: 100dvh; width: 100vw; flex-direction: column; overflow: hidden;" class="app">
-    <BannerComponent />
-    <div class="" style="overflow-y: scroll; flex-grow: 1;">
-      <RouterView />
+  <MobileFirstContainer>
+    <div style="display: flex; height: 100%; width: 100%; flex-direction: column; overflow: hidden;" class="app">
+      <BannerComponent />
+      <div class="" style="overflow-y: scroll; flex-grow: 1;">
+        <RouterView />
+      </div>
+      <BottomControls @open-add-modal="isModalActive = true" />
     </div>
-    <BottomControls @open-add-modal="isModalActive = true" />
-  </div>
+  </MobileFirstContainer>
   <AddTypeModal :is-active="isModalActive" @close="isModalActive = false" />
 </template>
 
