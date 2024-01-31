@@ -18,10 +18,10 @@
 .mobile-first-content
     width: 100%
     height: 100%
-    max-width: 428px
+    max-width: 360px
     transition: height 0.1s
     background-color: red
-@media (min-width: 428px)
+@media (min-width: 360px)
     .mobile-first-content
         height: calc(100%  -  20px)
 </style>

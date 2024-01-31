@@ -24,6 +24,7 @@ button
     :slotted(svg)
         height: 20px
     span
+        font-size: 8px
         white-space: nowrap
 span.active
     color: var(--active-color, black)
