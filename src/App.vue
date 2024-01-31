@@ -2,8 +2,7 @@
 import { RouterView } from 'vue-router'
 import BottomControls from './components/BottomControls.vue';
 import BannerComponent from './components/BannerComponent.vue';
-import AddTypeModal from "./components/AddTypeModal.vue"
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { usePlaceStore } from './stores/place_store';
 import { useRoomStore } from './stores/room_store';
 import { useDoctorStore } from './stores/doctor_store';
@@ -41,7 +40,6 @@ onMounted(async () => {
     .catch((error) => console.log(error))
 })
 
-let isModalActive = ref(false)
 </script>
 
 <template>
@@ -51,10 +49,9 @@ let isModalActive = ref(false)
       <div class="" style="overflow-y: scroll; flex-grow: 1;">
         <RouterView />
       </div>
-      <BottomControls @open-add-modal="isModalActive = true" />
+      <BottomControls />
     </div>
   </MobileFirstContainer>
-  <AddTypeModal :is-active="isModalActive" @close="isModalActive = false" />
 </template>
 
 <style scoped>
