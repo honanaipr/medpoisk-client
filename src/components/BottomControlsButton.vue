@@ -1,11 +1,11 @@
 <script setup lang="ts">
-defineProps(['title'])
+defineProps(['title','active'])
 </script>
       
 <template>
     <button>
         <slot name="icon"></slot>
-        <span>{{ title }}</span>
+        <span :class="active?'active':''">{{ title }}</span>
     </button>
 </template>
 
@@ -25,4 +25,8 @@ button
         height: 20px
     span
         white-space: nowrap
+span.active
+    color: var(--active-color, black)
+span
+    color: var(--inactive-color, grey)
 </style>

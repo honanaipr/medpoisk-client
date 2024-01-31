@@ -17,12 +17,12 @@ function onAddButtonClick() {
       
 <template>
     <div class="bottom-controls">
-        <BottomControlsButton title="Главная" @click="router.push('/')">
+        <BottomControlsButton :active="$route.name=='home'" title="Главная" @click="router.push('/')">
             <template #icon>
                 <HomeIcon :active="$route.name=='home'"/>
             </template>
         </BottomControlsButton>
-        <BottomControlsButton title="Отчет" @click="router.push('/report')">
+        <BottomControlsButton :active="$route.name=='report'" title="Отчет" @click="router.push('/report')">
             <template #icon>
                 <ReportIcon :active="$route.name=='report'"/>
             </template>
@@ -32,12 +32,12 @@ function onAddButtonClick() {
                 <PlusIcon />
             </template>
         </BottomControlsButton>
-        <BottomControlsButton title="Корзина" @click="$router.push('/basket')">
+        <BottomControlsButton :active="$route.name=='basket'" title="Корзина" @click="$router.push('/basket')">
             <template #icon>
                 <CartIcon :active="$route.name=='basket'"/>
             </template>
         </BottomControlsButton>
-        <BottomControlsButton title="Профиль" @click="$router.push('/profile')">
+        <BottomControlsButton :active="$route.name=='profile'" title="Профиль" @click="$router.push('/profile')">
             <template #icon>
                 <ProfileIcon :active="$route.name=='profile'"/>
             </template>
