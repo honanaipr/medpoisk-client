@@ -14,14 +14,15 @@
     justify-content: center
     align-items: center
     height: 100vh
-    background-color: DodgerBlue
+    background-color: #E0E0E0
 .mobile-first-content
     width: 100%
     height: 100%
     max-width: 360px
     transition: height 0.1s
-    background-color: red
+    overflow: hidden
 @media (min-width: 360px)
     .mobile-first-content
         height: calc(100%  -  20px)
+        border-radius: 15px
 </style>
