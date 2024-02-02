@@ -1,31 +1,19 @@
+<script setup lang="ts">
+defineProps({
+    active: {type: Boolean, default: false}
+})
+</script>
+
 <template>
-  <svg
-    viewBox="0 -0.5 21 21"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    fill="#000000"
-  >
-    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-    <g id="SVGRepo_iconCarrier">
-      <title>home [#1391]</title>
-      <desc>Created with Sketch.</desc>
-      <defs></defs>
-      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g
-          id="Dribbble-Light-Preview"
-          transform="translate(-419.000000, -720.000000)"
-          fill="#000000"
-        >
-          <g id="icons" transform="translate(56.000000, 160.000000)">
-            <path
-              d="M379.79996,578 L376.649968,578 L376.649968,574 L370.349983,574 L370.349983,578 L367.19999,578 L367.19999,568.813 L373.489475,562.823 L379.79996,568.832 L379.79996,578 Z M381.899955,568.004 L381.899955,568 L381.899955,568 L373.502075,560 L363,569.992 L364.481546,571.406 L365.099995,570.813 L365.099995,580 L372.449978,580 L372.449978,576 L374.549973,576 L374.549973,580 L381.899955,580 L381.899955,579.997 L381.899955,570.832 L382.514204,571.416 L384.001,570.002 L381.899955,568.004 Z"
-              id="home-[#1391]"
-            ></path>
-          </g>
-        </g>
-      </g>
-    </g>
-  </svg>
+    <svg :class="active ? 'active': ''" width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.33341 14.6667V9.66667H10.6667V14.6667H14.8334V8H17.3334L9.00008 0.5L0.666748 8H3.16675V14.6667H7.33341Z"
+            fill="#5A5A5C" />
+    </svg>
 </template>
+
+<style scoped lang="sass">
+svg path
+    fill: var(--inactive-color, grey)
+svg.active path
+    fill: var(--active-color, black)
+</style>

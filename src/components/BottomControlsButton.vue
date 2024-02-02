@@ -1,12 +1,12 @@
 <script setup lang="ts">
-defineProps(['title'])
+defineProps(['title','active'])
 </script>
 
 <template>
-  <button>
-    <slot name="icon"></slot>
-    <span>{{ title }}</span>
-  </button>
+    <button>
+        <slot name="icon"></slot>
+        <span :class="active?'active':''">{{ title }}</span>
+    </button>
 </template>
 
 <style scoped lang="sass">
@@ -24,5 +24,10 @@ button
     :slotted(svg)
         height: 20px
     span
+        font-size: 8px
         white-space: nowrap
+span.active
+    color: var(--active-color, black)
+span
+    color: var(--inactive-color, grey)
 </style>

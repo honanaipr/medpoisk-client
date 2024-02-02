@@ -1,129 +1,35 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth_store';
-import CrossIconVue from '@/components/icons/CrossIcon.vue';
-const auth_store = useAuthStore()
-
-
+import ButtonComponent from '@/components/ButtonComponent.vue';
 </script>
 
 <template>
-  <div class="card">
-    <div class="card-header">
-      <button class="button cross-icon" @click="auth_store.$reset"><CrossIconVue/></button>
-    </div>
-    <div class="card-body">
-      <div class="inner">
-        <div style="font-size: 18px;letter-spacing: .5px;margin-bottom: 10px;">Username: {{ auth_store.username }}</div>
-        <div class="color__gray" style="font-size: 13px;letter-spacing: .5px;">London</div>
-      </div>
-    </div>
+  <div class="header">
+    <h1>Название организации</h1>
+    <h2>Название подразделения</h2>
+  </div>
+  <div class="container">
+    <ButtonComponent title="Настройки профиля" @click="()=>{$router.push({name: 'home'})}" has-border />
+    <ButtonComponent title="Журнал накладных" @click="()=>{$router.push({name: 'home'})}" />
+    <ButtonComponent title="Журнал списания" @click="()=>{$router.push({name: 'home'})}" />
+    <ButtonComponent title="Места хранения" @click="()=>{$router.push({name: 'home'})}" />
+    <ButtonComponent title="Врачи" @click="()=>{$router.push({name: 'home'})}" />
+    <ButtonComponent title="Кабинеты" @click="()=>{$router.push({name: 'home'})}" />
   </div>
 </template>
-
-<style scoped>
-.role-item {
-  cursor: pointer;
-  line-height: 1.5;
-}
-.cross-icon {
-  aspect-ratio: 1;
-  position: absolute;
-  right: 0;
-  margin: 1rem;
-}
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-.card {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.card .card-header {
-  background: url(https://rvs-profile-card-component-main.netlify.app/images/bg-pattern-card.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 40%;
-  position: relative;
-}
-
-.card .card-body {
-  height: 40%;
-  position: relative;
-  width: 100%;
-  border-bottom: 1px solid #80808042;
-}
-
-.card .card-body::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  background: white;
-  transform: translate(-50%, 0);
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-
-.card .card-body::after {
-  content: "";
-  position: absolute;
-  top: -150px;
-  left: 50%;
-  background: url(https://api.lorem.space/image/game?w=150&h=220) white;
-  transform: translate(-50%, 0);
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-}
-
-.card .card-body .inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.card .card-footer {
-  height: 20%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.card .card-footer .inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.card .card-footer .inner div:first-child {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.card .card-footer .inner div:last-child {
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-.color__gray {
-  color: gray;
-}
+<style scoped lang="sass">
+.container
+  display: flex
+  flex-direction: column
+  gap: 16px
+  padding: 0 10px 0 10px
+.header
+  padding: 0 10px 0 10px
+  color: #121212
+  font-weight: bold
+.header h1
+  font-size: 20px
+  margin-bottom: 16px
+.header h2
+  font-size: 16px
+  margin-bottom: 16px
 </style>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
 .toast-custom-class {
   --color: #000000;
   --border-color: #000000;
@@ -9,8 +10,11 @@
 }
 :root {
   --background-color: hsl(180, 8%, 97%);
-  font-family: system-ui;
+  --background-color: hsl(180, 8%, 97%);
+  --inactive-color: #5A5A5C;
+  --active-color: #9526FF;
 }
 * {
-  scrollbar-width: none;
+    scrollbar-width: none;
+    font-family: 'Manrope', system-ui;
 }
