@@ -13,17 +13,17 @@ const auth_store = useAuthStore()
 
 <template>
   <MobileFirstContainer>
-    <div v-if="auth_store.authState == AuthState.Pending">
-      <SpinnerComponent/>
-    </div>
-    <div v-else-if="auth_store.authState == AuthState.Loggedin" style="display: flex; height: 100%; width: 100%; flex-direction: column; overflow: hidden;" class="app">
+    <div style="display: flex; height: 100%; width: 100%; flex-direction: column; overflow: hidden;" class="app">
       <BannerComponent />
-      <div class="" style="overflow-y: scroll; flex-grow: 1;">
+      <div v-if="auth_store.authState == AuthState.Pending" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+        <SpinnerComponent />
+      </div>
+      <div v-else-if="auth_store.authState == AuthState.Loggedin" class="" style="overflow-y: scroll; flex-grow: 1;">
         <RouterView />
       </div>
-      <BottomControls />
+      <AuthViewVue v-else-if="auth_store.authState == AuthState.Failed" />
+      <BottomControls v-if="auth_store.authState == AuthState.Loggedin"/>
     </div>
-    <AuthViewVue v-else-if="auth_store.authState == AuthState.Failed"/>
   </MobileFirstContainer>
 </template>
 
