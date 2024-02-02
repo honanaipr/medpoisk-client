@@ -20,6 +20,11 @@ export class Doctor {
   }
 }
 
+export interface RoomCreate {
+  title: string
+  division_id: number
+}
+
 export class Room {
   id?: number
   title: string

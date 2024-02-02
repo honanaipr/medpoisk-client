@@ -6,6 +6,7 @@ import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
+import type { RoomCreate } from '../types'
 import { Room } from '../types'
 import { roomSchema } from '../schemas'
 
@@ -39,7 +40,7 @@ export const useRoomStore = defineStore('room', () => {
       })
   }
 
-  function addRoom(room: Room) {
+  function addRoom(room: RoomCreate) {
     axios
       .put(API_ROOM_PATH, {
         title: room.title,

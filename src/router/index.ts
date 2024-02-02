@@ -70,6 +70,12 @@ const router = createRouter({
       component: () => import('../views/DoctorsView.vue'),
       meta: { transition: 'slide-left' },
     },
+    {
+      path: '/roomManager',
+      name: 'roomManager',
+      component: () => import('../views/RoomsView.vue'),
+      meta: { transition: 'slide-left' },
+    },
   ]
 })
 

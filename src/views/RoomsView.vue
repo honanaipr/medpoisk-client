@@ -1,0 +1,51 @@
+<script setup lang="ts">
+import ButtonComponent from '@/components/ButtonComponent.vue';
+import InputComponent from '@/components/InputComponent.vue';
+import { useRoomStore } from '@/stores/room_store';
+const room_store = useRoomStore()
+
+import { ref } from 'vue';
+
+const newRoomTitle = ref('')
+
+function createRoom(){
+    room_store.addRoom({title: newRoomTitle.value, division_id: 1})
+    newRoomTitle.value = ''
+}
+
+</script>
+
+<template>
+    <div class="header">
+        <h1>Кабинеты</h1>
+        <h2>Добавить новый</h2>
+        <InputComponent v-model="newRoomTitle" placeholder="312" title="№ кабинета"/>
+        <div style="display: flex; flex-direction: row; gap: 8px">
+            <ButtonComponent @click="$router.back()" title="Отменить" contrast has-border/>
+            <ButtonComponent @click="createRoom" title="Добавить" contrast has-fill/>
+        </div>
+    </div>
+    <div class="container">
+        <template v-for="room of room_store.rooms" :key="room.id">
+            <ButtonComponent :title="room.title" />
+        </template>
+    </div>
+</template>
+
+<style scoped lang="sass">
+.container
+  display: flex
+  flex-direction: column
+  gap: 16px
+  padding: 0 10px 0 10px
+.header
+  padding: 0 10px 0 10px
+  color: #121212
+  font-weight: bold
+  margin-bottom: 16px
+.header h1
+  font-size: 20px
+  margin-bottom: 16px
+.header h2
+  font-size: 16px
+</style>
