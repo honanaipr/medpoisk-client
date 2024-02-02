@@ -21,6 +21,7 @@ button
     border: none
     display: flex
     padding: 10px
+    background-color: #F3F3F4
     color: #5A5A5C
     flex-grow: 1
     font-weight: 700
