@@ -11,7 +11,7 @@ import { useProductStore } from './product_store'
 export const useListStore = defineStore('list', () => {
   const states = ref(new Map<number, ListItemState>())
 
-  function update(){
+  function update() {
     const inventory_store = useInventoryStore()
     inventory_store.update()
   }
@@ -19,15 +19,14 @@ export const useListStore = defineStore('list', () => {
   const inventory_store = useInventoryStore()
   const limit_store = useLimitStore()
   const product_store = useProductStore()
-  const productsMap = new Map<number, Array<InventoryItem>>()
+  const productsMap = new Map<number, Set<InventoryItem>>()
 
   const list = computed(() => {
     for (const inventoryItem of inventory_store.inventory) {
-      if (productsMap.has(inventoryItem.product)) {
-        // const product = inventoryMap.get(inventoryItem.product)
-        productsMap.get(inventoryItem.product.id)?.push(inventoryItem)
+      if (productsMap.has(inventoryItem.product.id)) {
+        productsMap.get(inventoryItem.product.id)?.add(inventoryItem)
       } else {
-        productsMap.set(inventoryItem.product.id, [inventoryItem])
+        productsMap.set(inventoryItem.product.id, new Set([inventoryItem]))
       }
     }
 
@@ -48,7 +47,17 @@ export const useListStore = defineStore('list', () => {
       }
       const limit = limit_store.byId(n[0])?.min_amount
 
-      list.push(new ListItem({ product: product_store.byId(n[0]), places: places, amount: amount, state: state, limit: limit, targetAmount: null, targetPlaceId: null }))
+      list.push(
+        new ListItem({
+          product: product_store.byId(n[0]),
+          places: places,
+          amount: amount,
+          state: state,
+          limit: limit,
+          targetAmount: null,
+          targetPlaceId: null,
+        })
+      )
     }
     return list
   })
@@ -80,8 +89,8 @@ export const useListStore = defineStore('list', () => {
 
   function clearBasket() {}
 
-  function byId(product_id: number){
-    return list.value.find(n=>n.product.id == product_id)
+  function byId(product_id: number) {
+    return list.value.find((n) => n.product.id == product_id)
   }
 
   return { list, basketed, persistent, toBasketById, unBasketById, clearBasket, byId, update }

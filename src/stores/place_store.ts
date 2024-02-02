@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -14,14 +15,14 @@ import { API_PLACE_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const usePlaceStore = defineStore('place', () => {
-  const places = ref([])
+  const places: Ref<Place[]> = ref([])
 
   async function update() {
     const auth_store = useAuthStore()
     return axios({
       method: 'GET',
       url: API_PLACE_PATH,
-      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+      headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
     })
       .then((responce) => {
         const joiResult = Joi.array().items(placeSchema).validate(responce.data)
@@ -42,7 +43,7 @@ export const usePlaceStore = defineStore('place', () => {
     axios
       .put(API_PLACE_PATH, {
         title: place.title,
-        division_id: place.division_id
+        division_id: place.division_id,
       })
       .then((responce) => {
         console.log(responce.data)

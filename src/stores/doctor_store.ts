@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,13 +14,13 @@ import { API_DOCTOR_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useDoctorStore = defineStore('doctor', () => {
-  const doctors = ref([])
+  const doctors: Ref<Doctor[]> = ref([])
   const auth_store = useAuthStore()
   async function update() {
     return axios
       .get(API_DOCTOR_PATH, {
         params: { role_name: 'doctor' },
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = Joi.array().items(doctorSchema).validate(responce.data)
@@ -38,7 +39,7 @@ export const useDoctorStore = defineStore('doctor', () => {
   }
 
   function addDoctor(doctor: Doctor) {
-    throw Error("Not implemented"+doctor)
+    throw Error('Not implemented' + doctor)
   }
 
   function byId(id: number) {

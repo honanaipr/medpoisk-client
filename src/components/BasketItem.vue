@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { ref } from 'vue'
 import { ListItem } from '@/types'
-import { useListStore } from '@/stores/list_store';
-import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue';
-import CustomPlaceSelector from './inputs/CustomPlaceSelector.vue';
-const list_store = useListStore()
+import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
+import CustomPlaceSelector from './inputs/CustomPlaceSelector.vue'
 
-const props = defineProps({
-  listItem: {type: ListItem, required: true}
+defineProps({
+  listItem: { type: ListItem, required: true },
 })
 
 const writeOffAmount = ref(0)
 const writeOffPlaceID = ref(null)
-
 </script>
 
 <template>
@@ -20,7 +17,7 @@ const writeOffPlaceID = ref(null)
     {{ listItem.product.title }}
     <nav class="level is-mobile">
       <div class="level-left">
-        <p class="level-item" aria-label="reply" style="display: block; width: 5rem;">
+        <p class="level-item" aria-label="reply" style="display: block; width: 5rem">
           {{ writeOffAmount }}/{{ listItem.limit }}
         </p>
       </div>

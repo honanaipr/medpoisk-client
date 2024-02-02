@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,7 +14,7 @@ import { API_PRODUCT_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useProductStore = defineStore('product', () => {
-  const products = ref([])
+  const products: Ref<Product[]> = ref([])
   const auth_store = useAuthStore()
 
   async function update() {
@@ -37,10 +38,10 @@ export const useProductStore = defineStore('product', () => {
   async function addProduct(product: Product) {
     const form_data = new FormData()
     form_data.append('title', product.title)
-    if (product.barcode) form_data.append('barcode', String(product.barcode))
+    form_data.append('barcode', String(product.barcode))
     axios
       .put(API_PRODUCT_PATH, form_data, {
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = productSchema.validate(responce.data)
@@ -62,7 +63,7 @@ export const useProductStore = defineStore('product', () => {
     axios
       .delete(API_PRODUCT_PATH, {
         params: { id: product_id },
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then(() => {
         products.value.splice(

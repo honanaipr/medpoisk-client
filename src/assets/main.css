@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
 .toast-custom-class {
-    --color:#000000;
-    --border-color:#000000;
-    --border-radius:3px;
-    --border-style:solid;
-    --border-width:3px;    
-    --background:#ffffff;
-    --button-color:#ffffff;
+  --color: #000000;
+  --border-color: #000000;
+  --border-radius: 3px;
+  --border-style: solid;
+  --border-width: 3px;
+  --background: #ffffff;
+  --button-color: #ffffff;
 }
 :root {
-    --background-color: hsl(180, 8%, 97%);
-    --inactive-color: #5A5A5C;
-    --active-color: #9526FF;
-    
+  --background-color: hsl(180, 8%, 97%);
+  --background-color: hsl(180, 8%, 97%);
+  --inactive-color: #5A5A5C;
+  --active-color: #9526FF;
 }
 * {
     scrollbar-width: none;

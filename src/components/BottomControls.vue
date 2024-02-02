@@ -12,7 +12,7 @@ import { ref } from 'vue'
 const isModalActive = ref(false)
 
 </script>
-      
+
 <template>
     <div class="bottom-controls">
         <div class="bottom-controls-modals">

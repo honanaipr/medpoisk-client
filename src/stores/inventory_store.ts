@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
@@ -13,13 +14,13 @@ import { API_INVENTORY_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const useInventoryStore = defineStore('inventory', () => {
-  const inventory = ref([])
+  const inventory: Ref<InventoryItem[]> = ref([])
 
   const auth_store = useAuthStore()
   async function update() {
     return axios
       .get(API_INVENTORY_PATH, {
-        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` }
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = Joi.array().items(inventoryItemSchema).validate(responce.data)

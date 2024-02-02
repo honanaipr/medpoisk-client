@@ -5,4 +5,3 @@
             fill="#5A5A5C" />
     </svg>
 </template>
-  

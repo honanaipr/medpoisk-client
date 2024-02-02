@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-defineProps(["isActive"])
+defineProps(['isActive'])
 
 const emit = defineEmits(['close'])
 
@@ -18,6 +18,8 @@ const emit = defineEmits(['close'])
         </div>
         <div class="background" @click="emit('close')"></div>
     </div>
+    <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+  </div>
 </template>
 
 <style scoped>
@@ -67,4 +69,3 @@ span {
     cursor: pointer;
 }
 </style>
-

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps(['title','active'])
 </script>
-      
+
 <template>
     <button>
         <slot name="icon"></slot>
