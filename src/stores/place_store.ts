@@ -6,6 +6,7 @@ import messaegs from '../messaegs'
 import Joi from 'joi'
 
 import { Place } from '../types'
+import type { PlaceCreate } from '../types'
 import { placeSchema } from '../schemas'
 
 import { API_PLACE_PATH } from '../pathes'

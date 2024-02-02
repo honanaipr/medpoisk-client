@@ -28,6 +28,11 @@ export class Room {
   }
 }
 
+export interface PlaceCreate {
+  title: string
+  division_id: number
+}
+
 export class Place {
   id: number
   title: string
