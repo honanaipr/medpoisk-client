@@ -58,7 +58,13 @@ const router = createRouter({
       component: () => import('../views/ProductView.vue'),
       meta: { transition: 'slide-left' },
     },
-  ],
+    {
+      path: '/placeManager',
+      name: 'placeManager',
+      component: () => import('../views/PlacesView.vue'),
+      meta: { transition: 'slide-left' },
+    },
+  ]
 })
 
 export default router

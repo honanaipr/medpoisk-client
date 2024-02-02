@@ -15,7 +15,7 @@ import { API_PLACE_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
 
 export const usePlaceStore = defineStore('place', () => {
-  const places: Ref<Place[]> = ref([])
+  const places = ref<Place[]>([])
 
   async function update() {
     const auth_store = useAuthStore()
@@ -39,7 +39,7 @@ export const usePlaceStore = defineStore('place', () => {
       })
   }
 
-  function addPlace(place: Place) {
+  function addPlace(place: PlaceCreate) {
     axios
       .put(API_PLACE_PATH, {
         title: place.title,

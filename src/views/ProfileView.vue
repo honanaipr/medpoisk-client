@@ -11,7 +11,7 @@ import ButtonComponent from '@/components/ButtonComponent.vue';
     <ButtonComponent title="Настройки профиля" @click="()=>{$router.push({name: 'home'})}" has-border />
     <ButtonComponent title="Журнал накладных" @click="()=>{$router.push({name: 'home'})}" />
     <ButtonComponent title="Журнал списания" @click="()=>{$router.push({name: 'home'})}" />
-    <ButtonComponent title="Места хранения" @click="()=>{$router.push({name: 'home'})}" />
+    <ButtonComponent title="Места хранения" @click="()=>{$router.push({name: 'placeManager'})}" />
     <ButtonComponent title="Врачи" @click="()=>{$router.push({name: 'home'})}" />
     <ButtonComponent title="Кабинеты" @click="()=>{$router.push({name: 'home'})}" />
   </div>
