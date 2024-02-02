@@ -11,6 +11,7 @@ import { ref } from 'vue'
 
 const isModalActive = ref(false)
 
+const profileRoutes = ['profile', 'roomManager', 'doctorManager', 'placeManager']
 </script>
 
 <template>
@@ -41,7 +42,7 @@ const isModalActive = ref(false)
             </BottomControlsButton>
             <BottomControlsButton :active="$route.name == 'profile'" title="Профиль" @click="$router.push('/profile')">
                 <template #icon>
-                    <ProfileIcon :active="$route.name == 'profile'" />
+                    <ProfileIcon :active="profileRoutes.includes($route.name)" />
                 </template>
             </BottomControlsButton>
         </div>
