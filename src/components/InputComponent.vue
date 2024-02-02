@@ -2,6 +2,8 @@
 defineProps({
     title: { type: String, required: false },
     description: { tytle: String, required: false },
+    placeholder: { tytle: String, default: '' },
+    type: { tytle: String, default: 'text' },
 })
 
 const model = defineModel()
@@ -10,7 +12,7 @@ const model = defineModel()
 
 <template>
     <span v-if="title">{{ title }}</span>
-    <input v-model="model" type="text" placeholder="default" id="name" name="name" />
+    <input v-model="model" :type="type" :placeholder="placeholder" :id="title" :name="title" />
     <span v-if="description">{{ description }}</span>
 </template>
 
@@ -23,6 +25,10 @@ input
     font-weight: 700
     width: 100%
     color: #5A5A5C
+
+input:last-of-type
+    margin-bottom: 16px
+
 span
     display: block
     font-size: 12px
