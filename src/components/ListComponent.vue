@@ -8,10 +8,8 @@ import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
 import SwipeRight from './icons/SwipeRight.vue'
 import SwipeLeft from './icons/SwipeLeft.vue'
-import { usePlaceStore } from '../stores/place_store'
-import { ListItem, Place } from '@/types'
-
-const place_store = usePlaceStore()
+import { ListItem } from '@/types'
+import PlaceFilter from './PlaceFilter.vue'
 
 defineProps({
   items: { type: Array<ListItem>, required: true },
@@ -38,32 +36,11 @@ function filter(item: ListItem) {
   }
   return true
 }
-
-function toggleCategory(place: Place) {
-  if (selectedCategories.value.filter((item) => item.id == place.id).length) {
-    selectedCategories.value = selectedCategories.value.filter((item) => item.id != place.id)
-  } else {
-    selectedCategories.value.push(place)
-  }
-}
 </script>
 
 <template>
   <div class="container control-container is-fluid">
-    <div class="content">
-      <h5>Места хранения</h5>
-    </div>
-    <div class="buttons">
-      <button
-        class="button is-small"
-        v-for="place in place_store.places"
-        :key="place.id"
-        @click="toggleCategory(place)"
-        :class="{ 'is-primary': selectedCategories.includes(place) }"
-      >
-        {{ place.title }}
-      </button>
-    </div>
+    <PlaceFilter v-model="selectedCategories" />
     <div class="content">
       <h3>Наименования</h3>
     </div>
