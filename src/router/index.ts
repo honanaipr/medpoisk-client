@@ -64,6 +64,12 @@ const router = createRouter({
       component: () => import('../views/PlacesView.vue'),
       meta: { transition: 'slide-left' },
     },
+    {
+      path: '/doctorManager',
+      name: 'doctorManager',
+      component: () => import('../views/DoctorsView.vue'),
+      meta: { transition: 'slide-left' },
+    },
   ]
 })
 

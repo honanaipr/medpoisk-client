@@ -1,3 +1,7 @@
+export interface DoctorCreate {
+  username: string
+}
+
 export class Doctor {
   id?: number
   username: string

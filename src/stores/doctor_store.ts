@@ -6,6 +6,7 @@ import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
+import type { DoctorCreate } from '../types'
 import { Doctor } from '../types'
 import { doctorSchema } from '../schemas'
 
@@ -38,8 +39,25 @@ export const useDoctorStore = defineStore('doctor', () => {
       })
   }
 
-  function addDoctor(doctor: Doctor) {
-    throw Error('Not implemented' + doctor)
+
+  function addDoctor(doctor: DoctorCreate) {
+    axios
+      .put(API_DOCTOR_PATH, {
+        username: doctor.username,
+      })
+      .then((responce) => {
+        console.log(responce.data)
+        const joiResult = doctorSchema.validate(responce.data)
+        if (joiResult.error) {
+          throw new Error(joiResult.error.message)
+        }
+        doctors.value.push(joiResult.value)
+        showToast(messaegs.DOCTOR_ADD_OK_MESSAGE)
+      })
+      .catch((error) => {
+        console.log(error)
+        showToast(messaegs.DOCTOR_ADD_ERROR_MESSAGE)
+      })
   }
 
   function byId(id: number) {

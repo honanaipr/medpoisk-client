@@ -12,7 +12,7 @@ import ButtonComponent from '@/components/ButtonComponent.vue';
     <ButtonComponent title="Журнал накладных" @click="()=>{$router.push({name: 'home'})}" />
     <ButtonComponent title="Журнал списания" @click="()=>{$router.push({name: 'home'})}" />
     <ButtonComponent title="Места хранения" @click="()=>{$router.push({name: 'placeManager'})}" />
-    <ButtonComponent title="Врачи" @click="()=>{$router.push({name: 'home'})}" />
+    <ButtonComponent title="Врачи" @click="()=>{$router.push({name: 'doctorManager'})}" />
     <ButtonComponent title="Кабинеты" @click="()=>{$router.push({name: 'home'})}" />
   </div>
 </template>
