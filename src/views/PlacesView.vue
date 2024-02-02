@@ -10,6 +10,7 @@ const newPlaceTitle = ref('')
 
 function createPlace(){
     place_store.addPlace({title: newPlaceTitle.value, division_id: 1})
+    newPlaceTitle.value = ''
 }
 
 </script>
