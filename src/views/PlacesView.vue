@@ -20,7 +20,7 @@ function createPlace(){
         <h2>Добавить новое</h2>
         <InputComponent v-model="newPlaceTitle"/>
         <div style="display: flex; flex-direction: row; gap: 8px">
-            <ButtonComponent title="Отменить" contrast has-border/>
+            <ButtonComponent @click="$router.back()" title="Отменить" contrast has-border/>
             <ButtonComponent @click="createPlace" title="Добавить" contrast has-fill/>
         </div>
     </div>
