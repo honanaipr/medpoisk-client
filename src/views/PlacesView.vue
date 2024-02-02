@@ -18,7 +18,7 @@ function createPlace(){
     <div class="header">
         <h1>Места хранения</h1>
         <h2>Добавить новое</h2>
-        <InputComponent v-model="newPlaceTitle"/>
+        <InputComponent v-model="newPlaceTitle" placeholder="Название" title="Название"/>
         <div style="display: flex; flex-direction: row; gap: 8px">
             <ButtonComponent @click="$router.back()" title="Отменить" contrast has-border/>
             <ButtonComponent @click="createPlace" title="Добавить" contrast has-fill/>
