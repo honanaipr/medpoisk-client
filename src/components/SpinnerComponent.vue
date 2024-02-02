@@ -24,9 +24,7 @@ body {
 
 .spinner {
     margin-top: -21px;
-    position: absolute;
     text-align: center;
-    top: 50%;
     width: 100%;
 }
 
