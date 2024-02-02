@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps({
-    title: { type: String, default: "Название поля" },
-    description: { tytle: String, default: "Описание поля" }
+    title: { type: String, required: false },
+    description: { tytle: String, required: false },
 })
 
 const model = defineModel()
