@@ -70,10 +70,6 @@ function filter(item: ListItem) {
 </template>
 
 <style scoped>
-.filter-button {
-  padding: 0;
-}
-
 div.content {
   margin-bottom: 0;
 }
