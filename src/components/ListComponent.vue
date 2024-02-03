@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import FilterIcon from './icons/FilterIcon.vue'
-import SearchIcon from './icons/SearchIcon.vue'
 import SwipeItem from './SwipeItem.vue'
 import SwipeContainer from './SwipeContainer.vue'
 import { ref } from 'vue'
 import CartIcon from './icons/CartIcon.vue'
 import CartPlusIcon from './icons/CartPlusIcon.vue'
-import SwipeRight from './icons/SwipeRight.vue'
-import SwipeLeft from './icons/SwipeLeft.vue'
 import { ListItem } from '@/types'
 import PlaceFilter from './PlaceFilter.vue'
+import SearchComponent from './SearchComponent.vue'
+import SwipeHintsComponent from './SwipeHintsComponent.vue'
+import EmptyListHint from './EmptyListHint.vue'
 
 defineProps({
   items: { type: Array<ListItem>, required: true },
@@ -44,38 +43,9 @@ function filter(item: ListItem) {
     <div class="content">
       <h3>Наименования</h3>
     </div>
-    <div class="field is-grouped">
-      <p class="control is-expanded has-icons-left">
-        <input class="input" type="text" placeholder="Найти..." v-model="serachQuery" />
-        <span class="icon is-small is-left">
-          <SearchIcon />
-        </span>
-      </p>
-      <p class="control">
-        <button class="button filter-button">
-          <FilterIcon />
-        </button>
-      </p>
-    </div>
-
-    <div class="swipe-hint">
-      <slot name="swipe-hints">
-        <span>
-          Списание
-          <SwipeLeft />
-        </span>
-        <span>
-          В корзину
-          <SwipeRight />
-        </span>
-      </slot>
-    </div>
-
-    <div class="content has-content-centered empty-hint" v-if="!items.length">
-      <h1>
-        <slot name="empty_caption">Здесь ничего нет</slot>
-      </h1>
-    </div>
+    <SearchComponent v-model="serachQuery" />
+    <SwipeHintsComponent />
+    <EmptyListHint v-if="!items.length" />
     <SwipeContainer>
       <SwipeItem
         v-for="item in items"
@@ -117,28 +87,5 @@ svg {
   margin: 0.5rem;
   width: calc(100% - 1rem);
   height: calc(100% - 1rem);
-}
-
-.swipe-hint {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin: -0.75rem 0;
-}
-
-.swipe-hint span {
-  margin: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.swipe-hint svg {
-  width: 30px;
-  margin: 0;
-}
-
-.empty-hint {
-  margin-top: 1rem;
 }
 </style>

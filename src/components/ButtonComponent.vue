@@ -11,6 +11,7 @@ defineEmits(['click'])
 <template>
     <button @click="$emit('click')" :class="{border: hasBorder, contrast: contrast, fill: hasFill}">
         {{ title }}
+        <slot></slot>
     </button>
 </template>
 
