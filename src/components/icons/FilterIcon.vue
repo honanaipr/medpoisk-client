@@ -1,31 +1,7 @@
 <template>
-  <svg
-    viewBox="0 -0.5 21 21"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    fill="#000000"
-  >
-    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-    <g id="SVGRepo_iconCarrier">
-      <title>filter [#1384]</title>
-      <desc>Created with Sketch.</desc>
-      <defs></defs>
-      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g
-          id="Dribbble-Light-Preview"
-          transform="translate(-299.000000, -760.000000)"
-          fill="#000000"
-        >
-          <g id="icons" transform="translate(56.000000, 160.000000)">
-            <path
-              d="M254.55945,610 L254.55,614 L252.45,614 L252.45,610 L246.63405,602 L260.367,602 L254.55945,610 Z M252.45,618 L254.55,618 L254.55,616 L252.45,616 L252.45,618 Z M243,600 L250.35,610.857 L250.35,620 L256.65,620 L256.65,610.857 L264,600 L243,600 Z"
-              id="filter-[#1384]"
-            ></path>
-          </g>
-        </g>
-      </g>
-    </g>
+  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M15 20.0033C15.04 20.3033 14.94 20.6233 14.71 20.8333C14.32 21.2233 13.69 21.2233 13.3 20.8333L9.28998 16.8233C9.05998 16.5933 8.95998 16.2833 8.99998 15.9933V10.8733L4.20998 4.74329C3.86998 4.31329 3.94998 3.68329 4.37998 3.34329C4.56998 3.20329 4.77998 3.12329 4.99998 3.12329H19C19.22 3.12329 19.43 3.20329 19.62 3.34329C20.05 3.68329 20.13 4.31329 19.79 4.74329L15 10.8733V20.0033ZM7.03998 5.12329L11 10.1833V15.7033L13 17.7033V10.1733L16.96 5.12329H7.03998Z"
+      fill="#5A5A5C" />
   </svg>
 </template>
