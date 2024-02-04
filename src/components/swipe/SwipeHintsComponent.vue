@@ -33,7 +33,7 @@ import DoubleClick from '@/components/icons/DoubleClickIcon.vue'
 .swipe-hint span
     font-size: 16px
     font-weight: 600
-    color: #999999
+    color: var(--devider-color)
     display: flex
     flex-direction: column
     align-items: center

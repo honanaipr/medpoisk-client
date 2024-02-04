@@ -74,7 +74,7 @@ const detectDoubleTapClosure = (() => {
 .inventory-item
   padding: 16px
   border-radius: 8px
-  background-color: #F3F3F4
+  background-color: var(--background-seconfary)
   display: flex
   gap: 8px
 
@@ -86,7 +86,7 @@ const detectDoubleTapClosure = (() => {
   font-size: 14px
   font-weight: 600
   > div:nth-child(1)
-    color: #121212
+    color: var(--text-black)
     font-size: 14px
     font-weight: 600
   > div:nth-child(2)

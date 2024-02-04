@@ -24,7 +24,7 @@ import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
   padding: 0 10px 0 10px
 .header
   padding: 0 10px 0 10px
-  color: #121212
+  color: var(--text-black)
   font-weight: bold
 .header h1
   font-size: 20px

@@ -23,18 +23,18 @@ button
     border: none
     text-align: start
     padding: 10px
-    background-color: #F3F3F4
-    color: #5A5A5C
+    background-color: var(--background-seconfary)
+    color: var(--text-grey)
     flex-grow: 1
     font-weight: 700
     cursor: pointer
 button.border
-    border: 1px solid #999999
+    border: 1px solid var(--devider-color)
 button.contrast
     color: var(--active-color)
     border-color: var(--active-color)
 button.fill
-    color: #F8F9F9
+    color: var(--background-color)
     background-color: var(--active-color)
 button.centered
     text-align: center

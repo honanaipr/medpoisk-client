@@ -40,7 +40,7 @@ function createDoctor(){
   padding: 0 10px 0 10px
 .header
   padding: 0 10px 0 10px
-  color: #121212
+  color: var(--text-black)
   font-weight: bold
   margin-bottom: 16px
 .header h1
