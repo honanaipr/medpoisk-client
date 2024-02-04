@@ -56,7 +56,8 @@ const profileRoutes = ['profile', 'roomManager', 'doctorManager', 'placeManager'
     flex-direction: row
     justify-content: space-around
     align-items: stretch
-    height: 100px
+    box-shadow: 0px 0px 10px 5px #0000001A
+    margin: 0 -10px
 BottomControlsButton
     flex-grow: 1
 </style>
