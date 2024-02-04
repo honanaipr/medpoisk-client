@@ -41,9 +41,9 @@ const router = createRouter({
       meta: { transition: 'slide-left' },
     },
     {
-      path: '/basket',
-      name: 'basket',
-      component: () => import('../views/BasketView.vue'),
+      path: '/cart',
+      name: 'cart',
+      component: () => import('../views/CartView.vue'),
       meta: { transition: 'slide-left' },
     },
     {

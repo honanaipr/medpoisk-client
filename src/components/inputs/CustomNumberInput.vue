@@ -24,7 +24,7 @@ const value = computed({
 <template>
   <nav class="level is-mobile" style="padding-bottom: 0.5rem">
     <div class="level-left">
-      <div class="field has-addons" v-if="$route.name == 'basket'">
+      <div class="field has-addons" v-if="$route.name == 'cart'">
         <p class="control">
           <a class="button" @click="value < max_value ? value++ : () => {}">
             <AngleUp />

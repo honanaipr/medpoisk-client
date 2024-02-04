@@ -35,9 +35,9 @@ const profileRoutes = ['profile', 'roomManager', 'doctorManager', 'placeManager'
                     <PlusIcon />
                 </template>
             </BottomControlsButton>
-            <BottomControlsButton :active="$route.name == 'basket'" title="Корзина" @click="$router.push('/basket')">
+            <BottomControlsButton :active="$route.name == 'cart'" title="Корзина" @click="$router.push('/cart')">
                 <template #icon>
-                    <CartIcon :active="$route.name == 'basket'" />
+                    <CartIcon :active="$route.name == 'cart'" />
                 </template>
             </BottomControlsButton>
             <BottomControlsButton :active="$route.name == 'profile'" title="Профиль" @click="$router.push('/profile')">

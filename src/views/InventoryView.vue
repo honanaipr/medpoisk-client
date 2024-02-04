@@ -14,8 +14,8 @@ import InventoryItem from '../components/InventoryItem.vue'
 const list_store = useListStore()
 
 function singularWriteOff(product_id: number) {
-  list_store.toBasketById(product_id)
-  router.push('basket')
+  list_store.toCartById(product_id)
+  router.push('cart')
 }
 
 let serachQuery = ref('')
@@ -52,7 +52,7 @@ function filter(item: ListItem) {
         v-for="item in list_store.persistent"
         :key="item.product.id"
         @right="()=>singularWriteOff(item.product.id)"
-        @left="()=>list_store.toBasketById(item.product.id)"
+        @left="()=>list_store.toCartById(item.product.id)"
       >
         <template #right>
           <slot name="left-icon">

@@ -6,7 +6,7 @@ import { ref, computed } from 'vue'
 import SwipeItem from '../components/SwipeItem.vue'
 import SwipeContainer from '../components/SwipeContainer.vue'
 import EmptyListHint from '../components/EmptyListHint.vue'
-import BasketItem from '@/components/BasketItem.vue'
+import CartItem from '@/components/CartItem.vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 
 const list_store = useListStore()
@@ -22,13 +22,13 @@ function apply() {
 }
 
 function cancel() {
-  list_store.clearBasket()
+  list_store.clearCart()
   doctor_id.value = ''
   room_id.value = ''
 }
 
 const all_places_selected = computed(() => {
-  return list_store.basketed.every((n) => {
+  return list_store.carted.every((n) => {
     return !!n.writeOffPlaceID
   })
 })
@@ -36,10 +36,10 @@ const all_places_selected = computed(() => {
 
 <template>
   <h1>Корзина</h1>
-  <EmptyListHint v-if="!list_store.basketed.length" />
+  <EmptyListHint v-if="!list_store.carted.length" />
   <SwipeContainer v-else>
-    <SwipeItem v-for="item in list_store.basketed" :key="item.product.id"
-      @right="() => list_store.unBasketById(item.product.id)">
+    <SwipeItem v-for="item in list_store.carted" :key="item.product.id"
+      @right="() => list_store.unCartById(item.product.id)">
       <template #right>
         <slot name="left-icon">
         </slot>
@@ -48,11 +48,11 @@ const all_places_selected = computed(() => {
         <slot name="right-icon">
         </slot>
       </template>
-      <BasketItem :listItem="item" />
+      <CartItem :listItem="item" />
     </SwipeItem>
   </SwipeContainer>
   <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id"
-    :allow_apply="list_store.basketed.length && all_places_selected" @apply="apply" @cancel="cancel" />
+    :allow_apply="list_store.carted.length && all_places_selected" @apply="apply" @cancel="cancel" />
   <div class="buttons">
     <ButtonComponent has-border contrast @click="cancel">Отменить</ButtonComponent>
     <ButtonComponent has-border contrast has-fill @click="apply">Списать</ButtonComponent>

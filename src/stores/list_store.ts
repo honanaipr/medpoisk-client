@@ -66,32 +66,32 @@ export const useListStore = defineStore('list', () => {
     return list.value.filter((item) => item.state == ListItemState.PERSISTENT)
   })
 
-  const basketed = computed<Array<ListItem>>(() => {
+  const carted = computed<Array<ListItem>>(() => {
     return list.value.filter((item) => item.state == ListItemState.PENDING_DELETION)
   })
 
-  function toBasketById(id: number) {
+  function toCartById(id: number) {
     if (states.value.has(id)) {
       states.value.set(id, ListItemState.PENDING_DELETION)
     } else {
       throw Error(`id ${id} not found`)
     }
-    showToast('Basketed' + id)
+    showToast('Carted' + id)
   }
-  function unBasketById(id: number) {
+  function unCartById(id: number) {
     if (states.value.has(id)) {
       states.value.set(id, ListItemState.PERSISTENT)
     } else {
       throw Error(`id ${id} not found`)
     }
-    showToast('Unbasketed' + id)
+    showToast('Uncarted' + id)
   }
 
-  function clearBasket() {}
+  function clearCart() {}
 
   function byId(product_id: number) {
     return list.value.find((n) => n.product.id == product_id)
   }
 
-  return { list, basketed, persistent, toBasketById, unBasketById, clearBasket, byId, update }
+  return { list, carted, persistent, toCartById, unCartById, clearCart, byId, update }
 })
