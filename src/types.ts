@@ -3,7 +3,7 @@ export interface DoctorCreate {
 }
 
 export class Doctor {
-  id?: number
+  id: number
   username: string
   email?: string
   first_name?: string
@@ -26,7 +26,7 @@ export interface RoomCreate {
 }
 
 export class Room {
-  id?: number
+  id: number
   title: string
   division_id: number
 
@@ -63,7 +63,7 @@ export class Picture {
 }
 
 export class Product {
-  id?: number
+  id: number
   title: string
   description: string
   barcode: number
