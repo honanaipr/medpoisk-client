@@ -39,7 +39,7 @@ function filter(item: ListItem) {
 </script>
 
 <template>
-  <div class="container control-container is-fluid">
+  <div class="control-container">
     <PlaceFilter v-model="selectedCategories" />
     <div class="content">
       <h3>Наименования</h3>
