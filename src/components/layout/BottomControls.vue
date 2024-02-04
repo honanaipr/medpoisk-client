@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import HomeIcon from "../components/icons/HomeIcon.vue"
-import ReportIcon from "../components/icons/ReportIcon.vue"
-import PlusIcon from "../components/icons/PlusIcon.vue"
-import CartIcon from "../components/icons/CartIcon.vue"
-import ProfileIcon from "../components/icons/ProfileIcon.vue"
+import HomeIcon from "@/components/icons/HomeIcon.vue"
+import ReportIcon from "@/components/icons/ReportIcon.vue"
+import PlusIcon from "@/components/icons/PlusIcon.vue"
+import CartIcon from "@/components/icons/CartIcon.vue"
+import ProfileIcon from "@/components/icons/ProfileIcon.vue"
 import BottomControlsButton from "./BottomControlsButton.vue"
-import router from "../router"
-import AddTypeModal from "../components/AddTypeModal.vue"
+import router from "@/router"
+import AddTypeModal from "@/components/AddTypeModal.vue"
 import { ref } from 'vue'
 
 const isModalActive = ref(false)
