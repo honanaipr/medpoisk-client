@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FilterIcon from './icons/FilterIcon.vue'
-import ButtonComponent from '../components/ButtonComponent.vue'
-import InputComponent from '@/components/InputComponent.vue';
+import FilterIcon from '@/components/icons/FilterIcon.vue'
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
+import InputComponent from '@/components/inputs/InputComponent.vue';
 const serachQuery = defineModel<string>({required: true})
 </script>
 

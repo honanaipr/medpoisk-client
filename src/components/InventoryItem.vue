@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { ListItem } from '@/types'
 import MoreIcon from './icons/MoreIcon.vue'
 import FavoriteIcon from './icons/FavoriteIcon.vue'
-import ButtonComponent from './ButtonComponent.vue'
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 
 const emit = defineEmits(['doubleClick'])
 

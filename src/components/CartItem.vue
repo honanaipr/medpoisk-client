@@ -2,8 +2,8 @@
 import { ref, computed } from 'vue'
 import { ListItem } from '@/types'
 import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
-import ButtonComponent from './ButtonComponent.vue';
-import InputComponent from './InputComponent.vue';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import InputComponent from '@/components/inputs/InputComponent.vue';
 import{ Place } from '@/types'
 import SectionComponent from './common/SectionComponent.vue';
 

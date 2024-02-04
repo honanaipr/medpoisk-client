@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Place } from '@/types';
-import { usePlaceStore } from '../stores/place_store'
-import ButtonComponent from './ButtonComponent.vue';
-import AngleDownVue from './icons/AngleDown.vue';
+import { usePlaceStore } from '@/stores/place_store'
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import AngleDownVue from '@/components/icons/AngleDown.vue';
 
 const selectedCategories = defineModel<Place[]>({required: true})
 const place_store = usePlaceStore()

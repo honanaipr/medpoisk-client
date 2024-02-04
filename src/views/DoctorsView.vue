@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ButtonComponent from '@/components/ButtonComponent.vue';
-import InputComponent from '@/components/InputComponent.vue';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import InputComponent from '@/components/inputs/InputComponent.vue';
 import { useDoctorStore } from '@/stores/doctor_store';
 const doctor_store = useDoctorStore()
 

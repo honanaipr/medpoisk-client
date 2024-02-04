@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ButtonComponent from '@/components/ButtonComponent.vue';
-import InputComponent from '@/components/InputComponent.vue';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import InputComponent from '@/components/inputs/InputComponent.vue';
 import { useRoomStore } from '@/stores/room_store';
 const room_store = useRoomStore()
 

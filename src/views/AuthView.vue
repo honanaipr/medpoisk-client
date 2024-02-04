@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth_store';
-import ButtonComponent from '@/components/ButtonComponent.vue';
-import InputComponent from '@/components/InputComponent.vue';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import InputComponent from '@/components/inputs/InputComponent.vue';
 
 const auth_store = useAuthStore()
 const username = ref('')

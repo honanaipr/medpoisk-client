@@ -5,9 +5,9 @@ import router from '../router/index.js'
 import { ref, computed } from 'vue'
 import SwipeItem from '@/components/swipe/SwipeItem.vue'
 import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
-import EmptyListHint from '../components/EmptyListHint.vue'
+import EmptyListHint from '@/components/common/EmptyListHint.vue'
 import CartItem from '@/components/CartItem.vue'
-import ButtonComponent from '@/components/ButtonComponent.vue'
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 
 const list_store = useListStore()
 

@@ -5,10 +5,10 @@ import SwipeItem from '@/components/swipe/SwipeItem.vue'
 import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
 import { ref } from 'vue'
 import { ListItem } from '@/types'
-import PlaceFilter from '../components/PlaceFilter.vue'
-import SearchComponent from '../components/SearchComponent.vue'
+import PlaceFilter from '@/components/common/PlaceFilter.vue'
+import SearchComponent from '@/components/common/SearchComponent.vue'
 import SwipeHintsComponent from '@/components/swipe/SwipeHintsComponent.vue'
-import EmptyListHint from '../components/EmptyListHint.vue'
+import EmptyListHint from '@/components/common/EmptyListHint.vue'
 import InventoryItem from '../components/InventoryItem.vue'
 
 const list_store = useListStore()

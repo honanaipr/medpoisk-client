@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDoctorStore } from '@/stores/doctor_store'
 import { useRoomStore } from '@/stores/room_store'
-import InputComponent from './InputComponent.vue';
+import InputComponent from '@/components/inputs/InputComponent.vue';
 import SectionComponent from './common/SectionComponent.vue'
 import { computed } from 'vue';
 
