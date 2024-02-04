@@ -43,7 +43,7 @@ export interface PlaceCreate {
 }
 
 export class Place {
-  id?: number
+  id: number
   title: string
   division_id: number
 
