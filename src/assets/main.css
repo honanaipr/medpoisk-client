@@ -9,8 +9,7 @@
   --button-color: #ffffff;
 }
 :root {
-  --background-color: hsl(180, 8%, 97%);
-  --background-color: hsl(180, 8%, 97%);
+  --background-color: #FAFAFA;
   --inactive-color: #5A5A5C;
   --active-color: #9526FF;
 }
