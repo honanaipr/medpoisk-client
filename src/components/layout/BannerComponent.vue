@@ -1,34 +1,29 @@
+<script setup lang="ts">
+import LogoIcon from '@/components/icons/LogoIcon.vue'
+import AngleLeft from '@/components/icons/AngleLeft.vue'
+import ButtonComponent from '../inputs/ButtonComponent.vue';
+</script>
 <template>
-  <div class="top-controls">
-    <div class="logo">
-      <img src="@/assets/logo.png" />
-      <span>medpoisk</span>
+    <div class="top-controls">
+      <div class="left"><ButtonComponent><AngleLeft/></ButtonComponent></div>
+      <div style="text-align: center;">
+        <LogoIcon style="display: block;"/>
+      </div>
+      <div class="right"><ButtonComponent><AngleLeft/></ButtonComponent></div>
     </div>
-  </div>
 </template>
 
-<style scoped>
-.top-controls {
-  flex-shrink: 0;
-  height: 70px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
+<style scoped lang="sass">
+.top-controls 
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 16px
 
-.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+.left , .right
+  aspect-ratio: 16/1
 
-.logo img {
-  width: 3rem;
-  height: 3rem;
-}
-
-.logo span {
-  font-size: 1.5rem;
-}
+.right
+  visibility: hidden
 </style>
