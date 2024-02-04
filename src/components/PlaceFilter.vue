@@ -2,6 +2,7 @@
 import { Place } from '@/types';
 import { usePlaceStore } from '../stores/place_store'
 import ButtonComponent from './ButtonComponent.vue';
+import AngleDownVue from './icons/AngleDown.vue';
 
 const selectedCategories = defineModel<Place[]>({required: true})
 const place_store = usePlaceStore()
@@ -24,7 +25,7 @@ function toggleCategory(place: Place) {
             <template v-for="place in place_store.places" :key="place.id">
                 <ButtonComponent class="place-bage" :title="place.title" :contrast="selectedCategories.includes(place)" :has-fill="selectedCategories.includes(place)" @click="toggleCategory(place)" />
             </template>
-            <ButtonComponent class="place-bage" title="+" />
+            <ButtonComponent class="place-bage"><AngleDownVue/></ButtonComponent>
         </div>
     </div>
 </template>
