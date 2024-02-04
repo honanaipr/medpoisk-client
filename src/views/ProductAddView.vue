@@ -113,8 +113,4 @@ function onfileChange() {
 #uploadIcon {
   cursor: pointer;
 }
-
-svg {
-  width: 20px;
-}
 </style>

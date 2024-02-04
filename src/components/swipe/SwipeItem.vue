@@ -41,7 +41,7 @@ watch(shiftX, (newShiftX, oldShiftX) => {
     "
     :class="{ backer: !grabbed }"
   >
-    <div class="content">
+    <div>
       <slot></slot>
     </div>
     <div class="left"><slot name="left"></slot></div>
@@ -51,7 +51,6 @@ watch(shiftX, (newShiftX, oldShiftX) => {
 <style scoped>
 .item {
   position: relative;
-  margin: 1rem 0 1rem 0;
   user-select: none;
 }
 .left {

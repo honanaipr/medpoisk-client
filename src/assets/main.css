@@ -9,6 +9,7 @@
   --button-color: #ffffff;
 }
 :root {
+  font-weight: 600;
   --background-color: #FAFAFA;
   --inactive-color: #5A5A5C;
   --active-color: #9526FF;

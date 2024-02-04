@@ -87,8 +87,4 @@ svg {
   flex-direction: column;
   align-items: center;
 }
-.swipe-hint svg {
-  width: 30px;
-  margin: 0;
-}
 </style>

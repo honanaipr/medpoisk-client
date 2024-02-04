@@ -31,6 +31,10 @@ function toggleCategory(place: Place) {
 </template>
 
 <style scoped lang="sass">
+.place-filter
+    display: flex
+    flex-direction: column
+    gap: 16px
 .place-holder
     display: flex
     flex-wrap: wrap

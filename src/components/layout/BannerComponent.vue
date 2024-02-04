@@ -4,13 +4,21 @@ import AngleLeft from '@/components/icons/AngleLeft.vue'
 import ButtonComponent from '../inputs/ButtonComponent.vue';
 </script>
 <template>
-    <div class="top-controls">
-      <div class="left"><ButtonComponent><AngleLeft/></ButtonComponent></div>
-      <div style="text-align: center;">
-        <LogoIcon style="display: block;"/>
-      </div>
-      <div class="right"><ButtonComponent><AngleLeft/></ButtonComponent></div>
+  <div class="top-controls">
+    <div class="left">
+      <ButtonComponent @click="$router.back">
+        <AngleLeft />
+      </ButtonComponent>
     </div>
+    <div style="text-align: center;">
+      <LogoIcon style="display: block;" />
+    </div>
+    <div class="right">
+      <ButtonComponent>
+        <AngleLeft />
+      </ButtonComponent>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="sass">
@@ -23,6 +31,8 @@ import ButtonComponent from '../inputs/ButtonComponent.vue';
 
 .left , .right
   aspect-ratio: 16/1
+  button
+    background-color: #FFFFFFFF
 
 .right
   visibility: hidden

@@ -21,7 +21,7 @@ provide('shiftX', shiftX)
 
 <template>
   <div
-    class="container"
+    class="swipe-container"
     @mouseup="shiftX = null"
     @mouseleave="shiftX = 0"
     @touchend="shiftX = null"
@@ -51,7 +51,7 @@ provide('shiftX', shiftX)
 </template>
 
 <style scoped>
-.container {
+.swipe-container {
   position: relative;
   overflow-x: hidden;
 }

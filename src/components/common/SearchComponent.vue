@@ -16,9 +16,4 @@ const serachQuery = defineModel<string>({required: true})
 .search-container
     display: flex
     gap: 8px
-svg
-    box-sizing: border-box
-    margin: 0.5rem
-    width: calc(100% - 1rem)
-    height: calc(100% - 1rem)
 </style>

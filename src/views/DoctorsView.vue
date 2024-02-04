@@ -42,10 +42,12 @@ function createDoctor(){
   padding: 0 10px 0 10px
   color: var(--text-black)
   font-weight: bold
+  display: flex
+  flex-direction: column
+  gap: 16px
   margin-bottom: 16px
 .header h1
   font-size: 20px
-  margin-bottom: 16px
 .header h2
   font-size: 16px
 </style>

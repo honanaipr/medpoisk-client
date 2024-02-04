@@ -35,52 +35,39 @@ const all_places_selected = computed(() => {
 </script>
 
 <template>
-  <h1>Корзина</h1>
-  <EmptyListHint v-if="!list_store.carted.length" />
-  <SwipeContainer v-else>
-    <SwipeItem v-for="item in list_store.carted" :key="item.product.id"
-      @right="() => list_store.unCartById(item.product.id)">
-      <template #right>
-        <slot name="left-icon">
-        </slot>
-      </template>
-      <template #left>
-        <slot name="right-icon">
-        </slot>
-      </template>
-      <CartItem :listItem="item" />
-    </SwipeItem>
-  </SwipeContainer>
-  <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id"
-    :allow_apply="list_store.carted.length && all_places_selected" @apply="apply" @cancel="cancel" />
-  <div class="buttons">
-    <ButtonComponent has-border contrast @click="cancel">Отменить</ButtonComponent>
-    <ButtonComponent has-border contrast has-fill @click="apply">Списать</ButtonComponent>
+  <div class="cart-view">
+    <h1>Корзина</h1>
+    <EmptyListHint v-if="!list_store.carted.length" />
+    <SwipeContainer v-else>
+      <SwipeItem v-for="item in list_store.carted" :key="item.product.id"
+        @right="() => list_store.unCartById(item.product.id)">
+        <template #right>
+          <slot name="left-icon">
+          </slot>
+        </template>
+        <template #left>
+          <slot name="right-icon">
+          </slot>
+        </template>
+        <CartItem :listItem="item" />
+      </SwipeItem>
+    </SwipeContainer>
+    <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id"
+      :allow_apply="list_store.carted.length && all_places_selected" @apply="apply" @cancel="cancel" />
+    <div class="buttons">
+      <ButtonComponent has-border contrast @click="cancel">Отменить</ButtonComponent>
+      <ButtonComponent :disabled="!!doctor_id && !!doctor_id" has-border contrast has-fill @click="apply">Списать</ButtonComponent>
+    </div>
   </div>
 </template>
 
 <style scoped>
-svg {
-  box-sizing: border-box;
-  margin: 0.5rem;
-  width: calc(100% - 1rem);
-  height: calc(100% - 1rem);
-}
-
-.swipe-hint {
-  margin: 0 2rem;
+.cart-view {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 16px
 }
-
-.swipe-hint svg {
-  width: 30px;
-  margin: 0;
-}
-
 .buttons {
-  margin: 16px 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;

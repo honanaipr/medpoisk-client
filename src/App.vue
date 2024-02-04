@@ -18,7 +18,7 @@ const auth_store = useAuthStore()
       <div v-if="auth_store.authState == AuthState.Pending" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
         <SpinnerComponent />
       </div>
-      <div v-else-if="auth_store.authState == AuthState.Loggedin" class="" style="overflow-y: scroll; flex-grow: 1;">
+      <div v-else-if="auth_store.authState == AuthState.Loggedin" class="scroll-area">
         <RouterView />
       </div>
       <AuthViewVue v-else-if="auth_store.authState == AuthState.Failed" />
@@ -36,5 +36,10 @@ const auth_store = useAuthStore()
   flex-direction: column;
   overflow: hidden;
   padding: 44px 10px 34px 10px;
+}
+.scroll-area {
+  overflow-y: scroll;
+  flex-grow: 1;
+  margin-bottom: 16px;
 }
 </style>

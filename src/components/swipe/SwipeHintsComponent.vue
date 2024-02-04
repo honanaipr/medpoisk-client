@@ -28,7 +28,6 @@ import DoubleClick from '@/components/icons/DoubleClickIcon.vue'
     display: flex
     flex-direction: row
     justify-content: space-evenly
-    margin-bottom: 16px
 
 .swipe-hint span
     font-size: 16px
@@ -38,8 +37,4 @@ import DoubleClick from '@/components/icons/DoubleClickIcon.vue'
     flex-direction: column
     align-items: center
     justify-content: space-between  
-
-.swipe-hint svg
-    width: 30px
-    margin: 0
 </style>

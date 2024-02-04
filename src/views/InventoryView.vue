@@ -39,15 +39,13 @@ function filter(item: ListItem) {
 </script>
 
 <template>
-  <div class="control-container">
+  <div class="inventory-view">
     <PlaceFilter v-model="selectedCategories" />
-    <div class="content">
-      <h3>Наименования</h3>
-    </div>
+    <h1>Наименования</h1>
     <SearchComponent v-model="serachQuery" />
     <SwipeHintsComponent />
     <EmptyListHint v-if="!list_store.persistent.length" />
-    <SwipeContainer>
+    <SwipeContainer class="item-container">
       <SwipeItem
         v-for="item in list_store.persistent"
         :key="item.product.id"
@@ -67,3 +65,13 @@ function filter(item: ListItem) {
     </SwipeContainer>
   </div>
 </template>
+<style scoped lang="sass">
+.inventory-view
+  display: flex
+  flex-direction: column
+  gap: 16px
+.item-container
+  display: flex
+  flex-direction: column
+  gap: 16px
+</style>
