@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { ListItem } from '@/types'
 import MoreIcon from './icons/MoreIcon.vue'
 import FavoriteIcon from './icons/FavoriteIcon.vue'
+import ButtonComponent from './ButtonComponent.vue'
 
 const emit = defineEmits(['doubleClick'])
 
@@ -59,8 +60,12 @@ const detectDoubleTapClosure = (() => {
       </div>
     </div>
     <div class="left-pane">
-      <button><MoreIcon /></button>
-      <button><FavoriteIcon /></button>
+      <ButtonComponent>
+        <MoreIcon />
+      </ButtonComponent>
+      <ButtonComponent>
+        <FavoriteIcon />
+      </ButtonComponent>
     </div>
   </div>
 </template>
@@ -100,4 +105,6 @@ const detectDoubleTapClosure = (() => {
   flex-direction: column
   justify-content: space-between
   align-items: center
+  > button
+    flex-grow: 0
 </style>
