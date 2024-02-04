@@ -37,6 +37,7 @@ import DoubleClick from './icons/DoubleClickIcon.vue'
     display: flex
     flex-direction: column
     align-items: center
+    justify-content: space-between  
 
 .swipe-hint svg
     width: 30px
