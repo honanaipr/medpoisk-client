@@ -27,7 +27,7 @@ input
     color: #5A5A5C
 
 input:last-of-type
-    margin-bottom: 16px
+    // margin-bottom: 16px
 
 span
     display: block
