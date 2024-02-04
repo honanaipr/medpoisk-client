@@ -58,8 +58,8 @@ function filter(item: ListItem) {
       <SwipeItem
         v-for="item in list_store.persistent"
         :key="item.product.id"
-        @right="singularWriteOff"
-        @left="list_store.toBasketById"
+        @right="()=>singularWriteOff(item.product.id)"
+        @left="()=>list_store.toBasketById(item.product.id)"
       >
         <template #right>
           <slot name="left-icon">
