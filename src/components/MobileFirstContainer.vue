@@ -14,7 +14,7 @@
     justify-content: center
     align-items: center
     height: 100vh
-    background-color: #E0E0E0
+    background-color: #404040
 .mobile-first-content
     width: 100%
     height: 100%
