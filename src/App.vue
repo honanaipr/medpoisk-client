@@ -13,7 +13,7 @@ const auth_store = useAuthStore()
 
 <template>
   <MobileFirstContainer>
-    <div style="display: flex; height: 100%; width: 100%; flex-direction: column; overflow: hidden;" class="app">
+    <div class="app">
       <BannerComponent />
       <div v-if="auth_store.authState == AuthState.Pending" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
         <SpinnerComponent />
@@ -30,5 +30,11 @@ const auth_store = useAuthStore()
 <style scoped>
 .app {
   background-color: var(--background-color);
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 44px 10px 34px 10px;
 }
 </style>
