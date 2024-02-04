@@ -1,47 +1,97 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { ListItem } from '@/types'
 import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
-import CustomPlaceSelector from './inputs/CustomPlaceSelector.vue'
+import ButtonComponent from './ButtonComponent.vue';
+import InputComponent from './InputComponent.vue';
+import{ Place } from '@/types'
+import SectionComponent from './common/SectionComponent.vue';
 
-defineProps({
+const props = defineProps({
   listItem: { type: ListItem, required: true },
 })
 
-const writeOffAmount = ref(0)
-const writeOffPlaceID = ref(null)
+const selections = ref<Array<{place: Place|null, amount: number}>>([])
+function addSelection(){
+  selections.value.push({place: null, amount: 0})
+}
 </script>
 
 <template>
-  <div class="box item">
-    {{ listItem.product.title }}
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <p class="level-item" aria-label="reply" style="display: block; width: 5rem">
-          {{ writeOffAmount }}/{{ listItem.limit }}
-        </p>
+  <SectionComponent class="inventory-item">
+    <div class="right-pane">
+      <div>{{ listItem.product.title }}</div>
+      <div>
+        <div>{{ listItem.amount }} / {{ listItem.limit }}</div>
+        <div>
+          <p v-for="place in listItem.places" :key="place.id">
+            {{ place.title }}
+          </p>
+        </div>
       </div>
-      <div class="level-right">
-        <CustomPlaceSelector :places="listItem.places" v-model="writeOffPlaceID" />
+      <div class="write-off-talbe">
+        <div class="row" v-for="selection in selections">
+          <div class="column">
+            <h1>Места хранения поля</h1>
+            <InputComponent :options="listItem.places"/>
+          </div>
+          <div class="column">
+            <h1>Количество</h1>
+            <InputComponent />
+          </div>
+        </div>
       </div>
-    </nav>
-    <CustomNumberInput v-model="writeOffAmount" :max_value="listItem.limit" />
-  </div>
+      <ButtonComponent has-border centered @click="addSelection">+</ButtonComponent>
+    </div>
+  </SectionComponent>
 </template>
 
-<style scoped>
-.item {
-  margin-bottom: 0.5rem;
-  border: 1px solid black;
-  padding: 0.5rem;
-  border-radius: 5px;
-}
+<style scoped lang="sass">
+.inventory-item
+  padding: 16px
+  border-radius: 8px
+  background-color: #F3F3F4
+  display: flex
+  gap: 8px
 
-.item-control {
-  width: 5rem;
-}
+.right-pane
+  flex-grow: 1
+  display: flex
+  flex-direction: column
+  gap: 16px
+  font-size: 14px
+  font-weight: 600
+  > div:nth-child(1)
+    color: #121212
+    font-size: 14px
+    font-weight: 600
+  > div:nth-child(2)
+    display: flex
+    justify-content: space-between
+    > div:nth-child(2)
+      display: flex
+      flex-direction: column
+  > div:nth-child(3)
+      display: flex
+      justify-content: space-between
 
-p.place-tag {
-  margin-bottom: 0;
-}
+button
+    justify-content: center
+
+.write-off-talbe
+  display: flex
+  flex-direction: column
+  .row
+    display: flex
+    gap: 16px
+    .column
+      padding: 0
+      display: flex
+      flex-direction: column
+      justify-content: start
+      > h1
+        flex-grow: 1
+        margin: 0
+        font-size: 12px
+        font-weight: 600
 </style>

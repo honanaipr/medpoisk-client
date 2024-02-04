@@ -1,9 +1,10 @@
 <script setup lang="ts">
 defineProps({
     title: { type: String, required: false },
-    description: { tytle: String, required: false },
-    placeholder: { tytle: String, default: '' },
-    type: { tytle: String, default: 'text' },
+    description: { type: String, required: false },
+    placeholder: { type: String, default: '' },
+    type: { type: String, default: 'text' },
+    options: {type: Array<{title: string, id: number}>, required: false}
 })
 
 const model = defineModel()
@@ -11,27 +12,37 @@ const model = defineModel()
 
 
 <template>
-    <span v-if="title">{{ title }}</span>
-    <input v-model="model" :type="type" :placeholder="placeholder" :id="title" :name="title" />
-    <span v-if="description">{{ description }}</span>
+    <div class="input-container">
+        <span v-if="title">{{ title }}</span>
+        <input v-if="type != 'select'" v-model="model" :type="type" :placeholder="placeholder" :id="title" :name="title" />
+        <select v-if="type == 'select'" v-model="model" :id="title" :name="title">
+            <option disabled value="">Выбрать место</option>
+            <option disabled hidden :value="null">Место не выбрано</option>
+            <option v-for="place in options" :key="place.id" :value="place.id">
+            {{ place.title }}
+            </option>
+        </select>
+        <span v-if="description">{{ description }}</span>
+    </div>
 </template>
 
 <style scoped lang="sass">
-input
-    background-color: #F3F3F4
-    border: 1px solid #999999
-    padding: 10px
+.input-container
+    display: flex
+    flex-direction: column
+    gap: 4px
+    min-width: 0px
+input, select
+    background-color: var(--background-seconfary)
+    border: 1px solid var(--devider-color)
+    padding: 16px
+    font-size: 14px
     border-radius: 8px
     font-weight: 700
-    width: 100%
-    color: #5A5A5C
-
-input:last-of-type
-    // margin-bottom: 16px
+    color: var(--devider-color)
 
 span
-    display: block
     font-size: 12px
     font-weight: 600
-    color: #5A5A5C
+    color: var(--inactive-color)
 </style>
