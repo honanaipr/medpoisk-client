@@ -29,5 +29,5 @@ button
 span.active
     color: var(--active-color, black)
 span
-    color: var(--inactive-color, grey)
+    color: var(--color-grey, grey)
 </style>
