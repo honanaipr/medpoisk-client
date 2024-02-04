@@ -2,13 +2,12 @@
 import SwipeItem from './SwipeItem.vue'
 import SwipeContainer from './SwipeContainer.vue'
 import { ref } from 'vue'
-import CartIcon from './icons/CartIcon.vue'
-import CartPlusIcon from './icons/CartPlusIcon.vue'
 import { ListItem } from '@/types'
 import PlaceFilter from './PlaceFilter.vue'
 import SearchComponent from './SearchComponent.vue'
 import SwipeHintsComponent from './SwipeHintsComponent.vue'
 import EmptyListHint from './EmptyListHint.vue'
+import InventoryItem from './InventoryItem.vue'
 
 defineProps({
   items: { type: Array<ListItem>, required: true },
@@ -55,15 +54,16 @@ function filter(item: ListItem) {
       >
         <template #right>
           <slot name="left-icon">
-            <CartIcon />
+            <!-- <CartIcon /> -->
           </slot>
         </template>
         <template #left>
           <slot name="right-icon">
-            <CartPlusIcon />
+            <!-- <CartPlusIcon /> -->
           </slot>
         </template>
-        <component :is="itemComponent" :listItem="item" v-if="filter(item)" />
+        <InventoryItem :listItem="item" v-if="filter(item)" @doubleClick="$router.push({ name: 'product', params: { id: item.product.id } })"/>
+        <!-- <component :is="itemComponent" :listItem="item" v-if="filter(item)" /> -->
       </SwipeItem>
     </SwipeContainer>
   </div>
@@ -83,5 +83,11 @@ svg {
   margin: 0.5rem;
   width: calc(100% - 1rem);
   height: calc(100% - 1rem);
+}
+
+.item-holder{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>
