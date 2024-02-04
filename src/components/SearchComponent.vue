@@ -7,7 +7,7 @@ const serachQuery = defineModel<string>({required: true})
 
 <template>
     <div class="search-container">
-        <InputComponent v-model="serachQuery" placeholder="Найти..."/>
+        <InputComponent style="margin-bottom: 0;" v-model="serachQuery" placeholder="Найти..."/>
         <ButtonComponent has-border><FilterIcon /></ButtonComponent>
     </div>
 </template>
