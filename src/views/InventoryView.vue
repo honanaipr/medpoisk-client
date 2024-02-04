@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import router from '../router'
 import { useListStore } from '../stores/list_store'
-import SwipeItem from '../components/SwipeItem.vue'
-import SwipeContainer from '../components/SwipeContainer.vue'
+import SwipeItem from '@/components/swipe/SwipeItem.vue'
+import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
 import { ref } from 'vue'
 import { ListItem } from '@/types'
 import PlaceFilter from '../components/PlaceFilter.vue'
 import SearchComponent from '../components/SearchComponent.vue'
-import SwipeHintsComponent from '../components/SwipeHintsComponent.vue'
+import SwipeHintsComponent from '@/components/swipe/SwipeHintsComponent.vue'
 import EmptyListHint from '../components/EmptyListHint.vue'
 import InventoryItem from '../components/InventoryItem.vue'
 

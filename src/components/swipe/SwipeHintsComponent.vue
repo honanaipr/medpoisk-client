@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import SwipeRight from './icons/SwipeRight.vue'
-import SwipeLeft from './icons/SwipeLeft.vue'
-import DoubleClick from './icons/DoubleClickIcon.vue'
+import SwipeRight from '@/components/icons/SwipeRight.vue'
+import SwipeLeft from '@/components/icons/SwipeLeft.vue'
+import DoubleClick from '@/components/icons/DoubleClickIcon.vue'
 </script>
 <template>
     <div class="swipe-hint">
