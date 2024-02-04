@@ -18,13 +18,6 @@ function singularWriteOff(product_id: number) {
   router.push('basket')
 }
 
-defineProps({
-  items: { type: Array<ListItem>, required: true },
-  itemComponent: null,
-})
-
-defineEmits(['left', 'right'])
-
 let serachQuery = ref('')
 let selectedCategories = ref([])
 
