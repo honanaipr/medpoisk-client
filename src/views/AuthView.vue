@@ -15,7 +15,7 @@ const password = ref('')
         <InputComponent v-model="username" placeholder="example@medpoisk.com" title="Email"/>
         <InputComponent v-model="password" placeholder="*************" title="Пароль" type="password"/>
         <div style="display: flex; flex-direction: row; gap: 8px">
-            <ButtonComponent @click="auth_store.login(username, password)" title="Войти" contrast has-border has-fill/>
+            <ButtonComponent @click="auth_store.login(username, password)" contrast has-border has-fill>Войти</ButtonComponent>
         </div>
     </div>
 </template>

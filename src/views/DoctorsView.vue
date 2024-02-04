@@ -21,13 +21,13 @@ function createDoctor(){
         <h2>Добавить нового</h2>
         <InputComponent v-model="newDoctorName" placeholder="Иванов И.И" title="ФИО"/>
         <div style="display: flex; flex-direction: row; gap: 8px">
-            <ButtonComponent @click="$router.back()" title="Отменить" contrast has-border/>
-            <ButtonComponent @click="createDoctor" title="Добавить" contrast has-fill/>
+            <ButtonComponent @click="$router.back()" contrast has-border>Отменить</ButtonComponent>
+            <ButtonComponent @click="createDoctor" contrast has-fill>Добавить</ButtonComponent>
         </div>
     </div>
     <div class="container">
         <template v-for="doctor of doctor_store.doctors" :key="doctor.id">
-            <ButtonComponent :title="doctor.username" />
+            <ButtonComponent>{{ doctor.username }}</ButtonComponent>
         </template>
     </div>
 </template>

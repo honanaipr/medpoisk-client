@@ -21,13 +21,13 @@ function createPlace(){
         <h2>Добавить новое</h2>
         <InputComponent v-model="newPlaceTitle" placeholder="Название" title="Название"/>
         <div style="display: flex; flex-direction: row; gap: 8px">
-            <ButtonComponent @click="$router.back()" title="Отменить" contrast has-border/>
-            <ButtonComponent @click="createPlace" title="Добавить" contrast has-fill/>
+            <ButtonComponent @click="$router.back()" contrast has-border>Отменить</ButtonComponent>
+            <ButtonComponent @click="createPlace" contrast has-fill>Добавить</ButtonComponent>
         </div>
     </div>
     <div class="container">
         <template v-for="place of place_store.places" :key="place.id">
-            <ButtonComponent :title="place.title" />
+            <ButtonComponent>{{ place.title }}</ButtonComponent>
         </template>
     </div>
 </template>

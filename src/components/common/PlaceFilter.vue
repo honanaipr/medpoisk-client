@@ -23,7 +23,7 @@ function toggleCategory(place: Place) {
         </div>
         <div class="place-holder">
             <template v-for="place in place_store.places" :key="place.id">
-                <ButtonComponent class="place-bage" :title="place.title" :contrast="selectedCategories.includes(place)" :has-fill="selectedCategories.includes(place)" @click="toggleCategory(place)" />
+                <ButtonComponent class="place-bage" :contrast="selectedCategories.includes(place)" :has-fill="selectedCategories.includes(place)" @click="toggleCategory(place)">{{ place.title }}</ButtonComponent>
             </template>
             <ButtonComponent class="place-bage"><AngleDownVue/></ButtonComponent>
         </div>

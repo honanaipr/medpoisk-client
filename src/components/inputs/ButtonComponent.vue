@@ -1,17 +1,16 @@
 <script setup lang="ts">
 defineProps({
-    title: String,
     hasBorder: Boolean,
     contrast: Boolean,
     hasFill: Boolean,
-    centered: {type:Boolean, default: true}
+    centered: {type:Boolean, default: true},
+    disabled: Boolean,
 })
 defineEmits(['click'])
 </script>
 
 <template>
-    <button @click="$emit('click')" :class="{border: hasBorder, contrast: contrast, fill: hasFill, centered: centered}">
-        {{ title }}
+    <button :disabled="disabled" @click="$emit('click')" :class="{border: hasBorder, contrast: contrast, fill: hasFill, centered: centered}">
         <slot></slot>
     </button>
 </template>
@@ -34,9 +33,13 @@ button.border
 button.contrast
     color: var(--active-color)
     border-color: var(--active-color)
-button.contrast.fill
+button.fill
     color: #F8F9F9
     background-color: var(--active-color)
 button.centered
     text-align: center
+button:disabled
+    background-color: var(--devider-color)
+    color: var(--background-color) 
+    border-color: var(--text-grey)
 </style>

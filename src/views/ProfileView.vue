@@ -8,12 +8,12 @@ import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
     <h2>Название подразделения</h2>
   </div>
   <div class="container">
-    <ButtonComponent title="Настройки профиля" @click="()=>{$router.push({name: 'home'})}" has-border />
-    <ButtonComponent title="Журнал накладных" @click="()=>{$router.push({name: 'home'})}" />
-    <ButtonComponent title="Журнал списания" @click="()=>{$router.push({name: 'home'})}" />
-    <ButtonComponent title="Места хранения" @click="()=>{$router.push({name: 'placeManager'})}" />
-    <ButtonComponent title="Врачи" @click="()=>{$router.push({name: 'doctorManager'})}" />
-    <ButtonComponent title="Кабинеты" @click="()=>{$router.push({name: 'roomManager'})}" />
+    <ButtonComponent @click="()=>{$router.push({name: 'home'})}" has-border>Настройки профиля</ButtonComponent>
+    <ButtonComponent @click="()=>{$router.push({name: 'home'})}">Журнал накладных</ButtonComponent>
+    <ButtonComponent @click="()=>{$router.push({name: 'home'})}">Журнал списания</ButtonComponent>
+    <ButtonComponent @click="()=>{$router.push({name: 'placeManager'})}">Места хранения</ButtonComponent>
+    <ButtonComponent @click="()=>{$router.push({name: 'doctorManager'})}">Врачи</ButtonComponent>
+    <ButtonComponent @click="()=>{$router.push({name: 'roomManager'})}">Кабинеты</ButtonComponent>
   </div>
 </template>
 <style scoped lang="sass">

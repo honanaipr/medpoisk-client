@@ -21,13 +21,13 @@ function createRoom(){
         <h2>Добавить новый</h2>
         <InputComponent v-model="newRoomTitle" placeholder="312" title="№ кабинета"/>
         <div style="display: flex; flex-direction: row; gap: 8px">
-            <ButtonComponent @click="$router.back()" title="Отменить" contrast has-border/>
-            <ButtonComponent @click="createRoom" title="Добавить" contrast has-fill/>
+            <ButtonComponent @click="$router.back()" contrast has-border>Отменить</ButtonComponent>
+            <ButtonComponent @click="createRoom" contrast has-fill>Добавить</ButtonComponent>
         </div>
     </div>
     <div class="container">
         <template v-for="room of room_store.rooms" :key="room.id">
-            <ButtonComponent :title="room.title" />
+            <ButtonComponent>{{ room.title }}</ButtonComponent>
         </template>
     </div>
 </template>
