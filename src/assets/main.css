@@ -12,6 +12,10 @@
   --background-color: #FAFAFA;
   --inactive-color: #5A5A5C;
   --active-color: #9526FF;
+  --text-grey: #5A5A5C;
+  --text-black: #121212;
+  --background-seconfary: #F3F3F4;
+  --devider-color: #999999;
 }
 * {
     scrollbar-width: none;
