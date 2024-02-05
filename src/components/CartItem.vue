@@ -32,12 +32,10 @@ function addSelection(){
       <div class="write-off-talbe">
         <div class="row" v-for="selection in selections">
           <div class="column">
-            <h1>Места хранения поля</h1>
-            <InputComponent :options="listItem.places"/>
+            <InputComponent title="Места хранения поля" type="select" :options="listItem.places"/>
           </div>
           <div class="column">
-            <h1>Количество</h1>
-            <InputComponent />
+            <InputComponent title="Количество" />
           </div>
         </div>
       </div>
@@ -81,6 +79,7 @@ button
 .write-off-talbe
   display: flex
   flex-direction: column
+  gap: 16px
   .row
     display: flex
     gap: 16px
@@ -94,4 +93,5 @@ button
         margin: 0
         font-size: 12px
         font-weight: 600
+
 </style>

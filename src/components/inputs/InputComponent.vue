@@ -40,6 +40,7 @@ input, select
     border-radius: 8px
     font-weight: 700
     color: var(--devider-color)
+    width: 100%
 
 span
     font-size: 12px
