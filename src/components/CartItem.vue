@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { ListItem } from '@/types'
-import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
-import InputComponent from '@/components/inputs/InputComponent.vue';
+import NumberInput from './inputs/NumberInput.vue';
 import{ Place } from '@/types'
 import SectionComponent from './common/SectionComponent.vue';
+import SelectInput from './inputs/SelectInput.vue';
 
 const props = defineProps({
   listItem: { type: ListItem, required: true },
@@ -30,12 +30,12 @@ function addSelection(){
         </div>
       </div>
       <div class="write-off-talbe">
-        <div class="row" v-for="selection in selections">
+        <div class="row" v-for="selection in selections" :key="selection.place?selection.place.id:0">
           <div class="column">
-            <InputComponent title="Места хранения поля" type="select" :options="listItem.places"/>
+            <SelectInput title="Места хранения поля" type="select" :options="listItem.places"/>
           </div>
           <div class="column">
-            <InputComponent title="Количество" />
+            <NumberInput title="Количество" />
           </div>
         </div>
       </div>
@@ -88,10 +88,14 @@ button
       display: flex
       flex-direction: column
       justify-content: start
+      min-width: 0
       > h1
         flex-grow: 1
         margin: 0
         font-size: 12px
         font-weight: 600
+    .column:nth-child(1)
+      flex-grow: 1.5
+
 
 </style>
