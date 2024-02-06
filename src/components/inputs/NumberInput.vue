@@ -1,18 +1,42 @@
 <script setup lang="ts">
-defineProps({
-    title: String
+import { onMounted } from 'vue';
+
+const props = defineProps({
+    title: String,
+    min: {type: Number, required: false},
+    max: {type: Number, required: false},
 })
+
 const model = defineModel({default: 0})
+
+onMounted(()=>{
+    if (props.min) model.value = Math.max(model.value, props.min)
+    if (props.max) model.value = Math.min(model.value, props.max)
+})
+
 defineEmits(['less','more'])
+
+function inc(){
+    if (!props.max  || model.value < props.max){
+        model.value++
+    }
+}
+
+function dec(){
+    if (!props.min  || model.value > props.min){
+        model.value--
+    }
+}
+
 </script>
 
 <template>
     <div class="input-container">
         <span v-if="title">{{ title }}</span>
         <div class="number-input">
-                <button @click="$emit('less')">-</button>
-                <input v-model="model">
-                <button @click="$emit('more')">+</button>
+                <button @click="$emit('less'); dec()">-</button>
+                <input v-model="model" type="number" :min="props.min" :max="props.max">
+                <button @click="$emit('more'); inc()">+</button>
         </div>
    </div>
 </template>
@@ -62,4 +86,13 @@ span
     font-size: 12px
     font-weight: 600
     color: var(--inactive-color)
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+/* Firefox */
+input[type=number]
+  -moz-appearance: textfield
 </style>
