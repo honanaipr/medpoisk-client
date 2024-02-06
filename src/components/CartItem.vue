@@ -13,7 +13,9 @@ const props = defineProps({
 
 const selections = ref<Array<{place: Place|null, amount: number}>>([])
 function addSelection(){
-  selections.value.push({place: null, amount: 0})
+  if (selections.value.length < props.listItem.places.length){
+    selections.value.push({place: null, amount: 0})
+  }
 }
 </script>
 
@@ -39,7 +41,7 @@ function addSelection(){
           </div>
         </div>
       </div>
-      <ButtonComponent has-border centered @click="addSelection">+</ButtonComponent>
+      <ButtonComponent has-border centered v-if="selections.length < listItem.places.length" @click="addSelection">+</ButtonComponent>
     </div>
   </SectionComponent>
 </template>
