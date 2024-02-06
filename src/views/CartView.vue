@@ -49,7 +49,7 @@ const all_places_selected = computed(() => {
           <slot name="right-icon">
           </slot>
         </template>
-        <CartItem :listItem="item" />
+        <CartItem :cartItem="item" />
       </SwipeItem>
     </SwipeContainer>
     <WriteOffFor v-model:doctor_id="doctor_id" v-model:room_id="room_id"

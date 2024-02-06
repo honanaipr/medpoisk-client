@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ListItem } from '@/types'
+import type { ListItem } from '@/types'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
 import NumberInput from './inputs/NumberInput.vue';
 import{ Place } from '@/types'
@@ -8,12 +8,12 @@ import SectionComponent from './common/SectionComponent.vue';
 import SelectInput from './inputs/SelectInput.vue';
 
 const props = defineProps({
-  listItem: { type: ListItem, required: true },
+  cartItem: { type: Object as ()=> ListItem, required: true },
 })
 
 const selections = ref<Array<{place: Place|null, amount: number}>>([])
 function addSelection(){
-  if (selections.value.length < props.listItem.places.length){
+  if (selections.value.length < props.cartItem.places.length){
     selections.value.push({place: null, amount: 0})
   }
 }
@@ -22,11 +22,11 @@ function addSelection(){
 <template>
   <SectionComponent class="inventory-item">
     <div class="right-pane">
-      <div>{{ listItem.product.title }}</div>
+      <div>{{ cartItem.product.title }}</div>
       <div>
-        <div>{{ listItem.amount }} / {{ listItem.limit }}</div>
+        <div>{{ cartItem.amount }} / {{ cartItem.limit }}</div>
         <div>
-          <p v-for="place in listItem.places" :key="place.id">
+          <p v-for="place in cartItem.places" :key="place.id">
             {{ place.title }}
           </p>
         </div>
@@ -34,14 +34,14 @@ function addSelection(){
       <div class="write-off-talbe">
         <div class="row" v-for="selection in selections" :key="selection.place?selection.place.id:0">
           <div class="column">
-            <SelectInput title="Места хранения поля" type="select" :options="listItem.places"/>
+            <SelectInput title="Места хранения поля" type="select" :options="cartItem.places"/>
           </div>
           <div class="column">
             <NumberInput title="Количество" />
           </div>
         </div>
       </div>
-      <ButtonComponent has-border centered v-if="selections.length < listItem.places.length" @click="addSelection">+</ButtonComponent>
+      <ButtonComponent has-border centered v-if="selections.length < cartItem.places.length" @click="addSelection">+</ButtonComponent>
     </div>
   </SectionComponent>
 </template>
