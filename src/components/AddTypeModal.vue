@@ -44,7 +44,6 @@ const emit = defineEmits(['close'])
     flex-direction: column;
     align-items: center;
     color: var(--inactive-color);
-    background-color: var(--inactive-color);
     gap: 8px;
     padding: 8px 0 8px 0;
     font-family: 'Manrope', sans-serif;
