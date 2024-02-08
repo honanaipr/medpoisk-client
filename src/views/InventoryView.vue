@@ -13,7 +13,7 @@ import { useInventoryStore } from '@/stores/inventory_store'
 import { useLimitStore } from '@/stores/limit_store'
 import { ListItemState, Place } from '@/types'
 import { useProductStore } from '@/stores/product_store'
-import InventoryListItem from '@/components/InventoryItem.vue'
+import InventoryListItem from '@/components/InventoryListItem.vue'
 
 const productStore = useProductStore()
 const inventoryStore = useInventoryStore()

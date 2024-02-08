@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 import SwipeItem from '@/components/swipe/SwipeItem.vue'
 import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
 import EmptyListHint from '@/components/common/EmptyListHint.vue'
-import CartItem from '@/components/CartItem.vue'
+import CartItem from '@/components/CartListItem.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 
 const cartStore = useCartStore()
