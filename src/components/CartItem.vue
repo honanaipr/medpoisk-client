@@ -1,45 +1,44 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { ListItem } from '@/types'
-import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
+import { ref } from 'vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
 import InputComponent from '@/components/inputs/InputComponent.vue';
 import{ Place } from '@/types'
 import SectionComponent from './common/SectionComponent.vue';
+import type { CartItem } from '@/stores/cart_store';
 
 const props = defineProps({
-  listItem: { type: ListItem, required: true },
+  cartItem: { type: Object as ()=>CartItem, required: true },
 })
 
-const selections = ref<Array<{place: Place|null, amount: number}>>([])
-function addSelection(){
-  selections.value.push({place: null, amount: 0})
+const rows = ref<Array<{place: Place|null, amount: number}>>([])
+function addRow(){
+  rows.value.push({place: null, amount: 0})
 }
 </script>
 
 <template>
-  <SectionComponent class="inventory-item">
+  <SectionComponent class="inventory-item" v-if="cartItem">
     <div class="right-pane">
-      <div>{{ listItem.product.title }}</div>
+      <div>{{ cartItem.product.title }}</div>
       <div>
-        <div>{{ listItem.amount }} / {{ listItem.limit }}</div>
+        <div>{{ cartItem.amount }} / {{ cartItem.limit }}</div>
         <div>
-          <p v-for="place in listItem.places" :key="place.id">
-            {{ place.title }}
+          <p v-for="allocation in cartItem.alocations" :key="allocation.place.id">
+            {{ allocation.place.title }}
           </p>
         </div>
       </div>
       <div class="write-off-talbe">
-        <div class="row" v-for="selection in selections">
+        <div class="row" v-for="row in rows">
           <div class="column">
-            <InputComponent title="Места хранения поля" type="select" :options="listItem.places"/>
+            <InputComponent title="Места хранения поля" type="select" :options="[]"/>
           </div>
           <div class="column">
             <InputComponent title="Количество" />
           </div>
         </div>
       </div>
-      <ButtonComponent has-border centered @click="addSelection">+</ButtonComponent>
+      <ButtonComponent has-border centered @click="addRow">+</ButtonComponent>
     </div>
   </SectionComponent>
 </template>
