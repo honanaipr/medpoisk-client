@@ -10,7 +10,7 @@ const emit = defineEmits(['close'])
     <div class="menu-outer">
         <div class="menu-container">
             <div class="add-menu">
-                <span @click="emit('close'); $router.push({ name: 'add' })">Наименование</span>
+                <span @click="emit('close'); $router.push({ name: 'addProduct' })">Наименование</span>
                 <span @click="emit('close'); $router.push({ name: 'addInvoice' })">Накладная</span>
                 <span>XLS файл</span>
                 <span @click="emit('close'); $router.push({ name: 'addByCode' })">QR - код</span>
