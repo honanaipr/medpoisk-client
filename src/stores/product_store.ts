@@ -6,12 +6,32 @@ import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
-import { Product } from '../types'
+// import { Product } from '../types'
 import { productSchema } from '../schemas'
 
 import { API_PRODUCT_PATH } from '../pathes'
 
 import { useAuthStore } from './auth_store'
+
+export interface Picture {
+  url: string
+}
+
+export interface ProductCreate {
+  title: string
+  description: string
+  limit: number
+  barcode: number
+  pictures: Array<File>
+}
+
+export interface Product {
+  id: number
+  title: string
+  description: string
+  barcode: number
+  pictures: Array<Picture>
+}
 
 export const useProductStore = defineStore('product', () => {
   const products: Ref<Product[]> = ref([])
