@@ -12,6 +12,7 @@ import { ref } from 'vue'
 const isModalActive = ref(false)
 
 const profileRoutes = ['profile', 'roomManager', 'doctorManager', 'placeManager']
+const addRoutes = ['addToInvoice', 'addProduct', 'addInvoice', 'addByCode']
 </script>
 
 <template>
@@ -32,7 +33,7 @@ const profileRoutes = ['profile', 'roomManager', 'doctorManager', 'placeManager'
             </BottomControlsButton>
             <BottomControlsButton title="Добавить" @click="isModalActive = !isModalActive">
                 <template #icon>
-                    <PlusIcon />
+                    <PlusIcon :active="addRoutes.includes($route.name)"/>
                 </template>
             </BottomControlsButton>
             <BottomControlsButton :active="$route.name == 'cart'" title="Корзина" @click="$router.push('/cart')">
