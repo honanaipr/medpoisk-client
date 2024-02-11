@@ -1,159 +1,112 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import router from '../router'
-import { store } from '../store.js'
 import { InvoiceItem } from '@/types.js'
 import PlusIcon from '../components/icons/PlusIcon.vue'
 import defaultImage from '@/assets/add_image.png'
-import _ from 'lodash'
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
+import CustomNumberInput from '@/components/inputs/CustomNumberInput.vue'
+import SelectComponetn from '@/components/inputs/SelectComponent.vue'
+import { useProductStore } from '@/stores/product_store'
+import { useInvoiceStore } from '@/stores/invoice_store'
 
-defineProps(['target_name'])
+const productStore = useProductStore()
+const invoiceStore = useInvoiceStore()
 
 let heading = ref('')
-let amount = ref(null)
+let amount = ref(0)
 let limit = ref(null)
 let barcode = ref(null)
 let selected_place_id = ref('')
-let product_id = ref('')
+let productId = ref('')
+let priceForOne = ref(0)
+let priceForPackage = ref(0)
 
 async function apply() {
-  if (router.currentRoute.value.name == 'add') {
-    await store.addItem(
-      new store.Item(
-        heading.value,
-        amount.value,
-        limit.value,
-        barcode.value,
-        selected_place_id.value
-      ),
-      imageFile.value
-    )
-    router.back()
-  }
-  if (router.currentRoute.value.name == 'addToInvoice') {
-    const product = _.find(store.items, (item) => item.id == product_id.value)
-    const places = [_.find(store.places, (item) => item.id == selected_place_id.value)]
-    store.invoice.push(new InvoiceItem(product, places, amount.value))
-    router.replace('addInvoice')
-  }
+  invoiceStore.invoiceItems.push({
+    product
+  })}
+  // if (router.currentRoute.value.name == 'add') {
+  //   await store.addItem(
+  //     new store.Item(
+  //       heading.value,
+  //       amount.value,
+  //       limit.value,
+  //       barcode.value,
+  //       selected_place_id.value
+  //     ),
+  //     imageFile.value
+  //   )
+  //   router.back()
+  // }
+  // if (router.currentRoute.value.name == 'addToInvoice') {
+  //   const product = _.find(store.items, (item) => item.id == product_id.value)
+  //   const places = [_.find(store.places, (item) => item.id == selected_place_id.value)]
+  //   store.invoice.push(new InvoiceItem(product, places, amount.value))
+  //   router.replace('addInvoice')
+  // }
 }
 
-const apply_enabled = computed(function () {
-  if (router.currentRoute.value.name == 'add') {
-    return !!heading.value && !!limit.value
-  } else {
-    return !!product_id.value && !!selected_place_id.value
+
+const options = computed<{title: string, id: number}[]>(()=>{
+  let options:{title: string, id: number}[] = []
+  for (const product of productStore.products) {
+    options.push({title: product.title, id: product.id})
   }
+  return options
 })
-
-const iamgeSrc = ref(defaultImage)
-const imageFile = ref(null)
-const imgInp = ref(null)
-function onfileChange() {
-  const [file] = imgInp.value.files
-  imageFile.value = file
-  if (file) {
-    iamgeSrc.value = URL.createObjectURL(file)
-  }
-}
-
-function onAddProduct() {
-  router.push({ name: 'add' })
-}
+import InputComponent from '@/components/inputs/InputComponent.vue'
 </script>
 
 <template>
-  <div class="field" v-if="router.currentRoute.value.name == 'add'">
-    <div class="uploadBox has-text-centered">
-      <label for="uploadFile" id="uploadIcon" class="is-inline-block">
-        <figure class="image is-128x128">
-          <img :src="iamgeSrc" style="border-radius: 0.5rem" />
-        </figure>
-      </label>
+  <div class="add-to-invoice-view">
+    <div class="product-selector">
+      <SelectComponetn title="Название" v-model="productId" :options="options"/>
+      <ButtonComponent has-border @click="$router.push({name: 'addProduct'})">+</ButtonComponent>
     </div>
-    <input type="file" ref="imgInp" @change="onfileChange" id="uploadFile" class="uploadFile" />
-  </div>
-
-  <div class="container is-fluid is-mobile">
-    <div class="field">
-      <label class="label">Наименование:</label>
-      <div class="control" v-if="$route.name == 'add'">
-        <input class="input" type="text" v-model="heading" :class="{ 'is-danger': !heading }" />
-      </div>
-      <div class="control" v-if="$route.name == 'addToInvoice'">
-        <div class="select" :class="{ 'is-danger': !product_id }">
-          <select v-model="product_id">
-            <option disabled value="">Выбрать продукт</option>
-            <option v-for="product in store.items" :key="product.id" :value="product.id">
-              {{ product.title }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <p class="help is-danger" v-if="!product_id && !heading">Поле необходимо</p>
+    <h1>Цена наименований</h1>
+    <div class="prices">
+      <InputComponent title="Цена за шт." v-model="priceForOne"/>
+      <InputComponent title="Цена за упк." v-model="priceForPackage"/>
     </div>
-    <div class="field">
-      <button class="button" @click="onAddProduct" v-if="$route.name != 'add'"><PlusIcon /></button>
-    </div>
-    <label class="label">Количество наименований</label>
-    <div class="field is-horizontal is-mobile">
-      <div class="field-body">
-        <div class="field" v-if="router.currentRoute.value.name == 'addToInvoice'">
-          <div class="control">
-            <label class="label has-text-weight-light">Количество:</label>
-            <input class="input" type="number" v-model="amount" :class="{ 'is-danger': !amount }" />
-            <p class="help is-danger" v-if="!amount">Поле необходимо</p>
-          </div>
-        </div>
-        <div class="field">
-          <div class="control" v-if="$route.name == 'add'">
-            <label class="label has-text-weight-light">Неснижаемый остаток:</label>
-            <input class="input" type="number" v-model="limit" :class="{ 'is-danger': !limit }" />
-            <p class="help is-danger" v-if="!limit">Поле необходимо</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="field" v-if="$route.name == 'add'">
-      <label class="label">Штрихкод:</label>
-      <div class="control">
-        <input class="input" type="number" v-model="barcode" />
-      </div>
-    </div>
-    <div class="field" v-if="$route.name == 'addToInvoice'">
-      <label class="label">Место хронения:</label>
-      <div class="control">
-        <div class="select" :class="{ 'is-danger': !selected_place_id }">
-          <select v-model="selected_place_id">
-            <option disabled value="">Выбрать место</option>
-            <option v-for="place in store.places" :key="place.id" :value="place.id">
-              {{ place.title }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <p class="help is-danger" v-if="!selected_place_id">Поле необходимо</p>
-    </div>
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button" @click="apply" :disabled="!apply_enabled">Применить</button>
-      </div>
-      <div class="control">
-        <button class="button" @click="router.go(-1)">Отменить</button>
-      </div>
-    </div>
+    <InputComponent type="number" title="Количество" v-model="amount"/>
+    <ButtonComponent centered has-border contrast @click="$router.back()">Отменить</ButtonComponent>
+    <ButtonComponent centered has-border contrast has-fill @click="apply();$router.back()">Сохранить наименование</ButtonComponent>
   </div>
 </template>
 
-<style scoped>
-.uploadFile {
-  display: none;
-}
+<style scoped lang="sass">
+div.add-to-invoice-view
+  display: flex
+  flex-direction: column
+  gap: 16px
+  padding: 10px
 
-#uploadIcon {
-  cursor: pointer;
-}
-svg {
-  width: 20px;
-}
+div.product-selector
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  gap: 8px
+  align-items: flex-end
+  button
+    aspect-ratio: 1
+    width: 50px
+    flex-grow: 0
+    display: block
+  div
+    flex-grow: 1
+// .uploadFile {
+//   display: none;
+// }
+
+// #uploadIcon {
+//   cursor: pointer;
+// }
+// svg {
+//   width: 20px;
+// }
+div.prices
+  display: flex
+  flex-direction: row
+  gap: 16px
 </style>

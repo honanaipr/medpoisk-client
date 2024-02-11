@@ -1,37 +1,25 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { store } from '../store.js'
+import { useInvoiceStore } from '@/stores/invoice_store'
+import InputComponent from './inputs/InputComponent.vue';
 
-const heading = computed(() => {
-  return 'Накладная №' + (store.invoiceNumber || '?') + ' от ' + (store.invoiceData || '?')
-})
+const invoiceStore = useInvoiceStore()
 </script>
 
 <template>
-  <div class="container is-fluid">
-    <div class="content">
-      <h1>{{ heading }}</h1>
-    </div>
-    <div class="field">
-      <label class="label">Накладная №:</label>
-      <div class="control">
-        <input
-          class="input"
-          type="number"
-          v-model="store.invoiceNumber"
-          :class="{ 'is-danger': !store.invoiceNumber }"
-        />
-      </div>
-      <p class="help is-danger" v-if="!store.invoiceNumber">Поле необходимо</p>
-    </div>
-
-    <div class="field">
-      <label class="label">Дата</label>
-      <div class="control">
-        <input class="input" type="date" v-model="store.invoiceData" format />
-      </div>
-    </div>
+  <div class="invoice-form-data">
+    <InputComponent type="number" title="Накладная" placeholder="№" v-model="invoiceStore.invoiceNumber"/>
+    <InputComponent type="date" title="Дата" placeholder="11.12.2024 г." v-model="invoiceStore.invoiceDate"/>
+    <InputComponent type="text" title="Поставщик" placeholder="Наименование поставщика" v-model="invoiceStore.invoiceSupplier"/>
+    <InputComponent type="date" title="Дата поступления" placeholder="11.12.2024 г." v-model="invoiceStore.invoiceDeliveryDate"/>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="sass">
+div.invoice-form-data
+  padding: 0 10px
+  display: flex
+  flex-direction: column
+  gap: 16px
+
+
+</style>
