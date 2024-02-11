@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ListItem } from '@/types'
+import { InventoryItem, ListItem } from '@/types'
 import MoreIcon from './icons/MoreIcon.vue'
 import FavoriteIcon from './icons/FavoriteIcon.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'

@@ -6,12 +6,32 @@ import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
-import { Product } from '../types'
+// import { Product } from '../types'
 import { productSchema } from '../schemas'
 
 import { API_PRODUCT_PATH } from '../pathes'
 
 import { useAuthStore } from './auth_store'
+
+export interface Picture {
+  url: string
+}
+
+export interface ProductCreate {
+  title: string
+  description: string
+  limit: number
+  barcode: number
+  pictures: Array<File>
+}
+
+export interface Product {
+  id: number
+  title: string
+  description: string
+  barcode: number
+  pictures: Array<Picture>
+}
 
 export const useProductStore = defineStore('product', () => {
   const products: Ref<Product[]> = ref([])
@@ -25,7 +45,7 @@ export const useProductStore = defineStore('product', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error.message)
         }
-        const value = joiResult.value.map((item) => new Product(item))
+        const value = joiResult.value.map((item) => item)
         console.log(value)
         products.value = value
       })
@@ -35,12 +55,17 @@ export const useProductStore = defineStore('product', () => {
       })
   }
 
-  async function addProduct(product: Product) {
-    const form_data = new FormData()
-    form_data.append('title', product.title)
-    form_data.append('barcode', String(product.barcode))
+  async function addProduct(product: ProductCreate) {
+    const formData = new FormData()
+    formData.append('title', product.title)
+    formData.append('barcode', String(product.barcode))
+    formData.append('limit', String(product.limit))
+    formData.append('description', product.description)
+    for (const pictureFile of product.pictures) {
+      formData.append('pictures', pictureFile, pictureFile.name)
+    }
     axios
-      .put(API_PRODUCT_PATH, form_data, {
+      .put(API_PRODUCT_PATH, formData, {
         headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
@@ -48,7 +73,7 @@ export const useProductStore = defineStore('product', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error.message)
         }
-        const value = new Product(joiResult.value)
+        const value = joiResult.value
         console.log(value)
         products.value.push(value)
         showToast(messaegs.PRODUCT_ADD_OK_MESSAGE)

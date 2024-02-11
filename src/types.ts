@@ -54,29 +54,7 @@ export class Place {
   }
 }
 
-export class Picture {
-  url: string
-
-  constructor(data: Picture) {
-    this.url = data.url
-  }
-}
-
-export class Product {
-  id: number
-  title: string
-  description: string
-  barcode: number
-  pictures: Array<Picture>
-
-  constructor(data: Product) {
-    this.id = data.id
-    this.title = data.title
-    this.description = data.description
-    this.barcode = data.barcode
-    this.pictures = data.pictures
-  }
-}
+import type {Product} from '@/stores/product_store'
 
 export class Position {
   product_id: number
