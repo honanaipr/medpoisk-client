@@ -30,7 +30,7 @@ export interface InvoiceItem {
 
 export const useInvoiceStore = defineStore('invoice', () => {
   const invoiceTitle = ref('')
-  const invoiceDate = ref<Date>(new Date())
+  const invoiceDate = ref<string>(new Date().toISOString().split('T')[0])
   const invoiceNumber = ref<number | null>(null)
   const invoiceSupplier = ref<string>('')
   const invoiceDeliveryDate = ref<Date>(new Date())
