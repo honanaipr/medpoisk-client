@@ -16,7 +16,7 @@ const invoiceStore = useInvoiceStore()
 
 <style scoped lang="sass">
 div.invoice-form-data
-  padding: 0 10px
+  // padding: 0 10px
   display: flex
   flex-direction: column
   gap: 16px

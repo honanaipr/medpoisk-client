@@ -74,7 +74,7 @@ const heading = computed(() => {
   gap: 16px
 
 div.invoice-view
-  padding: 0 10px
+  // padding: 0 10px
   display: flex
   flex-direction: column
   gap: 16px
