@@ -37,9 +37,7 @@ function createPlace(){
   display: flex
   flex-direction: column
   gap: 16px
-  padding: 0 10px 0 10px
 .header
-  padding: 0 10px 0 10px
   color: var(--text-black)
   font-weight: bold
   display: flex
