@@ -31,10 +31,10 @@ function addRow(){
       </div>
       <div class="write-off-talbe">
         <div class="row" v-for="row in rows">
-          <div class="column">
-            <InputComponent title="Места хранения поля" type="select" :options="[]"/>
+          <div class="column place-selector">
+            <InputComponent title="Места хранения" type="select" :options="[]"/>
           </div>
-          <div class="column">
+          <div class="column amount-selector">
             <NumberInput title="Количество" />
           </div>
         </div>
@@ -45,6 +45,12 @@ function addRow(){
 </template>
 
 <style scoped lang="sass">
+.place-selector
+  flex-grow: 4
+  flex-basis: 400px
+.amount-selector
+  flex-basis: 3
+  flex-grow: 300px
 .inventory-item
   padding: 16px
   border-radius: 8px
@@ -94,8 +100,4 @@ button
         margin: 0
         font-size: 12px
         font-weight: 600
-    .column:nth-child(1)
-      flex-grow: 1.5
-
-
 </style>
