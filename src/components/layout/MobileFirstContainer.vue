@@ -18,10 +18,10 @@
 .mobile-first-content
     width: 100%
     height: 100%
-    max-width: 360px
+    max-width: 420px
     transition: height 0.1s
     overflow: hidden
-@media (min-width: 360px)
+@media (min-width: 420px)
     .mobile-first-content
         height: calc(100%  -  20px)
         border-radius: 15px
