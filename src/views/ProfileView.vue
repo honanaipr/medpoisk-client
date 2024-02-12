@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import { useAuthStore } from '@/stores/auth_store';
+const authStore = useAuthStore()
 </script>
 
 <template>
   <div class="header">
     <h1>Название организации</h1>
-    <h2>Название подразделения</h2>
+    <h2>{{ authStore.roles[0].division.title }}</h2>
   </div>
   <div class="container">
     <ButtonComponent @click="()=>{$router.push({name: 'home'})}" has-border>Настройки профиля</ButtonComponent>
