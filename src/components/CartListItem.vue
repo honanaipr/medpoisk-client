@@ -5,6 +5,7 @@ import NumberInput from './inputs/NumberInput.vue';
 import{ Place } from '@/types'
 import SectionComponent from './common/SectionComponent.vue';
 import type { CartItem } from '@/stores/cart_store';
+import InputComponent from '@/components/inputs/InputComponent.vue'
 
 const props = defineProps({
   cartItem: { type: Object as ()=>CartItem, required: true },
