@@ -40,7 +40,6 @@ export const useInventoryStore = defineStore('inventory', () => {
           throw new Error(joiResult.error?.message)
         }
         const value = joiResult.value.map((item) => item)
-        console.log(value)
         inventory.value = value
         showToast(messaegs.INVENTORY_UPDATE_OK_MESSAGE)
       })

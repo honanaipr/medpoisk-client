@@ -37,7 +37,6 @@ export const useDoctorStore = defineStore('doctor', () => {
           throw new Error(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
-        console.log(value)
         doctors.value = value
         showToast(messaegs.DOCTOR_UPDATE_OK_MESSAGE)
       })
@@ -54,7 +53,6 @@ export const useDoctorStore = defineStore('doctor', () => {
         username: doctor.username,
       })
       .then((responce) => {
-        console.log(responce.data)
         const joiResult = doctorSchema.validate(responce.data)
         if (joiResult.error) {
           throw new Error(joiResult.error.message)

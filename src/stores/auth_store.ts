@@ -27,7 +27,6 @@ async function updateAll() {
     inventory_store.update(),
     limit_store.update(),
   ])
-  .then(() => console.log('sucsess'))
   .catch((error) => console.log(error))
 }
 export enum AuthState {

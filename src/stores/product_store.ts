@@ -46,7 +46,6 @@ export const useProductStore = defineStore('product', () => {
           throw new Error(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
-        console.log(value)
         products.value = value
       })
       .catch((error) => {
@@ -74,7 +73,6 @@ export const useProductStore = defineStore('product', () => {
           throw new Error(joiResult.error.message)
         }
         const value = joiResult.value
-        console.log(value)
         products.value.push(value)
         showToast(messaegs.PRODUCT_ADD_OK_MESSAGE)
       })

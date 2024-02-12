@@ -38,7 +38,6 @@ export const usePlaceStore = defineStore('place', () => {
           throw new Error(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
-        console.log(value)
         places.value = value
       })
       .catch((error) => {
@@ -54,7 +53,6 @@ export const usePlaceStore = defineStore('place', () => {
         division_id: place.division_id,
       })
       .then((responce) => {
-        console.log(responce.data)
         const joiResult = placeSchema.validate(responce.data)
         if (joiResult.error) {
           throw new Error(joiResult.error.message)

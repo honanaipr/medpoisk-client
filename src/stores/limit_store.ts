@@ -31,7 +31,6 @@ export const useLimitStore = defineStore('limit', () => {
           throw new Error(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
-        console.log(value)
         limits.value = value
       })
       .catch((error) => {
@@ -48,7 +47,6 @@ export const useLimitStore = defineStore('limit', () => {
         division_id: limit.division_id,
       })
       .then((responce) => {
-        console.log(responce.data)
         const joiResult = limitSchema.validate(responce.data)
         if (joiResult.error) {
           throw new Error(joiResult.error.message)

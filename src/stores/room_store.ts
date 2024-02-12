@@ -36,7 +36,6 @@ export const useRoomStore = defineStore('room', () => {
           throw new Error(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
-        console.log(value)
         rooms.value = value
       })
       .catch((error) => {
@@ -53,7 +52,6 @@ export const useRoomStore = defineStore('room', () => {
         division_id: room.division_id,
       })
       .then((responce) => {
-        console.log(responce.data)
         showToast(messaegs.ROOM_ADD_OK_MESSAGE)
         rooms.value.push({ id: 1234, title: room.title, division_id: 0 })
       })
