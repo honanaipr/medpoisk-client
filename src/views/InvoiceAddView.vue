@@ -64,7 +64,6 @@ div.add-to-invoice-view
   display: flex
   flex-direction: column
   gap: 16px
-  padding: 10px
 
 div.product-selector
   display: flex
