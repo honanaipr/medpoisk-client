@@ -10,7 +10,7 @@ const password = ref('')
 </script>
 
 <template>
-    <div class="header">
+    <div class="auth-view">
         <h2>Добро пожаловать!</h2>
         <InputComponent v-model="username" placeholder="example@medpoisk.com" title="Email"/>
         <InputComponent v-model="password" placeholder="*************" title="Пароль" type="password"/>
@@ -21,17 +21,14 @@ const password = ref('')
 </template>
 
 <style scoped lang="sass">
-.container
-  display: flex
-  flex-direction: column
-  gap: 16px
+.auth-view
   padding: 0 10px 0 10px
-.header
-  padding: 0 20px 0 20px
   color: var(--text-black)
   font-weight: bold
-  margin-bottom: 16px
-.header h2
+  display: flex
+  flex-direction: column
+  gap:16px
+.auth-view  h2
   font-size: 16px
   margin-bottom: 16px
 </style>
