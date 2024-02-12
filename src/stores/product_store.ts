@@ -49,7 +49,7 @@ export const useProductStore = defineStore('product', () => {
         products.value = value
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.PRODUCT_UPDATE_ERROR_MESSAGE)
       })
   }
@@ -77,7 +77,7 @@ export const useProductStore = defineStore('product', () => {
         showToast(messaegs.PRODUCT_ADD_OK_MESSAGE)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.PRODUCT_ADD_ERROR_MESSAGE)
       })
   }
@@ -96,7 +96,7 @@ export const useProductStore = defineStore('product', () => {
         showToast(messaegs.PRODUCT_DELETE_OK_MESSAGE)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.PRODUCT_DELETE_ERROR_MESSAGE)
       })
   }

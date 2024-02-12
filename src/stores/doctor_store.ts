@@ -61,7 +61,7 @@ export const useDoctorStore = defineStore('doctor', () => {
         showToast(messaegs.DOCTOR_ADD_OK_MESSAGE)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.DOCTOR_ADD_ERROR_MESSAGE)
       })
   }

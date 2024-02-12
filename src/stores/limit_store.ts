@@ -34,7 +34,7 @@ export const useLimitStore = defineStore('limit', () => {
         limits.value = value
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.LIMIT_UPDATE_ERROR_MESSAGE)
       })
   }
@@ -55,7 +55,7 @@ export const useLimitStore = defineStore('limit', () => {
         showToast(messaegs.LIMIT_ADD_OK_MESSAGE)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.LIMIT_ADD_ERROR_MESSAGE)
       })
   }

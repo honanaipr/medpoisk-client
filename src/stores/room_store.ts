@@ -39,7 +39,7 @@ export const useRoomStore = defineStore('room', () => {
         rooms.value = value
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.ROOM_UPDATE_ERROR_MESSAGE)
         throw error
       })
@@ -56,7 +56,7 @@ export const useRoomStore = defineStore('room', () => {
         rooms.value.push({ id: 1234, title: room.title, division_id: 0 })
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.ROOM_ADD_ERROR_MESSAGE)
         throw error
       })

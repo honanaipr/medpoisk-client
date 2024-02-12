@@ -41,7 +41,7 @@ export const usePlaceStore = defineStore('place', () => {
         places.value = value
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.PLACE_UPDATE_ERROR_MESSAGE)
       })
   }
@@ -61,7 +61,7 @@ export const usePlaceStore = defineStore('place', () => {
         showToast(messaegs.PLACE_ADD_OK_MESSAGE)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         showToast(messaegs.PLACE_ADD_ERROR_MESSAGE)
       })
   }

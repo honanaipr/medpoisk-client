@@ -27,7 +27,7 @@ async function updateAll() {
     inventory_store.update(),
     limit_store.update(),
   ])
-  .catch((error) => console.log(error))
+  .catch((error) => console.error(error))
 }
 export enum AuthState {
   Pending,
@@ -64,7 +64,7 @@ export const useAuthStore = defineStore('auth', () => {
         updateAll()
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         authState.value = AuthState.Failed
         throw error
       })
@@ -98,14 +98,14 @@ export const useAuthStore = defineStore('auth', () => {
         updateAll()
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         authState.value = AuthState.Failed
         throw error
       })
   }
 
   async function logout() {
-    console.log("Not implimented")
+    console.warn("Not implimented")
   }
 
   async function getFreshToken() {
