@@ -13,38 +13,22 @@ import { useInvoiceStore } from '@/stores/invoice_store'
 const productStore = useProductStore()
 const invoiceStore = useInvoiceStore()
 
-let heading = ref('')
 let amount = ref(0)
-let limit = ref(null)
-let barcode = ref(null)
-let selected_place_id = ref('')
 let productId = ref('')
 let priceForOne = ref(0)
 let priceForPackage = ref(0)
 
 async function apply() {
-  invoiceStore.invoiceItems.push({
-    product
-  })}
-  // if (router.currentRoute.value.name == 'add') {
-  //   await store.addItem(
-  //     new store.Item(
-  //       heading.value,
-  //       amount.value,
-  //       limit.value,
-  //       barcode.value,
-  //       selected_place_id.value
-  //     ),
-  //     imageFile.value
-  //   )
-  //   router.back()
-  // }
-  // if (router.currentRoute.value.name == 'addToInvoice') {
-  //   const product = _.find(store.items, (item) => item.id == product_id.value)
-  //   const places = [_.find(store.places, (item) => item.id == selected_place_id.value)]
-  //   store.invoice.push(new InvoiceItem(product, places, amount.value))
-  //   router.replace('addInvoice')
-  // }
+  const product = productStore.products.find(product=>product.id == Number(productId.value))
+  if (product){
+    invoiceStore.invoiceItems.push({
+      product,
+      priceForOne: priceForOne.value,
+      priceForPackage: priceForPackage.value,
+      fullAmount: amount.value,
+      allocations: []
+    })
+  }
 }
 
 
