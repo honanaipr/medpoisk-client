@@ -39,6 +39,8 @@ function toggleCategory(place: Place) {
     display: flex
     flex-wrap: wrap
     gap: 8px
+    button
+        align-self: center
 .place-bage
     flex-grow: 0
 </style>
