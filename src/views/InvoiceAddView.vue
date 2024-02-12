@@ -74,7 +74,7 @@ div.product-selector
   align-items: flex-end
   button
     aspect-ratio: 1
-    width: 50px
+    width: 55px
     flex-grow: 0
     display: block
   div
