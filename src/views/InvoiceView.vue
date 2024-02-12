@@ -52,7 +52,7 @@ const heading = computed(() => {
       </template>
     </SwipeHintsComponent>
     <span class="empty-hint" v-else>Добавьте поступившие наименования</span>
-    <SwipeContainer class="item-container">
+    <SwipeContainer class="item-container" v-if="invoiceStore.invoiceItems.length">
       <SwipeItem
         v-for="(item, index) of invoiceStore.invoiceItems"
         :key="item.product.id"
