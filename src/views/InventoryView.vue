@@ -94,7 +94,7 @@ const list = computed(() => {
       <SwipeItem
         v-for="item in list.filter(n=>!cartStore.ids.has(n.product.id))"
         :key="item.product.id"
-        @right="()=>{cartStore.ids.add(item.product.id);router.push('cart')}"
+        @right="()=>{cartStore.ids.clear();cartStore.ids.add(item.product.id);router.push('cart')}"
         @left="()=>{cartStore.ids.add(item.product.id)}"
       >
         <template #right>
@@ -105,7 +105,6 @@ const list = computed(() => {
           <slot name="right-icon">
           </slot>
         </template>
-        <!-- {{ item }} -->
         <InventoryListItem :listItem="item" v-if="filter(item)" @doubleClick="$router.push({ name: 'product', params: { id: item.product.id } })"/>
       </SwipeItem>
     </SwipeContainer>
