@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { InventoryItem, ListItem } from '@/types'
+import type { InventoryJointItem } from '@/stores/inventory_store'
 import MoreIcon from './icons/MoreIcon.vue'
 import FavoriteIcon from './icons/FavoriteIcon.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
@@ -8,15 +8,15 @@ import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 const emit = defineEmits(['doubleClick'])
 
 const props = defineProps({
-  listItem: { type: ListItem, required: true },
+  item: { type: Object as ()=>InventoryJointItem, required: true },
 })
 
 const amount = computed(() => {
-  return props.listItem.amount
+  return props.item.amount
 })
 
 const places = computed(() => {
-  return props.listItem.places
+  return props.item.allocations.map(allocation=>allocation.place)
 })
 
 const detectDoubleTapClosure = (() => {
@@ -41,13 +41,13 @@ const detectDoubleTapClosure = (() => {
 <template>
   <div
     class="inventory-item"
-    @dblclick="$router.push({ name: 'product', params: { id: listItem.product.id } })"
+    @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
     @touchend="detectDoubleTapClosure($event)"
   >
     <div class="right-pane">
-      <div>{{ listItem.product.title }}</div>
+      <div>{{ item.product.title }}</div>
       <div>
-        <div>{{ amount }} / {{ listItem.limit }}</div>
+        <div>{{ amount }} / {{ item.limit }}</div>
         <div>
           <p v-for="place in places" :key="place.id">
             {{ place.title }}

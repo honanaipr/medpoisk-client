@@ -5,14 +5,22 @@ import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
-
-import type { DoctorCreate } from '../types'
-import { Doctor } from '../types'
 import { doctorSchema } from '../schemas'
-
 import { API_DOCTOR_PATH } from '../pathes'
-
 import { useAuthStore } from './auth_store'
+
+export interface DoctorCreate {
+  username: string
+}
+
+export interface Doctor {
+  id: number
+  username: string
+  email?: string
+  first_name?: string
+  middle_name?: string
+  last_name: string
+}
 
 export const useDoctorStore = defineStore('doctor', () => {
   const doctors: Ref<Doctor[]> = ref([])
@@ -28,7 +36,7 @@ export const useDoctorStore = defineStore('doctor', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error.message)
         }
-        const value = joiResult.value.map((item) => new Doctor(item))
+        const value = joiResult.value.map((item) => item)
         console.log(value)
         doctors.value = value
         showToast(messaegs.DOCTOR_UPDATE_OK_MESSAGE)

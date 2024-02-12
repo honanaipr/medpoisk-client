@@ -5,13 +5,15 @@ import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
-
-import { Limit } from '../types'
 import { limitSchema } from '../schemas'
-
 import { API_LIMIT_PATH } from '../pathes'
-
 import { useAuthStore } from './auth_store'
+
+export interface Limit {
+  division_id: number
+  product_id: number
+  min_amount: number
+}
 
 export const useLimitStore = defineStore('limit', () => {
   const limits: Ref<Limit[]> = ref([])
@@ -28,7 +30,7 @@ export const useLimitStore = defineStore('limit', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error.message)
         }
-        const value = joiResult.value.map((item) => new Limit(item))
+        const value = joiResult.value.map((item) => item)
         console.log(value)
         limits.value = value
       })

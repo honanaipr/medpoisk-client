@@ -1,18 +1,26 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
 
-import { Place } from '../types'
-import type { PlaceCreate } from '../types'
 import { placeSchema } from '../schemas'
 
 import { API_PLACE_PATH } from '../pathes'
 
 import { useAuthStore } from './auth_store'
+
+export interface PlaceCreate {
+  title: string
+  division_id: number
+}
+
+export interface Place {
+  id: number
+  title: string
+  division_id: number
+}
 
 export const usePlaceStore = defineStore('place', () => {
   const places = ref<Place[]>([])
@@ -29,7 +37,7 @@ export const usePlaceStore = defineStore('place', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error.message)
         }
-        const value = joiResult.value.map((item) => new Place(item))
+        const value = joiResult.value.map((item) => item)
         console.log(value)
         places.value = value
       })

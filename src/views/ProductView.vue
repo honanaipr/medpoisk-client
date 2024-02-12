@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import router from '../router'
-import { useListStore } from '../stores/list_store'
+import { useInventoryStore } from '../stores/inventory_store'
 import { API_PATH } from '../pathes'
 import { computed, onMounted } from 'vue'
 import defaultImage from '@/assets/image.png'
 
-const list_store = useListStore()
+const inventoryStore = useInventoryStore()
 
 const item = computed(() => {
-  const product = list_store.byId(Number(router.currentRoute.value.params.id))
-  if (!product) {
-    throw Error('Product not found')
+  const inventory = inventoryStore.byId(Number(router.currentRoute.value.params.id))
+  if (!inventory) {
+    throw Error('Inventory not found')
   }
-  return product
+  return inventory
 })
 
 onMounted(async () => {
-  await list_store.update()
+  await inventoryStore.update()
 })
 const imageUrl = computed(() => {
   let val

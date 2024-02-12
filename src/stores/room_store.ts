@@ -5,14 +5,20 @@ import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
-
-import type { RoomCreate } from '../types'
-import { Room } from '../types'
 import { roomSchema } from '../schemas'
-
 import { API_ROOM_PATH } from '../pathes'
-
 import { useAuthStore } from './auth_store'
+
+export interface RoomCreate {
+  title: string
+  division_id: number
+}
+
+export interface Room {
+  id: number
+  title: string
+  division_id: number
+}
 
 export const useRoomStore = defineStore('room', () => {
   const rooms: Ref<Room[]> = ref([])
@@ -29,7 +35,7 @@ export const useRoomStore = defineStore('room', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error.message)
         }
-        const value = joiResult.value.map((item) => new Room(item))
+        const value = joiResult.value.map((item) => item)
         console.log(value)
         rooms.value = value
       })
@@ -49,7 +55,7 @@ export const useRoomStore = defineStore('room', () => {
       .then((responce) => {
         console.log(responce.data)
         showToast(messaegs.ROOM_ADD_OK_MESSAGE)
-        rooms.value.push(new Room({ id: 1234, title: room.title, division_id: 0 }))
+        rooms.value.push({ id: 1234, title: room.title, division_id: 0 })
       })
       .catch((error) => {
         console.log(error)

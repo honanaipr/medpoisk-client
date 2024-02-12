@@ -5,13 +5,25 @@ import showToast from '../toast'
 import axios from 'axios'
 import messaegs from '../messaegs'
 import Joi from 'joi'
-
-import { InventoryItem } from '../types'
 import { inventoryItemSchema } from '../schemas'
-
 import { API_INVENTORY_PATH } from '../pathes'
-
 import { useAuthStore } from './auth_store'
+import type { Product } from './product_store'
+import type { Place } from '@/stores/place_store'
+
+
+export interface InventoryItem {
+  product: Product
+  place: Place
+  amount: number
+}
+
+export interface InventoryJointItem {
+  product: Product
+  amount: number
+  limit: number
+  allocations: {place: Place, amount: number}[]
+}
 
 export const useInventoryStore = defineStore('inventory', () => {
   const inventory: Ref<InventoryItem[]> = ref([])
@@ -27,7 +39,7 @@ export const useInventoryStore = defineStore('inventory', () => {
         if (joiResult.error) {
           throw new Error(joiResult.error?.message)
         }
-        const value = joiResult.value.map((item) => new InventoryItem(item))
+        const value = joiResult.value.map((item) => item)
         console.log(value)
         inventory.value = value
         showToast(messaegs.INVENTORY_UPDATE_OK_MESSAGE)

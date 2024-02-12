@@ -30,7 +30,7 @@ function addRow(){
         </div>
       </div>
       <div class="write-off-talbe">
-        <div class="row" v-for="row in rows">
+        <div class="row" v-for="row in cartItem.alocations">
           <div class="column place-selector">
             <InputComponent title="Места хранения" type="select" :options="[]"/>
           </div>

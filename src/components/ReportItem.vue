@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Place } from '@/types';
+// import { Place } from '@/types';
+import type { Place } from '@/stores/place_store';
 import { defineProps } from 'vue';
 import type {Product} from '@/stores/product_store'
 
@@ -16,7 +17,7 @@ defineProps<{
       <span>{{ item.barcode ?? "Нет штрихкода"}}</span>
       <a v-for="picture of item.pictures" :href="picture.url">pic</a>
     </div>
-    <div class="card" v-else-if="(item instanceof Place)">
+    <div class="card" v-else>
       <span>{{ item.title }}</span>
       <span>{{ item.division_id }}</span>
     </div>
