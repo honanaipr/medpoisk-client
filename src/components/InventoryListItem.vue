@@ -60,10 +60,10 @@ const detectDoubleTapClosure = (() => {
       </div>
     </div>
     <div class="left-pane">
-      <ButtonComponent>
+      <ButtonComponent style="padding: 0; padding-top: 10px;">
         <MoreIcon />
       </ButtonComponent>
-      <ButtonComponent>
+      <ButtonComponent style="padding: 0">
         <FavoriteIcon />
       </ButtonComponent>
     </div>
