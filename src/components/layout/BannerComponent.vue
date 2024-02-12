@@ -6,7 +6,7 @@ import ButtonComponent from '../inputs/ButtonComponent.vue';
 <template>
   <div class="top-controls">
     <div class="left">
-      <ButtonComponent @click="$router.back">
+      <ButtonComponent style="background-color: #0000;" @click="$router.back">
         <AngleLeft />
       </ButtonComponent>
     </div>
