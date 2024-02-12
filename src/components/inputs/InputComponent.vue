@@ -30,6 +30,7 @@ const model = defineModel()
 .input-container
     display: flex
     flex-direction: column
+    flex-grow: 1
     gap: 4px
     min-width: 0px
 input, select
@@ -41,6 +42,7 @@ input, select
     font-weight: 700
     color: var(--devider-color)
     width: 100%
+    height: 100%
 
 span
     font-size: 12px

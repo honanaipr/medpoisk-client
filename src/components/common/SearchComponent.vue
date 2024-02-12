@@ -7,8 +7,8 @@ const serachQuery = defineModel<string>({required: true})
 
 <template>
     <div class="search-container">
-        <InputComponent style="margin-bottom: 0;" v-model="serachQuery" placeholder="Найти..."/>
-        <ButtonComponent has-border><FilterIcon /></ButtonComponent>
+        <InputComponent v-model="serachQuery" placeholder="Найти..."/>
+        <ButtonComponent class="button" has-border><FilterIcon /></ButtonComponent>
     </div>
 </template>
 
@@ -16,4 +16,8 @@ const serachQuery = defineModel<string>({required: true})
 .search-container
     display: flex
     gap: 8px
+.button
+    padding: 16px
+    width: fit-content
+    flex-grow: 0
 </style>

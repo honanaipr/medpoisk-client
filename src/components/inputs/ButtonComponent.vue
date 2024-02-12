@@ -26,6 +26,7 @@ button
     background-color: var(--background-seconfary)
     color: var(--text-grey)
     flex-grow: 1
+    font-size: 14px
     font-weight: 700
     cursor: pointer
 button.border
