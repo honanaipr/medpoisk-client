@@ -14,8 +14,8 @@ const model = defineModel()
 <template>
     <div class="input-container">
         <span v-if="title">{{ title }}</span>
-        <input v-if="type != 'select'" v-model="model" :type="type" :placeholder="placeholder" :id="title" :name="title" />
-        <select v-if="type == 'select'" v-model="model" :id="title" :name="title">
+        <input v-bind="$attrs" v-if="type != 'select'" v-model="model" :type="type" :placeholder="placeholder" :id="title" :name="title" />
+        <select v-bind="$attrs" v-if="type == 'select'" v-model="model" :id="title" :name="title">
             <option disabled value="">Выбрать место</option>
             <option disabled hidden :value="null">Место не выбрано</option>
             <option v-for="place in options" :key="place.id" :value="place.id">
