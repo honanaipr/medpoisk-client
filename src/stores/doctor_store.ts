@@ -46,7 +46,6 @@ export const useDoctorStore = defineStore('doctor', () => {
       })
   }
 
-
   function addDoctor(doctor: DoctorCreate) {
     axios
       .put(API_DOCTOR_PATH, {

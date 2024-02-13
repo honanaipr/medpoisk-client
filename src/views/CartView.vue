@@ -29,24 +29,37 @@ function cancel() {
     <h1>Корзина</h1>
     <EmptyListHint v-if="!cartStore.cart_items.length" />
     <SwipeContainer v-else>
-      <SwipeItem v-for="item in cartStore.cart_items" :key="item.product.id"
-        @right="() => cartStore.ids.delete(item.product.id)">
+      <SwipeItem
+        v-for="item in cartStore.cart_items"
+        :key="item.product.id"
+        @right="() => cartStore.ids.delete(item.product.id)"
+      >
         <template #right>
-          <slot name="left-icon">
-          </slot>
+          <slot name="left-icon"> </slot>
         </template>
         <template #left>
-          <slot name="right-icon">
-          </slot>
+          <slot name="right-icon"> </slot>
         </template>
         <CartItem :cartItem="item" />
       </SwipeItem>
     </SwipeContainer>
-    <WriteOffFor v-model:doctor_id="cartStore.forDoctor" v-model:room_id="cartStore.forRoom"
-      :allow_apply="cartStore.cart_items.length && cartStore.isCartFullfilled" @apply="apply" @cancel="cancel" />
+    <WriteOffFor
+      v-model:doctor_id="cartStore.forDoctor"
+      v-model:room_id="cartStore.forRoom"
+      :allow_apply="cartStore.cart_items.length && cartStore.isCartFullfilled"
+      @apply="apply"
+      @cancel="cancel"
+    />
     <div class="buttons">
       <ButtonComponent has-border contrast @click="cancel">Отменить</ButtonComponent>
-      <ButtonComponent :disabled="!cartStore.isCartFullfilled" has-border contrast has-fill @click="apply">Списать</ButtonComponent>
+      <ButtonComponent
+        :disabled="!cartStore.isCartFullfilled"
+        has-border
+        contrast
+        has-fill
+        @click="apply"
+        >Списать</ButtonComponent
+      >
     </div>
   </div>
 </template>
@@ -55,12 +68,12 @@ function cancel() {
 .cart-view {
   display: flex;
   flex-direction: column;
-  gap: 16px
+  gap: 16px;
 }
 .buttons {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 8px
+  gap: 8px;
 }
 </style>

@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
-import NumberInput from './inputs/NumberInput.vue';
-import{ Place } from '@/types'
-import SectionComponent from './common/SectionComponent.vue';
-import type { CartItem } from '@/stores/cart_store';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
+import NumberInput from './inputs/NumberInput.vue'
+import { Place } from '@/types'
+import SectionComponent from './common/SectionComponent.vue'
+import type { CartItem } from '@/stores/cart_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'
 
 const props = defineProps({
-  cartItem: { type: Object as ()=>CartItem, required: true },
+  cartItem: { type: Object as () => CartItem, required: true },
 })
 
-const rows = ref<Array<{place: Place|null, amount: number}>>([])
-function addRow(){
-  rows.value.push({place: null, amount: 0})
+const rows = ref<Array<{ place: Place | null; amount: number }>>([])
+function addRow() {
+  rows.value.push({ place: null, amount: 0 })
 }
 </script>
 
@@ -32,7 +32,7 @@ function addRow(){
       <div class="write-off-talbe">
         <div class="row" v-for="row in cartItem.alocations">
           <div class="column place-selector">
-            <InputComponent title="Места хранения" type="select" :options="[]"/>
+            <InputComponent title="Места хранения" type="select" :options="[]" />
           </div>
           <div class="column amount-selector">
             <NumberInput title="Количество" />

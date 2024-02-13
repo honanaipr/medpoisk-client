@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Place } from '@/types';
+import { Place } from '@/types'
 import { usePlaceStore } from '@/stores/place_store'
-import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
-import AngleDownVue from '@/components/icons/AngleDown.vue';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
+import AngleDownVue from '@/components/icons/AngleDown.vue'
 
-const selectedCategories = defineModel<Place[]>({required: true})
+const selectedCategories = defineModel<Place[]>({ required: true })
 const place_store = usePlaceStore()
 
 function toggleCategory(place: Place) {
@@ -17,17 +17,23 @@ function toggleCategory(place: Place) {
 </script>
 
 <template>
-    <div class="place-filter">
-        <div class="">
-            <h5>Места хранения</h5>
-        </div>
-        <div class="place-holder">
-            <template v-for="place in place_store.places" :key="place.id">
-                <ButtonComponent class="place-bage" :contrast="selectedCategories.includes(place)" :has-fill="selectedCategories.includes(place)" @click="toggleCategory(place)">{{ place.title }}</ButtonComponent>
-            </template>
-            <ButtonComponent class="place-bage"><AngleDownVue/></ButtonComponent>
-        </div>
+  <div class="place-filter">
+    <div class="">
+      <h5>Места хранения</h5>
     </div>
+    <div class="place-holder">
+      <template v-for="place in place_store.places" :key="place.id">
+        <ButtonComponent
+          class="place-bage"
+          :contrast="selectedCategories.includes(place)"
+          :has-fill="selectedCategories.includes(place)"
+          @click="toggleCategory(place)"
+          >{{ place.title }}</ButtonComponent
+        >
+      </template>
+      <ButtonComponent class="place-bage"><AngleDownVue /></ButtonComponent>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="sass">

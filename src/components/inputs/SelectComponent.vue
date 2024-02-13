@@ -1,27 +1,26 @@
 <script setup lang="ts">
 defineProps({
-    title: { type: String, required: false },
-    description: { type: String, required: false },
-    placeholder: { type: String, default: '' },
-    options: {type: Array<{title: string, id: number}>, required: false}
+  title: { type: String, required: false },
+  description: { type: String, required: false },
+  placeholder: { type: String, default: '' },
+  options: { type: Array<{ title: string; id: number }>, required: false },
 })
 
 const model = defineModel()
 </script>
 
-
 <template>
-    <div class="input-container">
-        <span v-if="title">{{ title }}</span>
-        <select v-model="model" :id="title" :name="title">
-            <option disabled value="">Выбрать место</option>
-            <option disabled hidden :value="null">Место не выбрано</option>
-            <option v-for="place in options" :key="place.id" :value="place.id">
-            {{ place.title }}
-            </option>
-        </select>
-        <span v-if="description">{{ description }}</span>
-    </div>
+  <div class="input-container">
+    <span v-if="title">{{ title }}</span>
+    <select v-model="model" :id="title" :name="title">
+      <option disabled value="">Выбрать место</option>
+      <option disabled hidden :value="null">Место не выбрано</option>
+      <option v-for="place in options" :key="place.id" :value="place.id">
+        {{ place.title }}
+      </option>
+    </select>
+    <span v-if="description">{{ description }}</span>
+  </div>
 </template>
 
 <style scoped lang="sass">

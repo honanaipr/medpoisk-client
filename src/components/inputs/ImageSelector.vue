@@ -2,9 +2,9 @@
 import defaultImage from '@/assets/add_image.png'
 import { ref } from 'vue'
 
-const imageFile = defineModel<File|null>({default: null})
+const imageFile = defineModel<File | null>({ default: null })
 const iamgeSrc = ref<string>(defaultImage)
-const imgInputRef = ref<HTMLInputElement|null>(null)
+const imgInputRef = ref<HTMLInputElement | null>(null)
 
 function onfileChange() {
   if (!imgInputRef.value || !imgInputRef.value.files) return
@@ -19,7 +19,14 @@ function onfileChange() {
 <template>
   <div class="image-selector">
     <label class="input-label" for="imageFileInput"><img :src="iamgeSrc" class="preview" /></label>
-    <input type="file" ref="imgInputRef" @change="onfileChange" id="imageFileInput" class="imageFileInput" accept="image/*" />
+    <input
+      type="file"
+      ref="imgInputRef"
+      @change="onfileChange"
+      id="imageFileInput"
+      class="imageFileInput"
+      accept="image/*"
+    />
   </div>
 </template>
 

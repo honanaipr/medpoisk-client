@@ -18,23 +18,22 @@ let priceForOne = ref(0)
 let priceForPackage = ref(0)
 
 async function apply() {
-  const product = productStore.products.find(product=>product.id == Number(productId.value))
-  if (product){
+  const product = productStore.products.find((product) => product.id == Number(productId.value))
+  if (product) {
     invoiceStore.invoiceItems.push({
       product,
       priceForOne: priceForOne.value,
       priceForPackage: priceForPackage.value,
       fullAmount: amount.value,
-      allocations: []
+      allocations: [],
     })
   }
 }
 
-
-const options = computed<{title: string, id: number}[]>(()=>{
-  let options:{title: string, id: number}[] = []
+const options = computed<{ title: string; id: number }[]>(() => {
+  let options: { title: string; id: number }[] = []
   for (const product of productStore.products) {
-    options.push({title: product.title, id: product.id})
+    options.push({ title: product.title, id: product.id })
   }
   return options
 })
@@ -44,17 +43,27 @@ import InputComponent from '@/components/inputs/InputComponent.vue'
 <template>
   <div class="add-to-invoice-view">
     <div class="product-selector">
-      <SelectComponetn title="Название" v-model="productId" :options="options"/>
-      <ButtonComponent has-border @click="$router.push({name: 'addProduct'})">+</ButtonComponent>
+      <SelectComponetn title="Название" v-model="productId" :options="options" />
+      <ButtonComponent has-border @click="$router.push({ name: 'addProduct' })">+</ButtonComponent>
     </div>
     <h1>Цена наименований</h1>
     <div class="prices">
-      <InputComponent title="Цена за шт." v-model="priceForOne"/>
-      <InputComponent title="Цена за упк." v-model="priceForPackage"/>
+      <InputComponent title="Цена за шт." v-model="priceForOne" />
+      <InputComponent title="Цена за упк." v-model="priceForPackage" />
     </div>
-    <InputComponent type="number" title="Количество" v-model="amount"/>
+    <InputComponent type="number" title="Количество" v-model="amount" />
     <ButtonComponent centered has-border contrast @click="$router.back()">Отменить</ButtonComponent>
-    <ButtonComponent centered has-border contrast has-fill @click="apply();$router.back()">Сохранить наименование</ButtonComponent>
+    <ButtonComponent
+      centered
+      has-border
+      contrast
+      has-fill
+      @click="
+        apply()
+        $router.back()
+      "
+      >Сохранить наименование</ButtonComponent
+    >
   </div>
 </template>
 

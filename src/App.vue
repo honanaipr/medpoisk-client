@@ -8,21 +8,23 @@ import SpinnerComponent from '@/components/common/SpinnerComponent.vue'
 import MobileFirstContainer from './components/layout/MobileFirstContainer.vue'
 
 const auth_store = useAuthStore()
-
 </script>
 
 <template>
   <MobileFirstContainer>
     <div class="app">
       <BannerComponent />
-      <div v-if="auth_store.authState == AuthState.Pending" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div
+        v-if="auth_store.authState == AuthState.Pending"
+        style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center"
+      >
         <SpinnerComponent />
       </div>
       <div v-else-if="auth_store.authState == AuthState.Loggedin" class="scroll-area">
         <RouterView />
       </div>
       <AuthViewVue v-else-if="auth_store.authState == AuthState.Failed" />
-      <BottomControls v-if="auth_store.authState == AuthState.Loggedin"/>
+      <BottomControls v-if="auth_store.authState == AuthState.Loggedin" />
     </div>
   </MobileFirstContainer>
 </template>

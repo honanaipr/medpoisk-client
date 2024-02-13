@@ -11,7 +11,6 @@ import { useAuthStore } from './auth_store'
 import type { Product } from './product_store'
 import type { Place } from '@/stores/place_store'
 
-
 export interface InventoryItem {
   product: Product
   place: Place
@@ -22,7 +21,7 @@ export interface InventoryJointItem {
   product: Product
   amount: number
   limit: number
-  allocations: {place: Place, amount: number}[]
+  allocations: { place: Place; amount: number }[]
 }
 
 export const useInventoryStore = defineStore('inventory', () => {

@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import LogoIcon from '@/components/icons/LogoIcon.vue'
 import AngleLeft from '@/components/icons/AngleLeft.vue'
-import ButtonComponent from '../inputs/ButtonComponent.vue';
+import ButtonComponent from '../inputs/ButtonComponent.vue'
 </script>
 <template>
   <div class="top-controls">
     <div class="left">
-      <ButtonComponent style="background-color: #0000;" @click="$router.back">
+      <ButtonComponent style="background-color: #0000" @click="$router.back">
         <AngleLeft />
       </ButtonComponent>
     </div>
-    <div style="text-align: center;">
-      <LogoIcon style="display: block;" />
+    <div style="text-align: center">
+      <LogoIcon style="display: block" />
     </div>
     <div class="right">
       <ButtonComponent>
@@ -22,7 +22,7 @@ import ButtonComponent from '../inputs/ButtonComponent.vue';
 </template>
 
 <style scoped lang="sass">
-.top-controls 
+.top-controls
   display: flex
   flex-direction: row
   justify-content: space-between

@@ -1,0 +1,20 @@
+input, button, textarea, select
+    appearance: none
+    display: block
+    width: 100%
+    position: relative
+
+input, textarea, select
+    &::before
+        content: 'sdf'
+        display: block
+        position: relative
+        left: 10px
+
+input[type='number']
+
+span.test
+    display: block
+    &::before
+        content: 'sdf'
+        display: block

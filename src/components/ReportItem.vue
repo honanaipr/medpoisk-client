@@ -1,27 +1,25 @@
 <script setup lang="ts">
 // import { Place } from '@/types';
-import type { Place } from '@/stores/place_store';
-import { defineProps } from 'vue';
-import type {Product} from '@/stores/product_store'
+import type { Place } from '@/stores/place_store'
+import { defineProps } from 'vue'
+import type { Product } from '@/stores/product_store'
 
 defineProps<{
-  item: Product | Place,
-}>() 
-
+  item: Product | Place
+}>()
 </script>
 
 <template>
-    <div class="card" v-if="('barcode' in  item)">
-      <span>{{ item.title }}</span>
-      <span>{{ item.description ?? "Нет описания" }}</span>
-      <span>{{ item.barcode ?? "Нет штрихкода"}}</span>
-      <a v-for="picture of item.pictures" :href="picture.url">pic</a>
-    </div>
-    <div class="card" v-else>
-      <span>{{ item.title }}</span>
-      <span>{{ item.division_id }}</span>
-    </div>
-
+  <div class="card" v-if="'barcode' in item">
+    <span>{{ item.title }}</span>
+    <span>{{ item.description ?? 'Нет описания' }}</span>
+    <span>{{ item.barcode ?? 'Нет штрихкода' }}</span>
+    <a v-for="picture of item.pictures" :href="picture.url">pic</a>
+  </div>
+  <div class="card" v-else>
+    <span>{{ item.title }}</span>
+    <span>{{ item.division_id }}</span>
+  </div>
 </template>
 
 <style scoped lang="sass">
@@ -33,7 +31,7 @@ defineProps<{
 span
   display: inline-block
   white-space: nowrap
-  width: 100% 
+  width: 100%
   overflow: hidden
   text-overflow: ellipsis
 a

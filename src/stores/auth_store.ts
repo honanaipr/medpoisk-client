@@ -26,20 +26,19 @@ async function updateAll() {
     product_store.update(),
     inventory_store.update(),
     limit_store.update(),
-  ])
-  .catch((error) => console.error(error))
+  ]).catch((error) => console.error(error))
 }
 export enum AuthState {
   Pending,
   Loggedin,
-  Failed
+  Failed,
 }
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(null)
   const exp = ref(Date.now())
   const username = ref('')
-  const roles: Ref<{division_id: number, role_name: string}[]> = ref([])
+  const roles: Ref<{ division_id: number; role_name: string }[]> = ref([])
   const authState: Ref<AuthState> = ref(AuthState.Pending)
 
   async function refresh() {
@@ -105,7 +104,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function logout() {
-    console.warn("Not implimented")
+    console.warn('Not implimented')
   }
 
   async function getFreshToken() {

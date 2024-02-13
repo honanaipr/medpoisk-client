@@ -20,7 +20,6 @@ const inventoryStore = useInventoryStore()
 const cartStore = useCartStore()
 const limitStore = useLimitStore()
 
-
 let serachQuery = ref('')
 let selectedCategories = ref<Place[]>([])
 
@@ -31,7 +30,10 @@ function filter(item: InventoryJointItem) {
   if (selectedCategories.value.length) {
     if (
       !item.allocations.filter(
-        (allocation) => selectedCategories.value.filter((selectedPlsace) => allocation.place.id == selectedPlsace.id).length
+        (allocation) =>
+          selectedCategories.value.filter(
+            (selectedPlsace) => allocation.place.id == selectedPlsace.id
+          ).length
       ).length
     ) {
       return false
@@ -43,10 +45,16 @@ function filter(item: InventoryJointItem) {
 const list = computed<InventoryJointItem[]>(() => {
   const inventoryJointItems: InventoryJointItem[] = []
   for (const product of productStore.products) {
-    const limit = limitStore.limits.find(limitItem=>limitItem.product_id == product.id)?.min_amount || 0
-    const inventoryJointItem: InventoryJointItem = {product, limit, allocations:[], amount: 0}
-    for (const inventoryItem of inventoryStore.inventory.filter(inventoryItem=>inventoryItem.product.id == product.id)) {
-      inventoryJointItem.allocations.push({place: inventoryItem.place, amount: inventoryItem.amount})
+    const limit =
+      limitStore.limits.find((limitItem) => limitItem.product_id == product.id)?.min_amount || 0
+    const inventoryJointItem: InventoryJointItem = { product, limit, allocations: [], amount: 0 }
+    for (const inventoryItem of inventoryStore.inventory.filter(
+      (inventoryItem) => inventoryItem.product.id == product.id
+    )) {
+      inventoryJointItem.allocations.push({
+        place: inventoryItem.place,
+        amount: inventoryItem.amount,
+      })
       inventoryJointItem.amount += inventoryItem.amount
     }
     inventoryJointItems.push(inventoryJointItem)
@@ -64,20 +72,32 @@ const list = computed<InventoryJointItem[]>(() => {
     <EmptyListHint v-if="!list.length" />
     <SwipeContainer class="item-container">
       <SwipeItem
-        v-for="item in list.filter(n=>!cartStore.ids.has(n.product.id))"
+        v-for="item in list.filter((n) => !cartStore.ids.has(n.product.id))"
         :key="item.product.id"
-        @right="()=>{cartStore.ids.clear();cartStore.ids.add(item.product.id);router.push('cart')}"
-        @left="()=>{cartStore.ids.add(item.product.id)}"
+        @right="
+          () => {
+            cartStore.ids.clear()
+            cartStore.ids.add(item.product.id)
+            router.push('cart')
+          }
+        "
+        @left="
+          () => {
+            cartStore.ids.add(item.product.id)
+          }
+        "
       >
         <template #right>
-          <slot name="left-icon">
-          </slot>
+          <slot name="left-icon"> </slot>
         </template>
         <template #left>
-          <slot name="right-icon">
-          </slot>
+          <slot name="right-icon"> </slot>
         </template>
-        <InventoryListItem :item="item" v-if="filter(item)" @doubleClick="$router.push({ name: 'product', params: { id: item.product.id } })"/>
+        <InventoryListItem
+          :item="item"
+          v-if="filter(item)"
+          @doubleClick="$router.push({ name: 'product', params: { id: item.product.id } })"
+        />
       </SwipeItem>
     </SwipeContainer>
   </div>

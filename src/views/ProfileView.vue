@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
-import { useAuthStore } from '@/stores/auth_store';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
+import { useAuthStore } from '@/stores/auth_store'
 const authStore = useAuthStore()
 </script>
 
@@ -10,12 +10,55 @@ const authStore = useAuthStore()
     <h2>{{ authStore.roles[0].division.title }}</h2>
   </div>
   <div class="container">
-    <ButtonComponent @click="()=>{$router.push({name: 'home'})}" has-border>Настройки профиля</ButtonComponent>
-    <ButtonComponent @click="()=>{$router.push({name: 'home'})}">Журнал накладных</ButtonComponent>
-    <ButtonComponent @click="()=>{$router.push({name: 'home'})}">Журнал списания</ButtonComponent>
-    <ButtonComponent @click="()=>{$router.push({name: 'placeManager'})}">Места хранения</ButtonComponent>
-    <ButtonComponent @click="()=>{$router.push({name: 'doctorManager'})}">Врачи</ButtonComponent>
-    <ButtonComponent @click="()=>{$router.push({name: 'roomManager'})}">Кабинеты</ButtonComponent>
+    <ButtonComponent
+      @click="
+        () => {
+          $router.push({ name: 'home' })
+        }
+      "
+      has-border
+      >Настройки профиля</ButtonComponent
+    >
+    <ButtonComponent
+      @click="
+        () => {
+          $router.push({ name: 'home' })
+        }
+      "
+      >Журнал накладных</ButtonComponent
+    >
+    <ButtonComponent
+      @click="
+        () => {
+          $router.push({ name: 'home' })
+        }
+      "
+      >Журнал списания</ButtonComponent
+    >
+    <ButtonComponent
+      @click="
+        () => {
+          $router.push({ name: 'placeManager' })
+        }
+      "
+      >Места хранения</ButtonComponent
+    >
+    <ButtonComponent
+      @click="
+        () => {
+          $router.push({ name: 'doctorManager' })
+        }
+      "
+      >Врачи</ButtonComponent
+    >
+    <ButtonComponent
+      @click="
+        () => {
+          $router.push({ name: 'roomManager' })
+        }
+      "
+      >Кабинеты</ButtonComponent
+    >
   </div>
 </template>
 <style scoped lang="sass">

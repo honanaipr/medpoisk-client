@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { InvoiceItem } from '@/stores/invoice_store';
-import SectionComponent from './common/SectionComponent.vue';
+import type { InvoiceItem } from '@/stores/invoice_store'
+import SectionComponent from './common/SectionComponent.vue'
 const props = defineProps({
-  invoiceItem: {type: Object as ()=>InvoiceItem, required: true},
-  index: {type: Number, default: 0}
+  invoiceItem: { type: Object as () => InvoiceItem, required: true },
+  index: { type: Number, default: 0 },
 })
 
 import { useInvoiceStore } from '@/stores/invoice_store'
@@ -13,7 +13,7 @@ const invoiceStore = useInvoiceStore()
 <template>
   <SectionComponent>
     <div class="first-row">
-      <span class="element-number">{{ index?`${index}.`:'' }}</span>
+      <span class="element-number">{{ index ? `${index}.` : '' }}</span>
       <span>{{ invoiceItem.product.title }}</span>
     </div>
     <div class="second-row">
@@ -21,15 +21,23 @@ const invoiceStore = useInvoiceStore()
     </div>
     <div class="third-row">
       <div class="left">
-        <span>{{ invoiceStore.numberOfAllocationsFullfiled(invoiceItem) }}\{{ invoiceItem.allocations.length }}</span>
+        <span
+          >{{ invoiceStore.numberOfAllocationsFullfiled(invoiceItem) }}\{{
+            invoiceItem.allocations.length
+          }}</span
+        >
       </div>
       <div class="left">
-        <span v-if="invoiceStore.numberOfAllocationsFullfiled(invoiceItem) < invoiceItem.allocations.length">Хранение не выбрано</span>
+        <span
+          v-if="
+            invoiceStore.numberOfAllocationsFullfiled(invoiceItem) < invoiceItem.allocations.length
+          "
+          >Хранение не выбрано</span
+        >
         <span v-else>Хранение выбрано</span>
       </div>
     </div>
   </SectionComponent>
-  
 
   <!-- <div class="box item">
     {{ item.product.title }}
@@ -71,5 +79,4 @@ div.third-row
   display: flex
   flex-direction: row
   justify-content: space-between
-
 </style>

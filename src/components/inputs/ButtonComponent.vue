@@ -1,18 +1,22 @@
 <script setup lang="ts">
 defineProps({
-    hasBorder: Boolean,
-    contrast: Boolean,
-    hasFill: Boolean,
-    centered: {type:Boolean, default: true},
-    disabled: Boolean,
+  hasBorder: Boolean,
+  contrast: Boolean,
+  hasFill: Boolean,
+  centered: { type: Boolean, default: true },
+  disabled: Boolean,
 })
 defineEmits(['click'])
 </script>
 
 <template>
-    <button :disabled="disabled" @click="$emit('click')" :class="{border: hasBorder, contrast: contrast, fill: hasFill, centered: centered}">
-        <slot></slot>
-    </button>
+  <button
+    :disabled="disabled"
+    @click="$emit('click')"
+    :class="{ border: hasBorder, contrast: contrast, fill: hasFill, centered: centered }"
+  >
+    <slot></slot>
+  </button>
 </template>
 
 <style scoped lang="sass">
@@ -41,6 +45,6 @@ button.centered
     text-align: center
 button:disabled
     background-color: var(--devider-color)
-    color: var(--background-color) 
+    color: var(--background-color)
     border-color: var(--text-grey)
 </style>

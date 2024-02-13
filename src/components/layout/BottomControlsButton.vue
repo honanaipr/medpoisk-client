@@ -1,12 +1,12 @@
 <script setup lang="ts">
-defineProps(['title','active'])
+defineProps(['title', 'active'])
 </script>
 
 <template>
-    <button>
-        <slot name="icon"></slot>
-        <span :class="active?'active':''">{{ title }}</span>
-    </button>
+  <button>
+    <slot name="icon"></slot>
+    <span :class="active ? 'active' : ''">{{ title }}</span>
+  </button>
 </template>
 
 <style scoped lang="sass">

@@ -1,9 +1,8 @@
 <template>
-    <div class="empty-hint">
-      <h1>
-        <slot name="empty_caption">Здесь ничего нет</slot>
-      </h1>
-    </div>
+  <div class="empty-hint">
+    <h1>
+      <slot name="empty_caption">Здесь ничего нет</slot>
+    </h1>
+  </div>
 </template>
-<style scoped lang="sass">
-</style>
+<style scoped lang="sass"></style>

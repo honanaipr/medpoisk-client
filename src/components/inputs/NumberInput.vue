@@ -1,44 +1,57 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
 
 const props = defineProps({
-    title: String,
-    min: {type: Number, required: false},
-    max: {type: Number, required: false},
+  title: String,
+  min: { type: Number, required: false },
+  max: { type: Number, required: false },
 })
 
-const model = defineModel({default: 0})
+const model = defineModel({ default: 0 })
 
-onMounted(()=>{
-    if (props.min) model.value = Math.max(model.value, props.min)
-    if (props.max) model.value = Math.min(model.value, props.max)
+onMounted(() => {
+  if (props.min) model.value = Math.max(model.value, props.min)
+  if (props.max) model.value = Math.min(model.value, props.max)
 })
 
-defineEmits(['less','more'])
+defineEmits(['less', 'more'])
 
-function inc(){
-    if (!props.max  || model.value < props.max){
-        model.value++
-    }
+function inc() {
+  if (!props.max || model.value < props.max) {
+    model.value++
+  }
 }
 
-function dec(){
-    if (!props.min  || model.value > props.min){
-        model.value--
-    }
+function dec() {
+  if (!props.min || model.value > props.min) {
+    model.value--
+  }
 }
-
 </script>
 
 <template>
-    <div class="input-container">
-        <span v-if="title">{{ title }}</span>
-        <div class="number-input">
-                <button @click="$emit('less'); dec()">-</button>
-                <input v-model="model" type="number" :min="props.min" :max="props.max">
-                <button @click="$emit('more'); inc()">+</button>
-        </div>
-   </div>
+  <div class="input-container">
+    <span v-if="title">{{ title }}</span>
+    <div class="number-input">
+      <button
+        @click="
+          $emit('less')
+          dec()
+        "
+      >
+        -
+      </button>
+      <input v-model="model" type="number" :min="props.min" :max="props.max" />
+      <button
+        @click="
+          $emit('more')
+          inc()
+        "
+      >
+        +
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="sass">
@@ -47,7 +60,7 @@ function dec(){
     position: relative
     justify-content: space-between
 
-    
+
     border: 1px solid var(--devider-color)
     border-radius: 8px
     color: var(--devider-color)

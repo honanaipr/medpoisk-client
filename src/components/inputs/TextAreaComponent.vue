@@ -1,19 +1,19 @@
 <script setup lang="ts">
 defineProps({
-    title: { type: String, required: false },
-    description: { type: String, required: false },
-    placeholder: { type: String, default: '' },
-    options: {type: Array<{title: string, id: number}>, required: false}
+  title: { type: String, required: false },
+  description: { type: String, required: false },
+  placeholder: { type: String, default: '' },
+  options: { type: Array<{ title: string; id: number }>, required: false },
 })
-const model = defineModel({default: ''})
+const model = defineModel({ default: '' })
 </script>
 
 <template>
-    <div class="input-container">
-        <span v-if="title">{{ title }}</span>
-        <textarea v-model="model" :placeholder="placeholder" :id="title" :name="title"></textarea>
-        <span v-if="description">{{ description }}</span>
-    </div>
+  <div class="input-container">
+    <span v-if="title">{{ title }}</span>
+    <textarea v-model="model" :placeholder="placeholder" :id="title" :name="title"></textarea>
+    <span v-if="description">{{ description }}</span>
+  </div>
 </template>
 
 <style scoped lang="sass">

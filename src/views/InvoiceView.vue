@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import InvoiceDataForm from '../components/InvoiceDataForm.vue'
-import ButtonComponent from '@/components/inputs/ButtonComponent.vue';
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import { useInvoiceStore } from '@/stores/invoice_store'
-import InvoiceListItem from '@/components/InvoiceListItem.vue';
-import SwipeContainer from '@/components/swipe/SwipeContainer.vue';
-import SwipeItem from '@/components/swipe/SwipeItem.vue';
-import SwipeHintsComponent from '@/components/swipe/SwipeHintsComponent.vue';
+import InvoiceListItem from '@/components/InvoiceListItem.vue'
+import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
+import SwipeItem from '@/components/swipe/SwipeItem.vue'
+import SwipeHintsComponent from '@/components/swipe/SwipeHintsComponent.vue'
 import SwipeRight from '@/components/icons/SwipeRight.vue'
 import SwipeLeft from '@/components/icons/SwipeLeft.vue'
 
@@ -25,7 +25,9 @@ import SwipeLeft from '@/components/icons/SwipeLeft.vue'
 
 const invoiceStore = useInvoiceStore()
 const heading = computed(() => {
-  return 'Накладная №' + (invoiceStore.invoiceNumber || '?') + ' от ' + (invoiceStore.invoiceDate || '?')
+  return (
+    'Накладная №' + (invoiceStore.invoiceNumber || '?') + ' от ' + (invoiceStore.invoiceDate || '?')
+  )
 })
 </script>
 
@@ -33,7 +35,11 @@ const heading = computed(() => {
   <div class="invoice-view">
     <h1>{{ heading }}</h1>
     <InvoiceDataForm />
-    <ButtonComponent centered has-border>Обработанные позиции {{ invoiceStore.numberOfFullfiledItems }}/{{ invoiceStore.invoiceItems.length }}</ButtonComponent>
+    <ButtonComponent centered has-border
+      >Обработанные позиции {{ invoiceStore.numberOfFullfiledItems }}/{{
+        invoiceStore.invoiceItems.length
+      }}</ButtonComponent
+    >
     <div class="apply-form" v-if="invoiceStore.allInvoiceItemsFullfiled">
       <span class="empty-hint">Все позиции обработаны</span>
       <ButtonComponent centered has-border contrast>Отменить</ButtonComponent>
@@ -56,14 +62,23 @@ const heading = computed(() => {
       <SwipeItem
         v-for="(item, index) of invoiceStore.invoiceItems"
         :key="item.product.id"
-        @right="()=>{console.error('выбрать зранение')}"
-        @left="()=>{console.error('исправить')}"
+        @right="
+          () => {
+            console.error('выбрать зранение')
+          }
+        "
+        @left="
+          () => {
+            console.error('исправить')
+          }
+        "
       >
-        <InvoiceListItem :invoiceItem="item" :index="index+1"/>
+        <InvoiceListItem :invoiceItem="item" :index="index + 1" />
       </SwipeItem>
     </SwipeContainer>
-    <ButtonComponent centered has-border @click="$router.push({name: 'addToInvoice'})">+</ButtonComponent>
-    
+    <ButtonComponent centered has-border @click="$router.push({ name: 'addToInvoice' })"
+      >+</ButtonComponent
+    >
   </div>
 </template>
 
@@ -94,5 +109,5 @@ div.apply-form
   display: flex
   flex-direction: column
   align-items: center
-  justify-content: space-between  
+  justify-content: space-between
 </style>

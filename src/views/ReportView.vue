@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ReportItem from "@/components/ReportItem.vue"
-import { ref } from 'vue';
-import { useProductStore } from '@/stores/product_store';
+import ReportItem from '@/components/ReportItem.vue'
+import { ref } from 'vue'
+import { useProductStore } from '@/stores/product_store'
 
 import { usePlaceStore } from '@/stores/place_store'
 
@@ -10,20 +10,29 @@ const place_store = usePlaceStore()
 const product_store = useProductStore()
 const product_collapsed = ref(true)
 const place_collapsed = ref(true)
-
 </script>
 
 <template>
   <div class="section">
-    <h1> Продукты:</h1> <button class="collapse-button" @click="product_collapsed = !product_collapsed" :class="{active:product_collapsed}"></button>
+    <h1>Продукты:</h1>
+    <button
+      class="collapse-button"
+      @click="product_collapsed = !product_collapsed"
+      :class="{ active: product_collapsed }"
+    ></button>
     <template v-for="product of product_store.products" :key="product.id">
-      <ReportItem :item="product" :class="{hidden: product_collapsed}"/>
+      <ReportItem :item="product" :class="{ hidden: product_collapsed }" />
     </template>
   </div>
   <div class="section">
-    <h1> Места хранения:</h1> <button class="collapse-button" @click="place_collapsed = !place_collapsed" :class="{active:place_collapsed}"></button>
+    <h1>Места хранения:</h1>
+    <button
+      class="collapse-button"
+      @click="place_collapsed = !place_collapsed"
+      :class="{ active: place_collapsed }"
+    ></button>
     <template v-for="place of place_store.places" :key="place.id">
-      <ReportItem :item="place" :class="{hidden: place_collapsed}"/>
+      <ReportItem :item="place" :class="{ hidden: place_collapsed }" />
     </template>
   </div>
 </template>

@@ -76,7 +76,7 @@ const router = createRouter({
       component: () => import('../views/RoomsView.vue'),
       meta: { transition: 'slide-left' },
     },
-  ]
+  ],
 })
 
 export default router

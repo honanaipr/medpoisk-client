@@ -4,23 +4,22 @@ import SwipeLeft from '@/components/icons/SwipeLeft.vue'
 import DoubleClick from '@/components/icons/DoubleClickIcon.vue'
 </script>
 <template>
-    <div class="swipe-hint">
-      <slot name="swipe-hints">
-        <span>
-          Списание
-          <SwipeLeft />
-        </span>
-        <span>
-            Информация
-          <DoubleClick />
-        </span>
-        <span>
-          В корзину
-          <SwipeRight />
-        </span>
-      </slot>
-    </div>
-
+  <div class="swipe-hint">
+    <slot name="swipe-hints">
+      <span>
+        Списание
+        <SwipeLeft />
+      </span>
+      <span>
+        Информация
+        <DoubleClick />
+      </span>
+      <span>
+        В корзину
+        <SwipeRight />
+      </span>
+    </slot>
+  </div>
 </template>
 
 <style scoped lang="sass">
@@ -36,5 +35,5 @@ import DoubleClick from '@/components/icons/DoubleClickIcon.vue'
     display: flex
     flex-direction: column
     align-items: center
-    justify-content: space-between  
+    justify-content: space-between
 </style>

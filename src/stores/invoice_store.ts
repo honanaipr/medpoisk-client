@@ -52,7 +52,6 @@ export const useInvoiceStore = defineStore('invoice', () => {
 
   const invoiceItems = ref<InvoiceItem[]>([])
 
-  
   function numberOfAllocationsFullfiled(invoiceItem: InvoiceItem): number {
     let summ = 0
     for (const allocation of invoiceItem.allocations) {
@@ -62,20 +61,18 @@ export const useInvoiceStore = defineStore('invoice', () => {
   }
 
   function isInvoiceItemFullfiled(invoiceItem: InvoiceItem): boolean {
-    
     return numberOfAllocationsFullfiled(invoiceItem) != invoiceItem.fullAmount
   }
 
   const numberOfFullfiledItems = computed<number>(() => {
     let numberOfFullfiledItems = 0
     for (const invoiceItem of invoiceItems.value) {
-      if (isInvoiceItemFullfiled(invoiceItem))
-        numberOfFullfiledItems++
+      if (isInvoiceItemFullfiled(invoiceItem)) numberOfFullfiledItems++
     }
     return numberOfFullfiledItems
   })
 
-  const allInvoiceItemsFullfiled = computed<boolean>(()=>{
+  const allInvoiceItemsFullfiled = computed<boolean>(() => {
     return numberOfFullfiledItems.value == invoiceItems.value.length
   })
 

@@ -15,7 +15,7 @@ let productTitle = ref('')
 let limit = ref('')
 let barcode = ref('')
 let description = ref('')
-const imageFile = ref<File|null>(null)
+const imageFile = ref<File | null>(null)
 
 async function apply() {
   product_store.addProduct({
@@ -23,29 +23,32 @@ async function apply() {
     description: description.value,
     limit: Number(limit.value),
     barcode: Number(barcode.value),
-    pictures: imageFile.value?[
-      imageFile.value
-    ]:[]
+    pictures: imageFile.value ? [imageFile.value] : [],
   })
-  router.replace({name: "home"})
+  router.replace({ name: 'home' })
 }
 
 const form_verified = computed(function () {
-    return !!productTitle.value && !!limit.value
+  return !!productTitle.value && !!limit.value
 })
-
 </script>
 
 <template>
   <div class="product-add-view">
-    <ImageSelector v-model="imageFile"/>
-    <InputComponent title="Наименование" placeholder="Аспирин" v-model="productTitle"></InputComponent>
+    <ImageSelector v-model="imageFile" />
+    <InputComponent
+      title="Наименование"
+      placeholder="Аспирин"
+      v-model="productTitle"
+    ></InputComponent>
     <InputComponent title="Неснижаемый остаток" placeholder="4" v-model="limit"></InputComponent>
     <InputComponent title="Штрихкод" placeholder="987654321098" v-model="barcode"></InputComponent>
-    <TextAreaComponent v-model="description" title="Описание" placeholder="Описание продукта..."/>
+    <TextAreaComponent v-model="description" title="Описание" placeholder="Описание продукта..." />
     <div class="buttons">
       <ButtonComponent has-border contrast @click="$router.back()">Отменить</ButtonComponent>
-      <ButtonComponent :disabled="!form_verified" has-border contrast has-fill @click="apply">Списать</ButtonComponent>
+      <ButtonComponent :disabled="!form_verified" has-border contrast has-fill @click="apply"
+        >Списать</ButtonComponent
+      >
     </div>
   </div>
 </template>
@@ -58,6 +61,6 @@ div.product-add-view {
   padding: 10px;
 }
 div.buttons {
-  gap: 8px
+  gap: 8px;
 }
 </style>

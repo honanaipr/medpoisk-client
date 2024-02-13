@@ -1,11 +1,11 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div class="mobile-first-container">
-        <div class="mobile-first-content">
-            <slot></slot></div>
+  <div class="mobile-first-container">
+    <div class="mobile-first-content">
+      <slot></slot>
     </div>
+  </div>
 </template>
 
 <style scoped lang="sass">

@@ -11,8 +11,8 @@ import SectionComponentVue from './common/SectionComponent.vue'
 const emit = defineEmits(['doubleClick'])
 
 const props = defineProps({
-  item: { type: Object as ()=>InventoryJointItem, required: true },
-  carted: {type: Boolean, default: true},
+  item: { type: Object as () => InventoryJointItem, required: true },
+  carted: { type: Boolean, default: true },
 })
 
 const amount = computed(() => {
@@ -20,7 +20,7 @@ const amount = computed(() => {
 })
 
 const places = computed(() => {
-  return props.item.allocations.map(allocation=>allocation.place)
+  return props.item.allocations.map((allocation) => allocation.place)
 })
 
 const detectDoubleTapClosure = (() => {
@@ -43,7 +43,7 @@ const detectDoubleTapClosure = (() => {
 </script>
 
 <template>
-  <SectionComponentVue class="flex-col" :class="{highlited:carted}">
+  <SectionComponentVue class="flex-col" :class="{ highlited: carted }">
     <div
       class="flex-row"
       @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
@@ -65,7 +65,7 @@ const detectDoubleTapClosure = (() => {
         </div>
       </div>
       <div class="left-pane">
-        <ButtonComponent style="padding: 0; padding-top: 10px;">
+        <ButtonComponent style="padding: 0; padding-top: 10px">
           <MoreIcon />
         </ButtonComponent>
         <ButtonComponent style="padding: 0">
@@ -74,11 +74,22 @@ const detectDoubleTapClosure = (() => {
       </div>
     </div>
     <div v-if="carted" class="flex-row">
-        <ButtonComponent style="height:55px;width:55px;display:flex;justify-content:center;align-items:center;" has-border contrast><TrashIcon/></ButtonComponent>
-        <ButtonComponent style="height:55px;width:55px;" has-border contrast>-</ButtonComponent>
-        <InputComponent type="number" contrast/>
-        <ButtonComponent style="height:55px;width:55px;" has-border contrast>+</ButtonComponent>
-      </div>
+      <ButtonComponent
+        style="
+          height: 55px;
+          width: 55px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+        has-border
+        contrast
+        ><TrashIcon
+      /></ButtonComponent>
+      <ButtonComponent style="height: 55px; width: 55px" has-border contrast>-</ButtonComponent>
+      <InputComponent type="number" contrast />
+      <ButtonComponent style="height: 55px; width: 55px" has-border contrast>+</ButtonComponent>
+    </div>
   </SectionComponentVue>
 </template>
 
