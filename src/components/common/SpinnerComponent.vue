@@ -24,8 +24,10 @@ body {
 
 .spinner {
     margin-top: -21px;
-    text-align: center;
+
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .spinner svg {
