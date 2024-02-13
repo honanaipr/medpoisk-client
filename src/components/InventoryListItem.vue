@@ -4,11 +4,15 @@ import type { InventoryJointItem } from '@/stores/inventory_store'
 import MoreIcon from './icons/MoreIcon.vue'
 import FavoriteIcon from './icons/FavoriteIcon.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
+import TrashIcon from '@/components/icons/TrashIcon.vue'
+import InputComponent from './inputs/InputComponent.vue'
+import SectionComponentVue from './common/SectionComponent.vue'
 
 const emit = defineEmits(['doubleClick'])
 
 const props = defineProps({
   item: { type: Object as ()=>InventoryJointItem, required: true },
+  carted: {type: Boolean, default: true},
 })
 
 const amount = computed(() => {
@@ -39,35 +43,43 @@ const detectDoubleTapClosure = (() => {
 </script>
 
 <template>
-  <div
-    class="inventory-item"
-    @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
-    @touchend="detectDoubleTapClosure($event)"
-  >
-    <div class="right-pane">
-      <div>{{ item.product.title }}</div>
-      <div>
-        <div>{{ amount }} / {{ item.limit }}</div>
+  <SectionComponentVue class="flex-col highlited">
+    <div
+      class="flex-row"
+      @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
+      @touchend="detectDoubleTapClosure($event)"
+    >
+      <div class="right-pane">
+        <div>{{ item.product.title }}</div>
         <div>
-          <p v-for="place in places" :key="place.id">
-            {{ place.title }}
-          </p>
+          <div>{{ amount }} / {{ item.limit }}</div>
+          <div>
+            <p v-for="place in places" :key="place.id">
+              {{ place.title }}
+            </p>
+          </div>
+        </div>
+        <div>
+          <span>Общая стоимость</span>
+          <span>11 500,00₽</span>
         </div>
       </div>
-      <div>
-        <span>Общая стоимость</span>
-        <span>11 500,00₽</span>
+      <div class="left-pane">
+        <ButtonComponent style="padding: 0; padding-top: 10px;">
+          <MoreIcon />
+        </ButtonComponent>
+        <ButtonComponent style="padding: 0">
+          <FavoriteIcon />
+        </ButtonComponent>
       </div>
     </div>
-    <div class="left-pane">
-      <ButtonComponent style="padding: 0; padding-top: 10px;">
-        <MoreIcon />
-      </ButtonComponent>
-      <ButtonComponent style="padding: 0">
-        <FavoriteIcon />
-      </ButtonComponent>
-    </div>
-  </div>
+    <div v-if="carted" class="flex-row">
+        <ButtonComponent style="height:55px;width:55px;display:flex;justify-content:center;align-items:center;" has-border contrast><TrashIcon/></ButtonComponent>
+        <ButtonComponent style="height:55px;width:55px;" has-border contrast>-</ButtonComponent>
+        <InputComponent type="number" contrast/>
+        <ButtonComponent style="height:55px;width:55px;" has-border contrast>+</ButtonComponent>
+      </div>
+  </SectionComponentVue>
 </template>
 
 <style scoped lang="sass">

@@ -31,3 +31,15 @@ h1 {
   font-weight: 600;
   color: var(--text-black)
 }
+
+div.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+div.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
