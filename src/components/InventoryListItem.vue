@@ -21,8 +21,8 @@ const places = computed(() => {
 
 const detectDoubleTapClosure = (() => {
   let lastTap = 0
-  let timeout
-  return function detectDoubleTap(event) {
+  let timeout: number
+  return function detectDoubleTap(event: Event) {
     const curTime = new Date().getTime()
     const tapLen = curTime - lastTap
     if (tapLen < 300 && tapLen > 0) {
