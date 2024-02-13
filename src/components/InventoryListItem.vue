@@ -43,7 +43,7 @@ const detectDoubleTapClosure = (() => {
 </script>
 
 <template>
-  <SectionComponentVue class="flex-col highlited">
+  <SectionComponentVue class="flex-col" :class="{highlited:carted}">
     <div
       class="flex-row"
       @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
