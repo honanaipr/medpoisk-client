@@ -13,12 +13,14 @@ import { useAuthStore } from './auth_store'
 
 export interface PlaceCreate {
   title: string
+  shortTitle: string
   division_id: number
 }
 
 export interface Place {
   id: number
   title: string
+  shortTitle: string
   division_id: number
 }
 
@@ -50,6 +52,7 @@ export const usePlaceStore = defineStore('place', () => {
     axios
       .put(API_PLACE_PATH, {
         title: place.title,
+        short_title: place.shortTitle,
         division_id: place.division_id,
       })
       .then((responce) => {
