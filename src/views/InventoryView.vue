@@ -42,25 +42,8 @@ function filter(item: InventoryJointItem) {
   return true
 }
 
-const list = computed<InventoryJointItem[]>(() => {
-  const inventoryJointItems: InventoryJointItem[] = []
-  for (const product of productStore.products) {
-    const limit =
-      limitStore.limits.find((limitItem) => limitItem.product_id == product.id)?.min_amount || 0
-    const inventoryJointItem: InventoryJointItem = { product, limit, allocations: [], amount: 0 }
-    for (const inventoryItem of inventoryStore.inventory.filter(
-      (inventoryItem) => inventoryItem.product.id == product.id
-    )) {
-      inventoryJointItem.allocations.push({
-        place: inventoryItem.place,
-        amount: inventoryItem.amount,
-      })
-      inventoryJointItem.amount += inventoryItem.amount
-    }
-    inventoryJointItems.push(inventoryJointItem)
-  }
-  return inventoryJointItems
-})
+const list = computed(()=>inventoryStore.jointInventory)
+
 </script>
 
 <template>

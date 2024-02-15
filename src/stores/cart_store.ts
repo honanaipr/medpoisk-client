@@ -4,6 +4,7 @@ import { useProductStore } from '@/stores/product_store'
 import type { Product } from '@/stores/product_store'
 import type { Place } from '@/stores/place_store'
 import { useLimitStore } from './limit_store'
+import { useInventoryStore } from './inventory_store'
 
 interface Alocation {
   place: Place | null
@@ -24,12 +25,14 @@ export const useCartStore = defineStore('cart', () => {
   function cartProductById(productId: number): boolean {
     const product_store = useProductStore()
     const limitStore = useLimitStore()
+    const inventoryStore = useInventoryStore()
     const product = product_store.products.find((product) => product.id == productId)
-    if (!product) return false
+    const amount = inventoryStore.jointInventory.find((item) => item.product.id == productId)?.amount
+    if (!product || !amount) return false
     const cartItem: CartItem = {
       product,
       alocations: [],
-      amount: 0,
+      amount,
       cartedAmount: 0,
       limit: limitStore.limits.find((n) => (n.product_id = productId))?.min_amount ?? 0,
     }

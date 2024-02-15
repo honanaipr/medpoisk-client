@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { Ref } from 'vue'
 import showToast from '../toast'
 import axios from 'axios'
@@ -8,8 +8,9 @@ import Joi from 'joi'
 import { inventoryItemSchema } from '../schemas'
 import { API_INVENTORY_PATH } from '../pathes'
 import { useAuthStore } from './auth_store'
-import type { Product } from './product_store'
+import { useProductStore, type Product } from './product_store'
 import type { Place } from '@/stores/place_store'
+import { useLimitStore } from './limit_store'
 
 export interface InventoryItem {
   product: Product
@@ -48,9 +49,31 @@ export const useInventoryStore = defineStore('inventory', () => {
       })
   }
 
+  const jointInventory = computed<InventoryJointItem[]>(() => {
+    const productStore = useProductStore()
+    const limitStore = useLimitStore()
+    const inventoryJointItems: InventoryJointItem[] = []
+    for (const product of productStore.products) {
+      const limit =
+        limitStore.limits.find((limitItem) => limitItem.product_id == product.id)?.min_amount || 0
+      const inventoryJointItem: InventoryJointItem = { product, limit, allocations: [], amount: 0 }
+      for (const inventoryItem of inventory.value.filter(
+        (inventoryItem) => inventoryItem.product.id == product.id
+      )) {
+        inventoryJointItem.allocations.push({
+          place: inventoryItem.place,
+          amount: inventoryItem.amount,
+        })
+        inventoryJointItem.amount += inventoryItem.amount
+      }
+      inventoryJointItems.push(inventoryJointItem)
+    }
+    return inventoryJointItems
+  })
+
   function byId(product_id: number) {
     return inventory.value.find((item) => item.product.id == product_id)
   }
 
-  return { inventory, update, byId }
+  return { inventory, jointInventory, update, byId }
 })
