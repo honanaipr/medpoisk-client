@@ -59,7 +59,7 @@ import InputComponent from '@/components/inputs/InputComponent.vue'
       contrast
       has-fill
       @click="
-        apply()
+        apply();
         $router.back()
       "
       >Сохранить наименование</ButtonComponent

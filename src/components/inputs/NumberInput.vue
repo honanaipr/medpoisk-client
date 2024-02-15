@@ -35,7 +35,7 @@ function dec() {
     <div class="number-input">
       <button
         @click="
-          $emit('less')
+          $emit('less');
           dec()
         "
       >
@@ -44,7 +44,7 @@ function dec() {
       <input v-model="model" type="number" :min="props.min" :max="props.max" />
       <button
         @click="
-          $emit('more')
+          $emit('more');
           inc()
         "
       >

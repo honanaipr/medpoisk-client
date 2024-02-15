@@ -10,14 +10,14 @@ const emit = defineEmits(['close'])
       <div class="add-menu">
         <span
           @click="
-            emit('close')
+            emit('close');
             $router.push({ name: 'addProduct' })
           "
           >Наименование</span
         >
         <span
           @click="
-            emit('close')
+            emit('close');
             $router.push({ name: 'addInvoice' })
           "
           >Накладная</span
@@ -25,7 +25,7 @@ const emit = defineEmits(['close'])
         <span>XLS файл</span>
         <span
           @click="
-            emit('close')
+            emit('close');
             $router.push({ name: 'addByCode' })
           "
           >QR - код</span
