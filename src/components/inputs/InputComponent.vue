@@ -1,4 +1,10 @@
 <script setup lang="ts">
+
+export interface Option {
+  title: string
+  id: number
+}
+
 defineProps({
   title: { type: String, required: false },
   description: { type: String, required: false },
@@ -7,7 +13,7 @@ defineProps({
   options: { type: Array<{ title: string; id: number }>, required: false },
 })
 
-const model = defineModel()
+const model = defineModel({default: null})
 </script>
 
 <template>
@@ -23,8 +29,8 @@ const model = defineModel()
       :name="title"
     />
     <select v-bind="$attrs" v-if="type == 'select'" v-model="model" :id="title" :name="title">
-      <option disabled value="">Выбрать место</option>
-      <option disabled hidden :value="null">Место не выбрано</option>
+      <option disabled>Выбрать место</option>
+      <option hidden value="null">Место не выбрано</option>
       <option v-for="place in options" :key="place.id" :value="place.id">
         {{ place.title }}
       </option>

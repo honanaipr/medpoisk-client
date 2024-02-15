@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import NumberInput from './inputs/NumberInput.vue'
 import type { Place } from '@/stores/place_store'
@@ -11,21 +11,48 @@ const props = defineProps({
   cartItem: { type: Object as () => CartItem, required: true },
 })
 const cartStore = useCartStore()
-const rows = ref<Array<{ place: Place | null; amount: number }>>([])
 function addRow() {
-  cartStore.getCartedProductById(props.cartItem.product.id)?.alocations.push({place: null, amount: 0})
-  rows.value.push({ place: null, amount: 0 })
+  const cartItem = cartStore.getCartedProductById(props.cartItem.inventoryJointItem.product.id)
+  if (!cartItem) return
+  if (!cartItem.alocations.every(item=>item.place != null)) return
+  cartItem.alocations.push({place: null, amount: 0})
+}
+
+const selectedPlaces = computed<Place[]>(()=>{
+  const notNullAllocatiions: Place[] = []
+  for (const allocation of props.cartItem.alocations) {
+    if (allocation.place)
+      notNullAllocatiions.push(allocation.place)
+  }
+  return notNullAllocatiions
+})
+
+const allPlaces = computed<Place[]>(()=>{
+  return props.cartItem.inventoryJointItem.allocations.map(allocation=>allocation.place)
+})
+
+interface Option {
+  title: string
+  id: Place
+}
+
+function getOptions(currentSelectedPlace: Place|null): Option[] {
+  let options: Option[] = allPlaces.value.map(item=>({title: item.title, id: item}))
+  options = options.filter(item=>!selectedPlaces.value.includes(item.id))
+  if (currentSelectedPlace === null) return options
+  options.push({title: currentSelectedPlace.title, id: currentSelectedPlace})
+  return options
 }
 </script>
 
 <template>
   <SectionComponent class="inventory-item" v-if="cartItem">
     <div class="right-pane">
-      <div>{{ cartItem.product.title }}</div>
+      <div>{{ cartItem.inventoryJointItem.product.title }}</div>
       <div>
         <div>{{ cartItem.amount }} / {{ cartItem.limit }}</div>
         <div>
-          <p v-for="allocation in cartItem.alocations" :key="allocation.place?.id">
+          <p v-for="allocation in cartItem.inventoryJointItem.allocations" :key="allocation.place?.id">
             {{ allocation.place?.title }}
           </p>
         </div>
@@ -33,10 +60,10 @@ function addRow() {
       <div class="write-off-talbe">
         <div class="row" v-for="row in cartItem.alocations">
           <div class="column place-selector">
-            <InputComponent title="Места хранения" type="select" :options="[]" />
+            <InputComponent title="Места хранения" type="select" :options="getOptions(row.place)" v-model="row.place" />
           </div>
           <div class="column amount-selector">
-            <NumberInput title="Количество" />
+            <NumberInput title="Количество" v-model="row.amount" />
           </div>
         </div>
       </div>

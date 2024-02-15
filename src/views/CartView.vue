@@ -31,8 +31,8 @@ function cancel() {
     <SwipeContainer v-else>
       <SwipeItem
         v-for="item in cartStore.cartItems"
-        :key="item.product.id"
-        @right="() => cartStore.uncartProductById(item.product.id)"
+        :key="item.inventoryJointItem.product.id"
+        @right="() => cartStore.uncartProductById(item.inventoryJointItem.product.id)"
       >
         <template #right>
           <slot name="left-icon"> </slot>
