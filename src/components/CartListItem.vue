@@ -33,14 +33,14 @@ const allPlaces = computed<Place[]>(()=>{
 
 interface Option {
   title: string
-  id: Place
+  value: Place
 }
 
 function getOptions(currentSelectedPlace: Place|null): Option[] {
-  let options: Option[] = allPlaces.value.map(item=>({title: item.title, id: item}))
-  options = options.filter(item=>!selectedPlaces.value.includes(item.id))
+  let options: Option[] = allPlaces.value.map(item=>({title: item.title, value: item}))
+  options = options.filter(item=>!selectedPlaces.value.includes(item.value))
   if (currentSelectedPlace === null) return options
-  options.push({title: currentSelectedPlace.title, id: currentSelectedPlace})
+  options.push({title: currentSelectedPlace.title, value: currentSelectedPlace})
   return options
 }
 </script>

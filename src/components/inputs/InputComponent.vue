@@ -10,7 +10,7 @@ defineProps({
   description: { type: String, required: false },
   placeholder: { type: String, default: '' },
   type: { type: String, default: 'text' },
-  options: { type: Array<{ title: string; id: number }>, required: false },
+  options: { type: Array<{ title: string; value: Object }>, required: false },
 })
 
 const model = defineModel({default: null})
@@ -31,7 +31,7 @@ const model = defineModel({default: null})
     <select v-bind="$attrs" v-if="type == 'select'" v-model="model" :id="title" :name="title">
       <option disabled>Выбрать место</option>
       <option hidden value="null">Место не выбрано</option>
-      <option v-for="place in options" :key="place.id" :value="place.id">
+      <option v-for="(place, index) in options" :key="index" :value="place.value">
         {{ place.title }}
       </option>
     </select>
