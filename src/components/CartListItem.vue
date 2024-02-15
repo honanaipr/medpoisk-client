@@ -68,7 +68,11 @@ function getOptions(currentSelectedPlace: Place|null): Option[] {
         </div>
       </div>
       <ButtonComponent disabled has-border centered>Не распределено {{ cartItem.cartedAmount }}</ButtonComponent>
-      <ButtonComponent has-border centered @click="addRow">+</ButtonComponent>
+      <ButtonComponent
+        v-if="allPlaces.length-cartItem.alocations.length"
+        has-border centered
+        @click="addRow"
+      >+</ButtonComponent>
     </div>
   </SectionComponent>
 </template>
