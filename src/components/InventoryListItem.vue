@@ -43,6 +43,20 @@ const detectDoubleTapClosure = (() => {
 })()
 
 const cartAmount = defineModel({type: Number})
+
+function inc() {
+  if (cartAmount.value === undefined) return
+  if (cartAmount.value < props.item.amount){
+    cartAmount.value++
+  }
+}
+
+function dec() {
+  if (cartAmount.value === undefined) return
+  if (cartAmount.value > 0){
+    cartAmount.value--
+  }
+}
 </script>
 
 <template>
@@ -90,9 +104,9 @@ const cartAmount = defineModel({type: Number})
         @click="useCartStore().uncartProductById(item.product.id)"
         ><TrashIcon
       /></ButtonComponent>
-      <ButtonComponent style="height: 55px; width: 55px" has-border contrast>-</ButtonComponent>
+      <ButtonComponent style="height: 55px; width: 55px" has-border contrast @click="dec()">-</ButtonComponent>
       <InputComponent v-model="cartAmount" type="number" contrast />
-      <ButtonComponent style="height: 55px; width: 55px" has-border contrast>+</ButtonComponent>
+      <ButtonComponent style="height: 55px; width: 55px" has-border contrast @click="inc()">+</ButtonComponent>
     </div>
   </SectionComponentVue>
 </template>
