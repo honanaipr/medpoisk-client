@@ -54,10 +54,14 @@ export const useCartStore = defineStore('cart', () => {
       }
     }
   }
+  function clearCart() {
+    cartItems.value.clear()
+    ids.value.clear()
+  }
   const forDoctor = ref('')
   const forRoom = ref('')
   const isCartFullfilled = computed(() => {
     return !!forDoctor.value && !!forRoom.value
   })
-  return { ids, cartItems, forDoctor, forRoom, isCartFullfilled, cartProductById, uncartProductById, getCartedProductById }
+  return { ids, cartItems, forDoctor, forRoom, isCartFullfilled, cartProductById, uncartProductById, getCartedProductById, clearCart }
 })

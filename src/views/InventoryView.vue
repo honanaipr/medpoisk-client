@@ -76,7 +76,7 @@ const list = computed<InventoryJointItem[]>(() => {
         :key="item.product.id"
         @right="
           () => {
-            cartStore.ids.clear()
+            cartStore.clearCart()
             cartStore.cartProductById(item.product.id)
             router.push('cart')
           }
