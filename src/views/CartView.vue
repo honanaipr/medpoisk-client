@@ -27,10 +27,10 @@ function cancel() {
 <template>
   <div class="cart-view">
     <h1>Корзина</h1>
-    <EmptyListHint v-if="!cartStore.cart_items.length" />
+    <EmptyListHint v-if="!cartStore.cartItems.size" />
     <SwipeContainer v-else>
       <SwipeItem
-        v-for="item in cartStore.cart_items"
+        v-for="item in cartStore.cartItems"
         :key="item.product.id"
         @right="() => cartStore.ids.delete(item.product.id)"
       >
@@ -46,7 +46,7 @@ function cancel() {
     <WriteOffFor
       v-model:doctor_id="cartStore.forDoctor"
       v-model:room_id="cartStore.forRoom"
-      :allow_apply="cartStore.cart_items.length && cartStore.isCartFullfilled"
+      :allow_apply="cartStore.cartItems.size && cartStore.isCartFullfilled"
       @apply="apply"
       @cancel="cancel"
     />

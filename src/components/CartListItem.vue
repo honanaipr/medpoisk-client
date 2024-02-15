@@ -2,17 +2,18 @@
 import { ref } from 'vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import NumberInput from './inputs/NumberInput.vue'
-import { Place } from '@/types'
+import type { Place } from '@/stores/place_store'
 import SectionComponent from './common/SectionComponent.vue'
-import type { CartItem } from '@/stores/cart_store'
+import { useCartStore, type CartItem } from '@/stores/cart_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'
 
 const props = defineProps({
   cartItem: { type: Object as () => CartItem, required: true },
 })
-
+const cartStore = useCartStore()
 const rows = ref<Array<{ place: Place | null; amount: number }>>([])
 function addRow() {
+  cartStore.getCartedProductById(props.cartItem.product.id)?.alocations.push({place: null, amount: 0})
   rows.value.push({ place: null, amount: 0 })
 }
 </script>
@@ -24,8 +25,8 @@ function addRow() {
       <div>
         <div>{{ cartItem.amount }} / {{ cartItem.limit }}</div>
         <div>
-          <p v-for="allocation in cartItem.alocations" :key="allocation.place.id">
-            {{ allocation.place.title }}
+          <p v-for="allocation in cartItem.alocations" :key="allocation.place?.id">
+            {{ allocation.place?.title }}
           </p>
         </div>
       </div>
@@ -39,6 +40,7 @@ function addRow() {
           </div>
         </div>
       </div>
+      <ButtonComponent disabled has-border centered>Не распределено {{ cartItem.cartedAmount }}</ButtonComponent>
       <ButtonComponent has-border centered @click="addRow">+</ButtonComponent>
     </div>
   </SectionComponent>

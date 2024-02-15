@@ -72,18 +72,18 @@ const list = computed<InventoryJointItem[]>(() => {
     <EmptyListHint v-if="!list.length" />
     <SwipeContainer class="item-container">
       <SwipeItem
-        v-for="item in list.filter((n) => !cartStore.ids.has(n.product.id))"
+        v-for="item in list"
         :key="item.product.id"
         @right="
           () => {
             cartStore.ids.clear()
-            cartStore.ids.add(item.product.id)
+            cartStore.cartProductById(item.product.id)
             router.push('cart')
           }
         "
         @left="
           () => {
-            cartStore.ids.add(item.product.id)
+            cartStore.cartProductById(item.product.id)
           }
         "
       >
@@ -96,6 +96,19 @@ const list = computed<InventoryJointItem[]>(() => {
         <InventoryListItem
           :item="item"
           v-if="filter(item)"
+          :carted="cartStore.ids.has(item.product.id)"
+          @update:modelValue="(value: number)=>{
+            const cartedItem = cartStore.getCartedProductById(item.product.id)
+            if (cartedItem) {
+              cartedItem.cartedAmount = value
+            }
+          }"
+          :modelValue="(()=>{
+            const cartedItem = cartStore.getCartedProductById(item.product.id)
+            if (cartedItem) {
+              return cartedItem.cartedAmount
+            }
+          })()"
           @doubleClick="$router.push({ name: 'product', params: { id: item.product.id } })"
         />
       </SwipeItem>

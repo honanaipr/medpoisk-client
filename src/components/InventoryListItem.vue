@@ -12,7 +12,7 @@ const emit = defineEmits(['doubleClick'])
 
 const props = defineProps({
   item: { type: Object as () => InventoryJointItem, required: true },
-  carted: { type: Boolean, default: true },
+  carted: { type: Boolean, default: false },
 })
 
 const amount = computed(() => {
@@ -40,6 +40,8 @@ const detectDoubleTapClosure = (() => {
     lastTap = curTime
   }
 })()
+
+const cartAmount = defineModel({type: Number})
 </script>
 
 <template>
@@ -87,7 +89,7 @@ const detectDoubleTapClosure = (() => {
         ><TrashIcon
       /></ButtonComponent>
       <ButtonComponent style="height: 55px; width: 55px" has-border contrast>-</ButtonComponent>
-      <InputComponent type="number" contrast />
+      <InputComponent v-model="cartAmount" type="number" contrast />
       <ButtonComponent style="height: 55px; width: 55px" has-border contrast>+</ButtonComponent>
     </div>
   </SectionComponentVue>

@@ -1,53 +1,63 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useProductStore } from '@/stores/product_store'
-import { useInventoryStore } from '@/stores/inventory_store'
-import type { Place, Product } from '@/types'
+import type { Product } from '@/stores/product_store'
+import type { Place } from '@/stores/place_store'
 import { useLimitStore } from './limit_store'
 
 interface Alocation {
-  place: Place
+  place: Place | null
   amount: 0
 }
 
 export interface CartItem {
   product: Product
   amount: number
+  cartedAmount: number
   limit: number
   alocations: Alocation[]
 }
 
 export const useCartStore = defineStore('cart', () => {
   const ids = ref<Set<number>>(new Set<number>())
-  const cart_items = computed<CartItem[]>(() => {
+  const cartItems = ref<Set<CartItem>>(new Set())
+  function cartProductById(productId: number): boolean {
     const product_store = useProductStore()
-    const carted_products = product_store.products.filter((product) => ids.value.has(product.id))
-    return carted_products.map((product) => {
-      const inventory_store = useInventoryStore()
-      const limitStore = useLimitStore()
-      const inventory = inventory_store.inventory.filter(
-        (inventory_item) => inventory_item.product.id == product.id
-      )
-      const cartItem: CartItem = {
-        product,
-        alocations: [],
-        amount: 0,
-        limit: limitStore.limits.find((n) => (n.product_id = product.id))?.min_amount ?? 0,
+    const limitStore = useLimitStore()
+    const product = product_store.products.find((product) => product.id == productId)
+    if (!product) return false
+    const cartItem: CartItem = {
+      product,
+      alocations: [],
+      amount: 0,
+      cartedAmount: 0,
+      limit: limitStore.limits.find((n) => (n.product_id = productId))?.min_amount ?? 0,
+    }
+    cartItems.value.add(cartItem)
+    ids.value.add(productId)
+    return true
+  }
+  function uncartProductById(productId: number): boolean {
+    for (const cartItem of cartItems.value) {
+      if (cartItem.product.id == productId) {
+        cartItems.value.delete(cartItem)
+        ids.value.delete(productId)
+        return true
       }
-      for (const item of inventory) {
-        cartItem.alocations.push({
-          place: item.place,
-          amount: 0,
-        })
-        cartItem.amount += item.amount
+    }
+    return false
+  }
+  function getCartedProductById(productId: number): CartItem|undefined {
+    for (const cartItem of cartItems.value) {
+      if (cartItem.product.id == productId) {
+        return cartItem
       }
-      return cartItem
-    })
-  })
+    }
+  }
   const forDoctor = ref('')
   const forRoom = ref('')
   const isCartFullfilled = computed(() => {
     return !!forDoctor.value && !!forRoom.value
   })
-  return { ids, cart_items, forDoctor, forRoom, isCartFullfilled }
+  return { ids, cartItems, forDoctor, forRoom, isCartFullfilled, cartProductById, uncartProductById, getCartedProductById }
 })
