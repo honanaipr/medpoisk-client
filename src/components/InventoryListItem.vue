@@ -7,6 +7,7 @@ import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import TrashIcon from '@/components/icons/TrashIcon.vue'
 import InputComponent from './inputs/InputComponent.vue'
 import SectionComponentVue from './common/SectionComponent.vue'
+import { useCartStore } from '@/stores/cart_store'
 
 const emit = defineEmits(['doubleClick'])
 
@@ -86,6 +87,7 @@ const cartAmount = defineModel({type: Number})
         "
         has-border
         contrast
+        @click="useCartStore().uncartProductById(item.product.id)"
         ><TrashIcon
       /></ButtonComponent>
       <ButtonComponent style="height: 55px; width: 55px" has-border contrast>-</ButtonComponent>
