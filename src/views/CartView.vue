@@ -32,7 +32,7 @@ function cancel() {
       <SwipeItem
         v-for="item in cartStore.cartItems"
         :key="item.product.id"
-        @right="() => cartStore.ids.delete(item.product.id)"
+        @right="() => cartStore.uncartProductById(item.product.id)"
       >
         <template #right>
           <slot name="left-icon"> </slot>
