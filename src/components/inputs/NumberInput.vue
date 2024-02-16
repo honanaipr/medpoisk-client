@@ -17,13 +17,13 @@ onMounted(() => {
 defineEmits(['less', 'more'])
 
 function inc() {
-  if (!props.max || model.value < props.max) {
+  if (typeof props.max == 'undefined' || model.value < props.max) {
     model.value++
   }
 }
 
 function dec() {
-  if (!props.min || model.value > props.min) {
+  if (typeof props.min == 'undefined' || model.value > props.min) {
     model.value--
   }
 }
