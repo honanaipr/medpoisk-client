@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import NumberInput from './inputs/NumberInput.vue'
 import type { Place } from '@/stores/place_store'
-import SectionComponent from './common/SectionComponent.vue'
 import { useCartStore, type CartItem } from '@/stores/cart_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'
 import type { Allocation } from '@/stores/cart_store'
@@ -66,7 +65,7 @@ function getMaxValue(cartItem: CartItem, row: Allocation) {
 </script>
 
 <template>
-  <SectionComponent class="inventory-item" v-if="cartItem">
+  <section class="inventory-item" v-if="cartItem">
     <div class="right-pane">
       <div>{{ cartItem.inventoryJointItem.product.title }}</div>
       <div>
@@ -94,7 +93,7 @@ function getMaxValue(cartItem: CartItem, row: Allocation) {
         @click="addRow"
       >+</ButtonComponent>
     </div>
-  </SectionComponent>
+  </section>
 </template>
 
 <style scoped lang="sass">

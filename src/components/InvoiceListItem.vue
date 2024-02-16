@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { InvoiceItem } from '@/stores/invoice_store'
-import SectionComponent from './common/SectionComponent.vue'
 const props = defineProps({
   invoiceItem: { type: Object as () => InvoiceItem, required: true },
   index: { type: Number, default: 0 },
@@ -11,7 +10,7 @@ const invoiceStore = useInvoiceStore()
 </script>
 
 <template>
-  <SectionComponent>
+  <section>
     <div class="first-row">
       <span class="element-number">{{ index ? `${index}.` : '' }}</span>
       <span>{{ invoiceItem.product.title }}</span>
@@ -37,7 +36,7 @@ const invoiceStore = useInvoiceStore()
         <span v-else>Хранение выбрано</span>
       </div>
     </div>
-  </SectionComponent>
+  </section>
 
   <!-- <div class="box item">
     {{ item.product.title }}

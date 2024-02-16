@@ -6,7 +6,6 @@ import FavoriteIcon from './icons/FavoriteIcon.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import TrashIcon from '@/components/icons/TrashIcon.vue'
 import InputComponent from './inputs/InputComponent.vue'
-import SectionComponentVue from './common/SectionComponent.vue'
 import { useCartStore } from '@/stores/cart_store'
 
 const emit = defineEmits(['doubleClick'])
@@ -60,7 +59,7 @@ function dec() {
 </script>
 
 <template>
-  <SectionComponentVue class="flex-col" :class="{ highlited: carted }">
+  <section class="flex-col" :class="{ highlited: carted }">
     <div
       class="flex-row"
       @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
@@ -108,7 +107,7 @@ function dec() {
       <InputComponent v-model="cartAmount" type="number" contrast />
       <ButtonComponent style="height: 55px; width: 55px" has-border contrast @click="inc()">+</ButtonComponent>
     </div>
-  </SectionComponentVue>
+  </section>
 </template>
 
 <style scoped lang="sass">
