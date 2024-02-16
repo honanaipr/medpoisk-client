@@ -6,7 +6,7 @@ import type { Place } from '@/stores/place_store'
 import SectionComponent from './common/SectionComponent.vue'
 import { useCartStore, type CartItem } from '@/stores/cart_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'
-import type { Alocation } from '@/stores/cart_store'
+import type { Allocation } from '@/stores/cart_store'
 import { useInventoryStore } from '@/stores/inventory_store'
 
 const props = defineProps({
@@ -16,13 +16,13 @@ const cartStore = useCartStore()
 function addRow() {
   const cartItem = cartStore.getCartedProductById(props.cartItem.inventoryJointItem.product.id)
   if (!cartItem) return
-  if (!cartItem.alocations.every(item=>item.place != null)) return
-  cartItem.alocations.push({place: null, amount: 0})
+  if (!cartItem.allocations.every(item=>item.place != null)) return
+  cartItem.allocations.push({place: null, amount: 0})
 }
 
 const selectedPlaces = computed<Place[]>(()=>{
   const notNullAllocatiions: Place[] = []
-  for (const allocation of props.cartItem.alocations) {
+  for (const allocation of props.cartItem.allocations) {
     if (allocation.place)
       notNullAllocatiions.push(allocation.place)
   }
@@ -47,13 +47,13 @@ function getOptions(currentSelectedPlace: Place|null): Option[] {
 }
 
 const allocatedAmount = computed<number>(()=>{
-  return props.cartItem.alocations.reduce(
+  return props.cartItem.allocations.reduce(
     (accumulator, currentValue) => accumulator + currentValue.amount,
     0,
   )
 })
 
-function getMaxValue(cartItem: CartItem, row: Alocation) {
+function getMaxValue(cartItem: CartItem, row: Allocation) {
   const inventoryStore = useInventoryStore()
   let inventoryItem
   for (const item of inventoryStore.inventory) {
@@ -78,7 +78,7 @@ function getMaxValue(cartItem: CartItem, row: Alocation) {
         </div>
       </div>
       <div class="write-off-talbe">
-        <div class="row" v-for="row in cartItem.alocations">
+        <div class="row" v-for="row in cartItem.allocations">
           <div class="column place-selector">
             <InputComponent title="Места хранения" type="select" :options="getOptions(row.place)" v-model="row.place" />
           </div>
@@ -89,7 +89,7 @@ function getMaxValue(cartItem: CartItem, row: Alocation) {
       </div>
       <ButtonComponent disabled has-border centered>Не распределено {{ cartItem.cartedAmount - allocatedAmount }}</ButtonComponent>
       <ButtonComponent
-        v-if="allPlaces.length-cartItem.alocations.length"
+        v-if="allPlaces.length-cartItem.allocations.length"
         has-border centered
         @click="addRow"
       >+</ButtonComponent>

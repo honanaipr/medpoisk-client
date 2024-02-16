@@ -4,7 +4,7 @@ import type { Place } from '@/stores/place_store'
 import { useLimitStore } from './limit_store'
 import { useInventoryStore, type InventoryJointItem } from './inventory_store'
 
-export interface Alocation {
+export interface Allocation {
   place: Place | null
   amount: 0
 }
@@ -14,7 +14,7 @@ export interface CartItem {
   amount: number
   cartedAmount: number
   limit: number
-  alocations: Alocation[]
+  allocations: Allocation[]
 }
 
 export const useCartStore = defineStore('cart', () => {
@@ -28,7 +28,7 @@ export const useCartStore = defineStore('cart', () => {
     if (!inventoryJointItem || !amount) return false
     const cartItem: CartItem = {
       inventoryJointItem,
-      alocations: [],
+      allocations: [],
       amount,
       cartedAmount: 0,
       limit: limitStore.limits.find((n) => (n.product_id = productId))?.min_amount ?? 0,
