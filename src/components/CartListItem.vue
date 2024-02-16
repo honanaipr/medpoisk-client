@@ -6,6 +6,8 @@ import type { Place } from '@/stores/place_store'
 import SectionComponent from './common/SectionComponent.vue'
 import { useCartStore, type CartItem } from '@/stores/cart_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'
+import type { Alocation } from '@/stores/cart_store'
+import { useInventoryStore } from '@/stores/inventory_store'
 
 const props = defineProps({
   cartItem: { type: Object as () => CartItem, required: true },
@@ -43,6 +45,24 @@ function getOptions(currentSelectedPlace: Place|null): Option[] {
   options.push({title: currentSelectedPlace.title, value: currentSelectedPlace})
   return options
 }
+
+const allocatedAmount = computed<number>(()=>{
+  return props.cartItem.alocations.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.amount,
+    0,
+  )
+})
+
+function getMaxValue(cartItem: CartItem, row: Alocation) {
+  const inventoryStore = useInventoryStore()
+  let inventoryItem
+  for (const item of inventoryStore.inventory) {
+    if ((item.product.id == cartItem.inventoryJointItem.product.id)&&(item.place == row.place))
+      inventoryItem = item
+  }
+  if ( typeof inventoryItem == 'undefined') return 0
+  return Math.min(inventoryItem.amount, cartItem.cartedAmount-(allocatedAmount.value-row.amount))
+}
 </script>
 
 <template>
@@ -63,11 +83,11 @@ function getOptions(currentSelectedPlace: Place|null): Option[] {
             <InputComponent title="Места хранения" type="select" :options="getOptions(row.place)" v-model="row.place" />
           </div>
           <div class="column amount-selector">
-            <NumberInput title="Количество" v-model="row.amount" />
+            <NumberInput title="Количество" :min="0" :max="getMaxValue(cartItem, row)" v-model="row.amount" />
           </div>
         </div>
       </div>
-      <ButtonComponent disabled has-border centered>Не распределено {{ cartItem.cartedAmount }}</ButtonComponent>
+      <ButtonComponent disabled has-border centered>Не распределено {{ cartItem.cartedAmount - allocatedAmount }}</ButtonComponent>
       <ButtonComponent
         v-if="allPlaces.length-cartItem.alocations.length"
         has-border centered

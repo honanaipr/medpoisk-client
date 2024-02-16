@@ -4,7 +4,7 @@ import type { Place } from '@/stores/place_store'
 import { useLimitStore } from './limit_store'
 import { useInventoryStore, type InventoryJointItem } from './inventory_store'
 
-interface Alocation {
+export interface Alocation {
   place: Place | null
   amount: 0
 }
