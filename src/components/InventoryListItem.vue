@@ -59,7 +59,7 @@ function dec() {
 </script>
 
 <template>
-  <section class="flex-col" :class="{ highlited: carted }">
+  <section class="flex-col" :class="{ highlited: carted, warning: !amount }">
     <div
       class="flex-row"
       @dblclick="$router.push({ name: 'product', params: { id: item.product.id } })"
