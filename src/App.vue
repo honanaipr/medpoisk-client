@@ -21,7 +21,11 @@ const auth_store = useAuthStore()
         <SpinnerComponent />
       </div>
       <div v-else-if="auth_store.authState == AuthState.Loggedin" class="scroll-area">
-        <RouterView />
+        <RouterView v-slot="{ Component }">
+          <Transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </Transition>
+        </RouterView>
       </div>
       <AuthViewVue v-else-if="auth_store.authState == AuthState.Failed" />
       <BottomControls v-if="auth_store.authState == AuthState.Loggedin" />
@@ -43,5 +47,13 @@ const auth_store = useAuthStore()
   overflow-y: scroll;
   flex-grow: 1;
   margin-bottom: 16px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -5,6 +5,7 @@ const authStore = useAuthStore()
 </script>
 
 <template>
+  <div class="profile-view">
   <div class="header">
     <h1>Название организации</h1>
     <h2>{{ authStore.roles[0].division.title }}</h2>
@@ -59,6 +60,7 @@ const authStore = useAuthStore()
       "
       >Кабинеты</ButtonComponent
     >
+  </div>
   </div>
 </template>
 <style scoped lang="sass">

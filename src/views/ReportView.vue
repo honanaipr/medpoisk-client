@@ -13,6 +13,7 @@ const place_collapsed = ref(true)
 </script>
 
 <template>
+  <div class="report-view">
   <div class="section">
     <h1>Продукты:</h1>
     <button
@@ -34,6 +35,7 @@ const place_collapsed = ref(true)
     <template v-for="place of place_store.places" :key="place.id">
       <ReportItem :item="place" :class="{ hidden: place_collapsed }" />
     </template>
+  </div>
   </div>
 </template>
 
