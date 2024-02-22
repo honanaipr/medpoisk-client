@@ -86,7 +86,8 @@ function getMaxValue(cartItem: CartItem, row: Allocation) {
           </div>
         </div>
       </div>
-      <ButtonComponent disabled has-border centered>Не распределено {{ cartItem.cartedAmount - allocatedAmount }}</ButtonComponent>
+      <ButtonComponent v-if="cartItem.cartedAmount - allocatedAmount" disabled has-border centered>Не распределено {{ cartItem.cartedAmount - allocatedAmount }}</ButtonComponent>
+      <ButtonComponent v-else has-border centered contrast >все распределено</ButtonComponent>
       <ButtonComponent
         v-if="allPlaces.length-cartItem.allocations.length"
         has-border centered
