@@ -43,7 +43,7 @@ import InputComponent from '@/components/inputs/InputComponent.vue'
 <template>
   <div class="add-to-invoice-view">
     <div class="product-selector">
-      <SelectComponetn title="Название" v-model="productId" :options="options" />
+      <SelectComponetn title="Название" placeholder="Аспирин" v-model="productId" :options="options" />
       <ButtonComponent has-border @click="$router.push({ name: 'addProduct' })">+</ButtonComponent>
     </div>
     <h1>Цена наименований</h1>
