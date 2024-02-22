@@ -56,6 +56,13 @@ function dec() {
     cartAmount.value--
   }
 }
+
+const allocatedInBasket = computed(()=>{
+  const cartStore = useCartStore()
+  const cartedProduct = cartStore.getCartedProductById(props.item.product.id)
+  return !!(cartedProduct && cartedProduct.allocations.length)
+})
+
 </script>
 
 <template>
@@ -103,7 +110,7 @@ function dec() {
         @click="useCartStore().uncartProductById(item.product.id)"
         ><TrashIcon
       /></ButtonComponent>
-      <ButtonComponent style="height: 55px; width: 55px" has-border contrast @click="dec()">-</ButtonComponent>
+      <ButtonComponent style="height: 55px; width: 55px" has-border contrast @click="dec()" :disabled="allocatedInBasket">-</ButtonComponent>
       <InputComponent v-model="cartAmount" type="number" contrast />
       <ButtonComponent style="height: 55px; width: 55px" has-border contrast @click="inc()">+</ButtonComponent>
     </div>
