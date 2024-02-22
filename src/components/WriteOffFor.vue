@@ -7,12 +7,18 @@ import { computed } from 'vue'
 const room_store = useRoomStore()
 const doctor_store = useDoctorStore()
 
-const doctor_id = defineModel('doctor_id')
-const room_id = defineModel('room_id')
+const doctor = defineModel('doctor', {default: null})
+const room = defineModel('room', {default: null})
 
 const doctors_options = computed(() => {
   return doctor_store.doctors.map((doctor) => {
-    return { title: doctor.last_name, id: doctor.id }
+    return { title: doctor.username, value: doctor }
+  })
+})
+
+const rooms_options = computed(() => {
+  return room_store.rooms.map((room) => {
+    return { title: room.title, value: room }
   })
 })
 </script>
@@ -21,16 +27,16 @@ const doctors_options = computed(() => {
   <section>
     <h1>Списание для</h1>
     <InputComponent
-      v-model="doctor_id"
+      v-model="doctor"
       type="select"
       :options="doctors_options"
       title="Врач"
       placeholder="Иванов И.И"
     />
     <InputComponent
-      v-model="room_id"
+      v-model="room"
       type="select"
-      :options="room_store.rooms"
+      :options="rooms_options"
       title="Кабинет"
       placeholder="№114"
     />

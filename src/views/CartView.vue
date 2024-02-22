@@ -13,14 +13,14 @@ const cartStore = useCartStore()
 function apply() {
   // cartStore.writeOff(doctor_id.value, room_id.value)
   cartStore.ids.clear()
-  cartStore.forDoctor = ''
-  cartStore.forRoom = ''
+  cartStore.forDoctor = null
+  cartStore.forRoom = null
 }
 
 function cancel() {
   cartStore.ids.clear()
-  cartStore.forDoctor = ''
-  cartStore.forRoom = ''
+  cartStore.forDoctor = null
+  cartStore.forRoom = null
 }
 </script>
 
@@ -44,8 +44,8 @@ function cancel() {
       </SwipeItem>
     </SwipeContainer>
     <WriteOffFor
-      v-model:doctor_id="cartStore.forDoctor"
-      v-model:room_id="cartStore.forRoom"
+      v-model:doctor="cartStore.forDoctor"
+      v-model:room="cartStore.forRoom"
       :allow_apply="cartStore.cartItems.size && cartStore.isCartFullfilled"
       @apply="apply"
       @cancel="cancel"

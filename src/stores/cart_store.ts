@@ -3,6 +3,8 @@ import { ref, computed } from 'vue'
 import type { Place } from '@/stores/place_store'
 import { useLimitStore } from './limit_store'
 import { useInventoryStore, type InventoryJointItem } from './inventory_store'
+import type { Doctor } from './doctor_store'
+import type { Room } from './room_store'
 
 export interface Allocation {
   place: Place | null
@@ -58,10 +60,21 @@ export const useCartStore = defineStore('cart', () => {
     cartItems.value.clear()
     ids.value.clear()
   }
-  const forDoctor = ref('')
-  const forRoom = ref('')
+  const forDoctor = ref<Doctor | null>(null)
+  const forRoom = ref<Room | null>(null)
   const isCartFullfilled = computed(() => {
-    return !!forDoctor.value && !!forRoom.value
+    let allAllocated = true
+    for (const item of cartItems.value) {
+      let allocatiedPerItem = 0
+      for (const allocation of item.allocations) {
+        allocatiedPerItem += allocation.amount
+      }
+      if (!!(item.cartedAmount - allocatiedPerItem)){
+        allAllocated = false
+        break
+      }
+    }
+    return !!forRoom.value && allAllocated && !!cartItems.value.size
   })
   return { ids, cartItems, forDoctor, forRoom, isCartFullfilled, cartProductById, uncartProductById, getCartedProductById, clearCart }
 })
