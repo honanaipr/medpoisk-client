@@ -48,6 +48,10 @@ function onRight(item: InventoryJointItem) {
   if(item.amount) {
     cartStore.clearCart()
     cartStore.cartProductById(item.product.id)
+    const cartProduct = cartStore.getCartedProductById(item.product.id)
+    if (cartProduct) {
+      cartProduct.cartedAmount = cartProduct.amount
+    }
     router.push('cart')
   }
 }
