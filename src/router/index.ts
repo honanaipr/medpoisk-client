@@ -78,5 +78,11 @@ const router = createRouter({
     },
   ],
 })
+router.afterEach((to, from, failure) => {
+  const layoutId = document.getElementById('scroll-area');
+    if (layoutId) {
+        layoutId.scrollTop = 0;
+    }
+})
 
 export default router

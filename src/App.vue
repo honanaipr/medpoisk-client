@@ -20,7 +20,7 @@ const auth_store = useAuthStore()
       >
         <SpinnerComponent />
       </div>
-      <div v-else-if="auth_store.authState == AuthState.Loggedin" class="scroll-area">
+      <div v-else-if="auth_store.authState == AuthState.Loggedin" class="scroll-area" id="scroll-area">
         <RouterView v-slot="{ Component }">
           <Transition name="fade" mode="out-in">
             <component :is="Component" />
