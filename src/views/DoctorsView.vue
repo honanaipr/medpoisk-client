@@ -15,6 +15,7 @@ function createDoctor() {
 </script>
 
 <template>
+  <div class="doctors-view">
   <div class="header">
     <h1>Врачи</h1>
     <h2>Добавить нового</h2>
@@ -28,6 +29,7 @@ function createDoctor() {
     <template v-for="doctor of doctor_store.doctors" :key="doctor.id">
       <ButtonComponent>{{ doctor.username }}</ButtonComponent>
     </template>
+  </div>
   </div>
 </template>
 

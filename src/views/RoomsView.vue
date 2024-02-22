@@ -15,6 +15,7 @@ function createRoom() {
 </script>
 
 <template>
+  <div class="rooms-view">
   <div class="header">
     <h1>Кабинеты</h1>
     <h2>Добавить новый</h2>
@@ -28,6 +29,7 @@ function createRoom() {
     <template v-for="room of room_store.rooms" :key="room.id">
       <ButtonComponent>{{ room.title }}</ButtonComponent>
     </template>
+  </div>
   </div>
 </template>
 

@@ -20,6 +20,7 @@ function createPlace() {
 </script>
 
 <template>
+  <div class="place-view">
   <div class="header">
     <h1>Места хранения</h1>
     <h2>Добавить новое</h2>
@@ -44,6 +45,7 @@ function createPlace() {
         </div>
       </ButtonComponent>
     </template>
+  </div>
   </div>
 </template>
 
