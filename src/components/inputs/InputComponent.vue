@@ -61,4 +61,12 @@ span
     font-size: 12px
     font-weight: 600
     color: var(--inactive-color)
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+input[type='number']
+  -moz-appearance: textfield
 </style>
