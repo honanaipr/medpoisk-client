@@ -79,7 +79,7 @@ function getMaxValue(cartItem: CartItem, row: Allocation) {
       <div class="write-off-talbe">
         <div class="row" v-for="row in cartItem.allocations">
           <div class="column place-selector">
-            <InputComponent title="Места хранения" type="select" :options="getOptions(row.place)" v-model="row.place" />
+            <InputComponent title="Места хранения" type="select" :options="getOptions(row.place)" :disabled="row.amount" v-model="row.place" />
           </div>
           <div class="column amount-selector">
             <NumberInput title="Количество" :min="0" :max="getMaxValue(cartItem, row)" v-model="row.amount" />
