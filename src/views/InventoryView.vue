@@ -44,6 +44,20 @@ function filter(item: InventoryJointItem) {
 
 const list = computed(()=>inventoryStore.jointInventory)
 
+function onRight(item: InventoryJointItem) {
+  if(item.amount) {
+    cartStore.clearCart()
+    cartStore.cartProductById(item.product.id)
+    router.push('cart')
+  }
+}
+
+function onLeft(item: InventoryJointItem) {
+  if(item.amount) {
+    cartStore.cartProductById(item.product.id)
+  }
+}
+
 </script>
 
 <template>
@@ -57,18 +71,8 @@ const list = computed(()=>inventoryStore.jointInventory)
       <SwipeItem
         v-for="item in list"
         :key="item.product.id"
-        @right="
-          () => {
-            cartStore.clearCart()
-            cartStore.cartProductById(item.product.id)
-            router.push('cart')
-          }
-        "
-        @left="
-          () => {
-            cartStore.cartProductById(item.product.id)
-          }
-        "
+        @right="onRight(item)"
+        @left="onLeft(item)"
       >
         <template #right>
           <slot name="left-icon"> </slot>
