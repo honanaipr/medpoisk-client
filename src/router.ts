@@ -1,5 +1,6 @@
 import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import InventoryView from '@/views/InventoryView.vue'
+import ProductView from '@/views/ProductView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,7 +20,7 @@ const router = createRouter({
     {
       path: '/addProduct',
       name: 'addProduct',
-      component: () => import('@/views/InvoiceItemView.vue'),
+      component: () => import('@/views/SingularAddView.vue'),
       meta: { transition: 'slide-left' },
     },
     {

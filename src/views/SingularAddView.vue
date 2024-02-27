@@ -1,25 +1,31 @@
 <script setup lang="ts">
-import { useInventoryStore, type InventoryJointItem } from '../stores/inventory_store'
+import { type InventoryJointItem } from '../stores/inventory_store'
 import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import ProductDataEditor from '@/components/ProductDataEditor.vue'
 import ProductAllocator from '@/components/ProductAllocator.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 
 async function apply() {
-
 }
 
 const form_verified = computed(function () {
   return true
 })
 
-const route = useRoute()
 const item = ref<InventoryJointItem>()
 onMounted(async()=>{
-  const inventoryStore = useInventoryStore()
-  await inventoryStore.update()
-  item.value = inventoryStore.jointInventory.find(item => item.product.id == Number(route.params.id))
+  item.value = {
+    product : {
+      id: 0,
+      title: '',
+      barcode: 0,
+      description: '',
+      pictures: [],
+    },
+    amount : 0,
+    limit : 0,
+    allocations : [],
+  }
 })
 const editable = ref(true)
 const dataful = ref()
