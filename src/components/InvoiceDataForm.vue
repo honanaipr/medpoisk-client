@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useInvoiceStore } from '@/stores/invoice_store'
-import InputComponent from './inputs/InputComponent.vue'
+import InputComponent from '@/components/inputs/InputComponent.vue'
 
 const invoiceStore = useInvoiceStore()
 </script>

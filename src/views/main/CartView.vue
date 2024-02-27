@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import WriteOffFor from '@/components/WriteOffFor.vue'
 import { useCartStore } from '@/stores/cart_store'
-import { ref, computed } from 'vue'
 import SwipeItem from '@/components/swipe/SwipeItem.vue'
 import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
 import EmptyListHint from '@/components/common/EmptyListHint.vue'

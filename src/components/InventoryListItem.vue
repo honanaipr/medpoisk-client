@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { InventoryJointItem } from '@/stores/inventory_store'
-import MoreIcon from './icons/MoreIcon.vue'
-import FavoriteIcon from './icons/FavoriteIcon.vue'
+import MoreIcon from '@/components/icons/MoreIcon.vue'
+import FavoriteIcon from '@/components/icons/FavoriteIcon.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import TrashIcon from '@/components/icons/TrashIcon.vue'
-import InputComponent from './inputs/InputComponent.vue'
+import InputComponent from '@/components/inputs/InputComponent.vue'
 import { useCartStore } from '@/stores/cart_store'
 
 const emit = defineEmits(['doubleClick'])

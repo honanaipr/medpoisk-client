@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { Ref } from 'vue'
-import showToast from '../toast'
+import showToast from '@/toast'
 import axios from 'axios'
-import messaegs from '../messaegs'
+import messaegs from '@/messaegs'
 import Joi from 'joi'
-import { inventoryItemSchema } from '../schemas'
-import { API_INVENTORY_PATH } from '../pathes'
-import { useAuthStore } from './auth_store'
-import { useProductStore, type Product } from './product_store'
+import { inventoryItemSchema } from '@/schemas'
+import { API_INVENTORY_PATH } from '@/pathes'
+import { useAuthStore } from '@/stores/auth_store'
+import { useProductStore, type Product } from '@/stores/product_store'
 import type { Place } from '@/stores/place_store'
-import { useLimitStore } from './limit_store'
+import { useLimitStore } from '@/stores/limit_store'
 
 export interface InventoryItem {
   product: Product

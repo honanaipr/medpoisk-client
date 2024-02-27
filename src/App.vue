@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import BottomControls from './components/layout/BottomControls.vue'
-import BannerComponent from './components/layout/BannerComponent.vue'
-import AuthViewVue from './views/auth/AuthView.vue'
-import { useAuthStore, AuthState } from './stores/auth_store'
+import BottomControls from '@/components/layout/BottomControls.vue'
+import BannerComponent from '@/components/layout/BannerComponent.vue'
+import AuthViewVue from '@/views/auth/AuthView.vue'
+import { useAuthStore, AuthState } from '@/stores/auth_store'
 import SpinnerComponent from '@/components/common/SpinnerComponent.vue'
-import MobileFirstContainer from './components/layout/MobileFirstContainer.vue'
+import MobileFirstContainer from '@/components/layout/MobileFirstContainer.vue'
 
 const auth_store = useAuthStore()
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import router from '../router'
+import router from '@/router'
 import { useProductStore } from '@/stores/product_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'

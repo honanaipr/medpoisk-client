@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
-import NumberInput from './inputs/NumberInput.vue'
+import NumberInput from '@/components/inputs/NumberInput.vue'
 import type { Place } from '@/stores/place_store'
 import { useCartStore, type CartItem } from '@/stores/cart_store'
 import InputComponent from '@/components/inputs/InputComponent.vue'

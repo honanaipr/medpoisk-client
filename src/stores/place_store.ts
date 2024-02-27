@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import showToast from '../toast'
+import showToast from '@/toast'
 import axios from 'axios'
-import messaegs from '../messaegs'
+import messaegs from '@/messaegs'
 import Joi from 'joi'
 
-import { placeSchema } from '../schemas'
+import { placeSchema } from '@/schemas'
 
-import { API_PLACE_PATH } from '../pathes'
+import { API_PLACE_PATH } from '@/pathes'
 
-import { useAuthStore } from './auth_store'
+import { useAuthStore } from '@/stores/auth_store'
 
 export interface PlaceCreate {
   title: string

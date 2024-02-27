@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import LogoIcon from '@/components/icons/LogoIcon.vue'
 import AngleLeft from '@/components/icons/AngleLeft.vue'
-import ButtonComponent from '../inputs/ButtonComponent.vue'
+import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 </script>
 <template>
   <div class="top-controls">

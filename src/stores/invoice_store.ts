@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Product } from '@/stores/product_store'
 import { useProductStore } from '@/stores/product_store'
-import type { Place } from '@/types'
+import type { Place } from '@/stores/place_store'
 
 export interface InvoiceItemAllocation {
   place: Place

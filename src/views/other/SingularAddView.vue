@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type InventoryJointItem } from '../stores/inventory_store'
+import { type InventoryJointItem } from '@/stores/inventory_store'
 import { computed, onMounted, ref } from 'vue'
 import ProductDataEditor from '@/components/ProductDataEditor.vue'
 import ProductAllocator from '@/components/ProductAllocator.vue'

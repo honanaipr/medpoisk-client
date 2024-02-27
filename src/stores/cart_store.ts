@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Place } from '@/stores/place_store'
-import { useLimitStore } from './limit_store'
-import { useInventoryStore, type InventoryJointItem } from './inventory_store'
-import type { Doctor } from './doctor_store'
-import type { Room } from './room_store'
+import { useLimitStore } from '@/stores/limit_store'
+import { useInventoryStore, type InventoryJointItem } from '@/stores/inventory_store'
+import type { Doctor } from '@/stores/doctor_store'
+import type { Room } from '@/stores/room_store'
 
 export interface Allocation {
   place: Place | null

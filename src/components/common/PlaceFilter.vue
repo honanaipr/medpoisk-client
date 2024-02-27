@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Place } from '@/types'
+import { type Place } from '@/stores/place_store'
 import { usePlaceStore } from '@/stores/place_store'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import AngleDownVue from '@/components/icons/AngleDown.vue'

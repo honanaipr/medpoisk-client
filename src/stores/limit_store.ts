@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import showToast from '../toast'
+import showToast from '@/toast'
 import axios from 'axios'
-import messaegs from '../messaegs'
+import messaegs from '@/messaegs'
 import Joi from 'joi'
-import { limitSchema } from '../schemas'
-import { API_LIMIT_PATH } from '../pathes'
-import { useAuthStore } from './auth_store'
+import { limitSchema } from '@/schemas'
+import { API_LIMIT_PATH } from '@/pathes'
+import { useAuthStore } from '@/stores/auth_store'
 
 export interface Limit {
   division_id: number

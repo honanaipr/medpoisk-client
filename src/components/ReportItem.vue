@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import { Place } from '@/types';
 import type { Place } from '@/stores/place_store'
 import { defineProps } from 'vue'
 import type { Product } from '@/stores/product_store'

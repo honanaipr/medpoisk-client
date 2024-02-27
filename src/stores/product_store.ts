@@ -1,17 +1,16 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import showToast from '../toast'
+import showToast from '@/toast'
 import axios from 'axios'
-import messaegs from '../messaegs'
+import messaegs from '@/messaegs'
 import Joi from 'joi'
 
-// import { Product } from '../types'
-import { productSchema } from '../schemas'
+import { productSchema } from '@/schemas'
 
-import { API_PRODUCT_PATH } from '../pathes'
+import { API_PRODUCT_PATH } from '@/pathes'
 
-import { useAuthStore } from './auth_store'
+import { useAuthStore } from '@/stores/auth_store'
 
 export interface Picture {
   url: string
