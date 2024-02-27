@@ -25,7 +25,7 @@ async function apply() {
     barcode: Number(barcode.value),
     pictures: imageFile.value ? [imageFile.value] : [],
   })
-  router.replace({ name: 'home' })
+  router.replace({ name: 'inventory' })
 }
 
 const form_verified = computed(function () {

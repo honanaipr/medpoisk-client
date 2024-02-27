@@ -14,7 +14,7 @@ const authStore = useAuthStore()
     <ButtonComponent
       @click="
         () => {
-          $router.push({ name: 'home' })
+          $router.push({ name: 'inventory' })
         }
       "
       has-border
@@ -23,7 +23,7 @@ const authStore = useAuthStore()
     <ButtonComponent
       @click="
         () => {
-          $router.push({ name: 'home' })
+          $router.push({ name: 'inventory' })
         }
       "
       >Журнал накладных</ButtonComponent
@@ -31,7 +31,7 @@ const authStore = useAuthStore()
     <ButtonComponent
       @click="
         () => {
-          $router.push({ name: 'home' })
+          $router.push({ name: 'inventory' })
         }
       "
       >Журнал списания</ButtonComponent

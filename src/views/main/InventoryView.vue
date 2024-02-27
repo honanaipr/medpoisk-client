@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import router from '../router'
 import SwipeItem from '@/components/swipe/SwipeItem.vue'
 import SwipeContainer from '@/components/swipe/SwipeContainer.vue'
 import { ref, computed } from 'vue'
@@ -14,6 +13,9 @@ import { useLimitStore } from '@/stores/limit_store'
 import { useProductStore } from '@/stores/product_store'
 import InventoryListItem from '@/components/InventoryListItem.vue'
 import type { Place } from '@/stores/place_store'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const productStore = useProductStore()
 const inventoryStore = useInventoryStore()

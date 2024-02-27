@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import InvoiceDataForm from '../components/InvoiceDataForm.vue'
+import InvoiceDataForm from '@/components/InvoiceDataForm.vue'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import { useInvoiceStore } from '@/stores/invoice_store'
 import InvoiceListItem from '@/components/InvoiceListItem.vue'
@@ -20,7 +20,7 @@ import SwipeLeft from '@/components/icons/SwipeLeft.vue'
 //     await store.patchItem(element)
 //   })
 //   store.invoice = []
-//   router.push({ name: 'home' })
+//   router.push({ name: 'inventory' })
 // }
 
 const invoiceStore = useInvoiceStore()

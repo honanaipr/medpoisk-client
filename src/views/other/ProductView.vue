@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useInventoryStore, type InventoryJointItem } from '../stores/inventory_store'
+import { useInventoryStore, type InventoryJointItem } from '@/stores/inventory_store'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import ProductDataEditor from '@/components/ProductDataEditor.vue'

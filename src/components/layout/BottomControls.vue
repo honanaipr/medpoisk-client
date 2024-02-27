@@ -22,12 +22,12 @@ const addRoutes = ['addToInvoice', 'addProduct', 'addInvoice', 'addByCode']
     </div>
     <div class="bottom-controls-buttons">
       <BottomControlsButton
-        :active="$route.name == 'home'"
+        :active="$route.name == 'inventory'"
         title="Главная"
         @click="router.push('/')"
       >
         <template #icon>
-          <HomeIcon :active="$route.name == 'home'" />
+          <HomeIcon :active="$route.name == 'inventory'" />
         </template>
       </BottomControlsButton>
       <BottomControlsButton

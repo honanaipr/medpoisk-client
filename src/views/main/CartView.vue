@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WriteOffFor from '../components/WriteOffFor.vue'
+import WriteOffFor from '@/components/WriteOffFor.vue'
 import { useCartStore } from '@/stores/cart_store'
 import { ref, computed } from 'vue'
 import SwipeItem from '@/components/swipe/SwipeItem.vue'
