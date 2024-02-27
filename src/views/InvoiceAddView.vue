@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import router from '../router'
-import { InvoiceItem } from '@/types.js'
-import PlusIcon from '../components/icons/PlusIcon.vue'
-import defaultImage from '@/assets/add_image.png'
 import ButtonComponent from '@/components/inputs/ButtonComponent.vue'
 import SelectComponetn from '@/components/inputs/SelectComponent.vue'
 import { useProductStore } from '@/stores/product_store'
