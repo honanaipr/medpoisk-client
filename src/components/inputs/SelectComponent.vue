@@ -6,15 +6,15 @@ defineProps({
   options: { type: Array<{ title: string; id: number }>, required: false },
 })
 
-const model = defineModel()
+const model = defineModel({default: null})
 </script>
 
 <template>
   <div class="input-container">
     <span v-if="title">{{ title }}</span>
     <select v-model="model" :id="title" :name="title">
-      <option disabled value="">Выбрать место</option>
-      <option disabled hidden :value="null">Место не выбрано</option>
+      <option hidden :value="null">{{ placeholder }}</option>
+      <!-- <option disabled >Не выбрано</option> -->
       <option v-for="place in options" :key="place.id" :value="place.id">
         {{ place.title }}
       </option>

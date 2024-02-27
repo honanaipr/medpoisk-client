@@ -2,7 +2,7 @@
 import defaultImage from '@/assets/add_image.png'
 import { ref } from 'vue'
 
-const imageFile = defineModel<File | null>({ default: null })
+const imageFile = defineModel<File | null>('imageFile', { default: null })
 const iamgeSrc = ref<string>(defaultImage)
 const imgInputRef = ref<HTMLInputElement | null>(null)
 
@@ -20,6 +20,7 @@ function onfileChange() {
   <div class="image-selector">
     <label class="input-label" for="imageFileInput"><img :src="iamgeSrc" class="preview" /></label>
     <input
+      v-bind="$attrs"
       type="file"
       ref="imgInputRef"
       @change="onfileChange"
