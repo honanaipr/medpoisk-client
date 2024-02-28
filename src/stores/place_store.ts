@@ -37,7 +37,7 @@ export const usePlaceStore = defineStore('place', () => {
       .then((responce) => {
         const joiResult = Joi.array().items(placeSchema).validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
         places.value = value
@@ -58,7 +58,7 @@ export const usePlaceStore = defineStore('place', () => {
       .then((responce) => {
         const joiResult = placeSchema.validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         places.value.push(joiResult.value)
         showToast(messaegs.PLACE_ADD_OK_MESSAGE)

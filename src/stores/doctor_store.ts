@@ -34,7 +34,7 @@ export const useDoctorStore = defineStore('doctor', () => {
       .then((responce) => {
         const joiResult = Joi.array().items(doctorSchema).validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
         doctors.value = value
@@ -42,7 +42,7 @@ export const useDoctorStore = defineStore('doctor', () => {
       })
       .catch((error) => {
         showToast(messaegs.DOCTOR_UPDATE_ERROR_MESSAGE)
-        throw error
+        console.log(error)
       })
   }
 
@@ -54,7 +54,7 @@ export const useDoctorStore = defineStore('doctor', () => {
       .then((responce) => {
         const joiResult = doctorSchema.validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         doctors.value.push(joiResult.value)
         showToast(messaegs.DOCTOR_ADD_OK_MESSAGE)

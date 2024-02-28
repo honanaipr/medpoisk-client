@@ -42,7 +42,7 @@ export const useProductStore = defineStore('product', () => {
       .then((responce) => {
         const joiResult = Joi.array().items(productSchema).validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
         products.value = value
@@ -69,7 +69,7 @@ export const useProductStore = defineStore('product', () => {
       .then((responce) => {
         const joiResult = productSchema.validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         const value = joiResult.value
         products.value.push(value)

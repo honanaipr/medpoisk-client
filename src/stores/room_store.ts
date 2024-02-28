@@ -33,7 +33,7 @@ export const useRoomStore = defineStore('room', () => {
       .then((responce) => {
         const joiResult = Joi.array().items(roomSchema).validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
         rooms.value = value
@@ -41,7 +41,7 @@ export const useRoomStore = defineStore('room', () => {
       .catch((error) => {
         console.error(error)
         showToast(messaegs.ROOM_UPDATE_ERROR_MESSAGE)
-        throw error
+        console.log(error)
       })
   }
 
@@ -58,12 +58,12 @@ export const useRoomStore = defineStore('room', () => {
       .catch((error) => {
         console.error(error)
         showToast(messaegs.ROOM_ADD_ERROR_MESSAGE)
-        throw error
+        console.log(error)
       })
   }
 
   function deleteRoom(room: Room) {
-    throw Error('Not implemented' + room.title)
+    console.log('Not implemented' + room.title)
   }
 
   function byId(id: number) {

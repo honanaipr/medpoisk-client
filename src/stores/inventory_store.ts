@@ -37,7 +37,7 @@ export const useInventoryStore = defineStore('inventory', () => {
       .then((responce) => {
         const joiResult = Joi.array().items(inventoryItemSchema).validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error?.message)
+          console.log(joiResult.error?.message)
         }
         const value = joiResult.value.map((item) => item)
         inventory.value = value
@@ -45,7 +45,7 @@ export const useInventoryStore = defineStore('inventory', () => {
       })
       .catch((error) => {
         showToast(messaegs.INVENTORY_UPDATE_ERROR_MESSAGE)
-        throw error
+        console.log(error)
       })
   }
 

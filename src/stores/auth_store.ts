@@ -57,7 +57,7 @@ export const useAuthStore = defineStore('auth', () => {
           username.value = joiResult.value.username
           roles.value = joiResult.value.roles
         } else {
-          throw Error('Token data incorrect ' + joiResult.error.message)
+          console.log('Token data incorrect ' + joiResult.error.message)
         }
         authState.value = AuthState.Loggedin
         updateAll()
@@ -65,7 +65,7 @@ export const useAuthStore = defineStore('auth', () => {
       .catch((error) => {
         console.error(error)
         authState.value = AuthState.Failed
-        throw error
+        console.log(error)
       })
   }
 
@@ -91,7 +91,7 @@ export const useAuthStore = defineStore('auth', () => {
           username.value = joiResult.value.username
           roles.value = joiResult.value.roles
         } else {
-          throw Error('Token data incorrect ' + joiResult.error.message)
+          console.log('Token data incorrect ' + joiResult.error.message)
         }
         authState.value = AuthState.Loggedin
         updateAll()
@@ -99,7 +99,7 @@ export const useAuthStore = defineStore('auth', () => {
       .catch((error) => {
         console.error(error)
         authState.value = AuthState.Failed
-        throw error
+        console.log(error)
       })
   }
 

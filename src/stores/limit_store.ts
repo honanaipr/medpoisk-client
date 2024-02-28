@@ -28,7 +28,7 @@ export const useLimitStore = defineStore('limit', () => {
       .then((responce) => {
         const joiResult = Joi.array().items(limitSchema).validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         const value = joiResult.value.map((item) => item)
         limits.value = value
@@ -49,7 +49,7 @@ export const useLimitStore = defineStore('limit', () => {
       .then((responce) => {
         const joiResult = limitSchema.validate(responce.data)
         if (joiResult.error) {
-          throw new Error(joiResult.error.message)
+          console.log(joiResult.error.message)
         }
         limits.value.push(joiResult.value)
         showToast(messaegs.LIMIT_ADD_OK_MESSAGE)
