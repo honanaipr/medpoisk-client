@@ -36,7 +36,7 @@ input, select
     font-size: 14px
     border-radius: 8px
     font-weight: 700
-    color: var(--devider-color)
+    color: var(--text-black)
     width: 100%
 
 span

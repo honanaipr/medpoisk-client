@@ -2,7 +2,11 @@
 import defaultImage from '@/assets/add_image.png'
 import { ref } from 'vue'
 
-const imageFile = defineModel<File | null>('imageFile', { default: null })
+defineProps({
+  imageUrl: {type: String, required: false}
+})
+
+const imageFile = defineModel<File | null>('imageFile', { required: false })
 const iamgeSrc = ref<string>(defaultImage)
 const imgInputRef = ref<HTMLInputElement | null>(null)
 
@@ -46,4 +50,14 @@ img.preview
 div.image-selector
   display: flex
   justify-content: center
+
+.uploadFile
+  display: none
+
+#uploadIcon
+  cursor: pointer
+
+svg
+  width: 20px
+
 </style>
