@@ -42,12 +42,6 @@ export const productShortSchema = Joi.object({
   title: Joi.string(),
 })
 
-export const positionSchema = Joi.object({
-  product_id: Joi.number(),
-  place_id: Joi.number(),
-  amount: Joi.number(),
-})
-
 export const inventoryItemSchema = Joi.object({
   product: productShortSchema,
   place: placeShortSchema,

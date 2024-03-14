@@ -45,11 +45,13 @@ export const useRoomStore = defineStore('room', () => {
       })
   }
 
-  function addRoom(room: RoomCreate) {
+  async function addRoom(room: RoomCreate) {
+    const auth_store = useAuthStore()
     axios
       .put(API_ROOM_PATH, {
         title: room.title,
         division_id: room.division_id,
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         showToast(messaegs.ROOM_ADD_OK_MESSAGE)

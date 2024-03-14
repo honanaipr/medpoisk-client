@@ -48,12 +48,14 @@ export const usePlaceStore = defineStore('place', () => {
       })
   }
 
-  function addPlace(place: PlaceCreate) {
+  async function addPlace(place: PlaceCreate) {
+    const auth_store = useAuthStore()
     axios
       .put(API_PLACE_PATH, {
         title: place.title,
         short_title: place.shortTitle,
         division_id: place.division_id,
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = placeSchema.validate(responce.data)

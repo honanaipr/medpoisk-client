@@ -46,10 +46,11 @@ export const useDoctorStore = defineStore('doctor', () => {
       })
   }
 
-  function addDoctor(doctor: DoctorCreate) {
+  async function addDoctor(doctor: DoctorCreate) {
     axios
       .put(API_DOCTOR_PATH, {
         username: doctor.username,
+        headers: { Authorization: `Bearer ${await auth_store.getFreshToken()}` },
       })
       .then((responce) => {
         const joiResult = doctorSchema.validate(responce.data)
